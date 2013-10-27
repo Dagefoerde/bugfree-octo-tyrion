@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_xmzPYD77EeOr5un0JHVLfA/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_xmzPYD77EeOr5un0JHVLfA/3 model2.profile.uml#_xmzPYT77EeOr5un0JHVLfA">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_2wEG4D8JEeOEtNXXJDDwuw/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_2wEG4D8JEeOEtNXXJDDwuw/4 model2.profile.uml#_2wFVAD8JEeOEtNXXJDDwuw">
   <uml:Model xmi:id="_s1dyEDywEeOM5LIeec6LGA" name="Model">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_s1dyETywEeOM5LIeec6LGA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -29,6 +29,7 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_DkteED8KEeOEtNXXJDDwuw" name="findBookByISBN()"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_S8w5QDyxEeOM5LIeec6LGA" name="CD">
       <generalization xmi:type="uml:Generalization" xmi:id="_WlYlwDyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
@@ -40,6 +41,7 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6fNSID8JEeOEtNXXJDDwuw" name="findCDByASIN()"/>
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_fmFxQDyxEeOM5LIeec6LGA" name="String"/>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vBfvUDyxEeOM5LIeec6LGA" name="Integer"/>
@@ -163,7 +165,7 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_K5KEcD78EeOr5un0JHVLfA" name="" client="_6O90gD76EeOr5un0JHVLfA" supplier="_EA2osDyzEeOM5LIeec6LGA"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-k_u4DywEeOM5LIeec6LGA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-lca0DywEeOM5LIeec6LGA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="model2.profile.uml#_xmzPYT77EeOr5un0JHVLfA"/>
+        <references xmi:type="ecore:EPackage" href="model2.profile.uml#_2wFVAD8JEeOEtNXXJDDwuw"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="model2.profile.uml#_1PbtsDywEeOM5LIeec6LGA"/>
     </profileApplication>
@@ -178,4 +180,6 @@
   <Profile:BusinessLogic xmi:id="_1387gD77EeOr5un0JHVLfA" base_Class="_GquxoD77EeOr5un0JHVLfA"/>
   <Profile:BusinessLogic xmi:id="_2ufh8D77EeOr5un0JHVLfA" base_Class="_WARqMD75EeOr5un0JHVLfA"/>
   <Profile:BusinessLogic xmi:id="_3WbrsD77EeOr5un0JHVLfA" base_Class="_6O90gD76EeOr5un0JHVLfA"/>
+  <Profile:find xmi:id="_CLdMID8KEeOEtNXXJDDwuw" base_Operation="_6fNSID8JEeOEtNXXJDDwuw"/>
+  <Profile:find xmi:id="_G2IykD8KEeOEtNXXJDDwuw" base_Operation="_DkteED8KEeOEtNXXJDDwuw"/>
 </xmi:XMI>
