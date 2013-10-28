@@ -29,7 +29,10 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_DkteED8KEeOEtNXXJDDwuw" name="findBookByISBN()"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_DkteED8KEeOEtNXXJDDwuw" name="findBookByISBN">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qF59AD_8EeOttPqF4sHiIg" name="ISBN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_tIfkQD_8EeOttPqF4sHiIg" type="_SBBCsDyxEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_S8w5QDyxEeOM5LIeec6LGA" name="CD">
       <generalization xmi:type="uml:Generalization" xmi:id="_WlYlwDyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
@@ -41,7 +44,10 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_6fNSID8JEeOEtNXXJDDwuw" name="findCDByASIN()"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6fNSID8JEeOEtNXXJDDwuw" name="findCDByASIN">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_2UhO8D_8EeOttPqF4sHiIg" name="ASIN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7aqCUD_8EeOttPqF4sHiIg" type="_S8w5QDyxEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_fmFxQDyxEeOM5LIeec6LGA" name="String"/>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vBfvUDyxEeOM5LIeec6LGA" name="Integer"/>
