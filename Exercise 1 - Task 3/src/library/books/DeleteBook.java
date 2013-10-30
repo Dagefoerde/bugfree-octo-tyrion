@@ -46,44 +46,30 @@ public class DeleteBook extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblAreYouSure = new JLabel("Are you sure you want to delete the following book?");
+		JLabel lblAreYouSure = new JLabel("Are you sure you want to delete this book?");
 		GridBagConstraints gbc_lblAreYouSure = new GridBagConstraints();
 		gbc_lblAreYouSure.gridwidth = 2;
-		gbc_lblAreYouSure.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAreYouSure.insets = new Insets(0, 0, 5, 0);
 		gbc_lblAreYouSure.gridx = 0;
 		gbc_lblAreYouSure.gridy = 0;
 		contentPane.add(lblAreYouSure, gbc_lblAreYouSure);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 2;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 1;
-		contentPane.add(scrollPane, gbc_scrollPane);
-		
-		JTextPane txtpnIsbnName = new JTextPane();
-		txtpnIsbnName.setText("ISBN: ...\r\nName: ...\r\nAuthor: ...");
-		scrollPane.setViewportView(txtpnIsbnName);
-		txtpnIsbnName.setEditable(false);
 		
 		JButton btnYes = new JButton("Yes");
 		GridBagConstraints gbc_btnYes = new GridBagConstraints();
 		gbc_btnYes.insets = new Insets(0, 0, 0, 5);
 		gbc_btnYes.gridx = 0;
-		gbc_btnYes.gridy = 2;
+		gbc_btnYes.gridy = 1;
 		contentPane.add(btnYes, gbc_btnYes);
 		
 		JButton btnNo = new JButton("No");
 		GridBagConstraints gbc_btnNo = new GridBagConstraints();
 		gbc_btnNo.gridx = 1;
-		gbc_btnNo.gridy = 2;
+		gbc_btnNo.gridy = 1;
 		contentPane.add(btnNo, gbc_btnNo);
 	}
 
