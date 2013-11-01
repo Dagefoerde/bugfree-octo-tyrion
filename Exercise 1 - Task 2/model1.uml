@@ -265,14 +265,7 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_cLEpsEDUEeO-esLIhfAtNg" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ca2yIEDUEeO-esLIhfAtNg" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ca3ZMEDUEeO-esLIhfAtNg" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ca4AQEDUEeO-esLIhfAtNg">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_oIvVkEDUEeO-esLIhfAtNg" name="ISBN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_oIvVkEDUEeO-esLIhfAtNg" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oXQ5wEDUEeO-esLIhfAtNg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oXRg0EDUEeO-esLIhfAtNg" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_oXSH4EDUEeO-esLIhfAtNg">
@@ -306,17 +299,10 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_uC3qwELOEeO67a7r-Wk3iw" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uC3qwELOEeO67a7r-Wk3iw" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uRxCYELOEeO67a7r-Wk3iw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uRxCYULOEeO67a7r-Wk3iw" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_uRxCYkLOEeO67a7r-Wk3iw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_yn_bwELOEeO67a7r-Wk3iw" name="ISBN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yx0tMELOEeO67a7r-Wk3iw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yx0tMULOEeO67a7r-Wk3iw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_yx0tMkLOEeO67a7r-Wk3iw">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
@@ -451,6 +437,13 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_dWpooEMcEeOQB-ll0pMEzg" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dx6oUEMcEeOQB-ll0pMEzg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dx6oUUMcEeOQB-ll0pMEzg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_dx6oUkMcEeOQB-ll0pMEzg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_YN45gELkEeO67a7r-Wk3iw" name="save"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_d6Kf0ELkEeO67a7r-Wk3iw" name="cancel"/>
     </packagedElement>
@@ -521,40 +514,6 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl3lsELiEeO67a7r-Wk3iw" name="" client="_-y4EQELOEeO67a7r-Wk3iw" supplier="_DxNE0ELiEeO67a7r-Wk3iw"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_Q1mIMELiEeO67a7r-Wk3iw" name="" client="_DxNE0ELiEeO67a7r-Wk3iw" supplier="_-y4EQELOEeO67a7r-Wk3iw"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_FM8NkELjEeO67a7r-Wk3iw" name="ShowUpdateLoanCD">
-      <generalization xmi:type="uml:Generalization" xmi:id="_8dUVkELjEeO67a7r-Wk3iw" general="_vgzK4ELaEeO67a7r-Wk3iw"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_QA7UkELjEeO67a7r-Wk3iw" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QRA_AELjEeO67a7r-Wk3iw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QRA_AULjEeO67a7r-Wk3iw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_QRA_AkLjEeO67a7r-Wk3iw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_v19zgELjEeO67a7r-Wk3iw" name="Interpreter" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wSk3AELjEeO67a7r-Wk3iw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wSuoAELjEeO67a7r-Wk3iw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wSuoAULjEeO67a7r-Wk3iw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_JgVVYELjEeO67a7r-Wk3iw" name="ShowUpdateLoanBook">
-      <generalization xmi:type="uml:Generalization" xmi:id="_8vWgwELjEeO67a7r-Wk3iw" general="_vgzK4ELaEeO67a7r-Wk3iw"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_0bFkgELjEeO67a7r-Wk3iw" name="ISBN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0rCFAELjEeO67a7r-Wk3iw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0rLO8ELjEeO67a7r-Wk3iw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_0rLO8ULjEeO67a7r-Wk3iw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_3QcoEELjEeO67a7r-Wk3iw" name="Author" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3cuwkELjEeO67a7r-Wk3iw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3cuwkULjEeO67a7r-Wk3iw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_3cuwkkLjEeO67a7r-Wk3iw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_6od3UELkEeO67a7r-Wk3iw" clientDependency="_kuI4kELlEeO67a7r-Wk3iw" name="LoanOverview">
       <ownedOperation xmi:type="uml:Operation" xmi:id="_9L75oELkEeO67a7r-Wk3iw" name="ok"/>
     </packagedElement>
@@ -648,6 +607,4 @@
   <Profile:action xmi:id="_URUg0ELlEeO67a7r-Wk3iw" base_Operation="_TiOmMELlEeO67a7r-Wk3iw"/>
   <Profile:action xmi:id="_q6FdcELlEeO67a7r-Wk3iw" base_Operation="_py_5kELlEeO67a7r-Wk3iw"/>
   <Profile:UI xmi:id="_aH6rUELmEeO67a7r-Wk3iw" base_Class="_JwfmYELlEeO67a7r-Wk3iw"/>
-  <Profile:UI xmi:id="_a-59sELmEeO67a7r-Wk3iw" base_Class="_FM8NkELjEeO67a7r-Wk3iw"/>
-  <Profile:UI xmi:id="_biOGIELmEeO67a7r-Wk3iw" base_Class="_JgVVYELjEeO67a7r-Wk3iw"/>
 </xmi:XMI>
