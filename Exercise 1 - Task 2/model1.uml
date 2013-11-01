@@ -447,7 +447,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_YN45gELkEeO67a7r-Wk3iw" name="save"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_d6Kf0ELkEeO67a7r-Wk3iw" name="cancel"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_VK4xoELbEeO67a7r-Wk3iw" clientDependency="_8CrIUELgEeO67a7r-Wk3iw _coSy0ELlEeO67a7r-Wk3iw" name="ShowCopy" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_VK4xoELbEeO67a7r-Wk3iw" clientDependency="_8CrIUELgEeO67a7r-Wk3iw _coSy0ELlEeO67a7r-Wk3iw" name="ShowCopy">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_7zocMELfEeO67a7r-Wk3iw" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8Q18oELfEeO67a7r-Wk3iw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8Q18oULfEeO67a7r-Wk3iw" value="1"/>
