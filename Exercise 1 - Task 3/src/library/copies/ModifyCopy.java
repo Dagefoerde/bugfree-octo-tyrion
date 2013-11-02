@@ -1,4 +1,4 @@
-package library.loan;
+package library.copies;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,13 +15,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ModifyBook extends JFrame {
+public class ModifyCopy extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -30,7 +29,7 @@ public class ModifyBook extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ModifyBook frame = new ModifyBook();
+					ModifyCopy frame = new ModifyCopy();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,8 +41,8 @@ public class ModifyBook extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModifyBook() {
-		setTitle("Modify Loan");
+	public ModifyCopy() {
+		setTitle("Modify Copy");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 229);
 		contentPane = new JPanel();
@@ -56,12 +55,20 @@ public class ModifyBook extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblNewLabel = new JLabel("Inventory No.");
+		JLabel lblPleaseOnlyFill = new JLabel("Please fill in one of either ISBN or ASIN, but not both");
+		GridBagConstraints gbc_lblPleaseOnlyFill = new GridBagConstraints();
+		gbc_lblPleaseOnlyFill.gridwidth = 3;
+		gbc_lblPleaseOnlyFill.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPleaseOnlyFill.gridx = 0;
+		gbc_lblPleaseOnlyFill.gridy = 0;
+		contentPane.add(lblPleaseOnlyFill, gbc_lblPleaseOnlyFill);
+		
+		JLabel lblNewLabel = new JLabel("Inventory Number");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
+		gbc_lblNewLabel.gridy = 1;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		textField = new JTextField();
@@ -69,16 +76,16 @@ public class ModifyBook extends JFrame {
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
+		gbc_textField.gridy = 1;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		JLabel lblName = new JLabel("Name of Borrower");
+		JLabel lblName = new JLabel("ISBN");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.WEST;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.gridx = 0;
-		gbc_lblName.gridy = 1;
+		gbc_lblName.gridy = 2;
 		contentPane.add(lblName, gbc_lblName);
 		
 		textField_1 = new JTextField();
@@ -86,16 +93,16 @@ public class ModifyBook extends JFrame {
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 1;
+		gbc_textField_1.gridy = 2;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblAuthor = new JLabel("Issue Date");
+		JLabel lblAuthor = new JLabel("ASIN");
 		GridBagConstraints gbc_lblAuthor = new GridBagConstraints();
 		gbc_lblAuthor.anchor = GridBagConstraints.WEST;
 		gbc_lblAuthor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAuthor.gridx = 0;
-		gbc_lblAuthor.gridy = 2;
+		gbc_lblAuthor.gridy = 3;
 		contentPane.add(lblAuthor, gbc_lblAuthor);
 		
 		textField_2 = new JTextField();
@@ -103,7 +110,7 @@ public class ModifyBook extends JFrame {
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 2;
+		gbc_textField_2.gridy = 3;
 		contentPane.add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
 		
@@ -112,23 +119,6 @@ public class ModifyBook extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		
-		JLabel lblNewLabel_1 = new JLabel("Due Date");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 3;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
-		textField_3 = new JTextField();
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 1;
-		gbc_textField_3.gridy = 3;
-		contentPane.add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
 		GridBagConstraints gbc_btnCreateUpdate = new GridBagConstraints();
 		gbc_btnCreateUpdate.anchor = GridBagConstraints.EAST;
 		gbc_btnCreateUpdate.insets = new Insets(0, 0, 0, 5);

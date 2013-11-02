@@ -1,4 +1,4 @@
-package library.loan;
+package library.copies;
 
 import java.awt.EventQueue;
 
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Insets;
 import javax.swing.JButton;
 
-public class ManageLoans extends JFrame {
+public class ManageCopy extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -24,7 +24,7 @@ public class ManageLoans extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManageLoans frame = new ManageLoans();
+					ManageCopy frame = new ManageCopy();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +36,8 @@ public class ManageLoans extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ManageLoans() {
-		setTitle("Manage Loans");
+	public ManageCopy() {
+		setTitle("Manage Copy");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -50,7 +50,7 @@ public class ManageLoans extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblRetrieveABook = new JLabel("Retrieve a loan:");
+		JLabel lblRetrieveABook = new JLabel("Retrieve a copy:");
 		GridBagConstraints gbc_lblRetrieveABook = new GridBagConstraints();
 		gbc_lblRetrieveABook.anchor = GridBagConstraints.EAST;
 		gbc_lblRetrieveABook.insets = new Insets(0, 0, 5, 5);
@@ -58,7 +58,7 @@ public class ManageLoans extends JFrame {
 		gbc_lblRetrieveABook.gridy = 1;
 		contentPane.add(lblRetrieveABook, gbc_lblRetrieveABook);
 		
-		JLabel lblIsbn = new JLabel("ISBN/ ASIN");
+		JLabel lblIsbn = new JLabel("Inventory Number");
 		GridBagConstraints gbc_lblIsbn = new GridBagConstraints();
 		gbc_lblIsbn.insets = new Insets(0, 0, 5, 5);
 		gbc_lblIsbn.anchor = GridBagConstraints.EAST;
@@ -83,7 +83,7 @@ public class ManageLoans extends JFrame {
 		gbc_btnNewButton.gridy = 3;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		JLabel lblCreateABook = new JLabel("Create loan:");
+		JLabel lblCreateABook = new JLabel("Create copy:");
 		GridBagConstraints gbc_lblCreateABook = new GridBagConstraints();
 		gbc_lblCreateABook.anchor = GridBagConstraints.EAST;
 		gbc_lblCreateABook.insets = new Insets(0, 0, 5, 5);
@@ -99,7 +99,7 @@ public class ManageLoans extends JFrame {
 		gbc_btnCreate.gridy = 5;
 		contentPane.add(btnCreate, gbc_btnCreate);
 		
-		JLabel lblListAllBooks = new JLabel("List all loans:");
+		JLabel lblListAllBooks = new JLabel("List all copies:");
 		GridBagConstraints gbc_lblListAllBooks = new GridBagConstraints();
 		gbc_lblListAllBooks.anchor = GridBagConstraints.EAST;
 		gbc_lblListAllBooks.insets = new Insets(0, 0, 5, 5);

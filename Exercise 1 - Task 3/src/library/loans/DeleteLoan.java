@@ -1,4 +1,4 @@
-package library.Copy;
+package library.loans;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,7 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
-public class DeleteCopy extends JFrame {
+public class DeleteLoan extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class DeleteCopy extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DeleteCopy frame = new DeleteCopy();
+					DeleteLoan frame = new DeleteLoan();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +37,8 @@ public class DeleteCopy extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DeleteCopy() {
-		setTitle("Delete Copy");
+	public DeleteLoan() {
+		setTitle("Delete Loan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,7 +51,7 @@ public class DeleteCopy extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblAreYouSure = new JLabel("Are you sure you want to delete this Copy?");
+		JLabel lblAreYouSure = new JLabel("Are you sure you want to delete this loan?");
 		GridBagConstraints gbc_lblAreYouSure = new GridBagConstraints();
 		gbc_lblAreYouSure.gridwidth = 2;
 		gbc_lblAreYouSure.insets = new Insets(0, 0, 5, 0);
