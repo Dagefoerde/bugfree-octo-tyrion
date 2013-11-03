@@ -11,7 +11,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
 
-public class BookNotFoundError extends JFrame {
+public class EntityNotFoundError extends JFrame {
 
 	private JPanel contentPane;
 
@@ -34,7 +34,7 @@ public class BookNotFoundError extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BookNotFoundError() {
+	public EntityNotFoundError() {
 		setTitle("Error");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 294, 139);
@@ -48,7 +48,7 @@ public class BookNotFoundError extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblThe = new JLabel("The requested Book was not found.");
+		JLabel lblThe = new JLabel("The requested entity was not found.");
 		GridBagConstraints gbc_lblThe = new GridBagConstraints();
 		gbc_lblThe.insets = new Insets(0, 0, 5, 0);
 		gbc_lblThe.gridx = 0;

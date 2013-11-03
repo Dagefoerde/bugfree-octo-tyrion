@@ -23,7 +23,7 @@ public class EntityExistsError extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookNotFoundError frame = new BookNotFoundError();
+					EntityNotFoundError frame = new EntityNotFoundError();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
