@@ -177,9 +177,10 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_JvPPAD78EeOr5un0JHVLfA" name="" client="_WARqMD75EeOr5un0JHVLfA" supplier="_EA2osDyzEeOM5LIeec6LGA"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_K5KEcD78EeOr5un0JHVLfA" name="" client="_6O90gD76EeOr5un0JHVLfA" supplier="_EA2osDyzEeOM5LIeec6LGA"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_i5HFcEDIEeO-esLIhfAtNg" clientDependency="_MzUoIEDKEeO-esLIhfAtNg _1QJGIEDTEeO-esLIhfAtNg _Gv7aYELPEeO67a7r-Wk3iw _wO0wwESWEeOkOt-6V2MDuQ" name="Welcome">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_v1fcUEDIEeO-esLIhfAtNg" name="goToBookMgmt"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_v1fcUEDIEeO-esLIhfAtNg" name="goToMediumMgmt"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_9zwG8EDIEeO-esLIhfAtNg" name="goToLoanMgmt"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_AvuI0EDJEeO-esLIhfAtNg" name="goToCopyMgmt"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__W6yoETVEeO4lLyk4T6KDQ" name="goToUserMgmt"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_MsXhAEDJEeO-esLIhfAtNg" clientDependency="_v7NtAEDMEeO-esLIhfAtNg _xhrUgEDMEeO-esLIhfAtNg _AAypcEDNEeO-esLIhfAtNg _b-JIUEDREeO-esLIhfAtNg _KyL8oELUEeO67a7r-Wk3iw _m3xpMESTEeOkOt-6V2MDuQ _Ui8ekEShEeOkOt-6V2MDuQ _VloqoEShEeOkOt-6V2MDuQ" name="MediumMgmt">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_1i8R4EDJEeO-esLIhfAtNg" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
@@ -687,4 +688,5 @@
   <Profile:UI xmi:id="_rs9RoESiEeOe0tsP-8Jvog" base_Class="_qThh4ESUEeOkOt-6V2MDuQ"/>
   <Profile:UI xmi:id="_wcTVoESiEeOe0tsP-8Jvog" base_Class="_veM3AESUEeOkOt-6V2MDuQ"/>
   <Profile:UI xmi:id="_xpvZIESiEeOe0tsP-8Jvog" base_Class="_ylSjwESUEeOkOt-6V2MDuQ"/>
+  <Profile:action xmi:id="_CYzPQETWEeO4lLyk4T6KDQ" base_Operation="__W6yoETVEeO4lLyk4T6KDQ"/>
 </xmi:XMI>
