@@ -385,7 +385,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_QWjEcELREeO67a7r-Wk3iw" name="ShowAllCopies"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_Gv7aYELPEeO67a7r-Wk3iw" name="" client="_i5HFcEDIEeO-esLIhfAtNg" supplier="_-y4EQELOEeO67a7r-Wk3iw"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_rXxrkELQEeO67a7r-Wk3iw" clientDependency="_YkF9oESSEeOkOt-6V2MDuQ _32IAsESTEeOkOt-6V2MDuQ _DUHKIESYEeOkOt-6V2MDuQ" name="CreateCopy" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rXxrkELQEeO67a7r-Wk3iw" clientDependency="_YkF9oESSEeOkOt-6V2MDuQ _32IAsESTEeOkOt-6V2MDuQ _DUHKIESYEeOkOt-6V2MDuQ" name="CreateCopy">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_doJdYELREeO67a7r-Wk3iw" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d6LBgELREeO67a7r-Wk3iw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_d6LBgULREeO67a7r-Wk3iw" value="1"/>
@@ -445,7 +445,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_YN45gELkEeO67a7r-Wk3iw" name="save"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_d6Kf0ELkEeO67a7r-Wk3iw" name="cancel"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_VK4xoELbEeO67a7r-Wk3iw" clientDependency="_TiN_MESSEeOkOt-6V2MDuQ _3EpgcESTEeOkOt-6V2MDuQ _xoh5MESXEeOkOt-6V2MDuQ" name="UpdateCopy" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_VK4xoELbEeO67a7r-Wk3iw" clientDependency="_TiN_MESSEeOkOt-6V2MDuQ _3EpgcESTEeOkOt-6V2MDuQ _xoh5MESXEeOkOt-6V2MDuQ" name="UpdateCopy">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_7zocMELfEeO67a7r-Wk3iw" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8Q18oELfEeO67a7r-Wk3iw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8Q18oULfEeO67a7r-Wk3iw" value="1"/>
@@ -683,4 +683,8 @@
   <Profile:action xmi:id="_aNYS0ESWEeOkOt-6V2MDuQ" base_Operation="_YpIR0ESWEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_QrvjgEShEeOkOt-6V2MDuQ" base_Operation="_Pf73sEShEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_S-Ic4EShEeOkOt-6V2MDuQ" base_Operation="_Rb2x0EShEeOkOt-6V2MDuQ"/>
+  <Profile:UI xmi:id="_qeBZUESiEeOe0tsP-8Jvog" base_Class="_tIlqgESUEeOkOt-6V2MDuQ"/>
+  <Profile:UI xmi:id="_rs9RoESiEeOe0tsP-8Jvog" base_Class="_qThh4ESUEeOkOt-6V2MDuQ"/>
+  <Profile:UI xmi:id="_wcTVoESiEeOe0tsP-8Jvog" base_Class="_veM3AESUEeOkOt-6V2MDuQ"/>
+  <Profile:UI xmi:id="_xpvZIESiEeOe0tsP-8Jvog" base_Class="_ylSjwESUEeOkOt-6V2MDuQ"/>
 </xmi:XMI>
