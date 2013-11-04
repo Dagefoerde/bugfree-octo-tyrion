@@ -65,6 +65,7 @@ public class ModifyLoan extends JFrame {
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -82,6 +83,7 @@ public class ModifyLoan extends JFrame {
 		contentPane.add(lblName, gbc_lblName);
 		
 		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
@@ -99,6 +101,7 @@ public class ModifyLoan extends JFrame {
 		contentPane.add(lblAuthor, gbc_lblAuthor);
 		
 		textField_2 = new JTextField();
+		textField_2.setEnabled(false);
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;

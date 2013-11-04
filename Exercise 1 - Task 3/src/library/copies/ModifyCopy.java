@@ -63,6 +63,7 @@ public class ModifyCopy extends JFrame {
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
