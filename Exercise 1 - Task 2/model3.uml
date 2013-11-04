@@ -155,22 +155,20 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_r88zAEUyEeO0d5Z6S1GvwQ" type="_SBBCsDyxEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_4_I80Dy0EeOM5LIeec6LGA" name="updateCD">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_VxdWUEU0EeO0d5Z6S1GvwQ" name="CD" type="_S8w5QDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_uud4YEUyEeO0d5Z6S1GvwQ" name="ASIN" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_w6KT4EUyEeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_y_7GgEUyEeO0d5Z6S1GvwQ" name="Author" type="_S8w5QDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_y_7GgEUyEeO0d5Z6S1GvwQ" name="Author" type="_fmFxQDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_3_zmwDy0EeOM5LIeec6LGA" name="updateBook">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aO9cYEU0EeO0d5Z6S1GvwQ" name="Book" type="_SBBCsDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_2S-LoEUyEeO0d5Z6S1GvwQ" name="ISBN" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_4QtDoEUyEeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_6KQmQEUyEeO0d5Z6S1GvwQ" name="Author" type="_fmFxQDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_xz3o8Dy0EeOM5LIeec6LGA" name="deleteCD">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Md9nIEUzEeO0d5Z6S1GvwQ" name="CD" type="_S8w5QDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Md9nIEUzEeO0d5Z6S1GvwQ" name="ASIN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_qCld8Dy0EeOM5LIeec6LGA" name="deleteBook">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_QoV84EUzEeO0d5Z6S1GvwQ" name="Book" type="_SBBCsDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_QoV84EUzEeO0d5Z6S1GvwQ" name="ISBN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_mvbEEDy0EeOM5LIeec6LGA" name="createCD">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_A51coUUzEeO0d5Z6S1GvwQ" name="ASIN" type="_fmFxQDyxEeOM5LIeec6LGA"/>
@@ -195,13 +193,12 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_pD_hgEU1EeO0d5Z6S1GvwQ" name="" type="_IK6DwDyyEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_6N09gDy0EeOM5LIeec6LGA" name="updateCopy">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8Hp_sEU1EeO0d5Z6S1GvwQ" name="Copy" type="_IK6DwDyyEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_36vTUEU1EeO0d5Z6S1GvwQ" name="ISBN" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_5GJ9kEU1EeO0d5Z6S1GvwQ" name="ASIN" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_6yuNEEU1EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_zJszcDy0EeOM5LIeec6LGA" name="deleteCopy">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="__I7YUEU1EeO0d5Z6S1GvwQ" name="Copy" type="_IK6DwDyyEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="__I7YUEU1EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_WARqMD75EeOr5un0JHVLfA" clientDependency="_IQwe0D78EeOr5un0JHVLfA _JHAKUD78EeOr5un0JHVLfA _JvPPAD78EeOr5un0JHVLfA" name="LoanManagement">
@@ -212,27 +209,23 @@
         </ownedParameter>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_L3_SIDy1EeOM5LIeec6LGA" name="retrieveLoan">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_DkMUoEU0EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_GA7c0EU0EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Jz4KAEU0EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_3ZjHQEU0EeO0d5Z6S1GvwQ" name="ReturnDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_LkM4IEU0EeO0d5Z6S1GvwQ" type="_Cl8w8DyzEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_2hVdoDy0EeOM5LIeec6LGA" name="updateLoan">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_n0dBsEU0EeO0d5Z6S1GvwQ" name="Loan" type="_Cl8w8DyzEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_9fqJ4EU0EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_AxZAYEU1EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_9fqJ4EU0EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_C_X64EU1EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_EgRs8EU1EeO0d5Z6S1GvwQ" name="ReturnDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_krZW0Dy0EeOM5LIeec6LGA" name="createLoan">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_HuDQgEU1EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_JsghQEU1EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_HuDQgEU1EeO0d5Z6S1GvwQ" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_LFXxoEU1EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_Mr8G0EU1EeO0d5Z6S1GvwQ" name="ReturnDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_4BsrsD76EeOr5un0JHVLfA" name="deleteLoan">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_WiLzMEU1EeO0d5Z6S1GvwQ" name="Loan" type="_Cl8w8DyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_WiLzMEU1EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_6O90gD76EeOr5un0JHVLfA" clientDependency="_K5KEcD78EeOr5un0JHVLfA" name="UserManagement">
@@ -244,20 +237,19 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_GizI4EU2EeO0d5Z6S1GvwQ" name="" type="_EA2osDyzEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_1P98YDy0EeOM5LIeec6LGA" name="updateUser">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ph2HgEU2EeO0d5Z6S1GvwQ" name="User" type="_EA2osDyzEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Q82F4EU2EeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_SYoHYEU2EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Q82F4EU2EeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_TwrfcEU2EeO0d5Z6S1GvwQ" name="Address" type="_fmFxQDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_pLv8kDy0EeOM5LIeec6LGA" name="deleteUser">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_YOqtsEU2EeO0d5Z6S1GvwQ" name="User" type="_EA2osDyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_YOqtsEU2EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_g19WUDy0EeOM5LIeec6LGA" name="createUser">
         <ownedComment xmi:type="uml:Comment" xmi:id="_kK6f8Dy0EeOM5LIeec6LGA">
           <body>And what revision control system do you usually use? I am familiar with git and svn. I think svn could be a good choise as there very useful eclipse plugins for svn</body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Z9F-YEU2EeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_bOmCgEU2EeO0d5Z6S1GvwQ" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Z9F-YEU2EeO0d5Z6S1GvwQ" name="Name" type="_fmFxQDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_cf6gcEU2EeO0d5Z6S1GvwQ" name="Address" type="_fmFxQDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
     </packagedElement>
