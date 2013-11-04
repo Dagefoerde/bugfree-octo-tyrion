@@ -18,9 +18,7 @@ import java.awt.event.ActionEvent;
 public class CreateCopy extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -50,42 +48,17 @@ public class CreateCopy extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel label = new JLabel("Please fill in one of either ISBN or ASIN, but not both");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.gridwidth = 2;
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 0;
-		contentPane.add(label, gbc_label);
-		
-		JLabel lblNewLabel = new JLabel("Inventory Number");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
-		
-		JLabel lblName = new JLabel("ISBN");
+		JLabel lblName = new JLabel("Medium ID");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.gridx = 0;
-		gbc_lblName.gridy = 2;
+		gbc_lblName.gridy = 0;
 		contentPane.add(lblName, gbc_lblName);
 		
 		textField_1 = new JTextField();
@@ -93,26 +66,9 @@ public class CreateCopy extends JFrame {
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 2;
+		gbc_textField_1.gridy = 0;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
-		JLabel lblAuthor = new JLabel("ASIN");
-		GridBagConstraints gbc_lblAuthor = new GridBagConstraints();
-		gbc_lblAuthor.anchor = GridBagConstraints.WEST;
-		gbc_lblAuthor.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAuthor.gridx = 0;
-		gbc_lblAuthor.gridy = 3;
-		contentPane.add(lblAuthor, gbc_lblAuthor);
-		
-		textField_2 = new JTextField();
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 3;
-		contentPane.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
 		
 		JButton btnCreateUpdate = new JButton("Create");
 		btnCreateUpdate.addActionListener(new ActionListener() {
@@ -123,14 +79,14 @@ public class CreateCopy extends JFrame {
 		gbc_btnCreateUpdate.anchor = GridBagConstraints.EAST;
 		gbc_btnCreateUpdate.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCreateUpdate.gridx = 0;
-		gbc_btnCreateUpdate.gridy = 5;
+		gbc_btnCreateUpdate.gridy = 2;
 		contentPane.add(btnCreateUpdate, gbc_btnCreateUpdate);
 		
 		JButton btnCancel = new JButton("Cancel");
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 		gbc_btnCancel.anchor = GridBagConstraints.WEST;
 		gbc_btnCancel.gridx = 1;
-		gbc_btnCancel.gridy = 5;
+		gbc_btnCancel.gridy = 2;
 		contentPane.add(btnCancel, gbc_btnCancel);
 	}
 
