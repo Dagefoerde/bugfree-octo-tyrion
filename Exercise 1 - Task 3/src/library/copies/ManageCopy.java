@@ -1,127 +1,87 @@
 package library.copies;
-
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
-import java.awt.Insets;
 import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class ManageCopy extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManageCopy frame = new ManageCopy();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JTable table;
 
 	/**
 	 * Create the frame.
 	 */
 	public ManageCopy() {
-		setTitle("Manage Copy");
+		setTitle("Copy Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 470, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblRetrieveABook = new JLabel("Retrieve a copy:");
-		GridBagConstraints gbc_lblRetrieveABook = new GridBagConstraints();
-		gbc_lblRetrieveABook.anchor = GridBagConstraints.EAST;
-		gbc_lblRetrieveABook.insets = new Insets(0, 0, 5, 5);
-		gbc_lblRetrieveABook.gridx = 0;
-		gbc_lblRetrieveABook.gridy = 1;
-		contentPane.add(lblRetrieveABook, gbc_lblRetrieveABook);
-		
-		JLabel lblIsbn = new JLabel("Inventory Number");
-		GridBagConstraints gbc_lblIsbn = new GridBagConstraints();
-		gbc_lblIsbn.insets = new Insets(0, 0, 5, 5);
-		gbc_lblIsbn.anchor = GridBagConstraints.EAST;
-		gbc_lblIsbn.gridx = 0;
-		gbc_lblIsbn.gridy = 2;
-		contentPane.add(lblIsbn, gbc_lblIsbn);
-		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 2;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Retrieve");
+		JButton btnNewButton = new JButton("Create Copy");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 3;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 0;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		JLabel lblCreateABook = new JLabel("Create copy:");
-		GridBagConstraints gbc_lblCreateABook = new GridBagConstraints();
-		gbc_lblCreateABook.anchor = GridBagConstraints.EAST;
-		gbc_lblCreateABook.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCreateABook.gridx = 0;
-		gbc_lblCreateABook.gridy = 5;
-		contentPane.add(lblCreateABook, gbc_lblCreateABook);
+		JButton btnNewButton_1 = new JButton("Update Copy");
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 1;
+		gbc_btnNewButton_1.gridy = 0;
+		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnCreate = new JButton("Create");
-		GridBagConstraints gbc_btnCreate = new GridBagConstraints();
-		gbc_btnCreate.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCreate.anchor = GridBagConstraints.WEST;
-		gbc_btnCreate.gridx = 1;
-		gbc_btnCreate.gridy = 5;
-		contentPane.add(btnCreate, gbc_btnCreate);
+		JButton btnNewButton_2 = new JButton("Delete Copy");
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_2.gridx = 2;
+		gbc_btnNewButton_2.gridy = 0;
+		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JLabel lblListAllBooks = new JLabel("List all copies:");
-		GridBagConstraints gbc_lblListAllBooks = new GridBagConstraints();
-		gbc_lblListAllBooks.anchor = GridBagConstraints.EAST;
-		gbc_lblListAllBooks.insets = new Insets(0, 0, 5, 5);
-		gbc_lblListAllBooks.gridx = 0;
-		gbc_lblListAllBooks.gridy = 7;
-		contentPane.add(lblListAllBooks, gbc_lblListAllBooks);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		contentPane.add(scrollPane, gbc_scrollPane);
 		
-		JButton btnListAll = new JButton("List all");
-		GridBagConstraints gbc_btnListAll = new GridBagConstraints();
-		gbc_btnListAll.insets = new Insets(0, 0, 5, 0);
-		gbc_btnListAll.anchor = GridBagConstraints.WEST;
-		gbc_btnListAll.gridx = 1;
-		gbc_btnListAll.gridy = 7;
-		contentPane.add(btnListAll, gbc_btnListAll);
-		
-		JButton btnBack = new JButton("Back");
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.insets = new Insets(0, 0, 5, 0);
-		gbc_btnBack.anchor = GridBagConstraints.WEST;
-		gbc_btnBack.gridx = 1;
-		gbc_btnBack.gridy = 9;
-		contentPane.add(btnBack, gbc_btnBack);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+			},
+			new String[] {
+				"Medium ID", "Inventory Number"
+			}
+		));
+		scrollPane.setViewportView(table);
 	}
 
 }
