@@ -288,7 +288,7 @@
       </eAnnotations>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_CmGh8zyzEeOM5LIeec6LGA" type="7017">
-      <children xmi:type="notation:Shape" xmi:id="_IQq4ETyzEeOM5LIeec6LGA" type="3012" fontName="Segoe UI" lineColor="0">
+      <children xmi:type="notation:Shape" xmi:id="_IQq4ETyzEeOM5LIeec6LGA" type="3012" fontName="Segoe UI" fillColor="10265827" lineColor="0">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GZAU4ELfEeO67a7r-Wk3iw" source="Stereotype_Annotation">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GZAU4ULfEeO67a7r-Wk3iw" key="StereotypeWithQualifiedNameList" value=""/>
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GZAU4kLfEeO67a7r-Wk3iw" key="StereotypeList" value="Profile::PrimaryKey"/>
@@ -472,7 +472,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WBBRJT75EeOr5un0JHVLfA"/>
     </children>
     <element xmi:type="uml:Class" href="model3.uml#_WARqMD75EeOr5un0JHVLfA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WA3gET75EeOr5un0JHVLfA" x="1180" y="330" width="145" height="144"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WA3gET75EeOr5un0JHVLfA" x="970" y="340" width="697" height="176"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_6O90gT76EeOr5un0JHVLfA" type="2008" fontName="Segoe UI" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6PHlgD76EeOr5un0JHVLfA" source="ShadowFigure">
@@ -531,7 +531,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6PHllT76EeOr5un0JHVLfA"/>
     </children>
     <element xmi:type="uml:Class" href="model3.uml#_6O90gD76EeOr5un0JHVLfA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6O90gj76EeOr5un0JHVLfA" x="1735" y="335" width="141" height="165"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6O90gj76EeOr5un0JHVLfA" x="1735" y="335" width="496" height="165"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_GquxoT77EeOr5un0JHVLfA" type="2008" fontName="Segoe UI" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Gquxoz77EeOr5un0JHVLfA" source="ShadowFigure">
@@ -590,7 +590,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GquxuD77EeOr5un0JHVLfA"/>
     </children>
     <element xmi:type="uml:Class" href="model3.uml#_GquxoD77EeOr5un0JHVLfA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gquxoj77EeOr5un0JHVLfA" x="605" y="325" width="141" height="151"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gquxoj77EeOr5un0JHVLfA" x="480" y="325" width="480" height="151"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_VJCOQT77EeOr5un0JHVLfA" type="2008" fontName="Segoe UI" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VJCOQz77EeOr5un0JHVLfA" source="ShadowFigure">
@@ -622,6 +622,9 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_c0zAET77EeOr5un0JHVLfA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_c0zAEj77EeOr5un0JHVLfA" type="3013" fontName="Segoe UI" lineColor="0">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_U68P8EUyEeO0d5Z6S1GvwQ" source="CustomAppearance_Annotation">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W0hnwEUyEeO0d5Z6S1GvwQ" key="CustomAppearance_MaskValue" value="6922"/>
+        </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_U1HlMDy1EeOM5LIeec6LGA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_c0zAEz77EeOr5un0JHVLfA"/>
       </children>
@@ -673,7 +676,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VJCOWD77EeOr5un0JHVLfA"/>
     </children>
     <element xmi:type="uml:Class" href="model3.uml#_VJCOQD77EeOr5un0JHVLfA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VJCOQj77EeOr5un0JHVLfA" x="120" y="355" width="160" height="162"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VJCOQj77EeOr5un0JHVLfA" x="10" y="315" width="436" height="245"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_i5zB8EDIEeO-esLIhfAtNg" type="2008" fontName="Segoe UI" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_i503IEDIEeO-esLIhfAtNg" source="ShadowFigure">
