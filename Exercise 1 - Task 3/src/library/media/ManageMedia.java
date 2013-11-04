@@ -25,9 +25,9 @@ public class ManageMedia extends JFrame {
 	 * Create the frame.
 	 */
 	public ManageMedia() {
-		setTitle("Book Management");
+		setTitle("Medium Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 308);
+		setBounds(100, 100, 695, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -38,7 +38,7 @@ public class ManageMedia extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JButton btnNewButton = new JButton("Create Book");
+		JButton btnNewButton = new JButton("Create Medium");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -49,14 +49,14 @@ public class ManageMedia extends JFrame {
 		gbc_btnNewButton.gridy = 0;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Update Book");
+		JButton btnNewButton_1 = new JButton("Update Medium");
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 0;
 		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Delete Book");
+		JButton btnNewButton_2 = new JButton("Delete Medium");
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_2.gridx = 2;
@@ -75,10 +75,10 @@ public class ManageMedia extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"978314162633", "Sample Book", "Mr. Booker"},
+				{null, "Sample Book", "978314162633", "Mr. Booker", null, null},
 			},
 			new String[] {
-				"ISBN", "Name", "Author"
+				"Medium ID", "Name", "ISBN", "Author", "ASIN", "Interpreter"
 			}
 		));
 		scrollPane.setViewportView(table);
