@@ -1,5 +1,6 @@
 package library.errors;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,33 +12,18 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
 
-public class EntityNotFoundError extends JFrame {
+public class EitherBookOrCDError extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EntityExistsError frame = new EntityExistsError();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public EntityNotFoundError() {
+	public EitherBookOrCDError() {
 		setTitle("Error");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 294, 139);
+		setBounds(100, 100, 415, 136);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +34,7 @@ public class EntityNotFoundError extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblThe = new JLabel("The requested entity was not found.");
+		JLabel lblThe = new JLabel("A medium can only be either a book or a CD, but not both!");
 		GridBagConstraints gbc_lblThe = new GridBagConstraints();
 		gbc_lblThe.insets = new Insets(0, 0, 5, 0);
 		gbc_lblThe.gridx = 0;
