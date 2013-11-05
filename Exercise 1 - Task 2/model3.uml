@@ -23,6 +23,7 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_pxq14EXwEeOBcdDMLAib-Q" name="MediumID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_z3tRwEXwEeOBcdDMLAib-Q" type="_ueYQoDywEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_opswUEY0EeO2KYUuAvhUmA" name="persist"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SBBCsDyxEeOM5LIeec6LGA" name="Book">
       <generalization xmi:type="uml:Generalization" xmi:id="_XKWUADyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
