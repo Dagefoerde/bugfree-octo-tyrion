@@ -745,7 +745,6 @@
       </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_U83C0EXzEeOBcdDMLAib-Q" name="update"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_VLIIUEXzEeOBcdDMLAib-Q" name="cancel"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_Va1_UEXzEeOBcdDMLAib-Q" name="delete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_3mV0wEXyEeOBcdDMLAib-Q" clientDependency="_YXikgEX0EeOBcdDMLAib-Q _Z4SlkEX0EeOBcdDMLAib-Q _hlrvEEX0EeOBcdDMLAib-Q _kz6loEX0EeOBcdDMLAib-Q _eIlgoEX1EeOBcdDMLAib-Q" name="CreateMedium">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_RW_IUEXzEeOBcdDMLAib-Q" name="Name" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA">
@@ -921,7 +920,6 @@
   <Profile:action xmi:id="_ZDA_4EXzEeOBcdDMLAib-Q" base_Operation="_UYdVQEXzEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_aduqYEXzEeOBcdDMLAib-Q" base_Operation="_U83C0EXzEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_d4A_8EXzEeOBcdDMLAib-Q" base_Operation="_VLIIUEXzEeOBcdDMLAib-Q"/>
-  <Profile:action xmi:id="_ejBEwEXzEeOBcdDMLAib-Q" base_Operation="_Va1_UEXzEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_fMxMYEXzEeOBcdDMLAib-Q" base_Operation="_Voy7wEXzEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_f4GoYEXzEeOBcdDMLAib-Q" base_Operation="_V7zXUEXzEeOBcdDMLAib-Q"/>
   <Profile:UI xmi:id="_ZwCzEEX1EeOBcdDMLAib-Q" base_Class="_YafVYEX1EeOBcdDMLAib-Q"/>
