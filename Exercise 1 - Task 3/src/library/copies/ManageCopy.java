@@ -56,13 +56,6 @@ public class ManageCopy extends JFrame {
 		gbc_btnNewButton_1.gridy = 0;
 		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Delete Copy");
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 2;
-		gbc_btnNewButton_2.gridy = 0;
-		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
-		
 		JButton btnBack = new JButton("Back");
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.insets = new Insets(0, 0, 5, 0);
