@@ -285,7 +285,7 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_JHAKUD78EeOr5un0JHVLfA" name="" client="_WARqMD75EeOr5un0JHVLfA" supplier="_IK6DwDyyEeOM5LIeec6LGA"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_JvPPAD78EeOr5un0JHVLfA" name="" client="_WARqMD75EeOr5un0JHVLfA" supplier="_EA2osDyzEeOM5LIeec6LGA"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_K5KEcD78EeOr5un0JHVLfA" name="" client="_6O90gD76EeOr5un0JHVLfA" supplier="_EA2osDyzEeOM5LIeec6LGA"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_i5HFcEDIEeO-esLIhfAtNg" clientDependency="_MzUoIEDKEeO-esLIhfAtNg _1QJGIEDTEeO-esLIhfAtNg _Gv7aYELPEeO67a7r-Wk3iw _wO0wwESWEeOkOt-6V2MDuQ" name="Welcome">
+    <packagedElement xmi:type="uml:Class" xmi:id="_i5HFcEDIEeO-esLIhfAtNg" clientDependency="_MzUoIEDKEeO-esLIhfAtNg _1QJGIEDTEeO-esLIhfAtNg _Gv7aYELPEeO67a7r-Wk3iw _wO0wwESWEeOkOt-6V2MDuQ _-Bc6MEX2EeOBcdDMLAib-Q _AcdkEEX3EeOBcdDMLAib-Q" name="Welcome">
       <ownedOperation xmi:type="uml:Operation" xmi:id="_v1fcUEDIEeO-esLIhfAtNg" name="ManageMedia"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_9zwG8EDIEeO-esLIhfAtNg" name="ManageBooks"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_AvuI0EDJEeO-esLIhfAtNg" name="ManageCDs"/>
@@ -597,7 +597,7 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_3xOEgEXxEeOBcdDMLAib-Q" name="" client="_eMi9wEDKEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_44U2gEXxEeOBcdDMLAib-Q" name="" client="_MsXhAEDJEeO-esLIhfAtNg" supplier="_n0pgcEDKEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_6ACFcEXxEeOBcdDMLAib-Q" name="" client="_n0pgcEDKEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_WPouwEXyEeOBcdDMLAib-Q" clientDependency="_Vs0DoEX0EeOBcdDMLAib-Q _XmuyoEX0EeOBcdDMLAib-Q _ZNFFYEX0EeOBcdDMLAib-Q" name="MediumMgmt">
+    <packagedElement xmi:type="uml:Class" xmi:id="_WPouwEXyEeOBcdDMLAib-Q" clientDependency="_Vs0DoEX0EeOBcdDMLAib-Q _XmuyoEX0EeOBcdDMLAib-Q _ZNFFYEX0EeOBcdDMLAib-Q __ArikEX2EeOBcdDMLAib-Q" name="MediumMgmt">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_XfEWUEXyEeOBcdDMLAib-Q" name="Mediums" visibility="private" type="_ueYQoDywEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZTSF8EXyEeOBcdDMLAib-Q"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZTSF8UXyEeOBcdDMLAib-Q" value="*"/>
@@ -609,7 +609,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_bgLbUEXyEeOBcdDMLAib-Q" name="updateMedium"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_bwgWUEXyEeOBcdDMLAib-Q" name="back"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mQMBQEXyEeOBcdDMLAib-Q" clientDependency="_qiCbgEXzEeOBcdDMLAib-Q _sgcB4EXzEeOBcdDMLAib-Q _zWALgEXzEeOBcdDMLAib-Q" name="CDMgmt">
+    <packagedElement xmi:type="uml:Class" xmi:id="_mQMBQEXyEeOBcdDMLAib-Q" clientDependency="_qiCbgEXzEeOBcdDMLAib-Q _sgcB4EXzEeOBcdDMLAib-Q _zWALgEXzEeOBcdDMLAib-Q _BRbdMEX3EeOBcdDMLAib-Q" name="CDMgmt">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_p-2EUEXyEeOBcdDMLAib-Q" name="CDs" visibility="private" type="_S8w5QDyxEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rakbcEXyEeOBcdDMLAib-Q"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rakbcUXyEeOBcdDMLAib-Q" value="*"/>
@@ -796,6 +796,10 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_cedhIEX1EeOBcdDMLAib-Q" name="" client="_3X2FwEXyEeOBcdDMLAib-Q" supplier="_YafVYEX1EeOBcdDMLAib-Q"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_eIlgoEX1EeOBcdDMLAib-Q" name="" client="_3mV0wEXyEeOBcdDMLAib-Q" supplier="_YafVYEX1EeOBcdDMLAib-Q"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_-Bc6MEX2EeOBcdDMLAib-Q" name="" client="_i5HFcEDIEeO-esLIhfAtNg" supplier="_WPouwEXyEeOBcdDMLAib-Q"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="__ArikEX2EeOBcdDMLAib-Q" name="" client="_WPouwEXyEeOBcdDMLAib-Q" supplier="_i5HFcEDIEeO-esLIhfAtNg"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_AcdkEEX3EeOBcdDMLAib-Q" name="" client="_i5HFcEDIEeO-esLIhfAtNg" supplier="_mQMBQEXyEeOBcdDMLAib-Q"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_BRbdMEX3EeOBcdDMLAib-Q" name="" client="_mQMBQEXyEeOBcdDMLAib-Q" supplier="_i5HFcEDIEeO-esLIhfAtNg"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-k_u4DywEeOM5LIeec6LGA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-lca0DywEeOM5LIeec6LGA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="model2.profile.uml#_UBKH4UAGEeOEfutd8tXuzQ"/>
