@@ -536,10 +536,16 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_WBBRHD75EeOr5un0JHVLfA" type="7018">
       <children xmi:type="notation:Shape" xmi:id="_stdXUD76EeOr5un0JHVLfA" type="3013" fontName="Segoe UI" lineColor="0">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SerQEEZqEeOZxZSrQ_E5xg" source="CustomAppearance_Annotation">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SerQEUZqEeOZxZSrQ_E5xg" key="CustomAppearance_MaskValue" value="23306"/>
+        </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_M08CkDy1EeOM5LIeec6LGA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_stdXUT76EeOr5un0JHVLfA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_1W7HgD76EeOr5un0JHVLfA" type="3013" fontName="Segoe UI" lineColor="0">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IqNP4EZrEeOZxZSrQ_E5xg" source="CustomAppearance_Annotation">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JKi80EZrEeOZxZSrQ_E5xg" key="CustomAppearance_MaskValue" value="6922"/>
+        </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_L3_SIDy1EeOM5LIeec6LGA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_1W7HgT76EeOr5un0JHVLfA"/>
       </children>
@@ -595,6 +601,9 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_6PHljD76EeOr5un0JHVLfA" type="7018">
       <children xmi:type="notation:Shape" xmi:id="_EMnwcD77EeOr5un0JHVLfA" type="3013" fontName="Segoe UI" lineColor="0">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WlmzwEZrEeOZxZSrQ_E5xg" source="CustomAppearance_Annotation">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Wlna0EZrEeOZxZSrQ_E5xg" key="CustomAppearance_MaskValue" value="23306"/>
+        </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_CdgUsDy1EeOM5LIeec6LGA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EMnwcT77EeOr5un0JHVLfA"/>
       </children>
@@ -658,6 +667,9 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_N_s0ET77EeOr5un0JHVLfA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_N_s0Ej77EeOr5un0JHVLfA" type="3013" fontName="Segoe UI" lineColor="0">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_smJSwEZrEeOZxZSrQ_E5xg" source="CustomAppearance_Annotation">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_smJSwUZrEeOZxZSrQ_E5xg" key="CustomAppearance_MaskValue" value="23306"/>
+        </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_JgIp8Dy1EeOM5LIeec6LGA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_N_s0Ez77EeOr5un0JHVLfA"/>
       </children>
@@ -2220,17 +2232,6 @@
         </eAnnotations>
         <element xmi:type="uml:Operation" href="model3.uml#_UYdVQEXzEeOBcdDMLAib-Q"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_UYd8UUXzEeOBcdDMLAib-Q"/>
-      </children>
-      <children xmi:type="notation:Shape" xmi:id="_Ul0b0EXzEeOBcdDMLAib-Q" type="3013" fontName="Segoe UI" lineColor="0">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Zu840EXzEeOBcdDMLAib-Q" source="Stereotype_Annotation">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zu840UXzEeOBcdDMLAib-Q" key="StereotypeWithQualifiedNameList" value=""/>
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zu840kXzEeOBcdDMLAib-Q" key="StereotypeList" value="Profile::action"/>
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zu8400XzEeOBcdDMLAib-Q" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zu841EXzEeOBcdDMLAib-Q" key="PropStereoDisplay" value=""/>
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zu841UXzEeOBcdDMLAib-Q" key="StereotypePropertyLocation" value="Compartment"/>
-        </eAnnotations>
-        <element xmi:type="uml:Operation" href="model3.uml#_Ulz0wEXzEeOBcdDMLAib-Q"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Ul0b0UXzEeOBcdDMLAib-Q"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_2_JR6UXyEeOBcdDMLAib-Q"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_2_JR6kXyEeOBcdDMLAib-Q"/>
