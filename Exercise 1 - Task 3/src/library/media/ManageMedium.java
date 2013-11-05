@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class ManageMedia extends JFrame {
+public class ManageMedium extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -24,7 +24,7 @@ public class ManageMedia extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ManageMedia() {
+	public ManageMedium() {
 		setTitle("Medium Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 695, 320);
