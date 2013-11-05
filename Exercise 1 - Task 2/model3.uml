@@ -12,6 +12,17 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_YOX-QEXwEeOBcdDMLAib-Q" name="MediumID" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aGU-YEXwEeOBcdDMLAib-Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aGU-YUXwEeOBcdDMLAib-Q" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_aGU-YkXwEeOBcdDMLAib-Q">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_kg0AQEXwEeOBcdDMLAib-Q" name="findByMediumID">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_pxq14EXwEeOBcdDMLAib-Q" name="MediumID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_z3tRwEXwEeOBcdDMLAib-Q" type="_ueYQoDywEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SBBCsDyxEeOM5LIeec6LGA" name="Book">
       <generalization xmi:type="uml:Generalization" xmi:id="_XKWUADyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
@@ -63,6 +74,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Sx5sTyzEeOM5LIeec6LGA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Sx5sjyzEeOM5LIeec6LGA" value="*"/>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rkPmwEXwEeOBcdDMLAib-Q" name="findByInventoryNumber">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urLigEXwEeOBcdDMLAib-Q" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_w3Ag4EXwEeOBcdDMLAib-Q" name="" type="_IK6DwDyyEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_UUMJwzyyEeOM5LIeec6LGA" name="" memberEnd="_UUMJxDyyEeOM5LIeec6LGA _UUMJwDyyEeOM5LIeec6LGA" navigableOwnedEnd="_UUMJwDyyEeOM5LIeec6LGA _UUMJxDyyEeOM5LIeec6LGA">
       <ownedEnd xmi:type="uml:Property" xmi:id="_UUMJxDyyEeOM5LIeec6LGA" name="medium" type="_ueYQoDywEeOM5LIeec6LGA" association="_UUMJwzyyEeOM5LIeec6LGA">
@@ -93,6 +108,12 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_21WbQTyzEeOM5LIeec6LGA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_21WbQjyzEeOM5LIeec6LGA" value="1"/>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6_ZtMEXwEeOBcdDMLAib-Q" name="findByInventoryNumberAndUserIDAndIssueDate">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_CRxHkEXxEeOBcdDMLAib-Q" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GI8NcEXxEeOBcdDMLAib-Q" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IbW8AEXxEeOBcdDMLAib-Q" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_NsLVYEXxEeOBcdDMLAib-Q" type="_Cl8w8DyzEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_EA2osDyzEeOM5LIeec6LGA" name="User">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_pLprYDyzEeOM5LIeec6LGA" name="Name" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
@@ -116,6 +137,10 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_OqkQQEXxEeOBcdDMLAib-Q" name="findByUserID">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ss7ScEXxEeOBcdDMLAib-Q" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_UUcC0EXxEeOBcdDMLAib-Q" type="_EA2osDyzEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_dW7gIDyzEeOM5LIeec6LGA" name="Date"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_2Sx5szyzEeOM5LIeec6LGA" name="" memberEnd="_2Sx5tDyzEeOM5LIeec6LGA _2Sx5sDyzEeOM5LIeec6LGA" navigableOwnedEnd="_2Sx5tDyzEeOM5LIeec6LGA">
@@ -683,4 +708,9 @@
   <Profile:action xmi:id="_RYEDMEXvEeOBcdDMLAib-Q" base_Operation="_QS38wEXvEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_ye3E8EXvEeOBcdDMLAib-Q" base_Operation="_vbYF0EXvEeOBcdDMLAib-Q"/>
   <Profile:action xmi:id="_0O-XsEXvEeOBcdDMLAib-Q" base_Operation="_vtABUEXvEeOBcdDMLAib-Q"/>
+  <Profile:PrimaryKey xmi:id="_bvO14EXwEeOBcdDMLAib-Q" base_Property="_YOX-QEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="_-i3M4EXwEeOBcdDMLAib-Q" base_Operation="_6_ZtMEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="__H2JQEXwEeOBcdDMLAib-Q" base_Operation="_rkPmwEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="__w-l0EXwEeOBcdDMLAib-Q" base_Operation="_kg0AQEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="_QT8o4EXxEeOBcdDMLAib-Q" base_Operation="_OqkQQEXxEeOBcdDMLAib-Q"/>
 </xmi:XMI>
