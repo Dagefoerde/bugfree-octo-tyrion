@@ -24,6 +24,7 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_z3tRwEXwEeOBcdDMLAib-Q" type="_ueYQoDywEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_opswUEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_5HoJEEY5EeO2KYUuAvhUmA" name="delete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SBBCsDyxEeOM5LIeec6LGA" name="Book">
       <generalization xmi:type="uml:Generalization" xmi:id="_XKWUADyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
@@ -45,6 +46,7 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_qF59AD_8EeOttPqF4sHiIg" name="ISBN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_tIfkQD_8EeOttPqF4sHiIg" type="_SBBCsDyxEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_yYV_4EY0EeO2KYUuAvhUmA" name="persist"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_S8w5QDyxEeOM5LIeec6LGA" name="CD">
       <generalization xmi:type="uml:Generalization" xmi:id="_WlYlwDyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
@@ -60,6 +62,7 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_2UhO8D_8EeOttPqF4sHiIg" name="ASIN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_7aqCUD_8EeOttPqF4sHiIg" type="_S8w5QDyxEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xwHiQEY0EeO2KYUuAvhUmA" name="persist"/>
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_fmFxQDyxEeOM5LIeec6LGA" name="String"/>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vBfvUDyxEeOM5LIeec6LGA" name="Integer"/>
@@ -79,6 +82,8 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_urLigEXwEeOBcdDMLAib-Q" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_w3Ag4EXwEeOBcdDMLAib-Q" name="" type="_IK6DwDyyEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_qgSegEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_59mHwEY5EeO2KYUuAvhUmA" name="delete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_UUMJwzyyEeOM5LIeec6LGA" name="" memberEnd="_UUMJxDyyEeOM5LIeec6LGA _UUMJwDyyEeOM5LIeec6LGA" navigableOwnedEnd="_UUMJwDyyEeOM5LIeec6LGA _UUMJxDyyEeOM5LIeec6LGA">
       <ownedEnd xmi:type="uml:Property" xmi:id="_UUMJxDyyEeOM5LIeec6LGA" name="medium" type="_ueYQoDywEeOM5LIeec6LGA" association="_UUMJwzyyEeOM5LIeec6LGA">
@@ -115,6 +120,8 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_IbW8AEXxEeOBcdDMLAib-Q" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_NsLVYEXxEeOBcdDMLAib-Q" type="_Cl8w8DyzEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rpKyIEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6nbH4EY5EeO2KYUuAvhUmA" name="delete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_EA2osDyzEeOM5LIeec6LGA" name="User">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_pLprYDyzEeOM5LIeec6LGA" name="Name" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
@@ -142,6 +149,8 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ss7ScEXxEeOBcdDMLAib-Q" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_UUcC0EXxEeOBcdDMLAib-Q" type="_EA2osDyzEeOM5LIeec6LGA" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_sjXJgEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7TMBsEY5EeO2KYUuAvhUmA" name="delete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_dW7gIDyzEeOM5LIeec6LGA" name="Date"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_2Sx5szyzEeOM5LIeec6LGA" name="" memberEnd="_2Sx5tDyzEeOM5LIeec6LGA _2Sx5sDyzEeOM5LIeec6LGA" navigableOwnedEnd="_2Sx5tDyzEeOM5LIeec6LGA">
