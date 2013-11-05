@@ -266,20 +266,17 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_AvuI0EDJEeO-esLIhfAtNg" name="goToCopyMgmt"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="__W6yoETVEeO4lLyk4T6KDQ" name="goToUserMgmt"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_MsXhAEDJEeO-esLIhfAtNg" clientDependency="_v7NtAEDMEeO-esLIhfAtNg _xhrUgEDMEeO-esLIhfAtNg _AAypcEDNEeO-esLIhfAtNg _b-JIUEDREeO-esLIhfAtNg _KyL8oELUEeO67a7r-Wk3iw _m3xpMESTEeOkOt-6V2MDuQ _Ui8ekEShEeOkOt-6V2MDuQ _VloqoEShEeOkOt-6V2MDuQ" name="MediumMgmt">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_1i8R4EDJEeO-esLIhfAtNg" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_14kjoEDJEeO-esLIhfAtNg" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_14lxwEDJEeO-esLIhfAtNg" value="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_MsXhAEDJEeO-esLIhfAtNg" clientDependency="_v7NtAEDMEeO-esLIhfAtNg _xhrUgEDMEeO-esLIhfAtNg _AAypcEDNEeO-esLIhfAtNg _KyL8oELUEeO67a7r-Wk3iw _m3xpMESTEeOkOt-6V2MDuQ" name="MediumMgmt">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_1i8R4EDJEeO-esLIhfAtNg" name="Mediums" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_14kjoEDJEeO-esLIhfAtNg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_14lxwEDJEeO-esLIhfAtNg" value="*"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_14mY0EDJEeO-esLIhfAtNg">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_drAzcEDJEeO-esLIhfAtNg" name="searchMedium" visibility="public"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_fjMdEEDJEeO-esLIhfAtNg" name="createMedium" visibility="public"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_gcCwoEDJEeO-esLIhfAtNg" name="cancel" visibility="public"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_jnXdIEDJEeO-esLIhfAtNg" name="listAllMediums" visibility="public"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_a-Oy4ESUEeOkOt-6V2MDuQ" name="listAllCDs"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_iqvyoESUEeOkOt-6V2MDuQ" name="listAllBooks"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_gcCwoEDJEeO-esLIhfAtNg" name="back" visibility="public"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_iqvyoESUEeOkOt-6V2MDuQ" name="updateMedium"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_MzUoIEDKEeO-esLIhfAtNg" name="" client="_i5HFcEDIEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_eMi9wEDKEeO-esLIhfAtNg" clientDependency="_-i_uYEDPEeO-esLIhfAtNg _sFJs8ELmEeO67a7r-Wk3iw _mF2dAESTEeOkOt-6V2MDuQ" name="UpdateMedium">
@@ -312,7 +309,14 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_CbrQIEDQEeO-esLIhfAtNg" name="save"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_VqdXYEXtEeOBcdDMLAib-Q" name="MediumID" visibility="public" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WCZWQEXtEeOBcdDMLAib-Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WCZWQUXtEeOBcdDMLAib-Q" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_WCZ9UEXtEeOBcdDMLAib-Q">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_CbrQIEDQEeO-esLIhfAtNg" name="update"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_GzLb4EDQEeO-esLIhfAtNg" name="cancel"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_o-RZ8EDVEeO-esLIhfAtNg" name="delete"/>
     </packagedElement>
@@ -360,11 +364,6 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_AAypcEDNEeO-esLIhfAtNg" name="" client="_MsXhAEDJEeO-esLIhfAtNg" supplier="_i5HFcEDIEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_3lgpwEDNEeO-esLIhfAtNg" name="" client="_n0pgcEDKEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_-i_uYEDPEeO-esLIhfAtNg" name="" client="_eMi9wEDKEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_UszeIEDQEeO-esLIhfAtNg" clientDependency="_nBEqQEDREeO-esLIhfAtNg" name="MediumOverview">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_eTjggEDREeO-esLIhfAtNg" name="back"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_b-JIUEDREeO-esLIhfAtNg" name="" client="_MsXhAEDJEeO-esLIhfAtNg" supplier="_UszeIEDQEeO-esLIhfAtNg"/>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_nBEqQEDREeO-esLIhfAtNg" name="" client="_UszeIEDQEeO-esLIhfAtNg" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_NgGU8EDSEeO-esLIhfAtNg" clientDependency="_CnHcYEDWEeO-esLIhfAtNg _UCdTkESUEeOkOt-6V2MDuQ _IbBZkESYEeOkOt-6V2MDuQ" name="CreateLoan">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_7z2qwEDTEeO-esLIhfAtNg" name="IssueDate" visibility="private" type="_dW7gIDyzEeOM5LIeec6LGA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8GEcIEDTEeO-esLIhfAtNg" value="1"/>
@@ -674,16 +673,6 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_aYJtgESYEeOkOt-6V2MDuQ" name="" client="_qThh4ESUEeOkOt-6V2MDuQ" supplier="_AgUgsELTEeO67a7r-Wk3iw"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_tu9KIESYEeOkOt-6V2MDuQ" name="" client="_veM3AESUEeOkOt-6V2MDuQ" supplier="_dJaLkELUEeO67a7r-Wk3iw"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_HmtRoEShEeOkOt-6V2MDuQ" name="" client="_vgzK4ELaEeO67a7r-Wk3iw" supplier="_qB_AgELUEeO67a7r-Wk3iw"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_MTTjoEShEeOkOt-6V2MDuQ" clientDependency="_TybnoEShEeOkOt-6V2MDuQ" name="CDOverview">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_Pf73sEShEeOkOt-6V2MDuQ" name="back"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_N5_NkEShEeOkOt-6V2MDuQ" clientDependency="_VFvpoEShEeOkOt-6V2MDuQ" name="BookOverview">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_Rb2x0EShEeOkOt-6V2MDuQ" name="back"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_TybnoEShEeOkOt-6V2MDuQ" name="" client="_MTTjoEShEeOkOt-6V2MDuQ" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_Ui8ekEShEeOkOt-6V2MDuQ" name="" client="_MsXhAEDJEeO-esLIhfAtNg" supplier="_MTTjoEShEeOkOt-6V2MDuQ"/>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_VFvpoEShEeOkOt-6V2MDuQ" name="" client="_N5_NkEShEeOkOt-6V2MDuQ" supplier="_MsXhAEDJEeO-esLIhfAtNg"/>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_VloqoEShEeOkOt-6V2MDuQ" name="" client="_MsXhAEDJEeO-esLIhfAtNg" supplier="_N5_NkEShEeOkOt-6V2MDuQ"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-k_u4DywEeOM5LIeec6LGA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-lca0DywEeOM5LIeec6LGA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="model2.profile.uml#_UBKH4UAGEeOEfutd8tXuzQ"/>
@@ -711,15 +700,11 @@
   <Profile:UI xmi:id="_ia3_YEDKEeO-esLIhfAtNg" base_Class="_eMi9wEDKEeO-esLIhfAtNg"/>
   <Profile:UI xmi:id="_pidGEEDKEeO-esLIhfAtNg" base_Class="_n0pgcEDKEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_LP04QEDOEeO-esLIhfAtNg" base_Operation="_C8RtsEDOEeO-esLIhfAtNg"/>
-  <Profile:action xmi:id="_NbI5QEDOEeO-esLIhfAtNg" base_Operation="_drAzcEDJEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_OaePUEDOEeO-esLIhfAtNg" base_Operation="_gcCwoEDJEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_PRldgEDOEeO-esLIhfAtNg" base_Operation="_fjMdEEDJEeO-esLIhfAtNg"/>
-  <Profile:action xmi:id="_QD5rQEDOEeO-esLIhfAtNg" base_Operation="_jnXdIEDJEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_EMAlUEDQEeO-esLIhfAtNg" base_Operation="_CbrQIEDQEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_KUaG8EDQEeO-esLIhfAtNg" base_Operation="_GzLb4EDQEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_NwSX8EDQEeO-esLIhfAtNg" base_Operation="_L6QDYEDQEeO-esLIhfAtNg"/>
-  <Profile:UI xmi:id="_XwYucEDREeO-esLIhfAtNg" base_Class="_UszeIEDQEeO-esLIhfAtNg"/>
-  <Profile:action xmi:id="_iy9rEEDREeO-esLIhfAtNg" base_Operation="_eTjggEDREeO-esLIhfAtNg"/>
   <Profile:UI xmi:id="_5i2RcEDTEeO-esLIhfAtNg" base_Class="_NgGU8EDSEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_8mzVMEDUEeO-esLIhfAtNg" base_Operation="_6CiosEDUEeO-esLIhfAtNg"/>
   <Profile:action xmi:id="_YmTtAEDVEeO-esLIhfAtNg" base_Operation="_UwZLYEDVEeO-esLIhfAtNg"/>
@@ -755,7 +740,6 @@
   <Profile:action xmi:id="_E4mDUELlEeO67a7r-Wk3iw" base_Operation="_DBh0AELlEeO67a7r-Wk3iw"/>
   <Profile:action xmi:id="_GmRtIELlEeO67a7r-Wk3iw" base_Operation="_dJnUAELhEeO67a7r-Wk3iw"/>
   <Profile:action xmi:id="_q6FdcELlEeO67a7r-Wk3iw" base_Operation="_py_5kELlEeO67a7r-Wk3iw"/>
-  <Profile:action xmi:id="_hPPd8ESUEeOkOt-6V2MDuQ" base_Operation="_a-Oy4ESUEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_nbVz0ESUEeOkOt-6V2MDuQ" base_Operation="_iqvyoESUEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_Cjt54ESWEeOkOt-6V2MDuQ" base_Operation="_AHoR8ESWEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_ImSgUESWEeOkOt-6V2MDuQ" base_Operation="_F3TKgESWEeOkOt-6V2MDuQ"/>
@@ -766,8 +750,6 @@
   <Profile:action xmi:id="_V0UA0ESWEeOkOt-6V2MDuQ" base_Operation="_VIxwgESWEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_YQkA0ESWEeOkOt-6V2MDuQ" base_Operation="_W9E_sESWEeOkOt-6V2MDuQ"/>
   <Profile:action xmi:id="_aNYS0ESWEeOkOt-6V2MDuQ" base_Operation="_YpIR0ESWEeOkOt-6V2MDuQ"/>
-  <Profile:action xmi:id="_QrvjgEShEeOkOt-6V2MDuQ" base_Operation="_Pf73sEShEeOkOt-6V2MDuQ"/>
-  <Profile:action xmi:id="_S-Ic4EShEeOkOt-6V2MDuQ" base_Operation="_Rb2x0EShEeOkOt-6V2MDuQ"/>
   <Profile:UI xmi:id="_qeBZUESiEeOe0tsP-8Jvog" base_Class="_tIlqgESUEeOkOt-6V2MDuQ"/>
   <Profile:UI xmi:id="_rs9RoESiEeOe0tsP-8Jvog" base_Class="_qThh4ESUEeOkOt-6V2MDuQ"/>
   <Profile:UI xmi:id="_wcTVoESiEeOe0tsP-8Jvog" base_Class="_veM3AESUEeOkOt-6V2MDuQ"/>
