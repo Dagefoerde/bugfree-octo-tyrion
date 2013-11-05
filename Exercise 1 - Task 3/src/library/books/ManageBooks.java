@@ -25,7 +25,7 @@ public class ManageBooks extends JFrame {
 	 * Create the frame.
 	 */
 	public ManageBooks() {
-		setTitle("Medium Management");
+		setTitle("Book Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 695, 320);
 		contentPane = new JPanel();
