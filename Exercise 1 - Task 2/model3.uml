@@ -274,7 +274,6 @@
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_GA7c0EU0EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_LkM4IEU0EeO0d5Z6S1GvwQ" type="_Cl8w8DyzEeOM5LIeec6LGA" direction="return"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_oJ8EAEapEeO4E9pbXU3HHg" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_pzSAYEapEeO4E9pbXU3HHg" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_2hVdoDy0EeOM5LIeec6LGA" name="updateLoan">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_AxZAYEU1EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
@@ -291,7 +290,6 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_4BsrsD76EeOr5un0JHVLfA" name="deleteLoan">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_WiLzMEU1EeO0d5Z6S1GvwQ" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_ruUJsEapEeO4E9pbXU3HHg" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_teDB8EapEeO4E9pbXU3HHg" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_6O90gD76EeOr5un0JHVLfA" clientDependency="_K5KEcD78EeOr5un0JHVLfA" name="UserBusinessLogic">

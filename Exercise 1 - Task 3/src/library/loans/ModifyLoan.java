@@ -79,31 +79,12 @@ public class ModifyLoan extends JFrame {
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		JLabel lblName = new JLabel("User ID");
-		GridBagConstraints gbc_lblName = new GridBagConstraints();
-		gbc_lblName.anchor = GridBagConstraints.WEST;
-		gbc_lblName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName.gridx = 0;
-		gbc_lblName.gridy = 1;
-		contentPane.add(lblName, gbc_lblName);
-		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.gridwidth = 3;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 1;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
-		
 		JLabel lblAuthor = new JLabel("Issue Date");
 		GridBagConstraints gbc_lblAuthor = new GridBagConstraints();
 		gbc_lblAuthor.anchor = GridBagConstraints.WEST;
 		gbc_lblAuthor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAuthor.gridx = 0;
-		gbc_lblAuthor.gridy = 2;
+		gbc_lblAuthor.gridy = 1;
 		contentPane.add(lblAuthor, gbc_lblAuthor);
 		
 		textField_2 = new JTextField();
@@ -112,7 +93,7 @@ public class ModifyLoan extends JFrame {
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 2;
+		gbc_textField_2.gridy = 1;
 		contentPane.add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
 		
@@ -128,7 +109,7 @@ public class ModifyLoan extends JFrame {
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 2;
-		gbc_textField_4.gridy = 2;
+		gbc_textField_4.gridy = 1;
 		contentPane.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
@@ -138,9 +119,27 @@ public class ModifyLoan extends JFrame {
 		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_5.gridx = 3;
-		gbc_textField_5.gridy = 2;
+		gbc_textField_5.gridy = 1;
 		contentPane.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
+		
+		JLabel lblName = new JLabel("User ID");
+		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.anchor = GridBagConstraints.WEST;
+		gbc_lblName.insets = new Insets(0, 0, 5, 5);
+		gbc_lblName.gridx = 0;
+		gbc_lblName.gridy = 2;
+		contentPane.add(lblName, gbc_lblName);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.gridwidth = 3;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 1;
+		gbc_textField_1.gridy = 2;
+		contentPane.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Return Date");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
