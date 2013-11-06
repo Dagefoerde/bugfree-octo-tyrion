@@ -697,7 +697,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GquxuD77EeOr5un0JHVLfA"/>
     </children>
     <element xmi:type="uml:Class" href="model3.uml#_GquxoD77EeOr5un0JHVLfA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gquxoj77EeOr5un0JHVLfA" x="600" y="325" width="480" height="151"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gquxoj77EeOr5un0JHVLfA" x="600" y="300" width="480" height="151"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_VJCOQT77EeOr5un0JHVLfA" type="2008" fontName="Segoe UI" fontHeight="8" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VJCOQz77EeOr5un0JHVLfA" source="ShadowFigure">
