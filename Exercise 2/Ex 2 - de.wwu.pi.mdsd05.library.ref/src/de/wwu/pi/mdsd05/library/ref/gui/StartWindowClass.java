@@ -124,10 +124,10 @@ public class StartWindowClass extends AbstractWindow {
 		gbc_BookListWindow.gridx = 1;
 		gbc_BookListWindow.gridy = getNextGridY();
 		getPanel().add(bookListWindow, gbc_BookListWindow);
-		userListWindow.addActionListener(new ActionListener() {
+		bookListWindow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new UserListWindow(StartWindowClass.this).open();
+				new BookListWindow(StartWindowClass.this).open();
 			}
 		});
 

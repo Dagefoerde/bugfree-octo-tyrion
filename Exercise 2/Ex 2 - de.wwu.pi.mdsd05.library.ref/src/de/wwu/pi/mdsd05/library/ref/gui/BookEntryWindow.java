@@ -27,7 +27,7 @@ public class BookEntryWindow extends AbstractWindow {
 	private JButton btnSave;
 	private int curGridY = 0;
 	private Book currentEntity;
-	private JList<Object> li_Books;
+	private JList<Object> li_Copies;
 	private BookService service;
 	private JTextField tf_ISBN;
 	private JTextField tf_Name;
@@ -141,23 +141,23 @@ public class BookEntryWindow extends AbstractWindow {
 		gbc_fill1.fill = GridBagConstraints.REMAINDER;
 		panel.add(fill1, gbc_fill1);
 
-//		JLabel lblLoans = new JLabel("Loans");
-//		GridBagConstraints gbc_lblLoans = new GridBagConstraints();
-//		gbc_lblLoans.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblLoans.anchor = GridBagConstraints.NORTHEAST;
-//		gbc_lblLoans.gridx = 0;
-//		gbc_lblLoans.gridy = curGridY;
-//		getPanel().add(lblLoans, gbc_lblLoans);
+		JLabel lblCopies = new JLabel("Copies");
+		GridBagConstraints gbc_lblCopies = new GridBagConstraints();
+		gbc_lblCopies.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCopies.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblCopies.gridx = 0;
+		gbc_lblCopies.gridy = curGridY;
+		getPanel().add(lblCopies, gbc_lblCopies);
 
-		li_Books = new JList<Object>();
-		GridBagConstraints gbc_li_Books = new GridBagConstraints();
-		gbc_li_Books.gridwidth = 3;
-		gbc_li_Books.insets = new Insets(0, 0, 5, 5);
-		gbc_li_Books.fill = GridBagConstraints.BOTH;
-		gbc_li_Books.gridx = 1;
-		gbc_li_Books.weighty = .5;
-		gbc_li_Books.gridy = curGridY;
-		getPanel().add(li_Books, gbc_li_Books);
+		li_Copies = new JList<Object>();
+		GridBagConstraints gbc_li_Copies = new GridBagConstraints();
+		gbc_li_Copies.gridwidth = 3;
+		gbc_li_Copies.insets = new Insets(0, 0, 5, 5);
+		gbc_li_Copies.fill = GridBagConstraints.BOTH;
+		gbc_li_Copies.gridx = 1;
+		gbc_li_Copies.weighty = .5;
+		gbc_li_Copies.gridy = curGridY;
+		getPanel().add(li_Copies, gbc_li_Copies);
 		
 		// Button for List Element
 		JButton btn = new JButton("Add");
@@ -182,7 +182,7 @@ public class BookEntryWindow extends AbstractWindow {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object selected = BookEntryWindow.this.li_Books
+				Object selected = BookEntryWindow.this.li_Copies
 						.getSelectedValue();
 				if (selected == null) {
 					Util.showNothingSelected();
@@ -216,14 +216,13 @@ public class BookEntryWindow extends AbstractWindow {
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
 		String name = tf_Name.getText().isEmpty() ? null : tf_Name.getText();
-		String ISBN = tf_ISBN.getText().isEmpty() ? null : tf_ISBN
-				.getText();
+		int ISBN = tf_ISBN.getText().isEmpty() ? 0 : Integer.parseInt(tf_ISBN.getText());
 		String author = tf_Author.getText().isEmpty() ? null : tf_Author
 				.getText();
 
 		// validation
 		try {
-			service.validateBook(name, Integer.parseInt(ISBN), author);
+			service.validateBook(name, ISBN, author);
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),
@@ -233,7 +232,7 @@ public class BookEntryWindow extends AbstractWindow {
 		}
 
 		// persist
-		currentEntity = service.saveBook(currentEntity.getOid(), name, Integer.parseInt(ISBN), author);
+		currentEntity = service.saveBook(currentEntity.getOid(), name, ISBN, author);
 
 		// update user listing in UserListWindow
 		((UserListWindow) getParent()).initializeUserListing();
