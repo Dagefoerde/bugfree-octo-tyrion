@@ -203,7 +203,7 @@ public class CopyEntryWindow extends AbstractWindow {
 
 		// validation
 		try {
-			service.validateCopy(medium, inventoryNumber);
+			service.validateCopy(inventoryNumber, medium);
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),
@@ -213,7 +213,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		}
 
 		// persist
-		currentEntity = service.saveCopy(currentEntity.getOid(), medium, inventoryNumber);
+		currentEntity = service.saveCopy(currentEntity.getOid(), inventoryNumber, medium);
 
 		// update user listing in UserListWindow
 		((UserListWindow) getParent()).initializeUserListing();
