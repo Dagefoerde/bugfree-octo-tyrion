@@ -66,6 +66,22 @@ public class StartWindowClass extends AbstractWindow {
 			}
 		});
 
+		// emtpy grid line
+		getNextGridY();
+
+		JButton loanListWindow = new JButton("List Loan Elements");
+		GridBagConstraints gbc_LoanListWindow = new GridBagConstraints();
+		gbc_UserListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_UserListWindow.gridx = 1;
+		gbc_UserListWindow.gridy = getNextGridY();
+		getPanel().add(loanListWindow, gbc_LoanListWindow);
+		loanListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new LoanListWindow(StartWindowClass.this).open();
+			}
+		});
+
 		// Separator at the bottom to create empty
 		// space at the end of the window
 		JSeparator separator = new JSeparator();
