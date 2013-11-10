@@ -4,7 +4,9 @@ import java.util.Date;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
+import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.data.Loan;
+import de.wwu.pi.mdsd05.library.ref.data.User;
 
 public class LoanService extends AbstractServiceProvider<Loan> {
 	

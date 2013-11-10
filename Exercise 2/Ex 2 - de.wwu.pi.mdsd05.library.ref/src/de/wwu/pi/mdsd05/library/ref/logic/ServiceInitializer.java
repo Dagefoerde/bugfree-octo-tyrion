@@ -25,11 +25,14 @@ public class ServiceInitializer implements Serializable {
 	private UserService userService;
 	
 	private LoanService loanService;
+	
+	private MediumService mediumService;
 
 	private ServiceInitializer() {
 		super();
 		userService = new UserService();
 		loanService = new LoanService();
+		mediumService = new MediumService();
 	}
 	
 	public UserService getUserService() {
@@ -42,6 +45,12 @@ public class ServiceInitializer implements Serializable {
 		if(loanService == null)
 			loanService = new LoanService();
 		return loanService;
+	}
+	
+	public MediumService getMediumService() {
+		if(mediumService == null)
+			mediumService = new MediumService();
+		return mediumService;
 	}
 	
 	private static boolean deserialize() {
