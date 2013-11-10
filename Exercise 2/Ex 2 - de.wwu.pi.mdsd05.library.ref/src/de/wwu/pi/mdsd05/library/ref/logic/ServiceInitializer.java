@@ -23,16 +23,25 @@ public class ServiceInitializer implements Serializable {
 	}
 	
 	private UserService userService;
+	
+	private LoanService loanService;
 
 	private ServiceInitializer() {
 		super();
 		userService = new UserService();
+		loanService = new LoanService();
 	}
 	
 	public UserService getUserService() {
 		if(userService == null)
 			userService = new UserService();
 		return userService;
+	}
+	
+	public LoanService getLoanService() {
+		if(loanService == null)
+			loanService = new LoanService();
+		return loanService;
 	}
 	
 	private static boolean deserialize() {
