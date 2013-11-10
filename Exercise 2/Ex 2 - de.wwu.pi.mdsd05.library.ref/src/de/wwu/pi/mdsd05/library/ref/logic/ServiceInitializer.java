@@ -27,12 +27,18 @@ public class ServiceInitializer implements Serializable {
 	private LoanService loanService;
 	
 	private MediumService mediumService;
+	
+	private BookService bookService;
+	
+	private CDService cdService;
 
 	private ServiceInitializer() {
 		super();
 		userService = new UserService();
 		loanService = new LoanService();
 		mediumService = new MediumService();
+		bookService = new BookService();
+		cdService = new CDService();
 	}
 	
 	public UserService getUserService() {
@@ -52,6 +58,20 @@ public class ServiceInitializer implements Serializable {
 			mediumService = new MediumService();
 		return mediumService;
 	}
+	
+	public BookService getBookService() {
+		if(bookService == null)
+			bookService = new BookService();
+		return bookService;
+	}
+	
+	public CDService getCDService() {
+		if(cdService == null)
+			cdService = new CDService();
+		return cdService;
+	}
+
+	
 	
 	private static boolean deserialize() {
 		try {
