@@ -21,6 +21,7 @@ import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
+import de.wwu.pi.mdsd05.library.ref.logic.MediumService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.UserService;
 
@@ -30,7 +31,7 @@ public class CopyEntryWindow extends AbstractWindow {
 	private int curGridY = 0;
 	private Copy currentEntity;
 	private JList<Object> li_Copys;
-	private UserService service;
+	private CopyService service;
 	private MediumService mediumService;
 	private JComboBox<Medium> cb_Medium;
 	private JTextField tf_InventoryNumber;
@@ -61,7 +62,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_lblMedium.gridy = curGridY;
 		getPanel().add(lblMedium, gbc_lblMedium);
 
-		cb_Medium = new JComboBox<Medium>(mediumService.getAll());
+		cb_Medium = new JComboBox<Medium>((Medium[]) mediumService.getAll().toArray());
 		cb_Medium.setSelectedItem(currentEntity.getMedium());
 		GridBagConstraints gbc_cb_Medium = new GridBagConstraints();
 		gbc_cb_Medium.gridwidth = 3;
@@ -197,7 +198,7 @@ public class CopyEntryWindow extends AbstractWindow {
 
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
-		Medium medium = cb_Medium.getSelectedItem() == null ? null : cb_Medium.getSelectedItem();
+		Medium medium = cb_Medium.getSelectedItem() == null ? null : (Medium) cb_Medium.getSelectedItem();
 		Integer inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? null : Integer.getInteger(tf_InventoryNumber.getText());
 
 		// validation
