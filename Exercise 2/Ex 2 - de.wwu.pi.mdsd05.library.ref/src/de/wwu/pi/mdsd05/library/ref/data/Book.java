@@ -22,17 +22,21 @@ public class Book extends Medium {
 		this.author = author;
 	}
 
+	//Constructors
 	public Book (int ISBN, String author, String name){
 		super(name);
 		this.ISBN = ISBN;
 		this.author = author;
 	}
+	
+	public Book (){
+		super();
+	}
 
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return (getName()) + ", " + (getISBN())+ ", " + (getAuthor()) + "";
 	}
 
 }
