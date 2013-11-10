@@ -97,6 +97,22 @@ public class StartWindowClass extends AbstractWindow {
 				new CopyListWindow(StartWindowClass.this).open();
 			}
 		});
+		
+		// emtpy grid line
+		getNextGridY();
+
+		JButton bookListWindow = new JButton("List Book Elements");
+		GridBagConstraints gbc_BookListWindow = new GridBagConstraints();
+		gbc_BookListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_BookListWindow.gridx = 1;
+		gbc_BookListWindow.gridy = getNextGridY();
+		getPanel().add(bookListWindow, gbc_BookListWindow);
+		userListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new UserListWindow(StartWindowClass.this).open();
+			}
+		});
 
 		// Separator at the bottom to create empty
 		// space at the end of the window
