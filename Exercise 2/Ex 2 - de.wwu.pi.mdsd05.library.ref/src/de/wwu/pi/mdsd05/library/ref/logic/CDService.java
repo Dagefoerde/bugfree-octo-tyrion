@@ -6,6 +6,11 @@ import de.wwu.pi.mdsd05.library.ref.data.CD;
 
 public class CDService extends AbstractServiceProvider<CD>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6114246295799356828L;
+
 	protected CDService() {
 		super();
 	}
