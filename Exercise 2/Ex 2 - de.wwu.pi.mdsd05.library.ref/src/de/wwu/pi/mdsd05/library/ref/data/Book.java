@@ -4,6 +4,7 @@ import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 
 public class Book extends Medium {
 	
+	private static final long serialVersionUID = 3727173861206773258L;
 	protected int ISBN;
 	public int getISBN(){
 		return this.ISBN;
