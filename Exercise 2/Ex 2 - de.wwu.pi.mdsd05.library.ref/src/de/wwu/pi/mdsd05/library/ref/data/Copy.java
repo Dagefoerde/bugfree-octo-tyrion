@@ -4,7 +4,10 @@ package de.wwu.pi.mdsd05.library.ref.data;
 import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 
 public class Copy extends AbstractDataClass{
-	private static final long serialVersionUID = 3092313025089525861L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -666969941790817425L;
 	protected Integer inventoryNumber;
 	public Integer getInventoryNumber() {
 		return inventoryNumber;
