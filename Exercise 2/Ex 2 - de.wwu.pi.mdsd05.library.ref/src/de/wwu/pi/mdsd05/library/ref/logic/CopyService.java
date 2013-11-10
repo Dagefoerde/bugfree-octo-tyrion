@@ -22,7 +22,7 @@ public class CopyService extends AbstractServiceProvider<Copy> {
 		return true;
 	}
 	
-	public Copy saveUser(int id, int inventoryNumber, Medium medium) {
+	public Copy saveCopy(int id, int inventoryNumber, Medium medium) {
 	Copy elem = getByOId(id);
 	if(elem == null)
 		elem = new Copy();
