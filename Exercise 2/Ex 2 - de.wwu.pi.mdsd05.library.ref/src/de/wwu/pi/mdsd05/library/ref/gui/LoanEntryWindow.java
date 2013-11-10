@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Date;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -71,7 +73,8 @@ public class LoanEntryWindow extends AbstractWindow {
 		getPanel().add(lblName, gbc_lblName);
 		
 
-		tf_IssueDate = new JTextField(currentEntity.getIssueDate().toString());
+		
+		tf_IssueDate = new JTextField(Util.DATE_TIME_FORMATTER.format(currentEntity.getIssueDate()));
 		GridBagConstraints gbc_tf_IssueDate = new GridBagConstraints();
 		gbc_tf_IssueDate.gridwidth = 3;
 		gbc_tf_IssueDate.insets = new Insets(0, 0, 5, 5);
@@ -90,7 +93,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		gbc_lblAddress.gridy = curGridY;
 		getPanel().add(lblAddress, gbc_lblAddress);
 
-		tf_ReturnDate = new JTextField(currentEntity.getReturnDate().toString());
+		tf_ReturnDate = new JTextField(Util.DATE_TIME_FORMATTER.format(currentEntity.getReturnDate()));
 		GridBagConstraints gbc_tf_ReturnDate = new GridBagConstraints();
 		gbc_tf_ReturnDate.gridwidth = 3;
 		gbc_tf_ReturnDate.insets = new Insets(0, 0, 5, 5);
@@ -109,7 +112,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		gbc_lblUser.gridy = curGridY;
 		getPanel().add(lblUser, gbc_lblUser);
 
-		cb_User = new JComboBox<User>((User[])userService.getAll().toArray());
+		cb_User = new JComboBox<User>(new Vector<User>( userService.getAll() ));
 		
 		GridBagConstraints gbc_tf_User = new GridBagConstraints();
 		gbc_tf_User.gridwidth = 3;
@@ -129,7 +132,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		gbc_lblCopy.gridy = curGridY;
 		getPanel().add(lblCopy, gbc_lblCopy);
 
-		cb_Copy = new JComboBox<Copy>((Copy[])copyService.getAll().toArray());
+		cb_Copy = new JComboBox<Copy>(new Vector<Copy>( copyService.getAll() ));
 		
 		GridBagConstraints gbc_tf_Copy= new GridBagConstraints();
 		gbc_tf_Copy.gridwidth = 3;
