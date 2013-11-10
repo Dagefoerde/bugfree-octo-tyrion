@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,7 +31,7 @@ public class CopyEntryWindow extends AbstractWindow {
 	private JButton btnSave;
 	private int curGridY = 0;
 	private Copy currentEntity;
-	private JList<Object> li_Copys;
+	private JList<Object> li_Loans;
 	private CopyService service;
 	private MediumService mediumService;
 	private JComboBox<Medium> cb_Medium;
@@ -62,7 +63,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_lblMedium.gridy = curGridY;
 		getPanel().add(lblMedium, gbc_lblMedium);
 
-		cb_Medium = new JComboBox<Medium>((Medium[]) mediumService.getAll().toArray());
+		cb_Medium = new JComboBox<Medium>(new Vector<Medium> ( mediumService.getAll() ));
 		cb_Medium.setSelectedItem(currentEntity.getMedium());
 		GridBagConstraints gbc_cb_Medium = new GridBagConstraints();
 		gbc_cb_Medium.gridwidth = 3;
@@ -74,7 +75,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_cb_Medium.gridy = curGridY++;
 		getPanel().add(cb_Medium, gbc_cb_Medium);
 
-		JLabel lblInventoryNumber = new JLabel("InventoryNumber*");
+		JLabel lblInventoryNumber = new JLabel("Inventory number*");
 		GridBagConstraints gbc_lblInventoryNumber = new GridBagConstraints();
 		gbc_lblInventoryNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInventoryNumber.anchor = GridBagConstraints.NORTHEAST;
@@ -124,23 +125,23 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_fill1.fill = GridBagConstraints.REMAINDER;
 		panel.add(fill1, gbc_fill1);
 
-		JLabel lblCopys = new JLabel("Copys");
-		GridBagConstraints gbc_lblCopys = new GridBagConstraints();
-		gbc_lblCopys.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCopys.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblCopys.gridx = 0;
-		gbc_lblCopys.gridy = curGridY;
-		getPanel().add(lblCopys, gbc_lblCopys);
+		JLabel lblLoans = new JLabel("Copys");
+		GridBagConstraints gbc_lblLoans = new GridBagConstraints();
+		gbc_lblLoans.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLoans.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblLoans.gridx = 0;
+		gbc_lblLoans.gridy = curGridY;
+		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Copys = new JList<Object>();
-		GridBagConstraints gbc_li_Copys = new GridBagConstraints();
-		gbc_li_Copys.gridwidth = 3;
-		gbc_li_Copys.insets = new Insets(0, 0, 5, 5);
-		gbc_li_Copys.fill = GridBagConstraints.BOTH;
-		gbc_li_Copys.gridx = 1;
-		gbc_li_Copys.weighty = .5;
-		gbc_li_Copys.gridy = curGridY;
-		getPanel().add(li_Copys, gbc_li_Copys);
+		li_Loans = new JList<Object>();
+		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
+		gbc_li_Loans.gridwidth = 3;
+		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
+		gbc_li_Loans.fill = GridBagConstraints.BOTH;
+		gbc_li_Loans.gridx = 1;
+		gbc_li_Loans.weighty = .5;
+		gbc_li_Loans.gridy = curGridY;
+		getPanel().add(li_Loans, gbc_li_Loans);
 		
 		// Button for List Element
 		JButton btn = new JButton("Add");
@@ -165,7 +166,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object selected = CopyEntryWindow.this.li_Copys
+				Object selected = CopyEntryWindow.this.li_Loans
 						.getSelectedValue();
 				if (selected == null) {
 					Util.showNothingSelected();
@@ -199,7 +200,7 @@ public class CopyEntryWindow extends AbstractWindow {
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
 		Medium medium = cb_Medium.getSelectedItem() == null ? null : (Medium) cb_Medium.getSelectedItem();
-		Integer inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? null : Integer.getInteger(tf_InventoryNumber.getText());
+		int inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? 0 : Integer.getInteger(tf_InventoryNumber.getText());
 
 		// validation
 		try {

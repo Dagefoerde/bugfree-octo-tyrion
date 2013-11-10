@@ -1,7 +1,5 @@
 package de.wwu.pi.mdsd05.library.ref.logic;
 
-import java.util.Date;
-
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
@@ -16,7 +14,7 @@ public class CopyService extends AbstractServiceProvider<Copy> {
 
 	public boolean validateCopy(int inventoryNumber, Medium medium) throws ValidationException {
 		if(inventoryNumber == 0)
-			throw new ValidationException("inventoryNumber", "cannot be empty");
+			throw new ValidationException("inventoryNumber", "cannot be zero");
 		if(medium == null)
 			throw new ValidationException("medium", "cannot be empty");
 		return true;

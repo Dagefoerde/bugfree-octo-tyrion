@@ -185,15 +185,11 @@ public class LoanEntryWindow extends AbstractWindow {
 
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
-		String strIssueDate = tf_IssueDate.getText().isEmpty() ? null : tf_IssueDate.getText();
-		String strReturnDate = tf_ReturnDate.getText().isEmpty() ? null : tf_ReturnDate
-				.getText();
+		Date issueDate = tf_IssueDate.getText().isEmpty() ? null : Util.DATE_TIME_FORMATTER.parse(tf_IssueDate.getText(), new ParsePosition(0));
+		Date returnDate = tf_ReturnDate.getText().isEmpty() ? null : Util.DATE_TIME_FORMATTER.parse(tf_ReturnDate.getText(), new ParsePosition(0));
 		Copy copy = (Copy)cb_Copy.getSelectedItem();
 		User user = (User)cb_User.getSelectedItem();
 
-		
-		Date issueDate = Util.DATE_TIME_FORMATTER.parse(strIssueDate, new ParsePosition(0));
-		Date returnDate = Util.DATE_TIME_FORMATTER.parse(strReturnDate, new ParsePosition(0));
 		
 		// validation
 		try {
