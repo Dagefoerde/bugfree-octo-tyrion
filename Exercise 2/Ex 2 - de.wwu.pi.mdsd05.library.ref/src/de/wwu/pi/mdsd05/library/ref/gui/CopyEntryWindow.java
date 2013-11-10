@@ -23,7 +23,7 @@ import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
 import de.wwu.pi.mdsd05.library.ref.logic.MediumService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
-import de.wwu.pi.mdsd05.library.ref.logic.UserService;
+import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 
 public class CopyEntryWindow extends AbstractWindow {
 
