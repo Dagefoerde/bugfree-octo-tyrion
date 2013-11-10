@@ -12,6 +12,10 @@ public abstract class Medium extends AbstractDataClass {
 	public String getName(){
 		return this.name;
 	}
+	
+	public Medium (String name){
+		this.name = name;
+	}
 
 	@Override
 	public String toString() {
