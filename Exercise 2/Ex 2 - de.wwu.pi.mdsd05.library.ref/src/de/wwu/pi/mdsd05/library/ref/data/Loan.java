@@ -1,7 +1,7 @@
 package de.wwu.pi.mdsd05.library.ref.data;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 
