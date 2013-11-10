@@ -82,6 +82,22 @@ public class StartWindowClass extends AbstractWindow {
 			}
 		});
 
+		// emtpy grid line
+		getNextGridY();
+
+		JButton copyListWindow = new JButton("List Copy Elements");
+		GridBagConstraints gbc_CopyListWindow = new GridBagConstraints();
+		gbc_CopyListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_CopyListWindow.gridx = 1;
+		gbc_CopyListWindow.gridy = getNextGridY();
+		getPanel().add(copyListWindow, gbc_CopyListWindow);
+		copyListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new CopyListWindow(StartWindowClass.this).open();
+			}
+		});
+
 		// Separator at the bottom to create empty
 		// space at the end of the window
 		JSeparator separator = new JSeparator();

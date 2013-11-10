@@ -216,7 +216,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		currentEntity = service.saveCopy(currentEntity.getOid(), inventoryNumber, medium);
 
 		// update user listing in UserListWindow
-		((UserListWindow) getParent()).initializeUserListing();
+		((CopyListWindow) getParent()).initializeCopyListing();
 
 		return true;
 	}
