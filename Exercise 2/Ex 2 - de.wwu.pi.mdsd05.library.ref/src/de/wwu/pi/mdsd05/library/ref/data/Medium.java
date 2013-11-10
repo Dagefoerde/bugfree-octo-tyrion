@@ -16,6 +16,10 @@ public abstract class Medium extends AbstractDataClass {
 	public Medium (String name){
 		this.name = name;
 	}
+	
+	public Medium (){
+		super();
+	}
 
 	@Override
 	public String toString() {
