@@ -1,6 +1,9 @@
 package de.wwu.pi.mdsd05.library.ref.logic;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
@@ -35,6 +38,26 @@ public class LoanService extends AbstractServiceProvider<Loan> {
 	elem.setReturnDate(returnDate);
 	persist(elem);
 	return elem;
+	}
+	
+	public Collection<Loan> getAllByUser(User user){
+		Collection<Loan> result = new LinkedList<Loan>();
+		for (Loan loan :getAll()){
+			if (loan.getUser().equals(user)){
+				result.add(loan);
+			}
+		}
+		return result;
+	}
+	
+	public Collection<Loan> getAllByCopy(Copy copy){
+		Collection<Loan> result = new LinkedList<Loan>();
+		for (Loan loan :getAll()){
+			if (loan.getCopy().equals(copy)){
+				result.add(loan);
+			}
+		}
+		return result;
 	}
 	
 }

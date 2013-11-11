@@ -7,10 +7,12 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -19,16 +21,19 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Book;
+import de.wwu.pi.mdsd05.library.ref.data.Copy;
+import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.BookService;
 
-public class BookEntryWindow extends AbstractWindow {
+public class BookEntryWindow extends AbstractWindow implements CopyListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;
 	private Book currentEntity;
-	private JList<Object> li_Copies;
+	private JList<Copy> li_Copys;
 	private BookService service;
+	private CopyService copyService;
 	private JTextField tf_ISBN;
 	private JTextField tf_Name;
 	private JTextField tf_Author;
@@ -37,6 +42,7 @@ public class BookEntryWindow extends AbstractWindow {
 		super(parent);
 		this.currentEntity = currentEntity;
 		service = ServiceInitializer.getProvider().getBookService();
+		copyService= ServiceInitializer.getProvider().getCopyService();
 	}
 
 	@Override
@@ -149,7 +155,7 @@ public class BookEntryWindow extends AbstractWindow {
 		gbc_lblCopies.gridy = curGridY;
 		getPanel().add(lblCopies, gbc_lblCopies);
 
-		li_Copies = new JList<Object>();
+		li_Copys = new JList<Copy>(new Vector<Copy>(copyService.getAllByMedium(currentEntity)));
 		GridBagConstraints gbc_li_Copies = new GridBagConstraints();
 		gbc_li_Copies.gridwidth = 3;
 		gbc_li_Copies.insets = new Insets(0, 0, 5, 5);
@@ -157,7 +163,7 @@ public class BookEntryWindow extends AbstractWindow {
 		gbc_li_Copies.gridx = 1;
 		gbc_li_Copies.weighty = .5;
 		gbc_li_Copies.gridy = curGridY;
-		getPanel().add(li_Copies, gbc_li_Copies);
+		getPanel().add(li_Copys, gbc_li_Copies);
 		
 		// Button for List Element
 		JButton btn = new JButton("Add");
@@ -171,8 +177,7 @@ public class BookEntryWindow extends AbstractWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// @TODO: trigger an action
-				Util.showImplementAction();
-			}
+				addCopy();			}
 		});
 
 		btn = new JButton("Edit");
@@ -182,14 +187,13 @@ public class BookEntryWindow extends AbstractWindow {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object selected = BookEntryWindow.this.li_Copies
+				Object selected = BookEntryWindow.this.li_Copys
 						.getSelectedValue();
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
 					// @TODO: trigger an action
-					Util.showImplementAction();
-				}
+					editCopy();				}
 			}
 		});
 
@@ -238,5 +242,28 @@ public class BookEntryWindow extends AbstractWindow {
 		((BookListWindow) getParent()).initializeBookListing();
 
 		return true;
+	}
+	/**
+	 * Method triggered when user clicks edit
+	 */
+	public void editCopy() {
+		Copy copy = li_Copys.getSelectedValue();
+		if (copy != null)
+			new CopyEntryWindow(this, copy).open();
+		else
+			JOptionPane.showMessageDialog(null, "Please select a loan.", "No Loan Selected", JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * Method triggered when user clicks add
+	 */
+	public void addCopy() {
+		Copy copy= new Copy();
+		copy.setMedium(currentEntity);
+		new CopyEntryWindow(this, copy).open();
+	}
+	public void initializeCopyListing() {
+		Vector<Copy> copys = new Vector<Copy>(copyService.getAllByMedium(currentEntity));
+		li_Copys.setListData(copys);
 	}
 }

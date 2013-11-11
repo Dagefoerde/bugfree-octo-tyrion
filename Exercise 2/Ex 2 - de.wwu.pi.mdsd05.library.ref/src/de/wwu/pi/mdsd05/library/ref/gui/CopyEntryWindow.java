@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -21,19 +22,22 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
+import de.wwu.pi.mdsd05.library.ref.data.Loan;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
+import de.wwu.pi.mdsd05.library.ref.logic.LoanService;
 import de.wwu.pi.mdsd05.library.ref.logic.MediumService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 
-public class CopyEntryWindow extends AbstractWindow {
+public class CopyEntryWindow extends AbstractWindow implements LoanListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;
 	private Copy currentEntity;
-	private JList<Object> li_Loans;
+	private JList<Loan> li_Loans;
 	private CopyService service;
 	private MediumService mediumService;
+	private LoanService loanService;
 	private JComboBox<Medium> cb_Medium;
 	private JTextField tf_InventoryNumber;
 
@@ -42,6 +46,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		this.currentEntity = currentEntity;
 		service = ServiceInitializer.getProvider().getCopyService();
 		mediumService = ServiceInitializer.getProvider().getMediumService();
+		loanService=ServiceInitializer.getProvider().getLoanService();
 	}
 
 	@Override
@@ -125,7 +130,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_fill1.fill = GridBagConstraints.REMAINDER;
 		panel.add(fill1, gbc_fill1);
 
-		JLabel lblLoans = new JLabel("Copys");
+		JLabel lblLoans = new JLabel("Loans");
 		GridBagConstraints gbc_lblLoans = new GridBagConstraints();
 		gbc_lblLoans.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLoans.anchor = GridBagConstraints.NORTHEAST;
@@ -133,7 +138,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_lblLoans.gridy = curGridY;
 		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Loans = new JList<Object>();
+		li_Loans = new JList<Loan>();
 		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
 		gbc_li_Loans.gridwidth = 3;
 		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
@@ -217,8 +222,32 @@ public class CopyEntryWindow extends AbstractWindow {
 		currentEntity = service.saveCopy(currentEntity.getOid(), inventoryNumber, medium);
 
 		// update user listing in UserListWindow
-		((CopyListWindow) getParent()).initializeCopyListing();
+		((CopyListContainingWindow) getParent()).initializeCopyListing();
 
 		return true;
+	}
+	/**
+	 * Method triggered when user clicks edit
+	 */
+	public void editLoan() {
+		Loan loan = li_Loans.getSelectedValue();
+		if (loan != null)
+			new LoanEntryWindow(this, loan).open();
+		else
+			JOptionPane.showMessageDialog(null, "Please select a loan.", "No Loan Selected", JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * Method triggered when user clicks add
+	 */
+	public void addLoan() {
+		Loan loan= new Loan();
+		loan.setCopy(currentEntity);
+		new LoanEntryWindow(this, loan).open();
+	}
+
+	public void initializeLoanListing() {
+		Vector<Loan> loans = new Vector<Loan>(loanService.getAllByCopy(currentEntity));
+		li_Loans.setListData(loans);
 	}
 }

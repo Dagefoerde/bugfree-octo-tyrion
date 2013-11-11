@@ -1,7 +1,11 @@
 package de.wwu.pi.mdsd05.library.ref.logic;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
+import de.wwu.pi.mdsd05.library.ref.data.Book;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
 
@@ -29,6 +33,15 @@ public class CopyService extends AbstractServiceProvider<Copy> {
 	
 	persist(elem);
 	return elem;
+	}
+
+	public Collection<Copy> getAllByMedium(Medium currentEntity) {
+		Collection<Copy> result= new LinkedList<Copy>();
+		for (Copy copy:getAll()){
+			if (copy.getMedium().equals(currentEntity))
+				result.add(copy);
+		}
+		return result;
 	}
 	
 }

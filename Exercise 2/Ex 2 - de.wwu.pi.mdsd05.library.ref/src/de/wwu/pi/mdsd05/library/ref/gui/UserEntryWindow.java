@@ -7,10 +7,13 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.LinkedList;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -18,17 +21,20 @@ import javax.swing.JTextField;
 import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
+import de.wwu.pi.mdsd05.library.ref.data.Loan;
 import de.wwu.pi.mdsd05.library.ref.data.User;
+import de.wwu.pi.mdsd05.library.ref.logic.LoanService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.UserService;
 
-public class UserEntryWindow extends AbstractWindow {
+public class UserEntryWindow extends AbstractWindow implements LoanListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;
 	private User currentEntity;
-	private JList<Object> li_Loans;
+	private JList<Loan> li_Loans;
 	private UserService service;
+	private LoanService loanService;
 	private JTextField tf_Address;
 	private JTextField tf_Name;
 
@@ -36,6 +42,7 @@ public class UserEntryWindow extends AbstractWindow {
 		super(parent);
 		this.currentEntity = currentEntity;
 		service = ServiceInitializer.getProvider().getUserService();
+		loanService=ServiceInitializer.getProvider().getLoanService();
 	}
 
 	@Override
@@ -126,7 +133,7 @@ public class UserEntryWindow extends AbstractWindow {
 		gbc_lblLoans.gridy = curGridY;
 		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Loans = new JList<Object>();
+		li_Loans = new JList<Loan>(new Vector<Loan>(loanService.getAllByUser(currentEntity)));
 		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
 		gbc_li_Loans.gridwidth = 3;
 		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
@@ -148,7 +155,7 @@ public class UserEntryWindow extends AbstractWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// @TODO: trigger an action
-				Util.showImplementAction();
+				addLoan();
 			}
 		});
 
@@ -165,7 +172,7 @@ public class UserEntryWindow extends AbstractWindow {
 					Util.showNothingSelected();
 				} else {
 					// @TODO: trigger an action
-					Util.showImplementAction();
+					editLoan();
 				}
 			}
 		});
@@ -214,5 +221,28 @@ public class UserEntryWindow extends AbstractWindow {
 		((UserListWindow) getParent()).initializeUserListing();
 
 		return true;
+	}
+	/**
+	 * Method triggered when user clicks edit
+	 */
+	public void editLoan() {
+		Loan loan = li_Loans.getSelectedValue();
+		if (loan != null)
+			new LoanEntryWindow(this, loan).open();
+		else
+			JOptionPane.showMessageDialog(null, "Please select a loan.", "No Loan Selected", JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * Method triggered when user clicks add
+	 */
+	public void addLoan() {
+		Loan loan= new Loan();
+		loan.setUser(currentEntity);
+		new LoanEntryWindow(this, loan).open();
+	}
+	public void initializeLoanListing() {
+		Vector<Loan> loans = new Vector<Loan>(loanService.getAllByUser(currentEntity));
+		li_Loans.setListData(loans);
 	}
 }
