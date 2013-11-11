@@ -159,8 +159,7 @@ public class CopyEntryWindow extends AbstractWindow implements ILoanListContaini
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// @TODO: trigger an action
-				Util.showImplementAction();
+				addLoan();
 			}
 		});
 
@@ -176,8 +175,7 @@ public class CopyEntryWindow extends AbstractWindow implements ILoanListContaini
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
-					// @TODO: trigger an action
-					Util.showImplementAction();
+					editLoan();
 				}
 			}
 		});
@@ -231,10 +229,8 @@ public class CopyEntryWindow extends AbstractWindow implements ILoanListContaini
 	 */
 	public void editLoan() {
 		Loan loan = li_Loans.getSelectedValue();
-		if (loan != null)
-			new LoanEntryWindow(this, loan).open();
-		else
-			JOptionPane.showMessageDialog(null, "Please select a loan.", "No Loan Selected", JOptionPane.ERROR_MESSAGE);
+		// assume loan != null, as editLoan() is called by Edit button, which contains check.
+		new LoanEntryWindow(this, loan).open();
 	}
 
 	/**

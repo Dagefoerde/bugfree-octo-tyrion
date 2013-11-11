@@ -176,8 +176,8 @@ public class BookEntryWindow extends AbstractWindow implements ICopyListContaini
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// @TODO: trigger an action
-				addCopy();			}
+				addCopy();			
+			}
 		});
 
 		btn = new JButton("Edit");
@@ -192,8 +192,8 @@ public class BookEntryWindow extends AbstractWindow implements ICopyListContaini
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
-					// @TODO: trigger an action
-					editCopy();				}
+					editCopy();				
+				}
 			}
 		});
 
@@ -248,10 +248,8 @@ public class BookEntryWindow extends AbstractWindow implements ICopyListContaini
 	 */
 	public void editCopy() {
 		Copy copy = li_Copys.getSelectedValue();
-		if (copy != null)
-			new CopyEntryWindow(this, copy).open();
-		else
-			JOptionPane.showMessageDialog(null, "Please select a loan.", "No Loan Selected", JOptionPane.ERROR_MESSAGE);
+		// assume copy != null, as editLoan() is called by Edit button, which contains check.
+		new CopyEntryWindow(this, copy).open();
 	}
 
 	/**
