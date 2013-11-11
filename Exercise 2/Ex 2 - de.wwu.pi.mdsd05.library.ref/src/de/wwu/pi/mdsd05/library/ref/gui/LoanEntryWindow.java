@@ -113,6 +113,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		getPanel().add(lblUser, gbc_lblUser);
 
 		cb_User = new JComboBox<User>(new Vector<User>( userService.getAll() ));
+		cb_User.setSelectedItem(currentEntity.getUser());
 		
 		GridBagConstraints gbc_tf_User = new GridBagConstraints();
 		gbc_tf_User.gridwidth = 3;
@@ -133,6 +134,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		getPanel().add(lblCopy, gbc_lblCopy);
 
 		cb_Copy = new JComboBox<Copy>(new Vector<Copy>( copyService.getAll() ));
+		cb_Copy.setSelectedItem(currentEntity.getCopy());
 		
 		GridBagConstraints gbc_tf_Copy= new GridBagConstraints();
 		gbc_tf_Copy.gridwidth = 3;
