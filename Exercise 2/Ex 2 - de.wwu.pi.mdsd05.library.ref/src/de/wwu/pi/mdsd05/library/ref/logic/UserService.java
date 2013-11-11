@@ -6,6 +6,11 @@ import de.wwu.pi.mdsd05.library.ref.data.User;
 
 public class UserService extends AbstractServiceProvider<User> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8423782360798755318L;
+
 	//Constructor
 	protected UserService() {
 		super();

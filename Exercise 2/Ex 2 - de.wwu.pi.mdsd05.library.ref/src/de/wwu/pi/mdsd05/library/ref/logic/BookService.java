@@ -7,6 +7,11 @@ import de.wwu.pi.mdsd05.library.ref.data.Book;
 
 public class BookService extends AbstractServiceProvider<Book> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6640997992843405228L;
+
 	//Constructor
 	protected BookService() {
 		super();

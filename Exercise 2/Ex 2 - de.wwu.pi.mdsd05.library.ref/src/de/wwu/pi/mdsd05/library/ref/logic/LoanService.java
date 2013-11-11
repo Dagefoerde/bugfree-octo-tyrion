@@ -3,7 +3,6 @@ package de.wwu.pi.mdsd05.library.ref.logic;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
@@ -13,6 +12,11 @@ import de.wwu.pi.mdsd05.library.ref.data.User;
 
 public class LoanService extends AbstractServiceProvider<Loan> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1816309171039529353L;
+
 	//Constructor
 	protected LoanService() {
 		super();

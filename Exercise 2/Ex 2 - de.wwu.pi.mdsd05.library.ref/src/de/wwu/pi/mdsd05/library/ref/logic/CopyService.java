@@ -5,12 +5,16 @@ import java.util.LinkedList;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
-import de.wwu.pi.mdsd05.library.ref.data.Book;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
 
 public class CopyService extends AbstractServiceProvider<Copy> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4894922972459195001L;
+
 	//Constructor
 	protected CopyService() {
 		super();

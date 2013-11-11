@@ -11,12 +11,9 @@ import java.text.ParsePosition;
 import java.util.Date;
 import java.util.Vector;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
@@ -36,7 +33,6 @@ public class LoanEntryWindow extends AbstractWindow {
 	private JButton btnSave;
 	private int curGridY = 0;
 	private Loan currentEntity;
-	private JList<Object> li_Loans;
 	private LoanService service;
 	private CopyService copyService;
 	private UserService userService;
