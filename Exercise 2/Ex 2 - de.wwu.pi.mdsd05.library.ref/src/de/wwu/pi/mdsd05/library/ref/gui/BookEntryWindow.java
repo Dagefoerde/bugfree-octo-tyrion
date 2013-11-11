@@ -91,13 +91,13 @@ public class BookEntryWindow extends AbstractWindow {
 		getPanel().add(tf_ISBN, gbc_tf_ISBN);
 		
 		//Author
-		JLabel lblAuthor = new JLabel("ISBN*");
+		JLabel lblAuthor = new JLabel("Author*");
 		GridBagConstraints gbc_lblAuthor = new GridBagConstraints();
 		gbc_lblAuthor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAuthor.anchor = GridBagConstraints.NORTHEAST;
 		gbc_lblAuthor.gridx = 0;
 		gbc_lblAuthor.gridy = curGridY;
-		getPanel().add(lblISBN, gbc_lblISBN);
+		getPanel().add(lblAuthor, gbc_lblAuthor);
 
 		tf_Author = new JTextField(currentEntity.getAuthor());
 		GridBagConstraints gbc_tf_Author = new GridBagConstraints();
@@ -108,7 +108,7 @@ public class BookEntryWindow extends AbstractWindow {
 		gbc_tf_Author.gridx = 1;
 		gbc_tf_Author.weighty = .2;
 		gbc_tf_Author.gridy = curGridY++;
-		getPanel().add(tf_ISBN, gbc_tf_Author);
+		getPanel().add(tf_Author, gbc_tf_Author);
 
 		btnSave = new JButton(currentEntity.isNew() ? "Create" : "Update");
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
@@ -235,7 +235,7 @@ public class BookEntryWindow extends AbstractWindow {
 		currentEntity = service.saveBook(currentEntity.getOid(), name, ISBN, author);
 
 		// update user listing in UserListWindow
-		((UserListWindow) getParent()).initializeUserListing();
+		((BookListWindow) getParent()).initializeBookListing();
 
 		return true;
 	}
