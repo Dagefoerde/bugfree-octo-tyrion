@@ -200,7 +200,7 @@ public class CopyEntryWindow extends AbstractWindow {
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
 		Medium medium = cb_Medium.getSelectedItem() == null ? null : (Medium) cb_Medium.getSelectedItem();
-		int inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? 0 : Integer.getInteger(tf_InventoryNumber.getText());
+		int inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? 0 : Integer.parseInt(tf_InventoryNumber.getText());
 
 		// validation
 		try {
