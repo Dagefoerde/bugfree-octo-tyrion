@@ -1,6 +1,6 @@
 package de.wwu.pi.mdsd05.library.ref.gui;
 
-public interface CopyListContainingWindow {
+public interface ICopyListContainingWindow {
 
 	public void initializeCopyListing();
 }

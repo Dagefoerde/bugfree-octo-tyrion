@@ -16,7 +16,7 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.library.ref.data.Loan;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 
-public class LoanListWindow extends AbstractWindow implements LoanListContainingWindow{
+public class LoanListWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	JList<Loan> jl_loans;
 	JButton btnEditLoan;

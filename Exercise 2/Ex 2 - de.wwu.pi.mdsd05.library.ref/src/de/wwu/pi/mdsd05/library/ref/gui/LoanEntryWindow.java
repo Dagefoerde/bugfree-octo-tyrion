@@ -208,7 +208,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		currentEntity = service.saveLoan(currentEntity.getOid(), copy, user, issueDate, returnDate);
 
 		// update user listing in UserListWindow
-		((LoanListContainingWindow) getParent()).initializeLoanListing();
+		((ILoanListContainingWindow) getParent()).initializeLoanListing();
 
 		return true;
 	}

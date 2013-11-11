@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-public class CDEntryWindow extends AbstractWindow implements CopyListContainingWindow{
+public class CDEntryWindow extends AbstractWindow implements ICopyListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;

@@ -27,7 +27,7 @@ import de.wwu.pi.mdsd05.library.ref.logic.LoanService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.UserService;
 
-public class UserEntryWindow extends AbstractWindow implements LoanListContainingWindow{
+public class UserEntryWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;
@@ -171,7 +171,6 @@ public class UserEntryWindow extends AbstractWindow implements LoanListContainin
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
-					// @TODO: trigger an action
 					editLoan();
 				}
 			}

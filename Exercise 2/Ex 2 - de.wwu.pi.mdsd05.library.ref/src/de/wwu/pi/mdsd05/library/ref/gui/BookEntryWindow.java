@@ -26,7 +26,7 @@ import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.BookService;
 
-public class BookEntryWindow extends AbstractWindow implements CopyListContainingWindow{
+public class BookEntryWindow extends AbstractWindow implements ICopyListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;

@@ -1,6 +1,6 @@
 package de.wwu.pi.mdsd05.library.ref.gui;
 
-public interface LoanListContainingWindow {
+public interface ILoanListContainingWindow {
 	
 	public void initializeLoanListing();
 

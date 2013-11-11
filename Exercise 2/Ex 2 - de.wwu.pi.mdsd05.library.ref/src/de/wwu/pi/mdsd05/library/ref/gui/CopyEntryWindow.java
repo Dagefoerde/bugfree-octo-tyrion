@@ -29,7 +29,7 @@ import de.wwu.pi.mdsd05.library.ref.logic.MediumService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 
-public class CopyEntryWindow extends AbstractWindow implements LoanListContainingWindow{
+public class CopyEntryWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	private JButton btnSave;
 	private int curGridY = 0;
@@ -222,7 +222,7 @@ public class CopyEntryWindow extends AbstractWindow implements LoanListContainin
 		currentEntity = service.saveCopy(currentEntity.getOid(), inventoryNumber, medium);
 
 		// update user listing in UserListWindow
-		((CopyListContainingWindow) getParent()).initializeCopyListing();
+		((ICopyListContainingWindow) getParent()).initializeCopyListing();
 
 		return true;
 	}

@@ -16,7 +16,7 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 
-public class CopyListWindow extends AbstractWindow implements CopyListContainingWindow{
+public class CopyListWindow extends AbstractWindow implements ICopyListContainingWindow{
 
 	JList<Copy> jl_copys;
 	JButton btnEditCopy;
