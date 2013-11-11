@@ -79,7 +79,7 @@ public class BookEntryWindow extends AbstractWindow {
 		gbc_lblISBN.gridy = curGridY;
 		getPanel().add(lblISBN, gbc_lblISBN);
 
-		tf_ISBN = new JTextField(currentEntity.getISBN());
+		tf_ISBN = new JTextField(currentEntity.isNew() ? "" : currentEntity.getISBN()+"");
 		GridBagConstraints gbc_tf_ISBN = new GridBagConstraints();
 		gbc_tf_ISBN.gridwidth = 3;
 		gbc_tf_ISBN.insets = new Insets(0, 0, 5, 5);
