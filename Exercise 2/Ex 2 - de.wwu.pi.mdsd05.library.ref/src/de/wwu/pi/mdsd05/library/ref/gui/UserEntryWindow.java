@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -28,6 +29,7 @@ import de.wwu.pi.mdsd05.library.ref.logic.UserService;
 public class UserEntryWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	private JButton btnSave;
+	private JButton btnEditLoan;
 	private int curGridY = 0;
 	private User currentEntity;
 	private JList<Loan> li_Loans;
@@ -131,7 +133,8 @@ public class UserEntryWindow extends AbstractWindow implements ILoanListContaini
 		gbc_lblLoans.gridy = curGridY;
 		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Loans = new JList<Loan>(new Vector<Loan>(loanService.getAllByUser(currentEntity)));
+		Collection<Loan> allByUser = loanService.getAllByUser(currentEntity);
+		li_Loans = new JList<Loan>(new Vector<Loan>(allByUser));
 		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
 		gbc_li_Loans.gridwidth = 3;
 		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
@@ -156,11 +159,11 @@ public class UserEntryWindow extends AbstractWindow implements ILoanListContaini
 			}
 		});
 
-		btn = new JButton("Edit");
+		btnEditLoan = new JButton("Edit");
 		gbc_btn.gridx = 2;
-		btn.setEnabled(!currentEntity.isNew());
-		getPanel().add(btn, gbc_btn);
-		btn.addActionListener(new ActionListener() {
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByUser.isEmpty());
+		getPanel().add(btnEditLoan, gbc_btn);
+		btnEditLoan.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = UserEntryWindow.this.li_Loans
@@ -237,7 +240,9 @@ public class UserEntryWindow extends AbstractWindow implements ILoanListContaini
 		new LoanEntryWindow(this, loan).open();
 	}
 	public void initializeLoanListing() {
-		Vector<Loan> loans = new Vector<Loan>(loanService.getAllByUser(currentEntity));
+		Collection<Loan> allByUser = loanService.getAllByUser(currentEntity);
+		Vector<Loan> loans = new Vector<Loan>(allByUser);
 		li_Loans.setListData(loans);
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByUser.isEmpty());
 	}
 }

@@ -16,6 +16,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -28,6 +29,7 @@ import javax.swing.JTextField;
 public class CDEntryWindow extends AbstractWindow implements ICopyListContainingWindow{
 
 	private JButton btnSave;
+	private JButton btnCopyEdit;
 	private int curGridY = 0;
 	private CD currentEntity;
 	private JList<Copy> li_Copys;
@@ -155,7 +157,8 @@ public class CDEntryWindow extends AbstractWindow implements ICopyListContaining
 		gbc_lblCopies.gridy = curGridY;
 		getPanel().add(lblCopies, gbc_lblCopies);
 
-		li_Copys = new JList<Copy>(new Vector<Copy>(copyService.getAllByMedium(currentEntity)));
+		Collection<Copy> allByMedium = copyService.getAllByMedium(currentEntity);
+		li_Copys = new JList<Copy>(new Vector<Copy>(allByMedium));
 		GridBagConstraints gbc_li_Copies = new GridBagConstraints();
 		gbc_li_Copies.gridwidth = 3;
 		gbc_li_Copies.insets = new Insets(0, 0, 5, 5);
@@ -181,11 +184,11 @@ public class CDEntryWindow extends AbstractWindow implements ICopyListContaining
 		});
 		
 				
-		btn = new JButton("Edit");
+		btnCopyEdit = new JButton("Edit");
 		gbc_btn.gridx = 2;
-		btn.setEnabled(!currentEntity.isNew());
-		getPanel().add(btn, gbc_btn);
-		btn.addActionListener(new ActionListener() {
+		btnCopyEdit.setEnabled(!currentEntity.isNew() && !allByMedium.isEmpty());
+		getPanel().add(btnCopyEdit, gbc_btn);
+		btnCopyEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = CDEntryWindow.this.li_Copys
@@ -261,7 +264,9 @@ public class CDEntryWindow extends AbstractWindow implements ICopyListContaining
 		new CopyEntryWindow(this, copy).open();
 	}
 	public void initializeCopyListing() {
-		Vector<Copy> copys = new Vector<Copy>(copyService.getAllByMedium(currentEntity));
+		Collection<Copy> allByMedium = copyService.getAllByMedium(currentEntity);
+		Vector<Copy> copys = new Vector<Copy>(allByMedium);
 		li_Copys.setListData(copys);
+		btnCopyEdit.setEnabled(!currentEntity.isNew() && !allByMedium.isEmpty());
 	}
 }
