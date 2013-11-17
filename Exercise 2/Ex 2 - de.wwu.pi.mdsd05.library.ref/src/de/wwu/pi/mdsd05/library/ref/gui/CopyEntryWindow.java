@@ -87,7 +87,8 @@ public class CopyEntryWindow extends AbstractWindow implements ILoanListContaini
 		gbc_lblInventoryNumber.gridy = curGridY;
 		getPanel().add(lblInventoryNumber, gbc_lblInventoryNumber);
 
-		tf_InventoryNumber = new JTextField(currentEntity.getInventoryNumber());
+		
+		tf_InventoryNumber = new JTextField(currentEntity.isNew() ? "" : currentEntity.getInventoryNumber()+"");
 		GridBagConstraints gbc_tf_InventoryNumber = new GridBagConstraints();
 		gbc_tf_InventoryNumber.gridwidth = 3;
 		gbc_tf_InventoryNumber.insets = new Insets(0, 0, 5, 5);
