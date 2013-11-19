@@ -2,6 +2,7 @@ package de.wwu.pi.mdsd05.library.ref.logic;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
@@ -44,5 +45,9 @@ public class MediumService extends AbstractServiceProvider<Medium> {
 		
 		return mediums;
 	}
+	
+	
+
+	
 	
 }
