@@ -191,7 +191,7 @@ public class LoanEntryWindow extends AbstractWindow {
 		
 		// validation
 		try {
-			service.validateLoan(copy, user, issueDate);
+			service.validateLoan(copy, user, issueDate, returnDate);
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),

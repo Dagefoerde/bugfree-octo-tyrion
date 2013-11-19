@@ -22,13 +22,15 @@ public class LoanService extends AbstractServiceProvider<Loan> {
 		super();
 	}
 
-	public boolean validateLoan(Copy copy, User user, Date issueDate) throws ValidationException {
+	public boolean validateLoan(Copy copy, User user, Date issueDate, Date returnDate) throws ValidationException {
 		if(copy == null)
 			throw new ValidationException("copy", "cannot be empty");
 		if(user == null)
 			throw new ValidationException("user", "cannot be empty");
 		if(issueDate == null)
 			throw new ValidationException("issueDate", "cannot be empty");
+		if(issueDate.after(returnDate) )
+			throw new ValidationException("issueDate","cannot be after returnDate");
 		return true;
 	}
 	
