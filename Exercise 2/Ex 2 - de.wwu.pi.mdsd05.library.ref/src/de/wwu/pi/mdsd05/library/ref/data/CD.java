@@ -37,4 +37,5 @@ public class CD extends Medium{
 		return (getName()) + ", " + (getASIN()) + ", " + (getInterpreter())+ "";
 	}
 	
+
 }
