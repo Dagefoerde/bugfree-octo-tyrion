@@ -1,9 +1,6 @@
 package de.wwu.pi.mdsd05.library.ref.logic;
 
 import java.util.Collection;
-import java.util.Iterator;
-
-import javax.swing.JList;
 
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
@@ -11,10 +8,6 @@ import de.wwu.pi.mdsd05.library.ref.data.CD;
 
 public class CDService extends AbstractServiceProvider<CD>{
 
-	/**
-	 * 
-	 */
-	JList<CD> jl_cds;
 	
 	private static final long serialVersionUID = 6114246295799356828L;
 
@@ -27,8 +20,6 @@ public class CDService extends AbstractServiceProvider<CD>{
 			throw new ValidationException("name", "cannot be empty");
 		if(ASIN == 0)
 			throw new ValidationException("ASIN", "cannot be empty");
-		if(ASINAlreadyExists(ASIN)) 
-			throw new ValidationException("ASIN", "already exists");
 		if(interpreter == null)
 			throw new ValidationException("interpreter", "cannot be empty");
 		return true;
@@ -45,19 +36,15 @@ public class CDService extends AbstractServiceProvider<CD>{
 	}
 	
 	
-	public boolean ASINAlreadyExists(int ASIN)
+	public CD getByASIN(int ASIN)
 	{
 		Collection<CD> cds = getAll();
-		if(cds.isEmpty()) return false;
-		else {
-			for(Iterator i = cds.iterator(); i.hasNext(); )
+			for(CD elem : cds )
 			{
-				CD elem = (CD) i.next();
-				if(elem.getASIN() == ASIN) return true;
+				if(elem.getASIN() == ASIN) return elem;
 				
 			}
-			return false;
-	} 	
+			return null;
 	
 	}
 }

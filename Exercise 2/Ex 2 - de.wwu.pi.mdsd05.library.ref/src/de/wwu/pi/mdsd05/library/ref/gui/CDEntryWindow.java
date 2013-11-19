@@ -230,6 +230,11 @@ public class CDEntryWindow extends AbstractWindow implements ICopyListContaining
 		// validation
 		try {
 			service.validateCD(name, ASIN, interpreter);
+			CD sameASIN = service.getByASIN(ASIN);
+			if (sameASIN != null && sameASIN.getOid() != currentEntity.getOid()) {
+				// there is an elem with the same ASIN but a different Oid, which indicates an (intended) violation of uniqueness of ASIN.
+				throw new ValidationException("ASIN", "already exists");
+			}
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),

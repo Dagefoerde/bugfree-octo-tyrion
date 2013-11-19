@@ -21,6 +21,7 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Book;
+import de.wwu.pi.mdsd05.library.ref.data.CD;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
@@ -229,6 +230,11 @@ public class BookEntryWindow extends AbstractWindow implements ICopyListContaini
 		// validation
 		try {
 			service.validateBook(name, ISBN, author);
+			Book sameISBN = service.getByISBN(ISBN);
+			if (sameISBN != null && sameISBN.getOid() != currentEntity.getOid()) {
+				// there is an elem with the same ISBN but a different Oid, which indicates an (intended) violation of uniqueness of ISBN.
+				throw new ValidationException("ISBN", "already exists");
+			}
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),

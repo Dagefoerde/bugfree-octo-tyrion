@@ -214,6 +214,11 @@ public class CopyEntryWindow extends AbstractWindow implements ILoanListContaini
 		// validation
 		try {
 			service.validateCopy(inventoryNumber, medium);
+			Copy sameInventoryNumber = service.getByInventoryNumber(inventoryNumber);
+			if (sameInventoryNumber != null && sameInventoryNumber.getOid() != currentEntity.getOid()) {
+				// there is an elem with the same InventoryNumber but a different Oid, which indicates an (intended) violation of uniqueness of inventoryNumber.
+				throw new ValidationException("inventoryNumber", "already exists");
+			}
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),
