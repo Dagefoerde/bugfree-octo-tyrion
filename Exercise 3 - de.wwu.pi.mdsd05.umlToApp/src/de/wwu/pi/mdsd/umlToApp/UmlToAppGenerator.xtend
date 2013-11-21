@@ -8,6 +8,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.umlToApp.data.ServiceClassGenerator
+import de.wwu.pi.mdsd.umlToApp.data.ServiceInitializerGenerator
 
 class UmlToAppGenerator implements IGenerator {
 	static val INTERNAL_MODEL_EXTENSIONS = newArrayList(".library.uml", ".profile.uml", ".metamodel.uml")
@@ -28,7 +30,12 @@ class UmlToAppGenerator implements IGenerator {
 	
 	def doGenerate(Model model, IFileSystemAccess fsa) {
 		model.allEntities.forEach[ clazz |
-			fsa.generateFile('''somePackageString«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
+			fsa.generateFile('''somePackageString«File.separatorChar»data«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
 		]
+		model.allEntities.forEach[ clazz |
+			fsa.generateFile('''somePackageString«File.separatorChar»logic«File.separatorChar»«clazz.name»Service.java''', new ServiceClassGenerator().generateServiceClass(clazz))
+		]
+		fsa.generateFile('''somePackageString«File.separatorChar»logic«File.separatorChar»ServiceInitializer.java''', new ServiceInitializerGenerator().generateInitializerClass(model.allEntities))
+		
 	}
 }

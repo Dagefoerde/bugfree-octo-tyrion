@@ -3,8 +3,8 @@ module de.wwu.pi.mdsd.umlToApp.workflow.UmlToAppGenerator
 import org.eclipse.emf.mwe.utils.*
 
 var targetDir = "src-gen"
-var modelPath = "../de.wwu.pi.mdsd.library.model"
-
+var modelPath ="C:/Users/Dexter-03/Documents/GitHub/bugfree-octo-tyrion/Exercise 3 - de.wwu.pi.mdsd05.umlToApp/src/de/wwu/pi/mdsd/library/model"
+				
 Workflow {
 	bean = StandaloneSetup {
 		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
