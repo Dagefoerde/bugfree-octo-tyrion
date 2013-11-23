@@ -1,13 +1,25 @@
 package de.wwu.pi.mdsd.umlToApp.data
 
 import org.eclipse.uml2.uml.Class
+import org.eclipse.uml2.uml.Property
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.BasicEList
 
 class DataClassGenerator {
-	def generateDataClass(Class clazz) '''
+	def generateDataClass(Class clazz) {
+	var listOfAllAttributes=clazz.attributes.toSet
+	var listOfAttributes=clazz.attributes.toSet
+	var EList<Property> listOfSuperAttributes=new BasicEList<Property>()
+	var boolean isGeneralized=clazz.generalizations.size>0
+	if(isGeneralized){
+	listOfSuperAttributes=clazz.generalizations.get(0).general.attributes
+	listOfAllAttributes.addAll(clazz.generalizations.get(0).general.attributes.toList)}
+	'''	
+	
 		package somePackageString.data;
 		
 		«IF clazz.generalizations.size==0»
-		import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
+		import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
 		«ENDIF»
 		import java.util.*;
 		«IF clazz.attributes.exists[att|att.multivalued==true]»
@@ -19,10 +31,10 @@ class DataClassGenerator {
 		«clazz.generalizations.get(0).general.name»
 		«ELSE» AbstractDataClass
 		«ENDIF»{
-			«FOR attribute : clazz.ownedAttributes »
+			«FOR attribute : clazz.ownedAttributes»
 				//Some comment for «attribute.name.toFirstLower»
 				«IF (attribute.type instanceof Class) && attribute.multivalued»
-				protected Vector<«attribute.type.name»> «attribute.name.toFirstLower»s;
+				protected Vector<«attribute.type.name»> «attribute.name.toFirstLower»s = new Vector<«attribute.type.name»>();
 				«ELSE»
 				protected «attribute.type.name» «attribute.name.toFirstLower»;
 				«ENDIF»
@@ -67,10 +79,11 @@ class DataClassGenerator {
 			
 	//Constructor
 	public «clazz.name»(
-	«FOR attribute : clazz.attributes.filter(att|att.multivalued==false) SEPARATOR ','»
+	«FOR attribute : listOfAllAttributes.filter(att|att.multivalued==false) SEPARATOR ','»
 	«attribute.type.name» «attribute.name.toFirstLower» 
 	«ENDFOR») {
-	«FOR attribute : clazz.attributes»
+	super(«FOR attribute : listOfSuperAttributes.filter(att|att.multivalued==false) SEPARATOR ','»«attribute.name.toFirstLower»«ENDFOR»);
+	«FOR attribute : listOfAttributes»
 	«IF attribute.type instanceof Class && attribute.multivalued»
 	this.«attribute.name.toFirstLower»s=new Vector<«attribute.type.name»>();
 	«ELSE»
@@ -80,15 +93,21 @@ class DataClassGenerator {
 	
 	public «clazz.name»() {
 		super();
-		«FOR attribute : clazz.attributes.filter[att|att.multivalued==true]»
-		«attribute.name.toFirstLower»s=new Vector<«attribute.type.name»>();
-		«ENDFOR»
 	}
+	«FOR attribute:listOfAllAttributes.filter[att|att.type instanceof Class && att.multivalued==false]»
+	public «clazz.name»(«attribute.type.name» «attribute.name») {
+		super();
+		this.«attribute.name»=«attribute.name»;
+	}
+	«ENDFOR»
 	
 	@Override
 	public String toString() {
 		return (
-		«FOR attribute:clazz.attributes.filter(att|att.multivalued==false) SEPARATOR '+ "," +'»
+		«IF isGeneralized»
+		super.toString() + "," +
+		«ENDIF»
+		«FOR attribute:listOfAttributes.filter(att|att.multivalued==false) SEPARATOR '+ "," +'»
 		get«attribute.name.toFirstUpper»()
 		«ENDFOR»);
 	}
@@ -96,4 +115,4 @@ class DataClassGenerator {
 
 	'''
 }
-
+}
