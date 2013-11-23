@@ -51,7 +51,7 @@ public class «clazz.name»ListWindow extends AbstractListWindow<«clazz.name»> imp
 		super.createContents();
 		cb_select = new javax.swing.JComboBox<>();
 		«FOR ext:listOfExtendingClasses»
-			cb_select.addItem("«clazz.name»");
+			cb_select.addItem("«ext.name»");
 		«ENDFOR»
 		java.awt.GridBagConstraints gbc_btnAdd = new java.awt.GridBagConstraints();
 		gbc_btnAdd.insets = new java.awt.Insets(0, 0, 5, 5);

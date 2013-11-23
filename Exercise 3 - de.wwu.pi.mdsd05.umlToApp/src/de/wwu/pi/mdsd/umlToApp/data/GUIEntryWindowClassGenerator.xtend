@@ -87,7 +87,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»>
 		gbc_lbl«attribute.name».gridy = gridy;
 		getPanel().add(lbl«attribute.name», gbc_lbl«attribute.name»);
 		
-		tf_«attribute.name» = new JTextField(currentEntity.get«attribute.name.toFirstUpper»().toString());
+		tf_«attribute.name» = new JTextField(currentEntity.get«attribute.name.toFirstUpper»()==null?"":currentEntity.get«attribute.name.toFirstUpper»().toString());
 		GridBagConstraints gbc_tf_«attribute.name» = new GridBagConstraints();
 		gbc_tf_«attribute.name».gridwidth = 3;
 		gbc_tf_«attribute.name».insets = new Insets(0, 0, 5, 5);
@@ -203,10 +203,12 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»>
 		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute:listOfAllAttributes.filter[att|att.multivalued==false] SEPARATOR ','»«attribute.name»«ENDFOR»);
 		
 		//reload the listing in the parent window to make changes visible
-		if(getParent() instanceof MediumListingInterface)
-			((MediumListingInterface) getParent()).initializeMediumListings();
-		if(getParent() instanceof BookListingInterface)
-			((BookListingInterface) getParent()).initializeBookListings();
+		«IF isGeneralized»
+		if(getParent() instanceof «clazz.generalizations.get(0).general.name»ListingInterface)
+			(( «clazz.generalizations.get(0).general.name»ListingInterface) getParent()).initialize«clazz.generalizations.get(0).general.name»Listings();
+			«ENDIF»
+		if(getParent() instanceof «clazz.name»ListingInterface)
+			((«clazz.name»ListingInterface) getParent()).initialize«clazz.name»Listings();
 		return true;
 	}
 }
