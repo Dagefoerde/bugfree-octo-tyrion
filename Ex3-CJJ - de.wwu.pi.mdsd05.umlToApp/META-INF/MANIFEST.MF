@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UmlToApp
+Bundle-SymbolicName: de.wwu.pi.mdsd.umlToApp
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.xtend.lib,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext,
+ org.eclipse.emf.mwe2.launch,
+ org.apache.log4j,
+ org.apache.commons.logging,
+ org.eclipse.uml2.uml
+
