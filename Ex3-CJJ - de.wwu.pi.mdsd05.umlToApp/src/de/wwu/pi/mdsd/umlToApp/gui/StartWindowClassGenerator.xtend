@@ -6,7 +6,7 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class StartWindowClassGenerator {
 	def generateStartWindowClass (Iterable<Class> entities) '''
-package de.wwu.pi.mdsd.library.ref.gui;
+package somePackageString.gui;
 	
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -18,7 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.wwu.pi.mdsd.framework.gui.AbstractStartWindow;
-import de.wwu.pi.mdsd.library.ref.logic.ServiceInitializer;	
+import somePackageString.logic.ServiceInitializer;	
 
 public class StartWindowClass extends AbstractStartWindow {
 	
