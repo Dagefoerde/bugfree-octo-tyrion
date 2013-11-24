@@ -26,19 +26,29 @@ import somePackageString.data.«clazz.name»;
 			«ENDIF»		
 			«ENDFOR»
 import somePackageString.logic.«clazz.name»Service;
-import de.wwu.pi.mdsd.library.ref.logic.ServiceInitializer;
+import somePackageString.logic.ServiceInitializer;
 
-public class BookEntryWindow extends AbstractEntryWindow<Book> implements CopyListingInterface {
-
-	private JTextField tf_Name;
-	private JTextField tf_Author;
-	private JTextField tf_Isbn;
-	private JList<Copy> li_Copies;
-	BookService service;
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attribute : clazz.ownedAttributes »
+			«IF (attribute.type instanceof Class) && attribute.multivalued»	
+				implements «attribute.name»ListingInterface
+			«ENDIF»		
+			«ENDFOR» {
+«FOR attribute : clazz.attributes»
+	«IF (attribute.type instanceof Class) && attribute.multivalued»	
+	private JList<«attribute.name»> li_«attribute.name»s;
+	«ENDIF»
+	«IF (attribute.type instanceof Class) && attribute.multivalued == false» 
+	private JComboBox<«attribute.name»> cb_«attribute.name»;
+	«ENDIF»
+	«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»
+	private JTextField tf_«attribute.name»;
+	«ENDIF»
+«ENDFOR»
+«clazz.name»Service service;
 	
-	public BookEntryWindow(AbstractWindow parent, Book currentEntity) {
+	public «clazz.name»EntryWindow(AbstractWindow parent, «clazz.name» currentEntity) {
 		super(parent, currentEntity);
-		service = ServiceInitializer.getProvider().getBookService();
+		service = ServiceInitializer.getProvider().get«clazz.name»Service();
 	}
 
 	@Override
