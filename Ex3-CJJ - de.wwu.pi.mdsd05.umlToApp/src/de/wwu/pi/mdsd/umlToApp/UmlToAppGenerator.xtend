@@ -8,7 +8,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.umlToApp.service.ServiceInitializerGenerator
+import de.wwu.pi.mdsd.umlToApp.logic.ServiceInitializerGenerator
 import de.wwu.pi.mdsd.umlToApp.gui.StartWindowClassGenerator
 
 class UmlToAppGenerator implements IGenerator {
