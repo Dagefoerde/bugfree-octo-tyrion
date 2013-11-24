@@ -48,9 +48,23 @@ class DataClassGenerator {
 			«ENDIF»		
 		«ENDFOR»
 	
-
+		public «clazz.name»()
+		{
+			//I am empty	
+		}
+		
+		public «clazz.name»(«FOR attribute : clazz.ownedAttributes SEPARATOR ','»
+			«IF(attribute.type instanceof Class) && attribute.multivalued»List<«attribute.type.name»> «attribute.name»s 
+			«ELSE»«attribute.type.name» «attribute.name»
+			«ENDIF»
+			«ENDFOR»){	
+			«FOR attribute : clazz.ownedAttributes»	
+			«IF(attribute.type instanceof Class) && attribute.multivalued»this.«attribute.name»s = «attribute.name»s;
+			«ELSE»this.«attribute.name» = «attribute.name»;
+			«ENDIF»	
+			«ENDFOR»
+		}		
 	}
-
 
 	'''
 }
