@@ -3,7 +3,9 @@ import org.eclipse.uml2.uml.Class
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class EntryWindowGenerator {
-	def generateEntryWindow(Class clazz) '''
+	def generateEntryWindow(Class clazz) 
+	
+	'''
 	
 package somePackageString.gui;
 
@@ -21,24 +23,24 @@ import de.wwu.pi.mdsd.framework.logic.ValidationException;
 
 import somePackageString.data.«clazz.name»;
 «FOR attribute : clazz.ownedAttributes »
-			«IF (attribute.type instanceof Class) && attribute.multivalued»	
-				import somePackageString.data.«attribute.name»;
+			«IF (attribute.type instanceof Class)»	
+				import somePackageString.data.«attribute.type.name»;
 			«ENDIF»		
 			«ENDFOR»
 import somePackageString.logic.«clazz.name»Service;
 import somePackageString.logic.ServiceInitializer;
 
-public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attribute : clazz.ownedAttributes »
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «FOR attribute : clazz.ownedAttributes »
 			«IF (attribute.type instanceof Class) && attribute.multivalued»	
-				implements «attribute.name»ListingInterface
+				implements «attribute.type.name»ListingInterface
 			«ENDIF»		
 			«ENDFOR» {
 «FOR attribute : clazz.attributes»
 	«IF (attribute.type instanceof Class) && attribute.multivalued»	
-	private JList<«attribute.name»> li_«attribute.name»s;
+	private JList<«attribute.type.name»> li_«attribute.type.name»s;
 	«ENDIF»
 	«IF (attribute.type instanceof Class) && attribute.multivalued == false» 
-	private JComboBox<«attribute.name»> cb_«attribute.name»;
+	private JComboBox<«attribute.type.name»> cb_«attribute.type.name»;
 	«ENDIF»
 	«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»
 	private JTextField tf_«attribute.name»;
@@ -55,97 +57,85 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attr
 	protected void createFields() {
 		int gridy = 0;
 		
+		
+		«FOR attribute : clazz.attributes»
+		«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»	
 		//set new Line
 		gridy = getNextGridYValue();
 		
-		JLabel lblName = new JLabel("Name*");
-		GridBagConstraints gbc_lblName = new GridBagConstraints();
-		gbc_lblName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblName.gridx = 0;
-		gbc_lblName.gridy = gridy;
-		getPanel().add(lblName, gbc_lblName);
+		JLabel lbl«attribute.name» = new JLabel("«attribute.name»*");
+		GridBagConstraints gbc_lbl«attribute.name» = new GridBagConstraints();
+		gbc_lbl«attribute.name».insets = new Insets(0, 0, 5, 5);
+		gbc_lbl«attribute.name».anchor = GridBagConstraints.NORTHEAST;
+		gbc_lbl«attribute.name».gridx = 0;
+		gbc_lbl«attribute.name».gridy = gridy;
+		getPanel().add(lbl«attribute.name», gbc_lbl«attribute.name»);
 		
-		tf_Name = new JTextField(currentEntity.getName());
-		GridBagConstraints gbc_tf_Name = new GridBagConstraints();
-		gbc_tf_Name.gridwidth = 3;
-		gbc_tf_Name.insets = new Insets(0, 0, 5, 5);
-		gbc_tf_Name.anchor = GridBagConstraints.NORTHWEST;
-		gbc_tf_Name.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tf_Name.gridx = 1;
-		gbc_tf_Name.weighty = .2;
-		gbc_tf_Name.gridy = gridy;
-		getPanel().add(tf_Name, gbc_tf_Name);
+		tf_«attribute.name» = new JTextField(currentEntity.get«attribute.name»());
+		GridBagConstraints gbc_tf_«attribute.name» = new GridBagConstraints();
+		gbc_tf_«attribute.name».gridwidth = 3;
+		gbc_tf_«attribute.name».insets = new Insets(0, 0, 5, 5);
+		gbc_tf_«attribute.name».anchor = GridBagConstraints.NORTHWEST;
+		gbc_tf_«attribute.name».fill = GridBagConstraints.HORIZONTAL;
+		gbc_tf_«attribute.name».gridx = 1;
+		gbc_tf_«attribute.name».weighty = .2;
+		gbc_tf_«attribute.name».gridy = gridy;
+		getPanel().add(tf_«attribute.name», gbc_tf_«attribute.name»);
+		«ENDIF»
 		
+		«IF (attribute.type instanceof Class) && attribute.multivalued == false» 
 		//set new Line
 		gridy = getNextGridYValue();
 		
-		JLabel lblAuthor = new JLabel("Author*");
-		GridBagConstraints gbc_lblAuthor = new GridBagConstraints();
-		gbc_lblAuthor.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAuthor.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblAuthor.gridx = 0;
-		gbc_lblAuthor.gridy = gridy;
-		getPanel().add(lblAuthor, gbc_lblAuthor);
+		JLabel lbl«attribute.type.name» = new JLabel("«attribute.type.name»*");
+		GridBagConstraints gbc_lbl«attribute.type.name» = new GridBagConstraints();
+		gbc_lbl«attribute.type.name».insets = new Insets(0, 0, 5, 5);
+		gbc_lbl«attribute.type.name».anchor = GridBagConstraints.NORTHEAST;
+		gbc_lbl«attribute.type.name».gridx = 0;
+		gbc_lbl«attribute.type.name».gridy = gridy;
+		getPanel().add(lbl«attribute.type.name», gbc_lbl«attribute.type.name»);
 		
-		tf_Author = new JTextField(currentEntity.getAuthor());
-		GridBagConstraints gbc_tf_Author = new GridBagConstraints();
-		gbc_tf_Author.gridwidth = 3;
-		gbc_tf_Author.insets = new Insets(0, 0, 5, 5);
-		gbc_tf_Author.anchor = GridBagConstraints.NORTHWEST;
-		gbc_tf_Author.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tf_Author.gridx = 1;
-		gbc_tf_Author.weighty = .2;
-		gbc_tf_Author.gridy = gridy;
-		getPanel().add(tf_Author, gbc_tf_Author);
-		
-		//set new Line
-		gridy = getNextGridYValue();
-		
-		JLabel lblIsbn = new JLabel("Isbn*");
-		GridBagConstraints gbc_lblIsbn = new GridBagConstraints();
-		gbc_lblIsbn.insets = new Insets(0, 0, 5, 5);
-		gbc_lblIsbn.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblIsbn.gridx = 0;
-		gbc_lblIsbn.gridy = gridy;
-		getPanel().add(lblIsbn, gbc_lblIsbn);
-		
-		tf_Isbn = new JTextField(String.valueOf(currentEntity.getIsbn()));
-		GridBagConstraints gbc_tf_Isbn = new GridBagConstraints();
-		gbc_tf_Isbn.gridwidth = 3;
-		gbc_tf_Isbn.insets = new Insets(0, 0, 5, 5);
-		gbc_tf_Isbn.anchor = GridBagConstraints.NORTHWEST;
-		gbc_tf_Isbn.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tf_Isbn.gridx = 1;
-		gbc_tf_Isbn.weighty = .2;
-		gbc_tf_Isbn.gridy = gridy;
-		getPanel().add(tf_Isbn, gbc_tf_Isbn);
+		cb_«attribute.type.name» = new JComboBox<«attribute.type.name»>(new Vector<>(ServiceInitializer.getProvider().get«attribute.type.name»Service().getAll()));
+		cb_«attribute.type.name».setSelectedItem(currentEntity.get«attribute.type.name»());
+		GridBagConstraints gbc_cb_«attribute.type.name» = new GridBagConstraints();
+		gbc_cb_«attribute.type.name».gridwidth = 3;
+		gbc_cb_«attribute.type.name».insets = new Insets(0, 0, 5, 5);
+		gbc_cb_«attribute.type.name».anchor = GridBagConstraints.NORTHWEST;
+		gbc_cb_«attribute.type.name».fill = GridBagConstraints.HORIZONTAL;
+		gbc_cb_«attribute.type.name».gridx = 1;
+		gbc_cb_«attribute.type.name».weighty = .2;
+		gbc_cb_«attribute.type.name».gridy = gridy;
+		getPanel().add(cb_«attribute.type.name», gbc_cb_«attribute.type.name»);
+		«ENDIF»
+		«ENDFOR»
 	}
-
+	
 	@Override
 	protected void createLists() {
 		int gridy = 0;
 		JButton btn;
 		GridBagConstraints gbc_btn;
+		«FOR attribute : clazz.attributes»
+		«IF (attribute.type instanceof Class) && attribute.multivalued»	
 		gridy = getNextGridYValue();
-		JLabel lblCopies = new JLabel("Copies");
-		GridBagConstraints gbc_lblCopies = new GridBagConstraints();
-		gbc_lblCopies.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCopies.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblCopies.gridx = 0;
-		gbc_lblCopies.gridy = gridy;
-		getPanel().add(lblCopies, gbc_lblCopies);
+		JLabel lbl«attribute.type.name»s = new JLabel("«attribute.type.name»s");
+		GridBagConstraints gbc_lbl«attribute.type.name»s = new GridBagConstraints();
+		gbc_lbl«attribute.type.name»s.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl«attribute.type.name»s.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lbl«attribute.type.name»s.gridx = 0;
+		gbc_lbl«attribute.type.name»s.gridy = gridy;
+		getPanel().add(lbl«attribute.type.name»s, gbc_lbl«attribute.type.name»s);
 		
-		li_Copies = new JList<Copy>();
-		initializeLiCopies();
-		GridBagConstraints gbc_li_Copies = new GridBagConstraints();
-		gbc_li_Copies.gridwidth = 3;
-		gbc_li_Copies.insets = new Insets(0, 0, 5, 5);
-		gbc_li_Copies.fill = GridBagConstraints.BOTH;
-		gbc_li_Copies.gridx = 1;
-		gbc_li_Copies.weighty = .5;
-		gbc_li_Copies.gridy = gridy;
-		getPanel().add(li_Copies, gbc_li_Copies);
+		li_«attribute.type.name»s = new JList<«attribute.type.name»>();
+		initializeLi«attribute.type.name»s();
+		GridBagConstraints gbc_li_«attribute.type.name»s = new GridBagConstraints();
+		gbc_li_«attribute.type.name»s.gridwidth = 3;
+		gbc_li_«attribute.type.name»s.insets = new Insets(0, 0, 5, 5);
+		gbc_li_«attribute.type.name»s.fill = GridBagConstraints.BOTH;
+		gbc_li_«attribute.type.name»s.gridx = 1;
+		gbc_li_«attribute.type.name»s.weighty = .5;
+		gbc_li_«attribute.type.name»s.gridy = gridy;
+		getPanel().add(li_«attribute.type.name»s, gbc_li_«attribute.type.name»s);
 		
 		//Button for List Element
 		btn = new JButton("Add");
@@ -158,7 +148,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attr
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CopyEntryWindow(BookEntryWindow.this, new Copy(currentEntity)).open();
+				new «attribute.type.name»EntryWindow(«clazz.name»EntryWindow.this, new «attribute.type.name»(currentEntity)).open();
 			}
 		});
 		
@@ -169,11 +159,11 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attr
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Copy selected = BookEntryWindow.this.li_Copies.getSelectedValue();
+				«attribute.type.name» selected = «clazz.name»EntryWindow.this.li_«attribute.type.name»s.getSelectedValue();
 				if(selected == null)
 					Util.showNothingSelected();
 				else
-					new CopyEntryWindow(BookEntryWindow.this, selected).open();
+					new «attribute.type.name»EntryWindow(«clazz.name»EntryWindow.this, selected).open();
 			}
 		});
 		
@@ -181,35 +171,49 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<Book> «FOR attr
 		btn.setEnabled(false);
 		gbc_btn.gridx = 3;
 		getPanel().add(btn, gbc_btn);
+		«ENDIF»
+	«ENDFOR»
 	}
-	
-	public void initializeLiCopies() {
-		li_Copies.setListData(new Vector<Copy>(currentEntity.getCopies()));
+
+
+	«FOR attribute : clazz.attributes»
+	«IF (attribute.type instanceof Class) && attribute.multivalued»	
+	public void initializeLi«attribute.name»s() {
+		li_«attribute.type.name»s.setListData(new Vector<«attribute.type.name»>(currentEntity.get«attribute.type.name»s()));
 	}
 	
 	@Override
-	public void initializeCopyListings() {
-		initializeLiCopies();
+	public void initialize«attribute.type.name»Listings() {
+		initializeLi«attribute.type.name»s();
 	}
+	«ENDIF»
+	«ENDFOR»
 	
 	@Override
 	protected boolean saveAction() throws ParseException {
 		//Read values from different fields 
-		String name = tf_Name.getText().isEmpty() ? null : tf_Name.getText();
-		String author = tf_Author.getText().isEmpty() ? null : tf_Author.getText();
-		Integer isbn = tf_Isbn.getText().isEmpty() ? null : Integer.valueOf(tf_Isbn.getText());
+		«FOR attribute : clazz.attributes»
+		«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»
+		«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : «attribute.type.name».valueOf(tf_«attribute.name».getText());
+		«ENDIF»
+		«IF (attribute.type instanceof Class) && attribute.multivalued == false»
+		«attribute.type.name» «attribute.name» = cb_«attribute.type.name».getItemAt(cb_«attribute.type.name».getSelectedIndex());
+		«ENDIF»
+		«ENDFOR»
 		
 		//validation
 		try {
-			service.validateBook(name, author, isbn);
+			service.validate«clazz.name»(«FOR attribute : clazz.attributes SEPARATOR ' ,'» «IF (attribute.multivalued == false)» «attribute.name»
+			«ENDIF»«ENDFOR»);
 		} catch (ValidationException e) {
 			Util.showUserMessage("Validation error for " + e.getField(), "Validation error for " + e.getField() + ": " + e.getMessage());
 			return false;
 		}
 		
 		//persist
-		currentEntity = service.saveBook(currentEntity.getOid(), name, author, isbn);
+		currentEntity = service.save«clazz.name»(currentEntity.getOid(), «FOR attribute : clazz.attributes SEPARATOR ' ,'» «IF (attribute.multivalued == false)» «attribute.name»«ENDIF»«ENDFOR»);
 		
+		//folgenden teil habe ich nicht so ganz gecheckt (ist aus dem BookEntryWindow kopiert)
 		//reload the listing in the parent window to make changes visible
 		if(getParent() instanceof MediumListingInterface)
 			((MediumListingInterface) getParent()).initializeMediumListings();
