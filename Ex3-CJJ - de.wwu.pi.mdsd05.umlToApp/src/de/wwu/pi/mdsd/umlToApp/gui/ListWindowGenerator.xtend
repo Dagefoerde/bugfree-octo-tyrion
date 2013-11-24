@@ -5,49 +5,43 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class ListWindowGenerator {
 	def generateListWindow(Class clazz) '''
-package de.wwu.pi.mdsd.library.ref.gui;
+package somePackageString.gui;
 
 import java.util.Vector;
 
 import de.wwu.pi.mdsd.framework.gui.AbstractListWindow;
 import de.wwu.pi.mdsd.framework.gui.AbstractWindow;
-import de.wwu.pi.mdsd.library.ref.logic.ServiceInitializer;
-import de.wwu.pi.mdsd.library.ref.data.Book;
+import somePackageString.logic.ServiceInitializer;
+import somePackageString.data.«clazz.name»;
 	
-public class BookListWindow extends AbstractListWindow<Book> implements BookListingInterface{
+public class «clazz.name.toFirstUpper»ListWindow extends AbstractListWindow<«clazz.name»> implements «clazz.name.toFirstUpper»ListingInterface{
 
-	public BookListWindow(AbstractWindow parent) {
+	public «clazz.name.toFirstUpper»ListWindow(AbstractWindow parent) {
 		super(parent);
 	}
 
 	@Override
-	public void showEntryWindow(Book entity) {
+	public void showEntryWindow(«clazz.name» entity) {
 		//If entity is null -> initialize entity as new entity
 		//show Entity Edit Window
 		if(entity == null)
-			entity = new Book();
-		new BookEntryWindow(this,entity).open();
+			entity = new «clazz.name»();
+		new «clazz.name.toFirstUpper»EntryWindow(this,entity).open();
 	}
 
 	@Override
-	public Vector<Book> getElements() {
-		return new Vector<Book>(ServiceInitializer.getProvider().getBookService().getAll());
+	public Vector<«clazz.name»> getElements() {
+		return new Vector<«clazz.name»>(ServiceInitializer.getProvider().get«clazz.name.toFirstUpper»Service().getAll());
 	}
 	
 	@Override
-	public void initializeBookListings() {
+	public void initialize«clazz.name.toFirstUpper»Listings() {
 		initializeList();
-	}
-
-	// @TODO remove; only for testing
-	public static void main(String args[]) {
-		BookListWindow window = new BookListWindow(null);
-		window.open();
 	}
 }
 
-interface BookListingInterface {
-	public void initializeBookListings();
+interface «clazz.name.toFirstUpper»ListingInterface {
+	public void initialize«clazz.name.toFirstUpper»Listings();
 }
 	'''
 }

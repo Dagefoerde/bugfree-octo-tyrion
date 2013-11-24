@@ -6,10 +6,13 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 class DataClassGenerator {
 	def generateDataClass(Class clazz) '''
 		package somePackageString.data;
-		«IF(clazz.ownedAttributes.exists[a|a.multivalued] || clazz.ownedAttributes.exists[a|a.type.name.equals("Date")])» import java.util.*;
+		
+		import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
+		«IF(clazz.ownedAttributes.exists[a|a.multivalued] || clazz.ownedAttributes.exists[a|a.type.name.equals("Date")])
+		»import java.util.*;
 		«ENDIF»
 		
-		public class «clazz.name» {
+		public class «clazz.name» extends AbstractDataClass {
 			«FOR attribute : clazz.ownedAttributes »
 			«IF (attribute.type instanceof Class) && attribute.multivalued»	
 				«attribute.visibility» List<«attribute.type.name»> «attribute.name»s = new ArrayList<«attribute.type.name»>();	
@@ -64,6 +67,13 @@ class DataClassGenerator {
 			«ENDIF»	
 			«ENDFOR»
 		}		
+		
+		@Override
+		public String toString() {
+			return «FOR attribute : clazz.ownedAttributes.filter[ x | !x.multivalued ] SEPARATOR '+", "+'
+			»«attribute.name»«
+			ENDFOR»;
+		}
 	}
 
 	'''
