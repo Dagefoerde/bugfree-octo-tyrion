@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: UmlToApp
-Bundle-SymbolicName: de.wwu.pi.mdsd.umlToApp
+Bundle-SymbolicName: Ex_3_-_CJJ_-_de.wwu.pi.mdsd.umlToApp
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.xtend.lib,
