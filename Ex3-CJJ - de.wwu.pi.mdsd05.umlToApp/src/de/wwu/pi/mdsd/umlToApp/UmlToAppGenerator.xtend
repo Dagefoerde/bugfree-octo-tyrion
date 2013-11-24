@@ -11,6 +11,7 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.umlToApp.logic.ServiceInitializerGenerator
 import de.wwu.pi.mdsd.umlToApp.gui.StartWindowClassGenerator
 import de.wwu.pi.mdsd.umlToApp.gui.ListWindowGenerator
+import de.wwu.pi.mdsd.umlToApp.gui.EntryWindowGenerator
 
 class UmlToAppGenerator implements IGenerator {
 	static val INTERNAL_MODEL_EXTENSIONS = newArrayList(".library.uml", ".profile.uml", ".metamodel.uml")
@@ -33,6 +34,7 @@ class UmlToAppGenerator implements IGenerator {
 		model.allEntities.forEach[ clazz |
 			fsa.generateFile('''somePackageString«File.separatorChar»data«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
 			fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»«clazz.name»ListWindow.java''', new ListWindowGenerator().generateListWindow(clazz))
+			fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»«clazz.name»EntryWindow.java''', new EntryWindowGenerator().generateEntryWindow(clazz))
 		]
 		fsa.generateFile('''somePackageString«File.separatorChar»logic«File.separatorChar»ServiceInitializer.java''', new ServiceInitializerGenerator().generateServiceInitializer(model.allEntities))
 		fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»StartWindowClass.java''', new StartWindowClassGenerator().generateStartWindowClass(model.allEntities))
