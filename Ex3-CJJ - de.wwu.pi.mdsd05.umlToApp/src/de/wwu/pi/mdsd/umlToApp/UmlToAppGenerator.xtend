@@ -28,7 +28,7 @@ class UmlToAppGenerator implements IGenerator {
 	
 	def doGenerate(Model model, IFileSystemAccess fsa) {
 		model.allEntities.forEach[ clazz |
-			fsa.generateFile('''somePackageString«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
+			fsa.generateFile('''somePackageString«File.separatorChar»data«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
 		]
 	}
 }
