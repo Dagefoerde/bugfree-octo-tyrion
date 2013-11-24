@@ -5,7 +5,7 @@ import org.eclipse.uml2.uml.Model
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class StartWindowClassGenerator {
-	def generateStartWindowClass (Model model) '''
+	def generateStartWindowClass (Iterable<Class> entities) '''
 package de.wwu.pi.mdsd.library.ref.gui;
 	
 import java.awt.GridBagConstraints;
