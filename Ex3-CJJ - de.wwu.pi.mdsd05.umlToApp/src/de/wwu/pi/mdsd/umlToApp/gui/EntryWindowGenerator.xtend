@@ -3,8 +3,12 @@ import org.eclipse.uml2.uml.Class
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class EntryWindowGenerator {
-	def generateEntryWindow(Class clazz) 
-	
+	def generateEntryWindow(Class clazz)  {
+	val notMultivalued = clazz.attributes.filter[at | !at.multivalued]
+	val anyClass = clazz.attributes.filter[at | at.type instanceof Class]
+	val classMultivalued = clazz.attributes.filter[at | at.multivalued && at.type instanceof Class]
+	val classNotMultivalued = clazz.attributes.filter[at | !at.multivalued && at.type instanceof Class]
+	val notClassNotMultivalued = clazz.attributes.filter[at | !at.multivalued && !(at.type instanceof Class)]
 	'''
 	
 package somePackageString.gui;
@@ -22,29 +26,23 @@ import de.wwu.pi.mdsd.framework.gui.*;
 import de.wwu.pi.mdsd.framework.logic.ValidationException;
 
 import somePackageString.data.«clazz.name»;
-«FOR attribute : clazz.ownedAttributes »
-			«IF (attribute.type instanceof Class)»	
-				import somePackageString.data.«attribute.type.name»;
-			«ENDIF»		
+«FOR attribute : anyClass »
+				import somePackageString.data.«attribute.type.name»;	
 			«ENDFOR»
 import somePackageString.logic.«clazz.name»Service;
 import somePackageString.logic.ServiceInitializer;
 
-public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «FOR attribute : clazz.ownedAttributes »
-			«IF (attribute.type instanceof Class) && attribute.multivalued»	
-				implements «attribute.type.name»ListingInterface
-			«ENDIF»		
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «FOR attribute : classMultivalued »
+				implements «attribute.type.name»ListingInterface	
 			«ENDFOR» {
-«FOR attribute : clazz.attributes»
-	«IF (attribute.type instanceof Class) && attribute.multivalued»	
+«FOR attribute : classMultivalued»
 	private JList<«attribute.type.name»> li_«attribute.type.name»s;
-	«ENDIF»
-	«IF (attribute.type instanceof Class) && attribute.multivalued == false» 
+«ENDFOR»
+«FOR attribute : classNotMultivalued» 
 	private JComboBox<«attribute.type.name»> cb_«attribute.type.name»;
-	«ENDIF»
-	«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»
+«ENDFOR»
+«FOR attribute : notClassNotMultivalued»
 	private JTextField tf_«attribute.name»;
-	«ENDIF»
 «ENDFOR»
 «clazz.name»Service service;
 	
@@ -58,8 +56,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		int gridy = 0;
 		
 		
-		«FOR attribute : clazz.attributes»
-		«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»	
+		«FOR attribute : notClassNotMultivalued»	
 		//set new Line
 		gridy = getNextGridYValue();
 		
@@ -81,9 +78,8 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		gbc_tf_«attribute.name».weighty = .2;
 		gbc_tf_«attribute.name».gridy = gridy;
 		getPanel().add(tf_«attribute.name», gbc_tf_«attribute.name»);
-		«ENDIF»
-		
-		«IF (attribute.type instanceof Class) && attribute.multivalued == false» 
+		«ENDFOR»
+		«FOR attribute : classNotMultivalued» 
 		//set new Line
 		gridy = getNextGridYValue();
 		
@@ -106,7 +102,6 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		gbc_cb_«attribute.type.name».weighty = .2;
 		gbc_cb_«attribute.type.name».gridy = gridy;
 		getPanel().add(cb_«attribute.type.name», gbc_cb_«attribute.type.name»);
-		«ENDIF»
 		«ENDFOR»
 	}
 	
@@ -115,8 +110,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		int gridy = 0;
 		JButton btn;
 		GridBagConstraints gbc_btn;
-		«FOR attribute : clazz.attributes»
-		«IF (attribute.type instanceof Class) && attribute.multivalued»	
+		«FOR attribute : classMultivalued»
 		gridy = getNextGridYValue();
 		JLabel lbl«attribute.type.name»s = new JLabel("«attribute.type.name»s");
 		GridBagConstraints gbc_lbl«attribute.type.name»s = new GridBagConstraints();
@@ -171,14 +165,12 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		btn.setEnabled(false);
 		gbc_btn.gridx = 3;
 		getPanel().add(btn, gbc_btn);
-		«ENDIF»
 	«ENDFOR»
 	}
 
 
-	«FOR attribute : clazz.attributes»
-	«IF (attribute.type instanceof Class) && attribute.multivalued»	
-	public void initializeLi«attribute.name»s() {
+	«FOR attribute : classMultivalued»
+	public void initializeLi«attribute.type.name»s() {
 		li_«attribute.type.name»s.setListData(new Vector<«attribute.type.name»>(currentEntity.get«attribute.type.name»s()));
 	}
 	
@@ -186,7 +178,6 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	public void initialize«attribute.type.name»Listings() {
 		initializeLi«attribute.type.name»s();
 	}
-	«ENDIF»
 	«ENDFOR»
 	
 	@Override
@@ -203,15 +194,15 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		
 		//validation
 		try {
-			service.validate«clazz.name»(«FOR attribute : clazz.attributes SEPARATOR ' ,'» «IF (attribute.multivalued == false)» «attribute.name»
-			«ENDIF»«ENDFOR»);
+			service.validate«clazz.name.toFirstUpper»(«FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»
+			«ENDFOR»);
 		} catch (ValidationException e) {
 			Util.showUserMessage("Validation error for " + e.getField(), "Validation error for " + e.getField() + ": " + e.getMessage());
 			return false;
 		}
 		
 		//persist
-		currentEntity = service.save«clazz.name»(currentEntity.getOid(), «FOR attribute : clazz.attributes SEPARATOR ' ,'» «IF (attribute.multivalued == false)» «attribute.name»«ENDIF»«ENDFOR»);
+		currentEntity = service.save«clazz.name»(currentEntity.getOid(), «FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»«ENDFOR»);
 		
 		//folgenden teil habe ich nicht so ganz gecheckt (ist aus dem BookEntryWindow kopiert)
 		//reload the listing in the parent window to make changes visible
@@ -226,4 +217,6 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	
 	
 	'''
+	
+	}
 	}
