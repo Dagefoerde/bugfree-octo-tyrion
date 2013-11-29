@@ -13,12 +13,12 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
-import de.wwu.pi.mdsd05.library.ref.data.User;
+import de.wwu.pi.mdsd05.library.ref.data.Copy;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 
-public class CopyListWindow extends AbstractWindow {
+public class CopyListWindow extends AbstractWindow implements ICopyListContainingWindow{
 
-	JList<User> jl_copys;
+	JList<Copy> jl_copys;
 	JButton btnEditCopy;
 	
 	public CopyListWindow(StartWindowClass parent) {
@@ -31,7 +31,7 @@ public class CopyListWindow extends AbstractWindow {
 	}
 
 	/**
-	 * Initialize the contents of user list window.
+	 * Initialize the contents of copy list window.
 	 */
 	@Override
 	protected void createContents() {
@@ -95,7 +95,7 @@ public class CopyListWindow extends AbstractWindow {
 	}
 
 	public void initializeCopyListing() {
-		Vector<User> copys = new Vector<User>(ServiceInitializer.getProvider().getCopyUService().getAll());
+		Vector<Copy> copys = new Vector<Copy>(ServiceInitializer.getProvider().getCopyService().getAll());
 		jl_copys.setListData(copys);
 		
 		if (copys.isEmpty())
@@ -107,7 +107,7 @@ public class CopyListWindow extends AbstractWindow {
 	 * Method triggered when user clicks edit
 	 */
 	public void editCopy() {
-		User copy = jl_copys.getSelectedValue();
+		Copy copy = jl_copys.getSelectedValue();
 		if (copy != null)
 			new CopyEntryWindow(this, copy).open();
 		else

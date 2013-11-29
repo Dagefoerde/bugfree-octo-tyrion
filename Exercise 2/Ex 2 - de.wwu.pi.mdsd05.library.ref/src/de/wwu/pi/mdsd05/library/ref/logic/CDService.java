@@ -1,10 +1,15 @@
 package de.wwu.pi.mdsd05.library.ref.logic;
 
+import java.util.Collection;
+
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.CD;
 
 public class CDService extends AbstractServiceProvider<CD>{
+
+	
+	private static final long serialVersionUID = 6114246295799356828L;
 
 	protected CDService() {
 		super();
@@ -31,5 +36,15 @@ public class CDService extends AbstractServiceProvider<CD>{
 	}
 	
 	
+	public CD getByASIN(int ASIN)
+	{
+		Collection<CD> cds = getAll();
+			for(CD elem : cds )
+			{
+				if(elem.getASIN() == ASIN) return elem;
+				
+			}
+			return null;
 	
+	}
 }

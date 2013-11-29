@@ -7,6 +7,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Collection;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,17 +20,21 @@ import javax.swing.JTextField;
 import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
+import de.wwu.pi.mdsd05.library.ref.data.Loan;
 import de.wwu.pi.mdsd05.library.ref.data.User;
+import de.wwu.pi.mdsd05.library.ref.logic.LoanService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.UserService;
 
-public class UserEntryWindow extends AbstractWindow {
+public class UserEntryWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	private JButton btnSave;
+	private JButton btnEditLoan;
 	private int curGridY = 0;
 	private User currentEntity;
-	private JList<Object> li_Loans;
+	private JList<Loan> li_Loans;
 	private UserService service;
+	private LoanService loanService;
 	private JTextField tf_Address;
 	private JTextField tf_Name;
 
@@ -36,6 +42,7 @@ public class UserEntryWindow extends AbstractWindow {
 		super(parent);
 		this.currentEntity = currentEntity;
 		service = ServiceInitializer.getProvider().getUserService();
+		loanService=ServiceInitializer.getProvider().getLoanService();
 	}
 
 	@Override
@@ -126,7 +133,8 @@ public class UserEntryWindow extends AbstractWindow {
 		gbc_lblLoans.gridy = curGridY;
 		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Loans = new JList<Object>();
+		Collection<Loan> allByUser = loanService.getAllByUser(currentEntity);
+		li_Loans = new JList<Loan>(new Vector<Loan>(allByUser));
 		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
 		gbc_li_Loans.gridwidth = 3;
 		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
@@ -147,16 +155,15 @@ public class UserEntryWindow extends AbstractWindow {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// @TODO: trigger an action
-				Util.showImplementAction();
+				addLoan();
 			}
 		});
 
-		btn = new JButton("Edit");
+		btnEditLoan = new JButton("Edit");
 		gbc_btn.gridx = 2;
-		btn.setEnabled(!currentEntity.isNew());
-		getPanel().add(btn, gbc_btn);
-		btn.addActionListener(new ActionListener() {
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByUser.isEmpty());
+		getPanel().add(btnEditLoan, gbc_btn);
+		btnEditLoan.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = UserEntryWindow.this.li_Loans
@@ -164,8 +171,7 @@ public class UserEntryWindow extends AbstractWindow {
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
-					// @TODO: trigger an action
-					Util.showImplementAction();
+					editLoan();
 				}
 			}
 		});
@@ -214,5 +220,29 @@ public class UserEntryWindow extends AbstractWindow {
 		((UserListWindow) getParent()).initializeUserListing();
 
 		return true;
+	}
+	/**
+	 * Method triggered when user clicks edit
+	 */
+	public void editLoan() {
+		Loan loan = li_Loans.getSelectedValue();
+		// assume loan != null, as editLoan() is called by Edit button, which contains check.
+		new LoanEntryWindow(this, loan).open();
+		
+	}
+
+	/**
+	 * Method triggered when user clicks add
+	 */
+	public void addLoan() {
+		Loan loan= new Loan();
+		loan.setUser(currentEntity);
+		new LoanEntryWindow(this, loan).open();
+	}
+	public void initializeLoanListing() {
+		Collection<Loan> allByUser = loanService.getAllByUser(currentEntity);
+		Vector<Loan> loans = new Vector<Loan>(allByUser);
+		li_Loans.setListData(loans);
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByUser.isEmpty());
 	}
 }

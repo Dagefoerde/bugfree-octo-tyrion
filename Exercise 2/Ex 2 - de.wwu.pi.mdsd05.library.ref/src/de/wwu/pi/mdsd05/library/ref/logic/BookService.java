@@ -1,11 +1,18 @@
 
 package de.wwu.pi.mdsd05.library.ref.logic;
 
+import java.util.Collection;
+
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Book;
 
 public class BookService extends AbstractServiceProvider<Book> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6640997992843405228L;
 
 	//Constructor
 	protected BookService() {
@@ -17,6 +24,8 @@ public class BookService extends AbstractServiceProvider<Book> {
 			throw new ValidationException("Name", "cannot be empty");
 		if(ISBN == 0)
 			throw new ValidationException("ISBN", "cannot be empty");
+		//if(ISBNAlreadyExists(ISBN))
+		//	throw new ValidationException("ISBN", "already exists");
 		if(author == null)
 			throw new ValidationException("Author", "cannot be empty");
 		return true;
@@ -33,5 +42,21 @@ public class BookService extends AbstractServiceProvider<Book> {
 	return elem;
 	}
 	
+	
+	
+	public Book getByISBN(int ISBN)
+	{
+		Collection<Book> books = getAll();
+
+			for (Book elem: books)
+			{
+				if(elem.getISBN() == ISBN) return elem;
+				
+			}
+			return null;
+	
+	}
+
+
 }
 

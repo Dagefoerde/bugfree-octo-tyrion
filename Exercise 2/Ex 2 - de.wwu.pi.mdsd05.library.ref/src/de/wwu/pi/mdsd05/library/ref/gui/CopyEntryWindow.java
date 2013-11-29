@@ -7,6 +7,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Collection;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,19 +22,23 @@ import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 import de.wwu.pi.mdsd05.framework.gui.Util;
 import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 import de.wwu.pi.mdsd05.library.ref.data.Copy;
+import de.wwu.pi.mdsd05.library.ref.data.Loan;
 import de.wwu.pi.mdsd05.library.ref.data.Medium;
+import de.wwu.pi.mdsd05.library.ref.logic.LoanService;
 import de.wwu.pi.mdsd05.library.ref.logic.MediumService;
 import de.wwu.pi.mdsd05.library.ref.logic.ServiceInitializer;
 import de.wwu.pi.mdsd05.library.ref.logic.CopyService;
 
-public class CopyEntryWindow extends AbstractWindow {
+public class CopyEntryWindow extends AbstractWindow implements ILoanListContainingWindow{
 
 	private JButton btnSave;
+	private JButton btnEditLoan;
 	private int curGridY = 0;
 	private Copy currentEntity;
-	private JList<Object> li_Copys;
+	private JList<Loan> li_Loans;
 	private CopyService service;
 	private MediumService mediumService;
+	private LoanService loanService;
 	private JComboBox<Medium> cb_Medium;
 	private JTextField tf_InventoryNumber;
 
@@ -41,6 +47,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		this.currentEntity = currentEntity;
 		service = ServiceInitializer.getProvider().getCopyService();
 		mediumService = ServiceInitializer.getProvider().getMediumService();
+		loanService=ServiceInitializer.getProvider().getLoanService();
 	}
 
 	@Override
@@ -62,7 +69,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_lblMedium.gridy = curGridY;
 		getPanel().add(lblMedium, gbc_lblMedium);
 
-		cb_Medium = new JComboBox<Medium>((Medium[]) mediumService.getAll().toArray());
+		cb_Medium = new JComboBox<Medium>(new Vector<Medium> ( mediumService.getAll() ));
 		cb_Medium.setSelectedItem(currentEntity.getMedium());
 		GridBagConstraints gbc_cb_Medium = new GridBagConstraints();
 		gbc_cb_Medium.gridwidth = 3;
@@ -74,7 +81,7 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_cb_Medium.gridy = curGridY++;
 		getPanel().add(cb_Medium, gbc_cb_Medium);
 
-		JLabel lblInventoryNumber = new JLabel("InventoryNumber*");
+		JLabel lblInventoryNumber = new JLabel("Inventory number*");
 		GridBagConstraints gbc_lblInventoryNumber = new GridBagConstraints();
 		gbc_lblInventoryNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInventoryNumber.anchor = GridBagConstraints.NORTHEAST;
@@ -82,7 +89,8 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_lblInventoryNumber.gridy = curGridY;
 		getPanel().add(lblInventoryNumber, gbc_lblInventoryNumber);
 
-		tf_InventoryNumber = new JTextField(currentEntity.getInventoryNumber());
+		
+		tf_InventoryNumber = new JTextField(currentEntity.isNew() ? "" : currentEntity.getInventoryNumber()+"");
 		GridBagConstraints gbc_tf_InventoryNumber = new GridBagConstraints();
 		gbc_tf_InventoryNumber.gridwidth = 3;
 		gbc_tf_InventoryNumber.insets = new Insets(0, 0, 5, 5);
@@ -124,23 +132,27 @@ public class CopyEntryWindow extends AbstractWindow {
 		gbc_fill1.fill = GridBagConstraints.REMAINDER;
 		panel.add(fill1, gbc_fill1);
 
-		JLabel lblCopys = new JLabel("Copys");
-		GridBagConstraints gbc_lblCopys = new GridBagConstraints();
-		gbc_lblCopys.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCopys.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblCopys.gridx = 0;
-		gbc_lblCopys.gridy = curGridY;
-		getPanel().add(lblCopys, gbc_lblCopys);
+		JLabel lblLoans = new JLabel("Loans");
+		GridBagConstraints gbc_lblLoans = new GridBagConstraints();
+		gbc_lblLoans.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLoans.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblLoans.gridx = 0;
+		gbc_lblLoans.gridy = curGridY;
+		getPanel().add(lblLoans, gbc_lblLoans);
 
-		li_Copys = new JList<Object>();
-		GridBagConstraints gbc_li_Copys = new GridBagConstraints();
-		gbc_li_Copys.gridwidth = 3;
-		gbc_li_Copys.insets = new Insets(0, 0, 5, 5);
-		gbc_li_Copys.fill = GridBagConstraints.BOTH;
-		gbc_li_Copys.gridx = 1;
-		gbc_li_Copys.weighty = .5;
-		gbc_li_Copys.gridy = curGridY;
-		getPanel().add(li_Copys, gbc_li_Copys);
+
+		li_Loans = new JList<Loan>();
+		Collection<Loan> allByCopy = loanService.getAllByCopy(currentEntity);
+		Vector<Loan> loans = new Vector<Loan>(allByCopy);
+		li_Loans.setListData(loans);
+		GridBagConstraints gbc_li_Loans = new GridBagConstraints();
+		gbc_li_Loans.gridwidth = 3;
+		gbc_li_Loans.insets = new Insets(0, 0, 5, 5);
+		gbc_li_Loans.fill = GridBagConstraints.BOTH;
+		gbc_li_Loans.gridx = 1;
+		gbc_li_Loans.weighty = .5;
+		gbc_li_Loans.gridy = curGridY;
+		getPanel().add(li_Loans, gbc_li_Loans);
 		
 		// Button for List Element
 		JButton btn = new JButton("Add");
@@ -153,25 +165,23 @@ public class CopyEntryWindow extends AbstractWindow {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// @TODO: trigger an action
-				Util.showImplementAction();
+				addLoan();
 			}
 		});
 
-		btn = new JButton("Edit");
+		btnEditLoan = new JButton("Edit");
 		gbc_btn.gridx = 2;
-		btn.setEnabled(!currentEntity.isNew());
-		getPanel().add(btn, gbc_btn);
-		btn.addActionListener(new ActionListener() {
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByCopy.isEmpty());
+		getPanel().add(btnEditLoan, gbc_btn);
+		btnEditLoan.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object selected = CopyEntryWindow.this.li_Copys
+				Object selected = CopyEntryWindow.this.li_Loans
 						.getSelectedValue();
 				if (selected == null) {
 					Util.showNothingSelected();
 				} else {
-					// @TODO: trigger an action
-					Util.showImplementAction();
+					editLoan();
 				}
 			}
 		});
@@ -199,11 +209,16 @@ public class CopyEntryWindow extends AbstractWindow {
 	private boolean saveAction() throws ParseException {
 		// Read values from different fields
 		Medium medium = cb_Medium.getSelectedItem() == null ? null : (Medium) cb_Medium.getSelectedItem();
-		Integer inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? null : Integer.getInteger(tf_InventoryNumber.getText());
+		int inventoryNumber = tf_InventoryNumber.getText().isEmpty() ? 0 : Integer.parseInt(tf_InventoryNumber.getText());
 
 		// validation
 		try {
-			service.validateCopy(medium, inventoryNumber);
+			service.validateCopy(inventoryNumber, medium);
+			Copy sameInventoryNumber = service.getByInventoryNumber(inventoryNumber);
+			if (sameInventoryNumber != null && sameInventoryNumber.getOid() != currentEntity.getOid()) {
+				// there is an elem with the same InventoryNumber but a different Oid, which indicates an (intended) violation of uniqueness of inventoryNumber.
+				throw new ValidationException("inventoryNumber", "already exists");
+			}
 		} catch (ValidationException e) {
 			Util.showUserMessage(
 					"Validation error for " + e.getField(),
@@ -213,11 +228,35 @@ public class CopyEntryWindow extends AbstractWindow {
 		}
 
 		// persist
-		currentEntity = service.saveCopy(currentEntity.getOid(), medium, inventoryNumber);
+		currentEntity = service.saveCopy(currentEntity.getOid(), inventoryNumber, medium);
 
 		// update user listing in UserListWindow
-		((UserListWindow) getParent()).initializeUserListing();
+		((ICopyListContainingWindow) getParent()).initializeCopyListing();
 
 		return true;
+	}
+	/**
+	 * Method triggered when user clicks edit
+	 */
+	public void editLoan() {
+		Loan loan = li_Loans.getSelectedValue();
+		// assume loan != null, as editLoan() is called by Edit button, which contains check.
+		new LoanEntryWindow(this, loan).open();
+	}
+
+	/**
+	 * Method triggered when user clicks add
+	 */
+	public void addLoan() {
+		Loan loan= new Loan();
+		loan.setCopy(currentEntity);
+		new LoanEntryWindow(this, loan).open();
+	}
+
+	public void initializeLoanListing() {
+		Collection<Loan> allByCopy = loanService.getAllByCopy(currentEntity);
+		Vector<Loan> loans = new Vector<Loan>(allByCopy);
+		li_Loans.setListData(loans);
+		btnEditLoan.setEnabled(!currentEntity.isNew() && !allByCopy.isEmpty());
 	}
 }

@@ -1,8 +1,5 @@
 package de.wwu.pi.mdsd05.library.ref.data;
 
-import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
-
-
 public class CD extends Medium{
 
 	private static final long serialVersionUID = 5881337167782580070L;
@@ -40,4 +37,5 @@ public class CD extends Medium{
 		return (getName()) + ", " + (getASIN()) + ", " + (getInterpreter())+ "";
 	}
 	
+
 }

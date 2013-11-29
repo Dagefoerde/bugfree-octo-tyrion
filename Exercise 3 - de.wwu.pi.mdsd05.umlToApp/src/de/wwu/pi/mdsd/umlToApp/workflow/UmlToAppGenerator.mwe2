@@ -1,0 +1,51 @@
+module de.wwu.pi.mdsd.umlToApp.workflow.UmlToAppGenerator
+
+import org.eclipse.emf.mwe.utils.*
+
+var targetDir = "src-gen"
+var modelPath ="C:/Users/Dexter-03/Documents/GitHub/bugfree-octo-tyrion/Exercise 3 - de.wwu.pi.mdsd05.umlToApp/src/de/wwu/pi/mdsd/library/model"
+				
+Workflow {
+	bean = StandaloneSetup {
+		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+		extensionMap = {
+			from = "uml"
+			to = "org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl"
+		}
+		uriMap = {
+			from = "pathmap://UML_LIBRARIES/"
+			to = "jar:file:res/org.eclipse.uml2.uml.resources_4.1.0.v20130610-0712.jar!/libraries/"
+		}
+		uriMap = {
+			from = "pathmap://UML_METAMODELS/"
+			to = "jar:file:res/org.eclipse.uml2.uml.resources_4.1.0.v20130610-0712.jar!/metamodels/"
+		}
+		uriMap = {
+			from = "pathmap://UML_PROFILES/"
+			to = "jar:file:res/org.eclipse.uml2.uml.resources_4.1.0.v20130610-0712.jar!/profiles/"
+		}
+	}
+	
+	//Problem with reading file encoding https://bugs.eclipse.org/bugs/show_bug.cgi?id=409069
+	component = DirectoryCleaner {
+		directory = targetDir
+	}
+	
+	component = UmlToAppGeneratorSupport {}
+	
+	component = org.eclipse.xtext.mwe.Reader {
+		path = modelPath
+		register = UmlToAppGeneratorSetup {}
+		loadResource = {
+			slot = "model"
+		}
+	}
+	
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = UmlToAppGeneratorSetup {}
+		slot = "model"
+		outlet = {
+			path = targetDir
+		}
+	}
+}

@@ -10,7 +10,7 @@ import java.io.Serializable;
 import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 
 public class ServiceInitializer implements Serializable {
-	private static final long serialVersionUID = 4083901003693858998L;
+	private static final long serialVersionUID = 4087901003693858998L;
 
 	private static String filename = "MDSD-DataProv.dat";
 	
@@ -19,6 +19,7 @@ public class ServiceInitializer implements Serializable {
 	public static ServiceInitializer getProvider() {
 		if(provider == null && !deserialize())
 			provider = new ServiceInitializer();
+		if(provider == null) provider = new ServiceInitializer();
 		return provider;
 	}
 	
@@ -29,7 +30,7 @@ public class ServiceInitializer implements Serializable {
 	private MediumService mediumService;
 	
 	private BookService bookService;
-	
+
 	private CDService cdService;
 	
 	private CopyService copyService;
@@ -54,6 +55,12 @@ public class ServiceInitializer implements Serializable {
 		if(loanService == null)
 			loanService = new LoanService();
 		return loanService;
+	}
+	
+	public CopyService getCopyService() {
+		if(copyService == null)
+			copyService = new CopyService();
+		return copyService;
 	}
 	
 	public MediumService getMediumService() {

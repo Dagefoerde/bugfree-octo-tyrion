@@ -66,6 +66,71 @@ public class StartWindowClass extends AbstractWindow {
 			}
 		});
 
+		// emtpy grid line
+		getNextGridY();
+
+		JButton loanListWindow = new JButton("List Loan Elements");
+		GridBagConstraints gbc_LoanListWindow = new GridBagConstraints();
+		gbc_LoanListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_LoanListWindow.gridx = 1;
+		gbc_LoanListWindow.gridy = getNextGridY();
+		getPanel().add(loanListWindow, gbc_LoanListWindow);
+		loanListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new LoanListWindow(StartWindowClass.this).open();
+			}
+		});
+
+		// emtpy grid line
+		getNextGridY();
+
+		JButton CDListWindow = new JButton("List CD Elements");
+		GridBagConstraints gbc_CDListWindow = new GridBagConstraints();
+		gbc_CDListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_CDListWindow.gridx = 1;
+		gbc_CDListWindow.gridy = getNextGridY();
+		getPanel().add(CDListWindow, gbc_CDListWindow);
+		CDListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new CDListWindow(StartWindowClass.this).open();
+			}
+		});
+
+		// emtpy grid line
+		getNextGridY();
+		
+		
+		JButton copyListWindow = new JButton("List Copy Elements");
+		GridBagConstraints gbc_CopyListWindow = new GridBagConstraints();
+		gbc_CopyListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_CopyListWindow.gridx = 1;
+		gbc_CopyListWindow.gridy = getNextGridY();
+		getPanel().add(copyListWindow, gbc_CopyListWindow);
+		copyListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new CopyListWindow(StartWindowClass.this).open();
+			}
+		});
+		
+		// emtpy grid line
+		getNextGridY();
+
+		JButton bookListWindow = new JButton("List Book Elements");
+		GridBagConstraints gbc_BookListWindow = new GridBagConstraints();
+		gbc_BookListWindow.insets = new Insets(0, 0, 5, 5);
+		gbc_BookListWindow.gridx = 1;
+		gbc_BookListWindow.gridy = getNextGridY();
+		getPanel().add(bookListWindow, gbc_BookListWindow);
+		bookListWindow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new BookListWindow(StartWindowClass.this).open();
+			}
+		});
+
 		// Separator at the bottom to create empty
 		// space at the end of the window
 		JSeparator separator = new JSeparator();
