@@ -83,6 +83,10 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AGiJcVlVEeO32slThPBACA" name="bankAccount" type="_XfHrYFlTEeO32slThPBACA" association="_AGiJcFlVEeO32slThPBACA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AGiJcllVEeO32slThPBACA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AGiJc1lVEeO32slThPBACA" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_y4mlAFlTEeO32slThPBACA" name="HeadOffice">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_1lGngFlTEeO32slThPBACA" name="BankName" visibility="public">
@@ -128,8 +132,8 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4CnWU1lUEeO32slThPBACA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_AGg7UFlVEeO32slThPBACA" name="transaction" type="_P8N6oFlTEeO32slThPBACA" association="_AGiJcFlVEeO32slThPBACA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AGg7UVlVEeO32slThPBACA" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AGg7UllVEeO32slThPBACA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AGg7UVlVEeO32slThPBACA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AGg7UllVEeO32slThPBACA" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_IaarMVlVEeO32slThPBACA" name="branch" type="_0K6W4FlSEeO32slThPBACA" association="_IaarMFlVEeO32slThPBACA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IaarMllVEeO32slThPBACA" value="1"/>
@@ -139,12 +143,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_mSuCkFlTEeO32slThPBACA" name="Updatebalance"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_4CnWUFlUEeO32slThPBACA" name="customer_bankAccount_1" memberEnd="_4CnWUVlUEeO32slThPBACA _4CmvQFlUEeO32slThPBACA"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_AGiJcFlVEeO32slThPBACA" name="bankAccount_transaction_1" memberEnd="_AGiJcVlVEeO32slThPBACA _AGg7UFlVEeO32slThPBACA">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_AGiJcVlVEeO32slThPBACA" name="bankAccount" type="_XfHrYFlTEeO32slThPBACA" association="_AGiJcFlVEeO32slThPBACA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AGiJcllVEeO32slThPBACA" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AGiJc1lVEeO32slThPBACA" value="1"/>
-      </ownedEnd>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_AGiJcFlVEeO32slThPBACA" name="bankAccount_transaction_1" memberEnd="_AGiJcVlVEeO32slThPBACA _AGg7UFlVEeO32slThPBACA"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_IaarMFlVEeO32slThPBACA" name="branch_bankAccount_1" memberEnd="_IaarMVlVEeO32slThPBACA _IaaEIFlVEeO32slThPBACA"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_M-JVEFlVEeO32slThPBACA" name="branch_headOffice_1" memberEnd="_M-JVEVlVEeO32slThPBACA _M-IuAFlVEeO32slThPBACA"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_wrZLYFj3EeO32slThPBACA">
