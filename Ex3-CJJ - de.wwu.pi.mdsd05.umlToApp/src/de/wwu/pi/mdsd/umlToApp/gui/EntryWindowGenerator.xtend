@@ -1,23 +1,10 @@
 package de.wwu.pi.mdsd.umlToApp.gui
+
 import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.Property
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.common.util.BasicEList
 
 class EntryWindowGenerator {
 	def generateEntryWindow(Class clazz)  {
-	var listOfAllAttributes=clazz.attributes.toSet
-	var EList<Property> listOfSuperAttributes=new BasicEList<Property>()
-	var boolean isGeneralized=clazz.generalizations.size>0
-	if(isGeneralized){
-	listOfSuperAttributes=clazz.generalizations.get(0).general.attributes
-	listOfAllAttributes.addAll(clazz.generalizations.get(0).general.attributes.toList)}
-	val notMultivalued = listOfAllAttributes.filter[at | !at.multivalued]
-	val anyClass = listOfAllAttributes.filter[at | at.type instanceof Class]
-	val classMultivalued = listOfAllAttributes.filter[at | at.multivalued && at.type instanceof Class]
-	val classNotMultivalued = listOfAllAttributes.filter[at | !at.multivalued && at.type instanceof Class]
-	val notClassNotMultivalued = listOfAllAttributes.filter[at | !at.multivalued && !(at.type instanceof Class)]
 	'''
 	
 package somePackageString.gui;
@@ -35,22 +22,22 @@ import de.wwu.pi.mdsd.framework.gui.*;
 import de.wwu.pi.mdsd.framework.logic.ValidationException;
 
 import somePackageString.data.«clazz.name»;
-«FOR attribute : anyClass »
+«FOR attribute : clazz.listOfClassAttributes»
 				import somePackageString.data.«attribute.type.name»;	
 			«ENDFOR»
 import somePackageString.logic.«clazz.name»Service;
 import somePackageString.logic.ServiceInitializer;
 
-public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF classMultivalued.size>0»implements«ENDIF»  «FOR attribute : classMultivalued SEPARATOR ','»
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF clazz.listOfMultivaluedClassAttributes.size>0»implements«ENDIF»  «FOR attribute : clazz.listOfMultivaluedClassAttributes SEPARATOR ','»
 				 «attribute.type.name»ListingInterface	
 			«ENDFOR» {
-«FOR attribute : classMultivalued»
+«FOR attribute : clazz.listOfMultivaluedClassAttributes»
 	private JList<«attribute.type.name»> li_«attribute.name»s;
 «ENDFOR»
-«FOR attribute : classNotMultivalued» 
+«FOR attribute : clazz.listOfNotMultivaluedClassAttributes» 
 	private JComboBox<«attribute.type.name»> cb_«attribute.name»;
 «ENDFOR»
-«FOR attribute : notClassNotMultivalued»
+«FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»
 	private JTextField tf_«attribute.name»;
 «ENDFOR»
 «clazz.name»Service service;
@@ -65,7 +52,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		int gridy = 0;
 		
 		
-		«FOR attribute : notClassNotMultivalued»	
+		«FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»	
 		//set new Line
 		gridy = getNextGridYValue();
 		
@@ -92,7 +79,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		gbc_tf_«attribute.name».gridy = gridy;
 		getPanel().add(tf_«attribute.name», gbc_tf_«attribute.name»);
 		«ENDFOR»
-		«FOR attribute : classNotMultivalued» 
+		«FOR attribute : clazz.listOfNotMultivaluedClassAttributes» 
 		//set new Line
 		gridy = getNextGridYValue();
 		
@@ -123,7 +110,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		int gridy = 0;
 		JButton btn;
 		GridBagConstraints gbc_btn;
-		«FOR attribute : classMultivalued»
+		«FOR attribute : clazz.listOfMultivaluedClassAttributes»
 		gridy = getNextGridYValue();
 		JLabel lbl«attribute.name»s = new JLabel("«attribute.name.toFirstUpper»s");
 		GridBagConstraints gbc_lbl«attribute.name»s = new GridBagConstraints();
@@ -182,7 +169,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	}
 
 
-	«FOR attribute : classMultivalued»
+	«FOR attribute : clazz.listOfMultivaluedClassAttributes»
 	public void initializeLi«attribute.name.toFirstUpper»s() {
 		li_«attribute.name»s.setListData(new Vector<«attribute.type.name»>(currentEntity.get«attribute.name.toFirstUpper»s()));
 	}
@@ -196,20 +183,20 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	@Override
 	protected boolean saveAction() throws ParseException {
 		//Read values from different fields 
-		«FOR attribute : notClassNotMultivalued»
+		«FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»
 			«IF attribute.type.name.equals("Date")»
 				«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : Util.DATE_TIME_FORMATTER.parse(tf_«attribute.name».getText());
 			«ELSE»
 				«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : «attribute.type.name».valueOf(tf_«attribute.name».getText());
 			«ENDIF»
 		«ENDFOR»
-		«FOR attribute : classNotMultivalued»
+		«FOR attribute : clazz.listOfNotMultivaluedClassAttributes»
 			«attribute.type.name» «attribute.name» = cb_«attribute.name».getItemAt(cb_«attribute.name».getSelectedIndex());
 		«ENDFOR»
 		
 		//validation
 		try {
-			service.validate«clazz.name.toFirstUpper»(«FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»
+			service.validate«clazz.name.toFirstUpper»(«FOR attribute : clazz.listOfNotMultivaluedAttributes SEPARATOR ','»«attribute.name»
 			«ENDFOR»);
 		} catch (ValidationException e) {
 			Util.showUserMessage("Validation error for " + e.getField(), "Validation error for " + e.getField() + ": " + e.getMessage());
@@ -217,10 +204,10 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		}
 		
 		//persist
-		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»«ENDFOR»);
+		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute : clazz.listOfNotMultivaluedAttributes SEPARATOR ','»«attribute.name»«ENDFOR»);
 		
 		//reload the listing in the parent window to make changes visible
-		«IF isGeneralized»
+		«IF clazz.isGeneralized»
 		if(getParent() instanceof «clazz.generalizations.get(0).general.name»ListingInterface)
 			(( «clazz.generalizations.get(0).general.name»ListingInterface) getParent()).initialize«clazz.generalizations.get(0).general.name»Listings();
 			«ENDIF»
@@ -236,3 +223,4 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	
 	}
 	}
+	
