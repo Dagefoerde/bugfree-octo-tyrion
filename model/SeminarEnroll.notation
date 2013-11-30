@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_UoswgFlWEeO32slThPBACA" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_hCy5sFlWEeO32slThPBACA" type="2008" fontName="Cantarell" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hCzgwFlWEeO32slThPBACA" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hC0H0FlWEeO32slThPBACA" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hC0H0VlWEeO32slThPBACA" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hC0H0llWEeO32slThPBACA" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hC0H01lWEeO32slThPBACA" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hC0H1FlWEeO32slThPBACA" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_R3UEAFnEEeOI-83D-oPnGg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3UEAVnEEeOI-83D-oPnGg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3UEAlnEEeOI-83D-oPnGg" key="StereotypeList" value="Profile::Entity"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3UEA1nEEeOI-83D-oPnGg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3UEBFnEEeOI-83D-oPnGg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3UEBVnEEeOI-83D-oPnGg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hC0H1VlWEeO32slThPBACA" type="5029">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BfKw41nEEeOI-83D-oPnGg" source="Stereotype_Annotation">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BfKw5FnEEeOI-83D-oPnGg" key="StereotypeWithQualifiedNameList" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BfKw5VnEEeOI-83D-oPnGg" key="StereotypeList" value="Profile::Entity"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BfKw5lnEEeOI-83D-oPnGg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BfKw51nEEeOI-83D-oPnGg" key="PropStereoDisplay" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BfKw6FnEEeOI-83D-oPnGg" key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_hC0u4FlWEeO32slThPBACA" type="7017">
+      <children xmi:type="notation:Shape" xmi:id="_mEFCQFlWEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_mECmAFlWEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mEFCQVlWEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_q7HCoFlWEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_q7FNcFlWEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_q7HCoVlWEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_veBNIFlWEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_vd-w4FlWEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_veBNIVlWEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_5bHIYFlWEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_5bEsIFlWEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_5bHIYVlWEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_hC0u4VlWEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_hC0u4llWEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_hC0u41lWEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hC0u5FlWEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_hC0u5VlWEeO32slThPBACA" type="7018">
+      <children xmi:type="notation:Shape" xmi:id="__LnucFlWEeO32slThPBACA" type="3013" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Operation" href="SeminarEnroll.uml#__LlSMFlWEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="__LnucVlWEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_hC0u5llWEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_hC0u51lWEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_hC0u6FlWEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hC0u6VlWEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_hC0u6llWEeO32slThPBACA" type="7019">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_hC0u61lWEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_hC0u7FlWEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_hC0u7VlWEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hC0u7llWEeO32slThPBACA"/>
+    </children>
+    <element xmi:type="uml:Class" href="SeminarEnroll.uml#_hCxEgFlWEeO32slThPBACA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hCy5sVlWEeO32slThPBACA" x="12" y="135" height="166"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_DJddAFlXEeO32slThPBACA" type="2008" fontName="Cantarell" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DJerIFlXEeO32slThPBACA" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DJerIVlXEeO32slThPBACA" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DJerIllXEeO32slThPBACA" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DJerI1lXEeO32slThPBACA" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DJfSMFlXEeO32slThPBACA" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DJfSMVlXEeO32slThPBACA" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CXzCAFnEEeOI-83D-oPnGg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TTGskFnEEeOI-83D-oPnGg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TTGskVnEEeOI-83D-oPnGg" key="StereotypeList" value="Profile::Entity"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TTGsklnEEeOI-83D-oPnGg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TTGsk1nEEeOI-83D-oPnGg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TTGslFnEEeOI-83D-oPnGg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_DJfSMllXEeO32slThPBACA" type="5029"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DJfSM1lXEeO32slThPBACA" type="7017">
+      <children xmi:type="notation:Shape" xmi:id="_G-jfQFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_G-hqEFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_G-jfQVlXEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DJfSNFlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DJfSNVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DJfSNllXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DJfSN1lXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DJfSOFlXEeO32slThPBACA" type="7018">
+      <children xmi:type="notation:Shape" xmi:id="_MzzbYFlXEeO32slThPBACA" type="3013" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Operation" href="SeminarEnroll.uml#_Mzw_IFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MzzbYVlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_ODm2YFlXEeO32slThPBACA" type="3013" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Operation" href="SeminarEnroll.uml#_ODkaIFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ODm2YVlXEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DJfSOVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DJfSOllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DJfSO1lXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DJfSPFlXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DJf5QFlXEeO32slThPBACA" type="7019">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DJf5QVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DJf5QllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DJf5Q1lXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DJf5RFlXEeO32slThPBACA"/>
+    </children>
+    <element xmi:type="uml:Class" href="SeminarEnroll.uml#_DJbAwFlXEeO32slThPBACA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DJddAVlXEeO32slThPBACA" x="468" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SNZWQFlXEeO32slThPBACA" type="2008" fontName="Cantarell" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SNZ9UFlXEeO32slThPBACA" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SNZ9UVlXEeO32slThPBACA" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SNakYFlXEeO32slThPBACA" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SNakYVlXEeO32slThPBACA" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SNakYllXEeO32slThPBACA" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SNakY1lXEeO32slThPBACA" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EFXXEFnEEeOI-83D-oPnGg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULcCw1nEEeOI-83D-oPnGg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULcCxFnEEeOI-83D-oPnGg" key="StereotypeList" value="Profile::Entity"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULcCxVnEEeOI-83D-oPnGg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULcCxlnEEeOI-83D-oPnGg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULcCx1nEEeOI-83D-oPnGg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SNakZFlXEeO32slThPBACA" type="5029"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SNakZVlXEeO32slThPBACA" type="7017">
+      <children xmi:type="notation:Shape" xmi:id="_T9_KIFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_T98G0FlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_T9_KIVlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_XjsskFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_XjpCMFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_XjtToFlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_cF3QMFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_cF0z8FlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_cF3QMVlXEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_SNakZllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_SNakZ1lXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_SNakaFlXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SNakaVlXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SNbLcFlXEeO32slThPBACA" type="7018">
+      <children xmi:type="notation:Shape" xmi:id="_f0zAEFlXEeO32slThPBACA" type="3013" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Operation" href="SeminarEnroll.uml#_f0wj0FlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_f0zAEVlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_hC7nIFlXEeO32slThPBACA" type="3013" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Operation" href="SeminarEnroll.uml#_hC5x8FlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_hC7nIVlXEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_SNbLcVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_SNbLcllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_SNbLc1lXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SNbLdFlXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SNbLdVlXEeO32slThPBACA" type="7019">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_SNbLdllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_SNbLd1lXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_SNbLeFlXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SNbLeVlXEeO32slThPBACA"/>
+    </children>
+    <element xmi:type="uml:Class" href="SeminarEnroll.uml#_SNW6AFlXEeO32slThPBACA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SNZWQVlXEeO32slThPBACA" x="924" y="173"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_jABl8FlXEeO32slThPBACA" type="2008" fontName="Cantarell" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jAC0EFlXEeO32slThPBACA" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAC0EVlXEeO32slThPBACA" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jAC0EllXEeO32slThPBACA" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAC0E1lXEeO32slThPBACA" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jADbIFlXEeO32slThPBACA" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jADbIVlXEeO32slThPBACA" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DL1uFFnEEeOI-83D-oPnGg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SlD601nEEeOI-83D-oPnGg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SlD61FnEEeOI-83D-oPnGg" key="StereotypeList" value="Profile::Entity"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SlD61VnEEeOI-83D-oPnGg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SlD61lnEEeOI-83D-oPnGg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SlD611nEEeOI-83D-oPnGg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_jADbIllXEeO32slThPBACA" type="5029"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jADbI1lXEeO32slThPBACA" type="7017">
+      <children xmi:type="notation:Shape" xmi:id="_l8JY0FlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_l8FucFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_l8JY0VlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_ox3owFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_ox2aoFlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ox4P0FlXEeO32slThPBACA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_rqteIFlXEeO32slThPBACA" type="3012" fontName="Cantarell" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="SeminarEnroll.uml#_rqro8FlXEeO32slThPBACA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rqteIVlXEeO32slThPBACA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_jADbJFlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jADbJVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jADbJllXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jADbJ1lXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jADbKFlXEeO32slThPBACA" type="7018">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_jADbKVlXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jADbKllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jADbK1lXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jADbLFlXEeO32slThPBACA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jADbLVlXEeO32slThPBACA" type="7019">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_jADbLllXEeO32slThPBACA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jADbL1lXEeO32slThPBACA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jADbMFlXEeO32slThPBACA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jADbMVlXEeO32slThPBACA"/>
+    </children>
+    <element xmi:type="uml:Class" href="SeminarEnroll.uml#_i__JsFlXEeO32slThPBACA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jABl8VlXEeO32slThPBACA" x="480" y="312"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_UoswgVlWEeO32slThPBACA"/>
+  <element xmi:type="uml:Model" href="SeminarEnroll.uml#_UosJcFlWEeO32slThPBACA"/>
+  <edges xmi:type="notation:Connector" xmi:id="_632WsFlXEeO32slThPBACA" type="4001" source="_hCy5sFlWEeO32slThPBACA" target="_DJddAFlXEeO32slThPBACA" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_6329wFlXEeO32slThPBACA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6329wVlXEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_6329wllXEeO32slThPBACA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6329w1lXEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_6329xFlXEeO32slThPBACA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6329xVlXEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_6329xllXEeO32slThPBACA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6329x1lXEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_633k0FlXEeO32slThPBACA" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_633k0VlXEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_633k0llXEeO32slThPBACA" type="6034">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_633k01lXEeO32slThPBACA" y="-20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_632WsVlXEeO32slThPBACA" fontName="Cantarell" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="SeminarEnroll.uml#_63ysUFlXEeO32slThPBACA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_632WsllXEeO32slThPBACA" points="[97, -29, -365, 76]$[459, -174, -3, -69]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_FP1eMFlYEeO32slThPBACA" type="4001" source="_DJddAFlXEeO32slThPBACA" target="_SNZWQFlXEeO32slThPBACA" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2FQFlYEeO32slThPBACA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2FQVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2FQllYEeO32slThPBACA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2FQ1lYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2FRFlYEeO32slThPBACA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2FRVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2FRllYEeO32slThPBACA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2FR1lYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2FSFlYEeO32slThPBACA" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2FSVlYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FP2sUFlYEeO32slThPBACA" type="6034">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FP2sUVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_FP1eMVlYEeO32slThPBACA" fontName="Cantarell" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="SeminarEnroll.uml#_FPzB8FlYEeO32slThPBACA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FP1eMllYEeO32slThPBACA" points="[103, 24, -336, -110]$[353, 47, -86, -87]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_LL4l4FlYEeO32slThPBACA" type="4001" source="_SNZWQFlXEeO32slThPBACA" target="_jABl8FlXEeO32slThPBACA" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL5M8FlYEeO32slThPBACA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL50AFlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL50AVlYEeO32slThPBACA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL50AllYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL50A1lYEeO32slThPBACA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL50BFlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL50BVlYEeO32slThPBACA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL50BllYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL50B1lYEeO32slThPBACA" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL50CFlYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LL6bEFlYEeO32slThPBACA" type="6034">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_LL6bEVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_LL4l4VlYEeO32slThPBACA" fontName="Cantarell" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="SeminarEnroll.uml#_LL1ikFlYEeO32slThPBACA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LL4l4llYEeO32slThPBACA" points="[0, 0, 326, -100]$[-295, 114, 31, 14]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LMK5wFlYEeO32slThPBACA" id="(0.0,0.7403314917127072)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LMK5wVlYEeO32slThPBACA" id="(0.7919463087248322,0.6418918918918919)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_RnohUFlYEeO32slThPBACA" type="4001" source="_SNZWQFlXEeO32slThPBACA" target="_hCy5sFlWEeO32slThPBACA" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpIYFlYEeO32slThPBACA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RnpIYVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpvcFlYEeO32slThPBACA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RnpvcVlYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpvcllYEeO32slThPBACA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Rnpvc1lYEeO32slThPBACA" y="-20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpvdFlYEeO32slThPBACA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RnpvdVlYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpvdllYEeO32slThPBACA" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Rnpvd1lYEeO32slThPBACA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RnpveFlYEeO32slThPBACA" type="6034">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RnpveVlYEeO32slThPBACA" y="-20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_RnohUVlYEeO32slThPBACA" fontName="Cantarell" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="SeminarEnroll.uml#_Rnk28FlYEeO32slThPBACA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_RnohUllYEeO32slThPBACA" points="[-7, -1, 729, 9]$[-725, -7, 11, 3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Rn7cQFlYEeO32slThPBACA" id="(0.040697674418604654,0.5303867403314917)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Rn8DUFlYEeO32slThPBACA" id="(0.9432989690721649,0.6353591160220995)"/>
+  </edges>
+</notation:Diagram>
