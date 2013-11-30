@@ -40,7 +40,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 «FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»
 	private JTextField tf_«attribute.name»;
 «ENDFOR»
-«clazz.name»Service service;
+private «clazz.name»Service service;
 	
 	public «clazz.name»EntryWindow(AbstractWindow parent, «clazz.name» currentEntity) {
 		super(parent, currentEntity);
