@@ -43,7 +43,7 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_Rnk28VlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_Rnk28FlYEeO32slThPBACA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rnk28llYEeO32slThPBACA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rnk281lYEeO32slThPBACA" value="*"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rnk281lYEeO32slThPBACA" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="__LlSMFlWEeO32slThPBACA" name="CheckEligibilityToEnroll"/>
     </packagedElement>
