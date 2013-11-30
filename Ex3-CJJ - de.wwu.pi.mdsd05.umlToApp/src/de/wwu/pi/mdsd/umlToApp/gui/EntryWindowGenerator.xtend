@@ -1,14 +1,23 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 import org.eclipse.uml2.uml.Class
+import org.eclipse.uml2.uml.Property
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.BasicEList
 
 class EntryWindowGenerator {
 	def generateEntryWindow(Class clazz)  {
-	val notMultivalued = clazz.attributes.filter[at | !at.multivalued]
-	val anyClass = clazz.attributes.filter[at | at.type instanceof Class]
-	val classMultivalued = clazz.attributes.filter[at | at.multivalued && at.type instanceof Class]
-	val classNotMultivalued = clazz.attributes.filter[at | !at.multivalued && at.type instanceof Class]
-	val notClassNotMultivalued = clazz.attributes.filter[at | !at.multivalued && !(at.type instanceof Class)]
+	var listOfAllAttributes=clazz.attributes.toSet
+	var EList<Property> listOfSuperAttributes=new BasicEList<Property>()
+	var boolean isGeneralized=clazz.generalizations.size>0
+	if(isGeneralized){
+	listOfSuperAttributes=clazz.generalizations.get(0).general.attributes
+	listOfAllAttributes.addAll(clazz.generalizations.get(0).general.attributes.toList)}
+	val notMultivalued = listOfAllAttributes.filter[at | !at.multivalued]
+	val anyClass = listOfAllAttributes.filter[at | at.type instanceof Class]
+	val classMultivalued = listOfAllAttributes.filter[at | at.multivalued && at.type instanceof Class]
+	val classNotMultivalued = listOfAllAttributes.filter[at | !at.multivalued && at.type instanceof Class]
+	val notClassNotMultivalued = listOfAllAttributes.filter[at | !at.multivalued && !(at.type instanceof Class)]
 	'''
 	
 package somePackageString.gui;
@@ -32,14 +41,14 @@ import somePackageString.data.«clazz.name»;
 import somePackageString.logic.«clazz.name»Service;
 import somePackageString.logic.ServiceInitializer;
 
-public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «FOR attribute : classMultivalued »
-				implements «attribute.type.name»ListingInterface	
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF classMultivalued.size>0»implements«ENDIF»  «FOR attribute : classMultivalued SEPARATOR ','»
+				 «attribute.type.name»ListingInterface	
 			«ENDFOR» {
 «FOR attribute : classMultivalued»
-	private JList<«attribute.type.name»> li_«attribute.type.name»s;
+	private JList<«attribute.type.name»> li_«attribute.name»s;
 «ENDFOR»
 «FOR attribute : classNotMultivalued» 
-	private JComboBox<«attribute.type.name»> cb_«attribute.type.name»;
+	private JComboBox<«attribute.type.name»> cb_«attribute.name»;
 «ENDFOR»
 «FOR attribute : notClassNotMultivalued»
 	private JTextField tf_«attribute.name»;
@@ -48,7 +57,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 	
 	public «clazz.name»EntryWindow(AbstractWindow parent, «clazz.name» currentEntity) {
 		super(parent, currentEntity);
-		service = ServiceInitializer.getProvider().get«clazz.name»Service();
+		service = ServiceInitializer.getProvider().get«clazz.name.toFirstUpper»Service();
 	}
 
 	@Override
@@ -60,7 +69,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		//set new Line
 		gridy = getNextGridYValue();
 		
-		JLabel lbl«attribute.name» = new JLabel("«attribute.name»*");
+		JLabel lbl«attribute.name» = new JLabel("«attribute.name.toFirstUpper»«IF attribute.lowerBound>0»*«ENDIF»");
 		GridBagConstraints gbc_lbl«attribute.name» = new GridBagConstraints();
 		gbc_lbl«attribute.name».insets = new Insets(0, 0, 5, 5);
 		gbc_lbl«attribute.name».anchor = GridBagConstraints.NORTHEAST;
@@ -68,7 +77,11 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		gbc_lbl«attribute.name».gridy = gridy;
 		getPanel().add(lbl«attribute.name», gbc_lbl«attribute.name»);
 		
-		tf_«attribute.name» = new JTextField(currentEntity.get«attribute.name»());
+		«IF attribute.type.name.equals("Date")»
+		tf_«attribute.name» = new JTextField(Util.DATE_TIME_FORMATTER.format(currentEntity.get«attribute.name.toFirstUpper»()));
+		«ELSE»
+		tf_«attribute.name» = new JTextField(currentEntity.get«attribute.name.toFirstUpper»()==null?"":currentEntity.get«attribute.name.toFirstUpper»().toString());
+		«ENDIF»
 		GridBagConstraints gbc_tf_«attribute.name» = new GridBagConstraints();
 		gbc_tf_«attribute.name».gridwidth = 3;
 		gbc_tf_«attribute.name».insets = new Insets(0, 0, 5, 5);
@@ -83,25 +96,25 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		//set new Line
 		gridy = getNextGridYValue();
 		
-		JLabel lbl«attribute.type.name» = new JLabel("«attribute.type.name»*");
-		GridBagConstraints gbc_lbl«attribute.type.name» = new GridBagConstraints();
-		gbc_lbl«attribute.type.name».insets = new Insets(0, 0, 5, 5);
-		gbc_lbl«attribute.type.name».anchor = GridBagConstraints.NORTHEAST;
-		gbc_lbl«attribute.type.name».gridx = 0;
-		gbc_lbl«attribute.type.name».gridy = gridy;
-		getPanel().add(lbl«attribute.type.name», gbc_lbl«attribute.type.name»);
+		JLabel lbl«attribute.name» = new JLabel("«attribute.name.toFirstUpper»«IF attribute.lowerBound>0»*«ENDIF»");
+		GridBagConstraints gbc_lbl«attribute.name» = new GridBagConstraints();
+		gbc_lbl«attribute.name».insets = new Insets(0, 0, 5, 5);
+		gbc_lbl«attribute.name».anchor = GridBagConstraints.NORTHEAST;
+		gbc_lbl«attribute.name».gridx = 0;
+		gbc_lbl«attribute.name».gridy = gridy;
+		getPanel().add(lbl«attribute.name», gbc_lbl«attribute.name»);
 		
-		cb_«attribute.type.name» = new JComboBox<«attribute.type.name»>(new Vector<>(ServiceInitializer.getProvider().get«attribute.type.name»Service().getAll()));
-		cb_«attribute.type.name».setSelectedItem(currentEntity.get«attribute.type.name»());
-		GridBagConstraints gbc_cb_«attribute.type.name» = new GridBagConstraints();
-		gbc_cb_«attribute.type.name».gridwidth = 3;
-		gbc_cb_«attribute.type.name».insets = new Insets(0, 0, 5, 5);
-		gbc_cb_«attribute.type.name».anchor = GridBagConstraints.NORTHWEST;
-		gbc_cb_«attribute.type.name».fill = GridBagConstraints.HORIZONTAL;
-		gbc_cb_«attribute.type.name».gridx = 1;
-		gbc_cb_«attribute.type.name».weighty = .2;
-		gbc_cb_«attribute.type.name».gridy = gridy;
-		getPanel().add(cb_«attribute.type.name», gbc_cb_«attribute.type.name»);
+		cb_«attribute.name» = new JComboBox<«attribute.type.name»>(new Vector<>(ServiceInitializer.getProvider().get«attribute.name.toFirstUpper»Service().getAll()));
+		cb_«attribute.name».setSelectedItem(currentEntity.get«attribute.name.toFirstUpper»());
+		GridBagConstraints gbc_cb_«attribute.name» = new GridBagConstraints();
+		gbc_cb_«attribute.name».gridwidth = 3;
+		gbc_cb_«attribute.name».insets = new Insets(0, 0, 5, 5);
+		gbc_cb_«attribute.name».anchor = GridBagConstraints.NORTHWEST;
+		gbc_cb_«attribute.name».fill = GridBagConstraints.HORIZONTAL;
+		gbc_cb_«attribute.name».gridx = 1;
+		gbc_cb_«attribute.name».weighty = .2;
+		gbc_cb_«attribute.name».gridy = gridy;
+		getPanel().add(cb_«attribute.name», gbc_cb_«attribute.name»);
 		«ENDFOR»
 	}
 	
@@ -112,24 +125,24 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		GridBagConstraints gbc_btn;
 		«FOR attribute : classMultivalued»
 		gridy = getNextGridYValue();
-		JLabel lbl«attribute.type.name»s = new JLabel("«attribute.type.name»s");
-		GridBagConstraints gbc_lbl«attribute.type.name»s = new GridBagConstraints();
-		gbc_lbl«attribute.type.name»s.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl«attribute.type.name»s.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lbl«attribute.type.name»s.gridx = 0;
-		gbc_lbl«attribute.type.name»s.gridy = gridy;
-		getPanel().add(lbl«attribute.type.name»s, gbc_lbl«attribute.type.name»s);
+		JLabel lbl«attribute.name»s = new JLabel("«attribute.name.toFirstUpper»s");
+		GridBagConstraints gbc_lbl«attribute.name»s = new GridBagConstraints();
+		gbc_lbl«attribute.name»s.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl«attribute.name»s.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lbl«attribute.name»s.gridx = 0;
+		gbc_lbl«attribute.name»s.gridy = gridy;
+		getPanel().add(lbl«attribute.name»s, gbc_lbl«attribute.name»s);
 		
-		li_«attribute.type.name»s = new JList<«attribute.type.name»>();
-		initializeLi«attribute.type.name»s();
-		GridBagConstraints gbc_li_«attribute.type.name»s = new GridBagConstraints();
-		gbc_li_«attribute.type.name»s.gridwidth = 3;
-		gbc_li_«attribute.type.name»s.insets = new Insets(0, 0, 5, 5);
-		gbc_li_«attribute.type.name»s.fill = GridBagConstraints.BOTH;
-		gbc_li_«attribute.type.name»s.gridx = 1;
-		gbc_li_«attribute.type.name»s.weighty = .5;
-		gbc_li_«attribute.type.name»s.gridy = gridy;
-		getPanel().add(li_«attribute.type.name»s, gbc_li_«attribute.type.name»s);
+		li_«attribute.name»s = new JList<«attribute.type.name»>();
+		initializeLi«attribute.name.toFirstUpper»s();
+		GridBagConstraints gbc_li_«attribute.name»s = new GridBagConstraints();
+		gbc_li_«attribute.name»s.gridwidth = 3;
+		gbc_li_«attribute.name»s.insets = new Insets(0, 0, 5, 5);
+		gbc_li_«attribute.name»s.fill = GridBagConstraints.BOTH;
+		gbc_li_«attribute.name»s.gridx = 1;
+		gbc_li_«attribute.name»s.weighty = .5;
+		gbc_li_«attribute.name»s.gridy = gridy;
+		getPanel().add(li_«attribute.name»s, gbc_li_«attribute.name»s);
 		
 		//Button for List Element
 		btn = new JButton("Add");
@@ -153,7 +166,7 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				«attribute.type.name» selected = «clazz.name»EntryWindow.this.li_«attribute.type.name»s.getSelectedValue();
+				«attribute.type.name» selected = «clazz.name»EntryWindow.this.li_«attribute.name»s.getSelectedValue();
 				if(selected == null)
 					Util.showNothingSelected();
 				else
@@ -170,26 +183,28 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 
 
 	«FOR attribute : classMultivalued»
-	public void initializeLi«attribute.type.name»s() {
-		li_«attribute.type.name»s.setListData(new Vector<«attribute.type.name»>(currentEntity.get«attribute.type.name»s()));
+	public void initializeLi«attribute.name.toFirstUpper»s() {
+		li_«attribute.name»s.setListData(new Vector<«attribute.type.name»>(currentEntity.get«attribute.name.toFirstUpper»s()));
 	}
 	
 	@Override
-	public void initialize«attribute.type.name»Listings() {
-		initializeLi«attribute.type.name»s();
+	public void initialize«attribute.name.toFirstUpper»Listings() {
+		initializeLi«attribute.name.toFirstUpper»s();
 	}
 	«ENDFOR»
 	
 	@Override
 	protected boolean saveAction() throws ParseException {
 		//Read values from different fields 
-		«FOR attribute : clazz.attributes»
-		«IF (attribute.type instanceof Class == false) && attribute.multivalued == false»
-		«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : «attribute.type.name».valueOf(tf_«attribute.name».getText());
-		«ENDIF»
-		«IF (attribute.type instanceof Class) && attribute.multivalued == false»
-		«attribute.type.name» «attribute.name» = cb_«attribute.type.name».getItemAt(cb_«attribute.type.name».getSelectedIndex());
-		«ENDIF»
+		«FOR attribute : notClassNotMultivalued»
+			«IF attribute.type.name.equals("Date")»
+				«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : Util.DATE_TIME_FORMATTER.parse(tf_«attribute.name».getText());
+			«ELSE»
+				«attribute.type.name» «attribute.name» = tf_«attribute.name».getText().isEmpty() ? null : «attribute.type.name».valueOf(tf_«attribute.name».getText());
+			«ENDIF»
+		«ENDFOR»
+		«FOR attribute : classNotMultivalued»
+			«attribute.type.name» «attribute.name» = cb_«attribute.name».getItemAt(cb_«attribute.name».getSelectedIndex());
 		«ENDFOR»
 		
 		//validation
@@ -202,14 +217,15 @@ public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «
 		}
 		
 		//persist
-		currentEntity = service.save«clazz.name»(currentEntity.getOid(), «FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»«ENDFOR»);
+		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute : notMultivalued SEPARATOR ','»«attribute.name»«ENDFOR»);
 		
-		//folgenden teil habe ich nicht so ganz gecheckt (ist aus dem BookEntryWindow kopiert)
 		//reload the listing in the parent window to make changes visible
-		if(getParent() instanceof MediumListingInterface)
-			((MediumListingInterface) getParent()).initializeMediumListings();
-		if(getParent() instanceof BookListingInterface)
-			((BookListingInterface) getParent()).initializeBookListings();
+		«IF isGeneralized»
+		if(getParent() instanceof «clazz.generalizations.get(0).general.name»ListingInterface)
+			(( «clazz.generalizations.get(0).general.name»ListingInterface) getParent()).initialize«clazz.generalizations.get(0).general.name»Listings();
+			«ENDIF»
+		if(getParent() instanceof «clazz.name»ListingInterface)
+			((«clazz.name»ListingInterface) getParent()).initialize«clazz.name»Listings();
 		return true;
 	}
 }

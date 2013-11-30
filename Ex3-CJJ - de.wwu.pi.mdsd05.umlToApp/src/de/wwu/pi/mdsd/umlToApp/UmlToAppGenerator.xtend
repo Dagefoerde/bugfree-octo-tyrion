@@ -36,7 +36,9 @@ class UmlToAppGenerator implements IGenerator {
 			fsa.generateFile('''somePackageString«File.separatorChar»data«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
 			fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»«clazz.name»ListWindow.java''', new ListWindowGenerator().generateListWindow(clazz))
 			fsa.generateFile('''somePackageString«File.separatorChar»logic«File.separatorChar»«clazz.name»Service.java''', new EntityServiceGenerator().generateEntityServiceClass(clazz))
-			fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»«clazz.name»EntryWindow.java''', new EntryWindowGenerator().generateEntryWindow(clazz))
+			if (!clazz.abstract)
+				fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»«clazz.name»EntryWindow.java''', new EntryWindowGenerator().generateEntryWindow(clazz))
+			
 		]
 		fsa.generateFile('''somePackageString«File.separatorChar»logic«File.separatorChar»ServiceInitializer.java''', new ServiceInitializerGenerator().generateServiceInitializer(model.allEntities))
 		fsa.generateFile('''somePackageString«File.separatorChar»gui«File.separatorChar»StartWindowClass.java''', new StartWindowClassGenerator().generateStartWindowClass(model.allEntities))

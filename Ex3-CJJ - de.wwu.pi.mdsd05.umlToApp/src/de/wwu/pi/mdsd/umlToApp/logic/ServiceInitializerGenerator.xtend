@@ -27,19 +27,19 @@ public class ServiceInitializer implements Serializable {
 	}
 	
 	«FOR clazz : entities»
-	private «clazz.name.toFirstUpper»Service «clazz.name.toFirstLower»Service;
+	private «clazz.name»Service «clazz.name»Service;
 	«ENDFOR»
 	
 	private ServiceInitializer() {
 		super();
 		«FOR clazz : entities»
-		this.«clazz.name.toFirstLower»Service = new «clazz.name.toFirstUpper»Service();
+		this.«clazz.name»Service = new «clazz.name»Service();
 		«ENDFOR»
 	}
 	
 	«FOR clazz : entities»
-	public «clazz.name.toFirstUpper»Service get«clazz.name.toFirstUpper»Service() {
-		return «clazz.name.toFirstLower»Service;
+	public «clazz.name»Service get«clazz.name.toFirstUpper»Service() {
+		return «clazz.name»Service;
 	}
 	
 	«ENDFOR»

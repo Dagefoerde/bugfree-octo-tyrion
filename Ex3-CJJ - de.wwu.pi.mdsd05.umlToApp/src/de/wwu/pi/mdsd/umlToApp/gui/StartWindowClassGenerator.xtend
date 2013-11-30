@@ -1,8 +1,6 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 
 import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.Model
-import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class StartWindowClassGenerator {
 	def generateStartWindowClass (Iterable<Class> entities) '''
@@ -35,7 +33,7 @@ public class StartWindowClass extends AbstractStartWindow {
 		«clazz.name»ListWindow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new «clazz.name.toFirstUpper»ListWindow(StartWindowClass.this).open();
+				new «clazz.name»ListWindow(StartWindowClass.this).open();
 			}
 		});
 		«ENDFOR»
