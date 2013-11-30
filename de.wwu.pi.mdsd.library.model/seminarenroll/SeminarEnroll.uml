@@ -41,6 +41,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_63xeMVlXEeO32slThPBACA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_63xeMllXEeO32slThPBACA" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Rnk28VlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_Rnk28FlYEeO32slThPBACA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rnk28llYEeO32slThPBACA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rnk281lYEeO32slThPBACA" value="*"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="__LlSMFlWEeO32slThPBACA" name="CheckEligibilityToEnroll"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_DJbAwFlXEeO32slThPBACA" name="Enrolled">
@@ -55,6 +59,10 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_FPxz0FlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_FPzB8FlYEeO32slThPBACA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FPxz0VlYEeO32slThPBACA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FPxz0llYEeO32slThPBACA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_63ysUVlXEeO32slThPBACA" name="student" type="_hCxEgFlWEeO32slThPBACA" association="_63ysUFlXEeO32slThPBACA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_63ysUllXEeO32slThPBACA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_63ysU1lXEeO32slThPBACA" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_Mzw_IFlXEeO32slThPBACA" name="getAverageMark"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_ODkaIFlXEeO32slThPBACA" name="getFinalMark"/>
@@ -92,6 +100,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rnjo0VlYEeO32slThPBACA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rnjo0llYEeO32slThPBACA" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FPzB8VlYEeO32slThPBACA" name="enrolled" type="_DJbAwFlXEeO32slThPBACA" association="_FPzB8FlYEeO32slThPBACA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FPzB8llYEeO32slThPBACA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FPzB81lYEeO32slThPBACA" value="*"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_f0wj0FlXEeO32slThPBACA" name="AddStudent"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_hC5x8FlXEeO32slThPBACA" name="DropStudent"/>
     </packagedElement>
@@ -120,31 +132,15 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_63ysUFlXEeO32slThPBACA" name="student_enrolled_1" memberEnd="_63ysUVlXEeO32slThPBACA _63xeMFlXEeO32slThPBACA">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_63ysUVlXEeO32slThPBACA" name="student" type="_hCxEgFlWEeO32slThPBACA" association="_63ysUFlXEeO32slThPBACA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_63ysUllXEeO32slThPBACA" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_63ysU1lXEeO32slThPBACA" value="1"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_FPzB8FlYEeO32slThPBACA" name="enrolled_seminar_1" memberEnd="_FPzB8VlYEeO32slThPBACA _FPxz0FlYEeO32slThPBACA">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_FPzB8VlYEeO32slThPBACA" name="enrolled" type="_DJbAwFlXEeO32slThPBACA" association="_FPzB8FlYEeO32slThPBACA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FPzB8llYEeO32slThPBACA" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FPzB81lYEeO32slThPBACA" value="*"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_LL1ikFlYEeO32slThPBACA" name="seminar_professor_1" memberEnd="_LL1ikVlYEeO32slThPBACA _LL07gFlYEeO32slThPBACA">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_LL1ikVlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_LL1ikFlYEeO32slThPBACA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LL1ikVlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_LL1ikFlYEeO32slThPBACA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LL1ikllYEeO32slThPBACA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LL1ik1lYEeO32slThPBACA" value="*"/>
-      </ownedEnd>
+      </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Rnk28FlYEeO32slThPBACA" name="seminar_student_1" memberEnd="_Rnk28VlYEeO32slThPBACA _Rnjo0FlYEeO32slThPBACA">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_Rnk28VlYEeO32slThPBACA" name="seminar" type="_SNW6AFlXEeO32slThPBACA" association="_Rnk28FlYEeO32slThPBACA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rnk28llYEeO32slThPBACA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rnk281lYEeO32slThPBACA" value="*"/>
-      </ownedEnd>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_63ysUFlXEeO32slThPBACA" name="student_enrolled_1" memberEnd="_63ysUVlXEeO32slThPBACA _63xeMFlXEeO32slThPBACA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_FPzB8FlYEeO32slThPBACA" name="enrolled_seminar_1" memberEnd="_FPzB8VlYEeO32slThPBACA _FPxz0FlYEeO32slThPBACA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_LL1ikFlYEeO32slThPBACA" name="seminar_professor_1" memberEnd="_LL1ikVlYEeO32slThPBACA _LL07gFlYEeO32slThPBACA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Rnk28FlYEeO32slThPBACA" name="seminar_student_1" memberEnd="_Rnk28VlYEeO32slThPBACA _Rnjo0FlYEeO32slThPBACA"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_REm0sFnEEeOI-83D-oPnGg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_REv-oFnEEeOI-83D-oPnGg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="model2.profile.uml#_UBKH4UAGEeOEfutd8tXuzQ"/>
