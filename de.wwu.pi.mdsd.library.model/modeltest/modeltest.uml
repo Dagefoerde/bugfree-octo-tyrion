@@ -116,6 +116,7 @@
         </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_hc7YUFlTEeO32slThPBACA" name="Balance" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_h58EcFlTEeO32slThPBACA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_h59SkFlTEeO32slThPBACA" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_h5-gsFlTEeO32slThPBACA">
@@ -155,4 +156,9 @@
   </uml:Model>
   <Profile:Entity xmi:id="_w_jgsFj7EeO32slThPBACA" base_Class="_rUKEIFj7EeO32slThPBACA"/>
   <Profile:Entity xmi:id="_sly_oFlSEeO32slThPBACA" base_Class="_n_6ZoFlSEeO32slThPBACA"/>
+  <Profile:Entity xmi:id="_lUenUFnEEeO-hrQ2jYFvzA" base_Class="_XfHrYFlTEeO32slThPBACA"/>
+  <Profile:Entity xmi:id="_mDx9UFnEEeO-hrQ2jYFvzA" base_Class="__kjvsFlSEeO32slThPBACA"/>
+  <Profile:Entity xmi:id="_nEvrEFnEEeO-hrQ2jYFvzA" base_Class="_P8N6oFlTEeO32slThPBACA"/>
+  <Profile:Entity xmi:id="_oANNwFnEEeO-hrQ2jYFvzA" base_Class="_y4mlAFlTEeO32slThPBACA"/>
+  <Profile:Entity xmi:id="_o07PQFnEEeO-hrQ2jYFvzA" base_Class="_0K6W4FlSEeO32slThPBACA"/>
 </xmi:XMI>

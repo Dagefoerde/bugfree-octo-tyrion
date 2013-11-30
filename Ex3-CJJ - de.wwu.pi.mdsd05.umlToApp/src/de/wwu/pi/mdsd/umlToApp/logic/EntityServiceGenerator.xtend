@@ -30,7 +30,7 @@ class EntityServiceGenerator {
 	«ENDIF»
 	
 	import somePackageString.data.«clazz.name»;
-	«FOR attribute: clazz.ownedAttributes.filter[a|a.type instanceof Class && !a.multivalued]»import somePackageString.data.«attribute.type.name»; 
+	«FOR attribute: listOfAllAttributes.filter[a|a.type instanceof Class && !a.multivalued]»import somePackageString.data.«attribute.type.name»; 
 	«ENDFOR»
 	
 	public class «clazz.name»Service extends AbstractServiceProvider<«clazz.name»> {
