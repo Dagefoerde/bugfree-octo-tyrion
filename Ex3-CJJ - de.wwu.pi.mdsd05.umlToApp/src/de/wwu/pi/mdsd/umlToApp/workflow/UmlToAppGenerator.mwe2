@@ -3,7 +3,7 @@ module de.wwu.pi.mdsd.umlToApp.workflow.UmlToAppGenerator
 import org.eclipse.emf.mwe.utils.*
 
 var targetDir = "src-gen"
-var modelPath = "../de.wwu.pi.mdsd.library.model"
+var modelPath = "../de.wwu.pi.mdsd.library.model/library"
 
 Workflow {
 	bean = StandaloneSetup {
