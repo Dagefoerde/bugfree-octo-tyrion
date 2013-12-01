@@ -57,12 +57,6 @@ public class ServiceInitializer implements Serializable {
 		return loanService;
 	}
 	
-	public CopyService getCopyService() {
-		if(copyService == null)
-			copyService = new CopyService();
-		return copyService;
-	}
-	
 	public MediumService getMediumService() {
 		if(mediumService == null)
 			mediumService = new MediumService();
