@@ -18,7 +18,7 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_t_U-YFlSEeO32slThPBACA" name="CalculateCharges"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_v5iBQFlSEeO32slThPBACA" name="CalculateInterest"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_0K6W4FlSEeO32slThPBACA" name="Branch">
+    <packagedElement xmi:type="uml:Class" xmi:id="_0K6W4FlSEeO32slThPBACA" name="branch">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2G_CAFlSEeO32slThPBACA" name="Manager" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Z-2gFlSEeO32slThPBACA" value="1"/>
