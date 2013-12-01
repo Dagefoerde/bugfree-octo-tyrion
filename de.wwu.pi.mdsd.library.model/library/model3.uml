@@ -103,7 +103,7 @@
         </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_W3diUDyzEeOM5LIeec6LGA" name="ReturnDate" visibility="private" type="_dW7gIDyzEeOM5LIeec6LGA" isUnique="false">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xv8pgDyzEeOM5LIeec6LGA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xv8pgDyzEeOM5LIeec6LGA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xv8pgTyzEeOM5LIeec6LGA" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xv8pgjyzEeOM5LIeec6LGA">
           <value xsi:nil="true"/>
