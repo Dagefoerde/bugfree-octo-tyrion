@@ -6,7 +6,7 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 class DataClassGenerator {
 	def generateDataClass(Class clazz) 
 	'''
-		package somePackageString.data;
+		package «PACKAGE_STRING».data;
 		
 		«IF clazz.generalizations.size==0»
 		import de.wwu.pi.mdsd.framework.data.AbstractDataClass;

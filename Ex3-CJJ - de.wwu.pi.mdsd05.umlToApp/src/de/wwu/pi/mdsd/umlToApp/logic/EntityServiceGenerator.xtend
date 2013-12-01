@@ -7,7 +7,7 @@ class EntityServiceGenerator {
 	
 	def generateEntityServiceClass(Class clazz) {
 	'''
-	package somePackageString.logic;
+	package «PACKAGE_STRING».logic;
 
 	«IF(clazz.ownedAttributes.exists[a|a.type.name.equals("Date")])»import java.util.Date; 
 	«ENDIF»
@@ -18,8 +18,8 @@ class EntityServiceGenerator {
 	import java.util.LinkedList;
 	«ENDIF»
 	
-	import somePackageString.data.«clazz.name»;
-	«FOR attribute: clazz.listOfAllAttributes.filter[a|a.type instanceof Class && !a.multivalued]»import somePackageString.data.«attribute.type.name»; 
+	import «PACKAGE_STRING».data.«clazz.name»;
+	«FOR attribute: clazz.listOfAllAttributes.filter[a|a.type instanceof Class && !a.multivalued]»import «PACKAGE_STRING».data.«attribute.type.name»; 
 	«ENDFOR»
 	
 	public class «clazz.name»Service extends AbstractServiceProvider<«clazz.name»> {

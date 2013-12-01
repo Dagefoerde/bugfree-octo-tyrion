@@ -2,9 +2,11 @@ package de.wwu.pi.mdsd.umlToApp.logic
 
 import org.eclipse.uml2.uml.Class
 
+import static de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+
 class ServiceInitializerGenerator {
 	def generateServiceInitializer(Iterable<Class> entities) '''
-package somePackageString.logic;
+package «PACKAGE_STRING».logic;
 
 import java.io.File;
 import java.io.FileInputStream;

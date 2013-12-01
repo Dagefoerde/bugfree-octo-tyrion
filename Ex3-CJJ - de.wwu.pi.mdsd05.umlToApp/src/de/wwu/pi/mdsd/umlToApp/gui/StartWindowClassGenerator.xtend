@@ -2,9 +2,11 @@ package de.wwu.pi.mdsd.umlToApp.gui
 
 import org.eclipse.uml2.uml.Class
 
+import static de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+
 class StartWindowClassGenerator {
 	def generateStartWindowClass (Iterable<Class> entities) '''
-package somePackageString.gui;
+package «PACKAGE_STRING».gui;
 	
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -16,7 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.wwu.pi.mdsd.framework.gui.AbstractStartWindow;
-import somePackageString.logic.ServiceInitializer;	
+import «PACKAGE_STRING».logic.ServiceInitializer;	
 
 public class StartWindowClass extends AbstractStartWindow {
 	

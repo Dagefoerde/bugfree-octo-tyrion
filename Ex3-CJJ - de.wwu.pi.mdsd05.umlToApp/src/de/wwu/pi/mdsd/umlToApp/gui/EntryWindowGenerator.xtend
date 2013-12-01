@@ -7,7 +7,7 @@ class EntryWindowGenerator {
 	def generateEntryWindow(Class clazz)  {
 	'''
 	
-package somePackageString.gui;
+package «PACKAGE_STRING».gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -21,12 +21,12 @@ import javax.swing.*;
 import de.wwu.pi.mdsd.framework.gui.*;
 import de.wwu.pi.mdsd.framework.logic.ValidationException;
 
-import somePackageString.data.«clazz.name»;
+import «PACKAGE_STRING».data.«clazz.name»;
 «FOR attribute : clazz.listOfClassAttributes»
-				import somePackageString.data.«attribute.type.name»;	
+				import «PACKAGE_STRING».data.«attribute.type.name»;	
 			«ENDFOR»
-import somePackageString.logic.«clazz.name»Service;
-import somePackageString.logic.ServiceInitializer;
+import «PACKAGE_STRING».logic.«clazz.name»Service;
+import «PACKAGE_STRING».logic.ServiceInitializer;
 
 public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF clazz.listOfMultivaluedClassAttributes.size>0»implements«ENDIF»  «FOR attribute : clazz.listOfMultivaluedClassAttributes SEPARATOR ','»
 				 «attribute.type.name»ListingInterface	

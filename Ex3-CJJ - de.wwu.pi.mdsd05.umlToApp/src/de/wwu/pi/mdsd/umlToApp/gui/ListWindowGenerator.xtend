@@ -7,16 +7,16 @@ class ListWindowGenerator {
 	def generateListWindow(Class clazz) 
 		
 	 '''
-package somePackageString.gui;
+package «PACKAGE_STRING».gui;
 
 import java.util.Vector;
 
 import de.wwu.pi.mdsd.framework.gui.AbstractListWindow;
 import de.wwu.pi.mdsd.framework.gui.AbstractWindow;
-import somePackageString.logic.ServiceInitializer;
-import somePackageString.data.«clazz.name»;
+import «PACKAGE_STRING».logic.ServiceInitializer;
+import «PACKAGE_STRING».data.«clazz.name»;
 «FOR ext:clazz.listOfExtendingClasses»
-import somePackageString.data.«ext.name»;
+	import «PACKAGE_STRING».data.«ext.name»;
 «ENDFOR»
 	
 public class «clazz.name»ListWindow extends AbstractListWindow<«clazz.name»> implements «clazz.name»ListingInterface{

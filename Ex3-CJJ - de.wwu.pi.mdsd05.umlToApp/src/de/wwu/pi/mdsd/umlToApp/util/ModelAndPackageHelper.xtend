@@ -6,10 +6,11 @@ import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
-import java.util.List
 import java.util.Set
 
 class ModelAndPackageHelper {
+	public static val PACKAGE_STRING = "de.wwu.pi.mdsd05.library.generated"
+	
 	def static allEntities(Model model) {
 		model.allOwnedElements.filter(typeof(Class)).filter[c | c.appliedStereotypes.exists["Entity".equals(name)]]
 		//model.allOwnedElements.filter(typeof(Class)).filter[ it.appliedStereotypes.exists["Entity".equals(name)]]
