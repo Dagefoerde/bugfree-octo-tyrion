@@ -28,19 +28,20 @@ import «PACKAGE_STRING».data.«clazz.name»;
 import «PACKAGE_STRING».logic.«clazz.name»Service;
 import «PACKAGE_STRING».logic.ServiceInitializer;
 
-public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF clazz.listOfMultivaluedClassAttributes.size>0»implements«ENDIF»  «FOR attribute : clazz.listOfMultivaluedClassAttributes SEPARATOR ','»
-				 «attribute.type.name»ListingInterface	
-			«ENDFOR» {
-«FOR attribute : clazz.listOfMultivaluedClassAttributes»
+public class «clazz.name»EntryWindow extends AbstractEntryWindow<«clazz.name»> «IF clazz.listOfMultivaluedClassAttributes.size>0»implements«ENDIF» «
+	FOR attribute : clazz.listOfMultivaluedClassAttributes SEPARATOR ', '»«
+		attribute.type.name»ListingInterface«
+	ENDFOR» {
+	«FOR attribute : clazz.listOfMultivaluedClassAttributes»
 	private JList<«attribute.type.name»> li_«attribute.name»s;
-«ENDFOR»
-«FOR attribute : clazz.listOfNotMultivaluedClassAttributes» 
+	«ENDFOR»
+	«FOR attribute : clazz.listOfNotMultivaluedClassAttributes» 
 	private JComboBox<«attribute.type.name»> cb_«attribute.name»;
-«ENDFOR»
-«FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»
+	«ENDFOR»
+	«FOR attribute : clazz.listOfNotMultivaluedNonClassAttributes»
 	private JTextField tf_«attribute.name»;
-«ENDFOR»
-private «clazz.name»Service service;
+	«ENDFOR»
+	private «clazz.name»Service service;
 	
 	public «clazz.name»EntryWindow(AbstractWindow parent, «clazz.name» currentEntity) {
 		super(parent, currentEntity);
@@ -204,7 +205,7 @@ private «clazz.name»Service service;
 		}
 		
 		//persist
-		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute : clazz.listOfNotMultivaluedAttributes SEPARATOR ','»«attribute.name»«ENDFOR»);
+		currentEntity = service.save«clazz.name.toFirstUpper»(currentEntity.getOid(), «FOR attribute : clazz.listOfNotMultivaluedAttributes SEPARATOR ', '»«attribute.name»«ENDFOR»);
 		
 		//reload the listing in the parent window to make changes visible
 		«IF clazz.isGeneralized»
@@ -222,5 +223,5 @@ private «clazz.name»Service service;
 	'''
 	
 	}
-	}
+}
 	
