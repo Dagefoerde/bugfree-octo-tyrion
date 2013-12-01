@@ -31,7 +31,7 @@ class EntityServiceGenerator {
 	
 		public boolean validate«clazz.name.toFirstUpper»(«FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued] SEPARATOR', '
 			»«attribute.type.name» «attribute.name»«ENDFOR») throws ValidationException {
-			«FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued]»
+			«FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued && a.lowerBound>0]»
 			if(«attribute.name» == null)
 				throw new ValidationException("«attribute.name»", "cannot be empty");
 			«ENDFOR» 
