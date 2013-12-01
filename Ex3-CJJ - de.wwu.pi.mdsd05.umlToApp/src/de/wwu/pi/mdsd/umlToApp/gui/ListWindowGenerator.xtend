@@ -42,7 +42,7 @@ public class «clazz.name»ListWindow extends AbstractListWindow<«clazz.name»> imp
 		}
 		«FOR ext:clazz.listOfExtendingClasses»
 			if(entity instanceof «ext.name»)
-			new «ext.name»EntryWindow(this, («ext.name») entity).open();
+				new «ext.name»EntryWindow(this, («ext.name») entity).open();
 			«ENDFOR»
 		«ENDIF»
 	}

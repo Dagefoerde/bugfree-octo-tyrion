@@ -20,8 +20,8 @@ class DataClassGenerator {
 	«ENDIF»
 	
 	public class «clazz.name» extends «
-		IF clazz.generalizations.size>0»
-		«clazz.generalizations.get(0).general.name»«
+		IF clazz.generalizations.size>0»«
+		clazz.generalizations.get(0).general.name»«
 		ELSE»AbstractDataClass«
 		ENDIF» {
 		«FOR attribute : clazz.ownedAttributes »

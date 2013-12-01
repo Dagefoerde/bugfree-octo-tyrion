@@ -52,16 +52,16 @@ class EntityServiceGenerator {
 			return elem;
 		}
 		
-	«IF clazz.listOfExtendingClasses.size>0»
-	@Override
-	public Collection<«clazz.name»> getAll() {
-		Collection<«clazz.name»> result = new LinkedList<«clazz.name»>();
-		«FOR ext:clazz.listOfExtendingClasses»
-		result.addAll(ServiceInitializer.getProvider().get«ext.name.toFirstUpper»Service().getAll());
-		«ENDFOR»
-		return result;
-	}	
-	«ENDIF»
+		«IF clazz.listOfExtendingClasses.size>0»
+		@Override
+		public Collection<«clazz.name»> getAll() {
+			Collection<«clazz.name»> result = new LinkedList<«clazz.name»>();
+			«FOR ext:clazz.listOfExtendingClasses»
+			result.addAll(ServiceInitializer.getProvider().get«ext.name.toFirstUpper»Service().getAll());
+			«ENDFOR»
+			return result;
+		}	
+		«ENDIF»
 	
 	
 	}
