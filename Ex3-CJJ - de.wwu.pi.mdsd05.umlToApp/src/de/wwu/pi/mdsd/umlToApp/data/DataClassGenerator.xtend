@@ -80,13 +80,13 @@ class DataClassGenerator {
 			«ENDIF»«ENDFOR»
 		}
 	
-	«FOR attribute:clazz.listOfAllAttributes.filter[att|att.type instanceof Class && att.multivalued==false]»
+		«FOR attribute:clazz.listOfAllAttributes.filter[att|att.type instanceof Class && att.multivalued==false]»
 		public «clazz.name»(«attribute.type.name» «attribute.name») {
 			super();
 			this.«attribute.name»=«attribute.name»;
 		}
 		
-	«ENDFOR»
+		«ENDFOR»
 		@Override
 		public String toString() {
 			return (""
@@ -95,7 +95,10 @@ class DataClassGenerator {
 			«ENDIF»
 			«ENDIF»
 			«FOR attribute:clazz.attributes.filter(att|att.multivalued==false) SEPARATOR ' + "," '»
-			+ get«attribute.name.toFirstUpper»()
+			+ «
+			IF attribute.lowerBound == 0»( get«attribute.name.toFirstUpper»() == null ? "-" : «ENDIF
+			»get«attribute.name.toFirstUpper»()«
+			IF attribute.lowerBound == 0» )«ENDIF»
 			«ENDFOR»
 			);
 		}
