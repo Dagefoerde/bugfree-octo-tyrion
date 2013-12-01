@@ -212,7 +212,7 @@ private «clazz.name»Service service;
 			(( «clazz.generalizations.get(0).general.name»ListingInterface) getParent()).initialize«clazz.generalizations.get(0).general.name»Listings();
 			«ENDIF»
 		if(getParent() instanceof «clazz.name»ListingInterface)
-			((«clazz.name»ListingInterface) getParent()).initialize«clazz.name»Listings();
+			((«clazz.name»ListingInterface) getParent()).initialize«clazz.name.toFirstUpper»Listings();
 		return true;
 	}
 }
