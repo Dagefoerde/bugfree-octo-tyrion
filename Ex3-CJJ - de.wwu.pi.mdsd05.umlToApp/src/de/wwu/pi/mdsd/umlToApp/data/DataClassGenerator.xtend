@@ -68,19 +68,18 @@ class DataClassGenerator {
 		}
 		
 		public «clazz.name» (
-			«FOR attribute : clazz.listOfAllAttributes.filter[att|att.multivalued==false] SEPARATOR ','»
+			«FOR attribute : clazz.listOfNotMultivaluedAttributes SEPARATOR ','»
 			«attribute.type.name» «attribute.name»
 «ENDFOR»
 		) {
 			super(«FOR attribute : clazz.listOfSuperAttributes.filter[att|att.multivalued==false] SEPARATOR ','»«attribute.name»«ENDFOR»);
 			«FOR attribute : clazz.attributes»
-			«IF attribute.type instanceof Class && attribute.multivalued»
-			«ELSE»
+			«IF !(attribute.type instanceof Class && attribute.multivalued)»
 			this.«attribute.name»=«attribute.name»;
 			«ENDIF»«ENDFOR»
 		}
 	
-		«FOR attribute:clazz.listOfAllAttributes.filter[att|att.type instanceof Class && att.multivalued==false]»
+		«FOR attribute:clazz.listOfNotMultivaluedClassAttributes»
 		public «clazz.name»(«attribute.type.name» «attribute.name») {
 			super();
 			this.«attribute.name»=«attribute.name»;
