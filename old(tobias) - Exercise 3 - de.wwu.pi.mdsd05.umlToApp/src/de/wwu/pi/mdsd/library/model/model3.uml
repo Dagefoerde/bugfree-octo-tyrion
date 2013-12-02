@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_UBKH4EAGEeOEfutd8tXuzQ/7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_UBKH4EAGEeOEfutd8tXuzQ/7 model2.profile.uml#_UBKH4UAGEeOEfutd8tXuzQ">
+  <uml:Model xmi:id="_s1dyEDywEeOM5LIeec6LGA" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_s1dyETywEeOM5LIeec6LGA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ueYQoDywEeOM5LIeec6LGA" name="Medium" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_bdlDwDyxEeOM5LIeec6LGA" name="Name" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cNkWQDyxEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cNuHQDyxEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_cN3RMDyxEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_YOX-QEXwEeOBcdDMLAib-Q" name="MediumID" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aGU-YEXwEeOBcdDMLAib-Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aGU-YUXwEeOBcdDMLAib-Q" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_aGU-YkXwEeOBcdDMLAib-Q">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UUMJwDyyEeOM5LIeec6LGA" name="copy" type="_IK6DwDyyEeOM5LIeec6LGA" association="_UUMJwzyyEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UUMJwTyyEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UUMJwjyyEeOM5LIeec6LGA" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_kg0AQEXwEeOBcdDMLAib-Q" name="findByMediumID">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_pxq14EXwEeOBcdDMLAib-Q" name="MediumID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_z3tRwEXwEeOBcdDMLAib-Q" type="_ueYQoDywEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_opswUEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_5HoJEEY5EeO2KYUuAvhUmA" name="delete"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SBBCsDyxEeOM5LIeec6LGA" name="Book">
+      <generalization xmi:type="uml:Generalization" xmi:id="_XKWUADyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ykTHsDyxEeOM5LIeec6LGA" name="Author" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y72FADyxEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y72FATyxEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y72FAjyxEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_193rkDyxEeOM5LIeec6LGA" name="ISBN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2h8B8DyxEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2h8B8TyxEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_2h8B8jyxEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_DkteED8KEeOEtNXXJDDwuw" name="findByISBN">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qF59AD_8EeOttPqF4sHiIg" name="ISBN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_tIfkQD_8EeOttPqF4sHiIg" type="_SBBCsDyxEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_yYV_4EY0EeO2KYUuAvhUmA" name="persist"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_S8w5QDyxEeOM5LIeec6LGA" name="CD">
+      <generalization xmi:type="uml:Generalization" xmi:id="_WlYlwDyxEeOM5LIeec6LGA" general="_ueYQoDywEeOM5LIeec6LGA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_lSvyEDyxEeOM5LIeec6LGA" name="Interpreter" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rU2ecDyxEeOM5LIeec6LGA" name="ASIN" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_roOtcDyxEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_roOtcTyxEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_roX3YDyxEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6fNSID8JEeOEtNXXJDDwuw" name="findByASIN">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_2UhO8D_8EeOttPqF4sHiIg" name="ASIN" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7aqCUD_8EeOttPqF4sHiIg" type="_S8w5QDyxEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xwHiQEY0EeO2KYUuAvhUmA" name="persist"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_fmFxQDyxEeOM5LIeec6LGA" name="String"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vBfvUDyxEeOM5LIeec6LGA" name="Integer"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_IK6DwDyyEeOM5LIeec6LGA" name="Copy">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LFCSkDyyEeOM5LIeec6LGA" name="InventoryNumber" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LVRuADyyEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LVa38DyyEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_LVa38TyyEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2Sx5sDyzEeOM5LIeec6LGA" name="loan" type="_Cl8w8DyzEeOM5LIeec6LGA" association="_2Sx5szyzEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Sx5sTyzEeOM5LIeec6LGA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Sx5sjyzEeOM5LIeec6LGA" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UUMJxDyyEeOM5LIeec6LGA" name="medium" type="_ueYQoDywEeOM5LIeec6LGA" association="_UUMJwzyyEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UUMJxTyyEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UUMJxjyyEeOM5LIeec6LGA" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rkPmwEXwEeOBcdDMLAib-Q" name="findByInventoryNumber">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urLigEXwEeOBcdDMLAib-Q" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_w3Ag4EXwEeOBcdDMLAib-Q" name="" type="_IK6DwDyyEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_qgSegEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_59mHwEY5EeO2KYUuAvhUmA" name="delete"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UUMJwzyyEeOM5LIeec6LGA" name="" memberEnd="_UUMJxDyyEeOM5LIeec6LGA _UUMJwDyyEeOM5LIeec6LGA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Cl8w8DyzEeOM5LIeec6LGA" name="Loan">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IQq4EDyzEeOM5LIeec6LGA" name="IssueDate" visibility="private" type="_dW7gIDyzEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ijl0EDyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ijl0ETyzEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Ijl0EjyzEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_W3diUDyzEeOM5LIeec6LGA" name="ReturnDate" visibility="private" type="_dW7gIDyzEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xv8pgDyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xv8pgTyzEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xv8pgjyzEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_21WbQDyzEeOM5LIeec6LGA" name="user" type="_EA2osDyzEeOM5LIeec6LGA" association="_21WbQzyzEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_21WbQTyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_21WbQjyzEeOM5LIeec6LGA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2Sx5tDyzEeOM5LIeec6LGA" name="copy" type="_IK6DwDyyEeOM5LIeec6LGA" association="_2Sx5szyzEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Sx5tTyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Sx5tjyzEeOM5LIeec6LGA" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6_ZtMEXwEeOBcdDMLAib-Q" name="findByInventoryNumberAndUserIDAndIssueDate">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_CRxHkEXxEeOBcdDMLAib-Q" name="InventoryNumber" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GI8NcEXxEeOBcdDMLAib-Q" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IbW8AEXxEeOBcdDMLAib-Q" name="IssueDate" type="_dW7gIDyzEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_NsLVYEXxEeOBcdDMLAib-Q" type="_Cl8w8DyzEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rpKyIEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6nbH4EY5EeO2KYUuAvhUmA" name="delete"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EA2osDyzEeOM5LIeec6LGA" name="User">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pLprYDyzEeOM5LIeec6LGA" name="Name" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pfd_QDyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pfd_QTyzEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_pfd_QjyzEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uVItsDyzEeOM5LIeec6LGA" name="Address" visibility="private" type="_fmFxQDyxEeOM5LIeec6LGA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u0SH0DyzEeOM5LIeec6LGA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u0bRwDyzEeOM5LIeec6LGA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_u0bRwTyzEeOM5LIeec6LGA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_y1aZcELeEeO67a7r-Wk3iw" name="UserID" visibility="private" type="_vBfvUDyxEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zQsAMELeEeO67a7r-Wk3iw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zQsAMULeEeO67a7r-Wk3iw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zQsAMkLeEeO67a7r-Wk3iw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_21WbRDyzEeOM5LIeec6LGA" name="loan" type="_Cl8w8DyzEeOM5LIeec6LGA" association="_21WbQzyzEeOM5LIeec6LGA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_21WbRTyzEeOM5LIeec6LGA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_21WbRjyzEeOM5LIeec6LGA" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_OqkQQEXxEeOBcdDMLAib-Q" name="findByUserID">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ss7ScEXxEeOBcdDMLAib-Q" name="UserID" type="_vBfvUDyxEeOM5LIeec6LGA"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_UUcC0EXxEeOBcdDMLAib-Q" type="_EA2osDyzEeOM5LIeec6LGA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_sjXJgEY0EeO2KYUuAvhUmA" name="persist"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7TMBsEY5EeO2KYUuAvhUmA" name="delete"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_dW7gIDyzEeOM5LIeec6LGA" name="Date"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_2Sx5szyzEeOM5LIeec6LGA" name="" memberEnd="_2Sx5tDyzEeOM5LIeec6LGA _2Sx5sDyzEeOM5LIeec6LGA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_21WbQzyzEeOM5LIeec6LGA" name="" memberEnd="_21WbRDyzEeOM5LIeec6LGA _21WbQDyzEeOM5LIeec6LGA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dN8GwDy0EeOM5LIeec6LGA" name="LibraryManagement"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-k_u4DywEeOM5LIeec6LGA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-lca0DywEeOM5LIeec6LGA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="model2.profile.uml#_UBKH4UAGEeOEfutd8tXuzQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="model2.profile.uml#_1PbtsDywEeOM5LIeec6LGA"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:Entity xmi:id="_LwTSkDyxEeOM5LIeec6LGA" base_Class="_ueYQoDywEeOM5LIeec6LGA"/>
+  <Profile:Entity xmi:id="_CYY6ED74EeOr5un0JHVLfA" base_Class="_IK6DwDyyEeOM5LIeec6LGA"/>
+  <Profile:Entity xmi:id="_Grxa0D74EeOr5un0JHVLfA" base_Class="_SBBCsDyxEeOM5LIeec6LGA"/>
+  <Profile:Entity xmi:id="_HcWjMD74EeOr5un0JHVLfA" base_Class="_S8w5QDyxEeOM5LIeec6LGA"/>
+  <Profile:Entity xmi:id="_oU9QkD77EeOr5un0JHVLfA" base_Class="_Cl8w8DyzEeOM5LIeec6LGA"/>
+  <Profile:Entity xmi:id="_qDrcMD77EeOr5un0JHVLfA" base_Class="_EA2osDyzEeOM5LIeec6LGA"/>
+  <Profile:find xmi:id="_CLdMID8KEeOEtNXXJDDwuw" base_Operation="_6fNSID8JEeOEtNXXJDDwuw"/>
+  <Profile:find xmi:id="_G2IykD8KEeOEtNXXJDDwuw" base_Operation="_DkteED8KEeOEtNXXJDDwuw"/>
+  <Profile:PrimaryKey xmi:id="_3dkQUELeEeO67a7r-Wk3iw" base_Property="_y1aZcELeEeO67a7r-Wk3iw"/>
+  <Profile:PrimaryKey xmi:id="_GY2j4ELfEeO67a7r-Wk3iw" base_Property="_IQq4EDyzEeOM5LIeec6LGA"/>
+  <Profile:PrimaryKey xmi:id="_InnhgELfEeO67a7r-Wk3iw" base_Property="_LFCSkDyyEeOM5LIeec6LGA"/>
+  <Profile:PrimaryKey xmi:id="_bvO14EXwEeOBcdDMLAib-Q" base_Property="_YOX-QEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="_-i3M4EXwEeOBcdDMLAib-Q" base_Operation="_6_ZtMEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="__H2JQEXwEeOBcdDMLAib-Q" base_Operation="_rkPmwEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="__w-l0EXwEeOBcdDMLAib-Q" base_Operation="_kg0AQEXwEeOBcdDMLAib-Q"/>
+  <Profile:find xmi:id="_QT8o4EXxEeOBcdDMLAib-Q" base_Operation="_OqkQQEXxEeOBcdDMLAib-Q"/>
+</xmi:XMI>
