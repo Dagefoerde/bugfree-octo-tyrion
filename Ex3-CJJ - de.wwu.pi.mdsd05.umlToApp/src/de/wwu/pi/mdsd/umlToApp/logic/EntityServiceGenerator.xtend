@@ -19,7 +19,7 @@ class EntityServiceGenerator {
 	«ENDIF»
 	
 	import «PACKAGE_STRING».data.«clazz.name»;
-	«FOR attribute: clazz.listOfAllAttributes.filter[a|a.type instanceof Class && !a.multivalued]»import «PACKAGE_STRING».data.«attribute.type.name»; 
+	«FOR attribute: clazz.listOfNotMultivaluedClassAttributes»import «PACKAGE_STRING».data.«attribute.type.name»; 
 	«ENDFOR»
 	
 	public class «clazz.name»Service extends AbstractServiceProvider<«clazz.name»> {
@@ -29,9 +29,9 @@ class EntityServiceGenerator {
 		}
 		
 	
-		public boolean validate«clazz.name.toFirstUpper»(«FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued] SEPARATOR', '
+		public boolean validate«clazz.name.toFirstUpper»(«FOR attribute: clazz.listOfNotMultivaluedAttributes SEPARATOR', '
 			»«attribute.type.name» «attribute.name»«ENDFOR») throws ValidationException {
-			«FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued && a.lowerBound>0]»
+			«FOR attribute: clazz.listOfNotMultivaluedAttributes.filter[a|a.lowerBound>0]»
 			if(«attribute.name» == null)
 				throw new ValidationException("«attribute.name»", "cannot be empty");
 			«ENDFOR» 
@@ -40,12 +40,12 @@ class EntityServiceGenerator {
 	
 	
 		
-		public «clazz.name» save«clazz.name.toFirstUpper»(int id, «FOR attribute: clazz.listOfAllAttributes.filter[a|!a.multivalued] SEPARATOR ', '
+		public «clazz.name» save«clazz.name.toFirstUpper»(int id, «FOR attribute: clazz.listOfNotMultivaluedAttributes SEPARATOR ', '
 			»«attribute.type.name» «attribute.name»«ENDFOR»){
 			«clazz.name» elem = getByOId(id);
 			if(elem == null) elem = new «clazz.name»();
 			
-			«FOR attribute : clazz.listOfAllAttributes.filter[a|!a.multivalued]»
+			«FOR attribute : clazz.listOfNotMultivaluedAttributes»
 			elem.set«attribute.name.toFirstUpper»(«attribute.name»);
 			«ENDFOR»
 			persist(elem);
