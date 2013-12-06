@@ -1,0 +1,44 @@
+grammar de.wwu.pi.mdsd.Group05dsl with org.eclipse.xtext.common.Terminals
+
+generate group05dsl "http://www.wwu.de/pi/mdsd/Group05dsl"
+
+Model:
+	entities+=Entity*
+	uis+=UI*
+	;
+
+
+QualifiedName:
+	ID ('.' ID)
+;
+
+Entity:
+	'Name' name=QualifiedName '!'
+	properties+=Property*
+	;
+
+Property:
+	Attribute | Reference
+;
+
+Attribute:
+	'Name' name=QualifiedName
+;
+
+Reference:
+	'Name' name=QualifiedName
+;
+	
+////////////////////////////////////////----UI----///////////////////////////////////////////
+
+UI:
+	ListWindow | EntryWindow
+;
+
+ListWindow:
+		'Name' name=QualifiedName'!'
+;
+
+EntryWindow:
+		'Name' name=QualifiedName'!'
+;
