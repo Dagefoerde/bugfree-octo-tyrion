@@ -4,40 +4,45 @@ generate group05dsl "http://www.wwu.de/pi/mdsd/Group05dsl"
 
 Model:
 	package=Package
-	entitytypes+=Entitytype*
-	uiwindows+=UIWindow*
-	;
+	entitytypes+=Entitytype+
+	uiwindows+=UIWindow+
+;
+
+
 
 Package:
 	'Package' name=QualifiedName
 ;
 
 QualifiedName:
-	ID ('.' ID)
+	ID ('.' ID)*
 ;
 
 Entitytype:
-	'Entitytype' name=ID (supertype=[Entitytype])?
-	properties+=Property*
-	;
+	'Entitytype' name=ID ('extends' supertype=[Entitytype])?
+	// abstract
+	properties+=Property+
+;
 
 Property:
 	Attribute | Reference
 ;
 
 Attribute:
-	'Attribute' type=BasicType name=ID (optional='optional')?
+	'Attribute' 
+	type=BasicType name=ID
+	(optional='optional')?
 ;
 
-BasicType:
-	'String' |
-	'Integer' |
-	'Date'
+enum BasicType:
+	STRING = 'String' |
+	INTEGER = 'Integer' |
+	DATE = 'Date'
 ;
 
 Reference:
-	'Reference' name=ID 
-	'references' references=[Entitytype]
+	'Reference'
+	references=[Entitytype] name=ID 
 	(multiplicity='multiple')?
 ;
 	
@@ -48,22 +53,40 @@ UIWindow:
 ;
 
 ListWindow:
-		'ListWindow' name=ID 'for' entitytype=[Entitytype]
-		options=WindowOptions
+		'ListWindow' name=ID 'for' entitytype=[Entitytype] 
+		'{'
+			options=WindowOptions
+		'}'
 ;
 
 EntryWindow:
-		'EntryWindow' name=ID 'for' entitytype=[Entitytype]
-		options=WindowOptions
+		'EntryWindow' name=ID 'for' entitytype=[Entitytype]  
 		'{'
-			elements += UIElement*
+			options=WindowOptions
+			elements += UIElement+
 		'}'
 ;
 
 UIElement:
-	('position' position=Position) &
-	('size' size=Size)
 	(Label | Field | Button)
+	((position=Position) & 
+	(size=Size))
+;
+
+Label:
+	'Label' name=ID (text=STRING)?
+;
+
+Field: 
+	'Field' property=[Property];
+	
+Button:
+	'Button' inscription=Inscription; 
+
+enum Inscription:
+	CREATE_EDIT = 'Create/Edit' | //default
+	DELETE = 'Delete' |
+	CANCEL = 'Cancel'
 ;
 
 Size:
@@ -77,6 +100,6 @@ Position:
 ;
 
 WindowOptions:
-	'size' size=Size
+	size=Size
 	('title' title=STRING)?
 ;
