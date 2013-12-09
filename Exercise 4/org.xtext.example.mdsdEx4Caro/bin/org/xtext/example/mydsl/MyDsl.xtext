@@ -1,0 +1,72 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	classes += Class+;
+	
+Class:
+	Entity | UI ;
+	
+Entity:
+	'Entity' name = ID  ('extends' superType = [Entity])? '{'
+		'Name' fullName=STRING
+		properties += Property*
+		'}';
+	
+Property:
+	Attribute | Reference;
+	
+Attribute:
+	Text | Integer | Date ;
+	
+Text: 
+	'String' property = STRING;
+
+Integer:
+	'Int' property=INT;
+
+Date:
+	'Date' property = Date;	
+
+Reference:
+	entity += Entity+;
+
+	
+UI:
+	listwindow += ListWindow+
+	entrywindow += EntryWindow+;
+
+ListWindow:
+	'Window' name=ID '{' ('Title' title=STRING)?
+	'width' width=INT
+	'height' height=INT
+	Entity += Entity*	
+	'}';
+
+EntryWindow:
+	'Window' name=ID '{' ('Title' title=STRING)?
+	'width' width=INT
+	'height' height=INT
+		
+	UIElement += UIElement+
+		
+'}';
+
+UIElement:
+	Button| Field | Label;
+
+Label:
+	'Label' name=ID ('Text' text=STRING)?;
+
+Field: 
+	'Field' property=Property;
+
+Button:
+	'Button' inscription = Inscription; 
+
+Inscription:
+	'Inscription' (inscription='Create/Edit' | inscription='Delete' | inscription='Cancel');
+	
+	
+	
