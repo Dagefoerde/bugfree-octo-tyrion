@@ -43,14 +43,40 @@ Reference:
 	
 ////////////////////////////////////////----UI----///////////////////////////////////////////
 
-UI:
+UIWindow:
 	ListWindow | EntryWindow
 ;
 
 ListWindow:
-		'Name' name=QualifiedName'!'
+		'ListWindow' name=ID 'for' entitytype=[Entitytype]
+		options=WindowOptions
 ;
 
 EntryWindow:
-		'Name' name=QualifiedName'!'
+		'EntryWindow' name=ID 'for' entitytype=[Entitytype]
+		options=WindowOptions
+		'{'
+			elements += UIElement*
+		'}'
+;
+
+UIElement:
+	('position' position=Position) &
+	('size' size=Size)
+	(Label | Field | Button)
+;
+
+Size:
+	('width' width=INT) &
+	('height' height=INT)
+;
+
+Position:
+	('x' x=INT) &
+	('y' y=INT)
+;
+
+WindowOptions:
+	'size' size=Size
+	('title' title=STRING)?
 ;
