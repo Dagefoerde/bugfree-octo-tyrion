@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature id="de.wwu.pi.mdsd.group05DSL.sdk"
-	label="Group05dsl SDK Feature "
+	label="Group05DSL SDK Feature "
 	version="1.0.0.qualifier">
 	<plugin
 			id="de.wwu.pi.mdsd.group05DSL"

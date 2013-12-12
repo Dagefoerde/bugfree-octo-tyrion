@@ -1,0 +1,105 @@
+grammar de.wwu.pi.mdsd05.Group05DSL with org.eclipse.xtext.common.Terminals
+
+generate group05DSL "http://www.wwu.de/pi/mdsd05/Group05DSL"
+
+Model:
+	package=Package
+	entitytypes+=Entitytype+
+	uiwindows+=UIWindow+
+;
+
+
+
+Package:
+	'Package' name=QualifiedName
+;
+
+QualifiedName:
+	ID ('.' ID)*
+;
+
+Entitytype:
+	'Entitytype' name=ID ('extends' supertype=[Entitytype])?
+	// abstract
+	properties+=Property+
+;
+
+Property:
+	Attribute | Reference
+;
+
+Attribute:
+	'Attribute' 
+	type=BasicType name=ID
+	(optional='optional')?
+;
+
+enum BasicType:
+	STRING = 'String' |
+	INTEGER = 'Integer' |
+	DATE = 'Date'
+;
+
+Reference:
+	'Reference'
+	references=[Entitytype] name=ID 
+	(multiplicity='multiple')?
+;
+	
+////////////////////////////////////////----UI----///////////////////////////////////////////
+
+UIWindow:
+	ListWindow | EntryWindow
+;
+
+ListWindow:
+		'ListWindow' name=ID 'for' entitytype=[Entitytype] 
+		'{'
+			options=WindowOptions
+		'}'
+;
+
+EntryWindow:
+		'EntryWindow' name=ID 'for' entitytype=[Entitytype]  
+		'{'
+			options=WindowOptions
+			elements += UIElement+
+		'}'
+;
+
+UIElement:
+	(Label | Field | Button)
+	((position=Position) & 
+	(size=Size))
+;
+
+Label:
+	'Label' name=ID (text=STRING)?
+;
+
+Field: 
+	'Field' property=[Property];
+	
+Button:
+	'Button' inscription=Inscription; 
+
+enum Inscription:
+	CREATE_EDIT = 'Create/Edit' | //default
+	DELETE = 'Delete' |
+	CANCEL = 'Cancel'
+;
+
+Size:
+	('width' width=INT) &
+	('height' height=INT)
+;
+
+Position:
+	('x' x=INT) &
+	('y' y=INT)
+;
+
+WindowOptions:
+	size=Size
+	('title' title=STRING)?
+;
