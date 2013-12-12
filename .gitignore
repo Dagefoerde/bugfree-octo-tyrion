@@ -8,6 +8,11 @@
 # eclipse workspaces
 .metadata
 
+# compiled content
+bin
+xtend-gen
+src-gen
+
 
 # legacy
 MDSD-DataProv.dat
