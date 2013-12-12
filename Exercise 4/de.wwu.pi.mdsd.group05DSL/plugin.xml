@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.wwu.de/pi/mdsd05/Group05DSL" 
+       class = "de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage"
+       genModel = "de/wwu/pi/mdsd05/Group05DSL.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>

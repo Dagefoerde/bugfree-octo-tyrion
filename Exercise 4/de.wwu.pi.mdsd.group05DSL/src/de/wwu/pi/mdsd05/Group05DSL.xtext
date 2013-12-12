@@ -21,7 +21,9 @@ QualifiedName:
 Entitytype:
 	'Entitytype' name=ID ('extends' supertype=[Entitytype])?
 	// abstract
+	'{'
 	properties+=Property+
+	'}'
 ;
 
 Property:
