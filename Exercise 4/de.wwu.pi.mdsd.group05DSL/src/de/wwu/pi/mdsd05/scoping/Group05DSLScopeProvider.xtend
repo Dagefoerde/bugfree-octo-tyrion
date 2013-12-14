@@ -9,7 +9,7 @@ import de.wwu.pi.mdsd05.group05DSL.EntryWindow
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
 import de.wwu.pi.mdsd05.group05DSL.Entitytype
-import de.wwu.pi.mdsd05.group05DSL.Property
+import de.wwu.pi.mdsd05.group05DSL.Model
 
 /**
  * This class contains custom scoping description.
@@ -22,10 +22,13 @@ class Group05DSLScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDec
 
 	def IScope scope_Field_property(Field ctx, EReference ref)
 	{
-		var entitytype = (ctx.eContainer() as EntryWindow).getEntitytype();
+		val fieldEntitytype = (ctx.eContainer() as EntryWindow).getEntitytype();
+		var entitytype = fieldEntitytype;
  		var properties = entitytype.getProperties();
  		
- 		while (entitytype.getSupertype()!=null)
+ 		while (entitytype.getSupertype()!=null
+ 			 && entitytype.getSupertype() != fieldEntitytype
+ 		)
  		{
  			properties += entitytype.getSupertype().getProperties();
  			entitytype = entitytype.getSupertype();
@@ -33,6 +36,17 @@ class Group05DSLScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDec
  		
 		return Scopes.scopeFor(properties);
 	}
+	
+//	def IScope scope_Entitytype_supertype(Entitytype ctx, EReference ref) {
+//		val elements = (ctx.eContainer as Model).entitytypes;
+//		val filtered = elements.filter[it != ctx && !it.extendsFrom(ctx)];
+//		return Scopes.scopeFor(filtered);
+//	}
+//
+//	def boolean extendsFrom(Entitytype entitytype, Entitytype supertype) {
+//		if (supertype == entitytype) return false;
+//		return entitytype.extendsFrom(supertype.supertype);
+//	}
 	
 	
 	

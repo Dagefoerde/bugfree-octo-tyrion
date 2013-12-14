@@ -4,8 +4,7 @@ generate group05DSL "http://www.wwu.de/pi/mdsd05/Group05DSL"
 
 Model:
 	package=Package
-	entitytypes+=Entitytype+
-	uiwindows+=UIWindow+
+	( entitytypes+=Entitytype | uiwindows+=UIWindow )*
 ;
 
 
