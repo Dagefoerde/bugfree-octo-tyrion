@@ -1,0 +1,59 @@
+Package mdsd05.library
+
+Entitytype Medium extends Book {
+	Attribute String Name
+}
+
+Entitytype Book extends Medium {
+	Attribute Integer ISBN
+	Attribute String Author
+}
+
+Entitytype CD extends Medium {
+	Attribute Integer ASIN
+	Attribute String Interpreter
+}
+	
+Entitytype Copy {
+	Attribute Integer InventoryNumber
+	Reference Medium Medium 
+}
+
+Entitytype Loan {
+	Attribute Date IssueDate
+	Attribute Date ReturnDate
+	Reference Copy Copy
+	Reference User User
+	
+}
+Entitytype User {
+	Attribute String Name
+	Attribute String Address
+}
+
+ListWindow ListMedia for Medium {
+	height 500 width 300
+	title "List Media"
+}
+
+ListWindow ListBooks for Book {
+	height 500 width 300
+}
+
+ListWindow ListCDs for CD {
+	height 500 width 300
+}
+
+ListWindow ListLoans for Loan {
+	height 500 width 300
+}
+
+ListWindow ListCopies for Copy {
+	title "List Copies"
+	height 500 width 300
+}
+
+ListWindow ListUsers for User {
+	height 500 width 300
+}
+
