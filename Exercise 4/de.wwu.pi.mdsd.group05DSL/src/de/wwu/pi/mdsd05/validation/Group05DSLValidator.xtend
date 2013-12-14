@@ -31,12 +31,13 @@ import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
 class Group05DSLValidator extends AbstractGroup05DSLValidator {
 
 
+
 	@Check
 	def public void checkAbtractFeatures(Entitytype entitytype)
 	{
 		if(!isSuperClass(entitytype) && entitytype.abstract!=null)
 		{
-			error("class has no superclass and may not be abstract", Group05DSLPackage.Literals.ENTITYTYPE__ABSTRACT);
+			error("class has no subclass and may therefore not be abstract", Group05DSLPackage.Literals.ENTITYTYPE__ABSTRACT);
 		}
 		
 	}
@@ -200,5 +201,35 @@ def overlapping(UIElement element, UIElement element2){
  	}
  
  }
+ 
+ 
+ 	 @Check
+	 def EntitytypesHaveTheSameName(Entitytype entitytype)
+	 {
+	 	
+	 	var entitytypes = (entitytype.eContainer() as Model).getEntitytypes();
+	 	for (Entitytype e: entitytypes)
+	 	{
+	 		if(e.getName() != null && !e.equals(entitytype) && e.getName().equals(entitytype.getName))
+	 		{
+	 			error ("Entitytype with the same name already exists", Group05DSLPackage.Literals.ENTITYTYPE__NAME);
+	 		}
+	 	}	 	
+	 }
+ 
+  	 @Check
+	 def PropertiesHaveTheSameName(Property property)
+	 {
+	 	
+	 	var properties = (property.eContainer() as Entitytype).getProperties();
+	 	for (Property p: properties)
+	 	{
+	 		if(p.getName() != null && !p.equals(property) && p.getName().equals(property.getName))
+	 		{
+	 			error ("Property with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 		}
+	 	}	 	
+	 }
+
  
 }
