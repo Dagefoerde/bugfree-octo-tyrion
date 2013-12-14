@@ -82,40 +82,39 @@ def checkUIElementOverlapping(UIElement uiElement){
 @Check
 def checkCyclicInheritance(Entitytype entity){
 	if(cyclicInheritance(entity))
-		error("Cyclic inheritance is not allowed", Group05DSLPackage.Literals.MODEL__ENTITYTYPES);
+		error("Cyclic inheritance is not allowed", entity.eContainer, Group05DSLPackage.Literals.MODEL__ENTITYTYPES);
 }
 
 @Check
 def checkReferences(Entitytype entity){
 	if(fReference(entity))
-		error(entity + "is not correctly referenced", Group05DSLPackage.Literals.MODEL__ENTITYTYPES)
+		error(entity + "is not correctly referenced", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 }
 
 def fReference(Entitytype entity){
 	var Multiplicity mult;
-	var Reference opRef;
-	var Entitytype opEnt;
+	
 	for (ref : entity.getProperties().filter[re|re instanceof Reference].map[re| re as Reference]){
 		
 		mult = ref.multiplicity
-		opEnt = ref.references
-		opRef = opEnt.properties.filter[re|re instanceof Reference].map[re| re as Reference].filter[re|re.references == entity] as Reference
-		if (opRef == null) return true
-		if (mult == opRef.multiplicity) return true
+		val opEnt = ref.references
+		val opRef = opEnt.properties.filter[re|re instanceof Reference].map[re| re as Reference].filter[re|re.references == entity]
+		if (opRef.size == 0) return true
+		if (mult == opRef.get(0).multiplicity) return true
 //		if (opEnt == entity) return true
 		
 				}
-	return true
+	return false
 }
 
 def cyclicInheritance(Entitytype entity){
 
 	var superclass = entity.getSupertype();
-	while(true){
-		if (superclass == null) return false;
-		if (superclass == entity) return true;
-		superclass = superclass.getSupertype();
-		}
+//	while(true){
+//		if (superclass == null) return false;
+//		if (superclass == entity) return true;
+//		superclass = superclass.getSupertype();
+//		}
 	return false
 
 }
