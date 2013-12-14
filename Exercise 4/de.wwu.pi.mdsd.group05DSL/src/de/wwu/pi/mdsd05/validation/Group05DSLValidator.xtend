@@ -14,6 +14,7 @@ import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import de.wwu.pi.mdsd05.group05DSL.Attribute
 
 //import org.eclipse.xtext.validation.Check
 
@@ -28,7 +29,7 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 	@Check
 	def public void checkAbtractFeatures(Entitytype entitytype)
 	{
-		if(!isSuperClass(entitytype))
+		if(!isSuperClass(entitytype) && entitytype.abstract!=null)
 		{
 			error("class has no superclass and may not be abstract", Group05DSLPackage.Literals.ENTITYTYPE__ABSTRACT);
 		}
@@ -39,7 +40,7 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 	{
 		var entitytypes = (entitytype.eContainer() as Model).getEntitytypes();
 		for(Entitytype e: entitytypes){
-			if(e.getSupertype().equals(entitytype)) return true;
+			if(e.getSupertype()!=null && e.getSupertype().equals(entitytype)) return true;
 		}	
 		return false;
 	}
@@ -85,13 +86,35 @@ def overlapping(UIElement element, UIElement element2){
 //	}
  @Check
  def areAllPropertiesIncludedInTheEntrywindow(EntryWindow entryWindow){
- 	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties;
+ 	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties.filter[prop|!(prop instanceof Attribute)||(prop as Attribute).optional==null];
  	val fields= new ArrayList<Field>;
  	fields += entryWindow.elements.filter[elem|elem instanceof Field].map[elem|elem as Field];
  	for (Property property: allProperties){
  		if (!fields.map[field|field.property].contains(property)){
- 			error("The property " + property.name + " has no corresponding field in the entryWindow " + entryWindow.name + "!", entryWindow.eContainer as Model,entryWindow.eContainmentFeature);
+ 			error("The property " + property.name + " has no corresponding field in the entryWindow " + entryWindow.name + ".", Group05DSLPackage.Literals.UI_WINDOW__NAME);
  		}
  	}
  }
-}
+  @Check
+ def areAllOptionalPropertiesIncludedInTheEntrywindow(EntryWindow entryWindow){
+ 	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties.filter[prop|(prop instanceof Attribute)&&(prop as Attribute).optional!=null];
+ 	val fields= new ArrayList<Field>;
+ 	fields += entryWindow.elements.filter[elem|elem instanceof Field].map[elem|elem as Field];
+ 	for (Property property: allProperties){
+ 		if (!fields.map[field|field.property].contains(property)){
+ 			warning("The optional property " + property.name + " has no corresponding field in the entryWindow " + entryWindow.name + ".", Group05DSLPackage.Literals.UI_WINDOW__NAME);
+ 		}
+ 	}
+ }  
+ @Check
+ def isAPropertyImplementedMultipleTimesAsAField(Field field){
+ 	val entryWindow=field.eContainer as EntryWindow;
+ 	for (Field windowField:entryWindow.elements.filter[elem|elem instanceof Field && !elem.equals(field)].map[elem|elem as Field]){
+ 		if (windowField.property.equals(field.property))
+ 		 			warning("The property " + field.property.name + " is referenced in multiple Fields.", Group05DSLPackage.Literals.FIELD__PROPERTY);
+ 		
+ 	}
+ 	
+ 	}
+ 	
+ }
