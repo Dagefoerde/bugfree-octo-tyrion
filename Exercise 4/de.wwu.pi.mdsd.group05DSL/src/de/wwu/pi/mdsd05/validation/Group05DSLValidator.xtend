@@ -14,6 +14,8 @@ import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import de.wwu.pi.mdsd05.group05DSL.Button
+import de.wwu.pi.mdsd05.group05DSL.Inscription
 
 //import org.eclipse.xtext.validation.Check
 
@@ -94,4 +96,26 @@ def overlapping(UIElement element, UIElement element2){
  		}
  	}
  }
+ 
+ @Check
+ def missingCeateEditButton(EntryWindow window)
+ {
+ 	var Boolean exists = false;
+ 
+  	for(UIElement elem:  window.elements.filter[e|e instanceof Button])
+ 	{
+ 		var Button btn = elem as Button		
+		if (btn.inscription.equals(Inscription.CREATE_EDIT))
+		{
+			exists = true;
+		}
+ 	}
+ 	
+ 	if(!exists)
+ 	{
+ 		error ("EntryWindow requires Create/Edit Button", window.eContainer, window.eContainingFeature);
+ 	}
+ 
+ }
+ 
 }
