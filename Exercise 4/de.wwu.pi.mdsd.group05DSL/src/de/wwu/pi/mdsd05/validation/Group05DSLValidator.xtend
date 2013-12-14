@@ -20,6 +20,8 @@ import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import de.wwu.pi.mdsd05.group05DSL.Label
+import de.wwu.pi.mdsd05.group05DSL.UIWindow
 
 //import org.eclipse.xtext.validation.Check
 
@@ -214,7 +216,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	var entitytypes = (entitytype.eContainer() as Model).getEntitytypes();
 	 	for (Entitytype e: entitytypes)
 	 	{
-	 		if(e.getName() != null && !e.equals(entitytype) && e.getName().equals(entitytype.getName))
+	 		if(e.getName() != null && e != entitytype && e.getName().equals(entitytype.getName))
 	 		{
 	 			error ("Entitytype with the same name already exists", Group05DSLPackage.Literals.ENTITYTYPE__NAME);
 	 		}
@@ -228,12 +230,43 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	var properties = (property.eContainer() as Entitytype).getProperties();
 	 	for (Property p: properties)
 	 	{
-	 		if(p.getName() != null && !p.equals(property) && p.getName().equals(property.getName))
+	 		if(p.getName() != null && p != property && p.getName().equals(property.getName))
 	 		{
 	 			error ("Property with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
 	 		}
 	 	}	 	
 	 }
+
+ 
+  	 @Check
+	 def LabelsHaveTheSameName(Label label)
+	 {
+	 	
+	 	var labels = (label.eContainer() as EntryWindow).getElements().filter[l|l instanceof Label].map[l|l as Label];
+	 	for (Label l: labels)
+	 	{
+	 		if(l.getName() != null && l != label && l.getName().equals(label.getName))
+	 		{
+	 			error ("Label with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 		}
+	 	}	 	
+	 }
+	 
+	@Check
+	 def WindowsHaveTheSameName(UIWindow window)
+	 {
+	 	
+	 	var windows = (window.eContainer() as Model).getUiwindows();
+	 	for (UIWindow w: windows)
+	 	{
+	 		if(w.getName() != null && w != window && w.getName().equals(window.getName))
+	 		{
+	 			error ("Window with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 		}
+	 	}	 	
+	 }
+
+
 
  
 }
