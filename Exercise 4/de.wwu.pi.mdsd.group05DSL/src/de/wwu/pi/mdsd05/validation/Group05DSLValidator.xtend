@@ -14,8 +14,12 @@ import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+
 import de.wwu.pi.mdsd05.group05DSL.Button
 import de.wwu.pi.mdsd05.group05DSL.Inscription
+
+import de.wwu.pi.mdsd05.group05DSL.ListWindow
+
 
 //import org.eclipse.xtext.validation.Check
 
@@ -46,6 +50,21 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 		return false;
 	}
 
+
+	@Check
+	def checkWindowLimit(Entitytype entitytype) {
+		val model = entitytype.eContainer as Model;
+		
+		var entryWindows = model.uiwindows.filter[it instanceof EntryWindow && it.entitytype == entitytype];
+		var listWindows = model.uiwindows.filter[it instanceof ListWindow && it.entitytype == entitytype];
+		if (entryWindows.size > 1) {
+			error('Entitytype ' + entitytype.name + ' has more than one entry window.', entitytype, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+		}
+		if (listWindows.size > 1) {
+			error('Entitytype ' + entitytype.name + ' has more than one list window.', entitytype, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+		}
+		
+	}
 
 
 
