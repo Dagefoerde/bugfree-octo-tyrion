@@ -55,7 +55,7 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 
 	@Check
 	def checkMinEntityAndWindow (Model model){
-		if (model.entitytypes.size > 0 || model.uiwindows.size > 0)
+		if (model.entitytypes.size == 0 || model.uiwindows.size == 0)
 		warning("At least one Entitytype and one Window should be modeled", Group05DSLPackage.Literals.MODEL__PACKAGE)
 	}
 	
