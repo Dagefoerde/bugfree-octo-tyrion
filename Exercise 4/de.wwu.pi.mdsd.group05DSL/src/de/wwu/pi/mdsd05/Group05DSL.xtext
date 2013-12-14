@@ -19,8 +19,7 @@ QualifiedName:
 ;
 
 Entitytype:
-	'Entitytype' name=ID ('extends' supertype=[Entitytype])?
-	// abstract
+	(abstract='abstract')? 'Entitytype' name=ID ('extends' supertype=[Entitytype])? 
 	'{'
 	properties+=Property+
 	'}'
@@ -97,8 +96,8 @@ Size:
 ;
 
 Position:
-	('x' x=INT) &
-	('y' y=INT)
+	('x_value' x=INT) &
+	('y_value' y=INT)
 ;
 
 WindowOptions:
