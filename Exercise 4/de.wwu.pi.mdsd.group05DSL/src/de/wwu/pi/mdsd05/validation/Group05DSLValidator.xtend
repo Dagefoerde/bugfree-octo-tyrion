@@ -3,6 +3,17 @@
  */
 package de.wwu.pi.mdsd05.validation
 
+
+import de.wwu.pi.mdsd05.group05DSL.EntryWindow
+import de.wwu.pi.mdsd05.group05DSL.UIElement
+import de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage
+import org.eclipse.xtext.validation.Check
+import de.wwu.pi.mdsd05.group05DSL.Entitytype
+import de.wwu.pi.mdsd05.group05DSL.Reference
+import de.wwu.pi.mdsd05.group05DSL.Multiplicity
+
+
+
 import de.wwu.pi.mdsd05.group05DSL.Entitytype
 import de.wwu.pi.mdsd05.group05DSL.EntryWindow
 import de.wwu.pi.mdsd05.group05DSL.Field
@@ -19,6 +30,7 @@ import de.wwu.pi.mdsd05.group05DSL.Button
 import de.wwu.pi.mdsd05.group05DSL.Inscription
 
 import de.wwu.pi.mdsd05.group05DSL.ListWindow
+
 
 
 //import org.eclipse.xtext.validation.Check
@@ -71,11 +83,52 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 @Check
 def checkUIElementOverlapping(EntryWindow ewindow){
 	
-	for (element : ewindow.getElements())
-		for (element2 : ewindow.getElements())
+	for (element : ewindow.getElements()){
+		for (element2 : ewindow.getElements()){
 		if (!(element == element2) && overlapping(element, element2))
 	
-	warning(element + "and" + element2 + "overlap each other!", Group05DSLPackage.Literals.ENTRY_WINDOW__ELEMENTS);
+	warning(element + "and" + element2 + "overlap each other!", Group05DSLPackage.Literals.ENTRY_WINDOW__ELEMENTS);}}
+}
+
+@Check
+def checkCyclicInheritance(Entitytype entity){
+	if(cyclicInheritance(entity))
+		error("Cyclic inheritance is not allowed", Group05DSLPackage.Literals.MODEL__ENTITYTYPES);
+}
+
+@Check
+def checkReferences(Entitytype entity){
+	if(fReference(entity))
+		error(entity + "is not correctly referenced", Group05DSLPackage.Literals.MODEL__ENTITYTYPES)
+}
+
+def fReference(Entitytype entity){
+	var Multiplicity mult;
+	var Reference opRef;
+	var Entitytype opEnt;
+	for (ref : entity.getProperties().filter[re|re instanceof Reference].map[re| re as Reference]){
+		
+		mult = ref.multiplicity
+		opEnt = ref.references
+		opRef = opEnt.properties.filter[re|re instanceof Reference].map[re| re as Reference].filter[re|re.references == entity] as Reference
+		if (opRef == null) return true
+		if (mult == opRef.multiplicity) return true
+//		if (opEnt == entity) return true
+		
+				}
+	return true
+}
+
+def cyclicInheritance(Entitytype entity){
+
+	var superclass = entity.getSupertype();
+	while(true){
+		if (superclass == null) return false;
+		if (superclass == entity) return true;
+		superclass = superclass.getSupertype();
+		}
+	return false
+
 }
 
 def overlapping(UIElement element, UIElement element2){
