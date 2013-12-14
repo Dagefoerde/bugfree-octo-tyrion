@@ -247,7 +247,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	{
 	 		if(l.getName() != null && l != label && l.getName().equals(label.getName))
 	 		{
-	 			error ("Label with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 			error ("Label with the same name already exists", Group05DSLPackage.Literals.LABEL__NAME);
 	 		}
 	 	}	 	
 	 }
@@ -261,7 +261,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	{
 	 		if(w.getName() != null && w != window && w.getName().equals(window.getName))
 	 		{
-	 			error ("Window with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 			error ("Window with the same name already exists", Group05DSLPackage.Literals.UI_WINDOW__NAME);
 	 		}
 	 	}	 	
 	 }
