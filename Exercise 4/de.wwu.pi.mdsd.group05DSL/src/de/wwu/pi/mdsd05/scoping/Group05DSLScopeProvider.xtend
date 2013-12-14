@@ -19,7 +19,7 @@ import org.eclipse.xtext.scoping.Scopes
 class Group05DSLScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
 
 	
-		def IScope scope_Field_property(Field ctx, EReference ref) {
+	def IScope scope_Field_property(Field ctx, EReference ref) {
 		val elements = (ctx.eContainer() as EntryWindow).getEntitytype().getProperties();
 		// TODO: supertype properties!
 		return Scopes.scopeFor(elements);
