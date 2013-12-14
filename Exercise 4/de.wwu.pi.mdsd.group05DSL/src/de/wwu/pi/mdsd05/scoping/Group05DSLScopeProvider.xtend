@@ -26,6 +26,7 @@ class Group05DSLScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(fieldEntitytype.getAllPropertiesIncludingSuperproperties);
 	}
 	
+	// TODO: Reference scope
 		
 //	def IScope scope_Entitytype_supertype(Entitytype ctx, EReference ref) {
 //		val elements = (ctx.eContainer as Model).entitytypes;
