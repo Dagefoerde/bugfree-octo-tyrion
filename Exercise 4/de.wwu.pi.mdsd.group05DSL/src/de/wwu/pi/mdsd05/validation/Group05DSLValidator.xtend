@@ -3,36 +3,23 @@
  */
 package de.wwu.pi.mdsd05.validation
 
-
-import de.wwu.pi.mdsd05.group05DSL.EntryWindow
-import de.wwu.pi.mdsd05.group05DSL.UIElement
-import de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage
-import org.eclipse.xtext.validation.Check
-import de.wwu.pi.mdsd05.group05DSL.Entitytype
-import de.wwu.pi.mdsd05.group05DSL.Reference
-import de.wwu.pi.mdsd05.group05DSL.Multiplicity
-
-
-
+import de.wwu.pi.mdsd05.group05DSL.Attribute
+import de.wwu.pi.mdsd05.group05DSL.Button
 import de.wwu.pi.mdsd05.group05DSL.Entitytype
 import de.wwu.pi.mdsd05.group05DSL.EntryWindow
 import de.wwu.pi.mdsd05.group05DSL.Field
 import de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage
+import de.wwu.pi.mdsd05.group05DSL.Inscription
+import de.wwu.pi.mdsd05.group05DSL.ListWindow
 import de.wwu.pi.mdsd05.group05DSL.Model
+import de.wwu.pi.mdsd05.group05DSL.Multiplicity
 import de.wwu.pi.mdsd05.group05DSL.Property
+import de.wwu.pi.mdsd05.group05DSL.Reference
 import de.wwu.pi.mdsd05.group05DSL.UIElement
 import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
-import de.wwu.pi.mdsd05.group05DSL.Attribute
-
-import de.wwu.pi.mdsd05.group05DSL.Button
-import de.wwu.pi.mdsd05.group05DSL.Inscription
-
-import de.wwu.pi.mdsd05.group05DSL.ListWindow
-
-
 
 //import org.eclipse.xtext.validation.Check
 
@@ -169,7 +156,6 @@ def overlapping(UIElement element, UIElement element2){
  		}
  	}
  }
-<<<<<<< HEAD
   @Check
  def areAllOptionalPropertiesIncludedInTheEntrywindow(EntryWindow entryWindow){
  	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties.filter[prop|(prop instanceof Attribute)&&(prop as Attribute).optional!=null];
@@ -192,8 +178,7 @@ def overlapping(UIElement element, UIElement element2){
  	
  	}
  	
- }
-=======
+ 
  
  @Check
  def missingCeateEditButton(EntryWindow window)
@@ -217,4 +202,3 @@ def overlapping(UIElement element, UIElement element2){
  }
  
 }
->>>>>>> f5928ca168d0049512353bd7b997b25893a8563a
