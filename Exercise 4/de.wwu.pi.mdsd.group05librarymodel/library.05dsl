@@ -2,6 +2,7 @@ Package mdsd05.library
 
 Entitytype Medium extends Book {
 	Attribute String Name
+	Reference Copy Copy multiple
 }
 
 Entitytype Book extends Medium {
@@ -16,19 +17,47 @@ Entitytype CD extends Medium {
 	
 Entitytype Copy {
 	Attribute Integer InventoryNumber
-	Reference Medium Medium 
+	Reference Medium Medium
+	Reference Loan Loan multiple 
 }
 
 Entitytype Loan {
 	Attribute Date IssueDate
 	Attribute Date ReturnDate
 	Reference Copy Copy
-	Reference User User
+	Reference User User 
 	
 }
 Entitytype User {
 	Attribute String Name
 	Attribute String Address
+	Reference Loan Loan multiple
+}
+
+ListWindow ListMedia for Medium {
+	height 500 width 300
+	title "List Media"
+}
+
+ListWindow ListBooks for Book {
+	height 500 width 300
+}
+
+ListWindow ListCDs for CD {
+	height 500 width 300
+}
+
+ListWindow ListLoans for Loan {
+	height 500 width 300
+}
+
+ListWindow ListCopies for Copy {
+	title "List Copies"
+	height 500 width 300
+}
+
+ListWindow ListUsers for User {
+	height 500 width 300
 }
 
 ListWindow ListMedia for Medium {
