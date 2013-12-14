@@ -5,8 +5,14 @@ package de.wwu.pi.mdsd05.validation
 
 import de.wwu.pi.mdsd05.group05DSL.EntryWindow
 import de.wwu.pi.mdsd05.group05DSL.UIElement
+import de.wwu.pi.mdsd05.group05DSL.Property
 import de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage
 import org.eclipse.xtext.validation.Check
+import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import de.wwu.pi.mdsd05.group05DSL.Field
+import java.util.List
+import java.util.ArrayList
+import de.wwu.pi.mdsd05.group05DSL.Model
 
 //import org.eclipse.xtext.validation.Check
 
@@ -53,4 +59,15 @@ def overlapping(UIElement element, UIElement element2){
 //					INVALID_NAME)
 //		}
 //	}
+ @Check
+ def areAllPropertiesIncludedInTheEntrywindow(EntryWindow entryWindow){
+ 	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties;
+ 	val fields= new ArrayList<Field>;
+ 	fields += entryWindow.elements.filter[elem|elem instanceof Field].map[elem|elem as Field];
+ 	for (Property property: allProperties){
+ 		if (!fields.map[field|field.property].contains(property)){
+ 			error("The property " + property.name + " has no corresponding field in the entryWindow " + entryWindow.name + "!", entryWindow.eContainer as Model,entryWindow.eContainmentFeature);
+ 		}
+ 	}
+ }
 }
