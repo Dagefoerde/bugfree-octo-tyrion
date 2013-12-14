@@ -69,13 +69,14 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 
 
 @Check
-def checkUIElementOverlapping(EntryWindow ewindow){
+def checkUIElementOverlapping(UIElement uiElement){
+	val window = uiElement.eContainer as EntryWindow
+
+		for (UIElement element : window.getElements().filter[elem|!elem.equals(uiElement)]){
+		if (overlapping(element, uiElement)){
 	
-	for (element : ewindow.getElements()){
-		for (element2 : ewindow.getElements()){
-		if (!(element == element2) && overlapping(element, element2))
-	
-	warning(element + "and" + element2 + "overlap each other!", Group05DSLPackage.Literals.ENTRY_WINDOW__ELEMENTS);}}
+				warning("Is overlaping with a another UI Element.", uiElement.eContainer as EntryWindow,uiElement.eContainmentFeature);}		
+}
 }
 
 @Check
@@ -120,19 +121,23 @@ def cyclicInheritance(Entitytype entity){
 }
 
 def overlapping(UIElement element, UIElement element2){
-	val x1 = element.getPosition().getX();
-	val y1 = element.getPosition().getY();
-	val x2 = element2.getPosition().getX();
-	val y2 = element2.getPosition().getY();
-	val width1 = element.getSize().getWidth();
-	val width2 = element2.getSize().getWidth();
-	val height2 = element2.getSize().getHeight();
-	val height1 = element.getSize().getHeight();
+	val x = element2.getPosition().getX();
+	val y = element2.getPosition().getY();
+	val width = element2.getSize().getWidth();
+	val height = element2.getSize().getHeight();
 
-	if (x1 < x2 && (x1 + width1) > x2) return true
-	if (x1 > x2 && (x2 + width2) > x1) return true
-	if (y1 < y2 && (y1 + height1) > y2) return true
-	if (y1 > y2 && (y2 + height2) > y1) return true
+	if (pointInWindow(element,x,y)) return true;
+	if (pointInWindow(element,x+width,y)) return true;
+	if (pointInWindow(element,x,y+height)) return true;
+	if (pointInWindow(element,x+width,y+height)) return true;
+	return false
+}
+def pointInWindow(UIElement element, Integer x, Integer y){
+	val xElement = element.getPosition().getX();
+	val yElement = element.getPosition().getY();
+	val width = element.getSize().getWidth();
+	val height = element.getSize().getHeight();
+	if ((xElement <= x && (xElement + width) >= x) && (yElement <= y && (y + height) >= yElement)) return true;
 	return false
 }
 //  public static val INVALID_NAME = 'invalidName'
@@ -196,7 +201,7 @@ def overlapping(UIElement element, UIElement element2){
  	
  	if(!exists)
  	{
- 		error ("EntryWindow requires Create/Edit Button", window.eContainer, window.eContainingFeature);
+ 		error ("EntryWindow requires Create/Edit Button", Group05DSLPackage.Literals.UI_WINDOW__NAME);
  	}
  
  }
