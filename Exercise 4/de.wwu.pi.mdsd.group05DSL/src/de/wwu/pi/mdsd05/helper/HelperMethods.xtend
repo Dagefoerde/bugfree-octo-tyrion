@@ -6,7 +6,7 @@ import java.util.ArrayList
 import org.eclipse.emf.common.util.EList
 
 class HelperMethods {
-	def EList<Property> getAllPropertiesIncludingSuperproperties(Entitytype type)
+	def static EList<Property> getAllPropertiesIncludingSuperproperties(Entitytype type)
 	{
 		val listOfVisitedEntitytypes = new ArrayList<Entitytype>();
 		
