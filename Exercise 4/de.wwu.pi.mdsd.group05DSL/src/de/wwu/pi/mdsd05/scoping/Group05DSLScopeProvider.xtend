@@ -25,19 +25,6 @@ class Group05DSLScopeProvider extends AbstractDeclarativeScopeProvider {
 		val fieldEntitytype = (ctx.eContainer() as EntryWindow).getEntitytype();
 		return Scopes.scopeFor(fieldEntitytype.getAllPropertiesIncludingSuperproperties);
 	}
-	
-	// TODO: Reference scope
-		
-//	def IScope scope_Entitytype_supertype(Entitytype ctx, EReference ref) {
-//		val elements = (ctx.eContainer as Model).entitytypes;
-//		val filtered = elements.filter[it != ctx && !it.extendsFrom(ctx)];
-//		return Scopes.scopeFor(filtered);
-//	}
-//
-//	def boolean extendsFrom(Entitytype entitytype, Entitytype supertype) {
-//		if (supertype == entitytype) return false;
-//		return entitytype.extendsFrom(supertype.supertype);
-//	}
-	
+
 	
 }

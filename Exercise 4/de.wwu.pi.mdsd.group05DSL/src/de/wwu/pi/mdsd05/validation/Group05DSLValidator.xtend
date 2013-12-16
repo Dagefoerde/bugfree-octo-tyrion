@@ -13,12 +13,12 @@ import de.wwu.pi.mdsd05.group05DSL.Inscription
 import de.wwu.pi.mdsd05.group05DSL.ListWindow
 import de.wwu.pi.mdsd05.group05DSL.Model
 import de.wwu.pi.mdsd05.group05DSL.Property
-import de.wwu.pi.mdsd05.group05DSL.Reference
 import de.wwu.pi.mdsd05.group05DSL.UIElement
 import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
+import static extension de.wwu.pi.mdsd05.helper.UIElementHelperMethods.*
 import de.wwu.pi.mdsd05.group05DSL.Label
 import de.wwu.pi.mdsd05.group05DSL.UIWindow
 
@@ -32,25 +32,17 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 
 	@Check
 	def public void checkAbtractFeatures(Entitytype entitytype) {
-		if (!isSuperClass(entitytype) && entitytype.abstract != null) {
-			error("class has no subclass and may therefore not be abstract",
+		if (entitytype.abstract != null && !entitytype.isSuperClassAnywhere) {
+			error("Class " + entitytype.name + " has no subclass and may therefore not be abstract.",
 				Group05DSLPackage.Literals.ENTITYTYPE__ABSTRACT);
 		}
 
 	}
 
-	def public boolean isSuperClass(Entitytype entitytype) {
-		var entitytypes = (entitytype.eContainer() as Model).getEntitytypes();
-		for (Entitytype e : entitytypes) {
-			if(e.getSupertype() != null && e.getSupertype().equals(entitytype)) return true;
-		}
-		return false;
-	}
-
 	@Check
 	def checkMinEntityAndWindow(Model model) {
 		if (model.entitytypes.size == 0 || model.uiwindows.size == 0)
-			warning("At least one Entitytype and one Window should be modeled",
+			warning("At least one Entitytype and one UIWindow should be modeled.",
 				Group05DSLPackage.Literals.MODEL__PACKAGE)
 	}
 
@@ -76,60 +68,25 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 		val window = uiElement.eContainer as EntryWindow
 
 		for (UIElement element : window.getElements().filter[elem|!elem.equals(uiElement)]) {
-			if (overlapping(element, uiElement)) {
-
-				warning("Is overlapping with a another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);
+			if (element.overlapping(uiElement)) {
+				warning("A UI Element s overlapping with another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);
 			}
 		}
 	}
 
 	@Check
 	def checkReferences(Entitytype entity) {
-		if (checkReferencesForLoop(entity))
+		if (entity.hasWrongOppositeReferences)
 			error(entity.name + " is not correctly referenced. Check opposite reference.", entity,
 				Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 	}
 
-	def checkReferencesForLoop(Entitytype entity) {
-
-		// necessary to be able to "break" from a loop early, as xtend does not support that keyword
-		for (ref : entity.getProperties().filter[re|re instanceof Reference].map[re|re as Reference]) {
-			val mult = ref.multiplicity
-			val opposite = ref.references.properties.filter[re|re instanceof Reference].map[re|re as Reference].filter[re|
-				re.references == entity]
-			if(opposite.size != 1) return true
-			if(mult == opposite.get(0).multiplicity) return true
-
-		}
-		return false
-	}
+	
 
 	@Check
 	def checkCyclicInheritance(Entitytype entity) {
 		if (entity.hasCyclicInheritance)
 			error("Cyclic inheritance is not allowed", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME);
-	}
-
-	def overlapping(UIElement element, UIElement element2) {
-		val x = element2.getUiOptions().getPosition().getX();
-		val y = element2.getUiOptions().getPosition().getY();
-		val width = element2.getUiOptions().getSize().getWidth();
-		val height = element2.getUiOptions().getSize().getHeight();
-
-		if(pointInWindow(element, x, y)) return true;
-		if(pointInWindow(element, x + width, y)) return true;
-		if(pointInWindow(element, x, y + height)) return true;
-		if(pointInWindow(element, x + width, y + height)) return true;
-		return false
-	}
-
-	def pointInWindow(UIElement element, Integer x, Integer y) {
-		val xElement = element.getUiOptions().getPosition().getX();
-		val yElement = element.getUiOptions().getPosition().getY();
-		val width = element.getUiOptions().getSize().getWidth();
-		val height = element.getUiOptions().getSize().getHeight();
-		if((xElement <= x && (xElement + width) >= x) && (yElement <= y && (y + height) >= yElement)) return true;
-		return false
 	}
 
 	@Check
