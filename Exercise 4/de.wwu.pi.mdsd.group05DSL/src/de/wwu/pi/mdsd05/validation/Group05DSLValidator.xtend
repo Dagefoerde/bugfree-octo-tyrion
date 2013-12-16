@@ -21,6 +21,7 @@ import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
 import static extension de.wwu.pi.mdsd05.helper.UIElementHelperMethods.*
 import de.wwu.pi.mdsd05.group05DSL.Label
 import de.wwu.pi.mdsd05.group05DSL.UIWindow
+import de.wwu.pi.mdsd05.group05DSL.Reference
 
 //import org.eclipse.xtext.validation.Check
 /**
@@ -73,22 +74,26 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 			}
 		}
 	}
-
 	@Check
-	def checkReferences(Entitytype entity) {
-		if (entity.hasWrongOppositeReferences){
-			error(entity.name + " is not correctly referenced. Check opposite reference.", entity,
-				Group05DSLPackage.Literals.ENTITYTYPE__NAME)
-				}
-		if (entity.referencesItself){
-			warning(entity.name + " references itself.", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
-			}
-		if (entity.referencesSubOrSuperclass){
-			warning(entity.name + " references a subclass or superclass", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+	def checkReference(Reference reference) {
+		val entity = (reference.eContainer as Entitytype)
+		//Assumption: A case, where one entity references another entity twice with the same multiplicity, can not be handled by automatic code generation, 
+		//since a distinct linking of a reference and its opposite reference is not possible.
+		if (reference.hasDoubleReference){
+			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction is not possible.", reference,
+				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
 		}
-	}
-
-	
+		if (reference.hasWrongOppositeReference){
+			error(entity.name + " is not correctly referenced. Check for opposite reference in " + reference.references.name +".", reference,
+				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+				}
+		if (reference.referencesItself){
+			warning(entity.name + " references itself.", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+			}
+		if (reference.referencesSubOrSuperclass){
+			warning(entity.name + " references a subclass or superclass", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+		}
+	}	
 
 	@Check
 	def checkCyclicInheritance(Entitytype entity) {

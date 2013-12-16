@@ -43,17 +43,12 @@ class EntitytypeHelperMethods {
 		return false
 
 	}
-
-	def static hasWrongOppositeReferences(Entitytype entity) {
-
-		for (ref : entity.getProperties().filter[re|re instanceof Reference].map[re|re as Reference]) {
+	def static hasWrongOppositeReference(Reference ref) {
+			val entity = (ref.eContainer as Entitytype)
 			val mult = ref.multiplicity
 			val opposite = ref.references.properties.filter[re|re instanceof Reference].map[re|re as Reference].filter[re|
-				re != ref && re.references == entity]
-			if(opposite.size != 1) return true
-			if(mult == opposite.get(0).multiplicity) return true
-
-		}
+				re.references == entity && !mult.equals(re.multiplicity)]
+			if(opposite.size < 1) return true
 		return false
 	}
 
@@ -65,14 +60,14 @@ class EntitytypeHelperMethods {
 		return false;
 	}
 	
-	def static referencesItself(Entitytype entity){
-		for (Reference r : entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]){
-			if(r.references.equals(entity)) return true
-		}
+	def static referencesItself(Reference ref){
+		val entity = (ref.eContainer as Entitytype)
+			if(ref.references.equals(entity)) return true
 		return false
 	}
 	
-	def static referencesSubOrSuperclass(Entitytype entity){
+	def static referencesSubOrSuperclass(Reference ref){
+		val entity = (ref.eContainer as Entitytype)
 		var loopEntity = entity
 		
 		//represents a Hashset of all classes that the entity inherits from
@@ -103,13 +98,21 @@ class EntitytypeHelperMethods {
 		//If is not interesting in the method if the entity references itself, thus it is deleted from this list
 		subClasses.remove(entity)
 		
-		//Does a reference exists, that references a sub or a superclass
-		val references = entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]
-			for(ref : references){
+		//Is the reference referencing a sub or a superclass
 				if (superClasses.contains(ref.references)) return true
-				if (subClasses.contains(ref.references)) return true
-			}			
+				if (subClasses.contains(ref.references)) return true		
 		return false
+	}
+	def static hasDoubleReference(Reference ref)
+	{
+		val entity = (ref.eContainer as Entitytype);
+		for (re:entity.properties.filter[prop| prop instanceof Reference].map[prop|prop as Reference]){
+			if (!re.equals(ref) && re.references.equals(ref.references) &&  re.multiplicity.equals(ref.multiplicity)){
+				return true;
+			}
+		}
+		return false;
+		
 	}
 
 }
