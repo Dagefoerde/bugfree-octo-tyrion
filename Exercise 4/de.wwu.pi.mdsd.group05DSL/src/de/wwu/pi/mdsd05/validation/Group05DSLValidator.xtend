@@ -12,17 +12,15 @@ import de.wwu.pi.mdsd05.group05DSL.Group05DSLPackage
 import de.wwu.pi.mdsd05.group05DSL.Inscription
 import de.wwu.pi.mdsd05.group05DSL.ListWindow
 import de.wwu.pi.mdsd05.group05DSL.Model
-import de.wwu.pi.mdsd05.group05DSL.Multiplicity
 import de.wwu.pi.mdsd05.group05DSL.Property
 import de.wwu.pi.mdsd05.group05DSL.Reference
 import de.wwu.pi.mdsd05.group05DSL.UIElement
 import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
-import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
 import de.wwu.pi.mdsd05.group05DSL.Label
 import de.wwu.pi.mdsd05.group05DSL.UIWindow
-import java.util.HashSet
 
 //import org.eclipse.xtext.validation.Check
 
@@ -109,28 +107,8 @@ def checkReferencesForLoop(Entitytype entity){
 
 @Check
 def checkCyclicInheritance(Entitytype entity){
-	if(cyclicInheritance(entity))
+	if(entity.hasCyclicInheritance)
 		error("Cyclic inheritance is not allowed", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME);
-}
-
-def cyclicInheritance(Entitytype entity){
-
-		val visitedEntitytypes = new HashSet<Entitytype>();
-		var entitytype = entity;
-		 		
- 		while (entitytype!=null)
- 		{
- 			if (visitedEntitytypes.contains(entitytype)) {
- 				return true;
- 			}
- 			
- 			visitedEntitytypes+=entitytype;
- 			entitytype = entitytype.getSupertype();
- 			
- 		}
-	
-	return false
-
 }
 
 def overlapping(UIElement element, UIElement element2){

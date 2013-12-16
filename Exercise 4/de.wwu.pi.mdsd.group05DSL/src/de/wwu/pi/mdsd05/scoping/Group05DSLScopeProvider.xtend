@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
-import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
+import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
 
 /**
  * This class contains custom scoping description.
@@ -40,17 +40,4 @@ class Group05DSLScopeProvider extends AbstractDeclarativeScopeProvider {
 //	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* def IScope scope_Field_property(Field ctx, EReference ref) {
-		val elements = (ctx.eContainer() as EntryWindow).getEntitytype().getProperties();
-		// TODO: supertype properties!
-		return Scopes.scopeFor(elements);
-	}*/
 }
