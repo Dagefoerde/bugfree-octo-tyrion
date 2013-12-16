@@ -2,6 +2,7 @@ grammar de.wwu.pi.mdsd05.Group05DSL with org.eclipse.xtext.common.Terminals
 
 generate group05DSL "http://www.wwu.de/pi/mdsd05/Group05DSL"
 
+// Assume only one package per file. Therefore, no package block is needed to enclose contained entitytypes and windows.
 Model:
 	package=Package
 	( entitytypes+=Entitytype | uiwindows+=UIWindow )*
