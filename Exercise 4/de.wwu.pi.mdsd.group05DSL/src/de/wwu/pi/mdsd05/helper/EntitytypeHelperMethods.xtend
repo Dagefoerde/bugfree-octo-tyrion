@@ -6,8 +6,6 @@ import de.wwu.pi.mdsd05.group05DSL.Reference
 import java.util.HashSet
 import org.eclipse.emf.common.util.BasicEList
 import de.wwu.pi.mdsd05.group05DSL.Model
-import java.awt.List
-import java.util.ArrayList
 
 class EntitytypeHelperMethods {
 	def static getAllPropertiesIncludingSuperproperties(Entitytype type) {

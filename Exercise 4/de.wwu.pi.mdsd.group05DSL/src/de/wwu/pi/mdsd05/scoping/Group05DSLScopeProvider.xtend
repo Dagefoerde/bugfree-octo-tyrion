@@ -10,7 +10,6 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
-import de.wwu.pi.mdsd05.group05DSL.UIWindow
 import de.wwu.pi.mdsd05.group05DSL.Model
 
 /**
