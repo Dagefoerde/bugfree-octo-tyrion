@@ -69,7 +69,7 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 
 		for (UIElement element : window.getElements().filter[elem|!elem.equals(uiElement)]) {
 			if (element.overlapping(uiElement)) {
-				warning("A UI Element s overlapping with another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);
+				warning("A UI Element is overlapping with another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);
 			}
 		}
 	}
