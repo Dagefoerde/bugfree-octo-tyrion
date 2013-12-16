@@ -2,15 +2,13 @@ Package mdsd05.library
 
 Entitytype Medium {
 	Attribute String Name
-	Reference Copy Copy multiple
+	Reference Copy Copies multiple
 }
 
 Entitytype Book extends Medium { 
 	Attribute Integer ISBN
 	Attribute String Author
-	Attribute Integer Name // should throw an error!
-	
-	}
+}
 
 Entitytype CD extends Medium {
 	Attribute Integer ASIN
@@ -20,7 +18,7 @@ Entitytype CD extends Medium {
 Entitytype Copy {
 	Attribute Integer InventoryNumber
 	Reference Medium Medium 
-	Reference Loan Loan multiple 
+	Reference Loan Loans multiple 
 }
 
 Entitytype Loan {
@@ -33,7 +31,7 @@ Entitytype Loan {
 Entitytype User {
 	Attribute String Name
 	Attribute String Address
-	Reference Loan Loan multiple
+	Reference Loan Loans multiple
 }
 
 ListWindow ListMedia for Medium {
@@ -63,24 +61,83 @@ ListWindow ListUsers for User {
 }
 
 EntryWindow BookEntry for Book {
-	height 500 width 300
-	Field Name width 200 height 100 x_value 1 y_value 1
+	height 450 width 330
+	Label Name width 100 height 40 x_value 1 y_value 1
+	Field Name width 200 height 40 x_value 120 y_value 1
+	Label Author width 100 height 40 x_value 1 y_value 45
+	Field Author width 200 height 40 x_value 120 y_value 45
+	Label ISBN width 100 height 40 x_value 1 y_value 90
+	Field ISBN width 200 height 40 x_value 120 y_value 90
+	
+	Button Create/Edit width 60 height 30 x_value 1 y_value 135
+	Button Cancel width 60 height 30 x_value 80 y_value 135
+	Button Delete width 60 height 30 x_value 160 y_value 135
+	
+	Label Copies width 100 height 40 x_value 1 y_value 170
+	Field Copies width 320 height 200 x_value 1 y_value 225
 }
 
-ListWindow ListCDs for CD {
-	height 500 width 300
+EntryWindow CDEntry for CD {
+	height 450 width 330
+	Label Name width 100 height 40 x_value 1 y_value 1
+	Field Name width 200 height 40 x_value 120 y_value 1
+	Label Interpreter width 100 height 40 x_value 1 y_value 45
+	Field Interpreter width 200 height 40 x_value 120 y_value 45
+	Label ASIN width 100 height 40 x_value 1 y_value 90
+	Field ASIN width 200 height 40 x_value 120 y_value 90
+	
+	Button Create/Edit width 60 height 30 x_value 1 y_value 135
+	Button Cancel width 60 height 30 x_value 80 y_value 135
+	Button Delete width 60 height 30 x_value 160 y_value 135
+	
+	Label Copies width 100 height 40 x_value 1 y_value 170
+	Field Copies width 320 height 200 x_value 1 y_value 225
 }
 
-ListWindow ListLoans for Loan {
-	height 500 width 300
+EntryWindow LoanEntry for Loan {
+	height 220 width 330
+	Label User width 100 height 40 x_value 1 y_value 1
+	Field User width 200 height 40 x_value 120 y_value 1
+	Label Copy width 100 height 40 x_value 1 y_value 45
+	Field Copy width 200 height 40 x_value 120 y_value 45
+	Label IssueDate width 100 height 40 x_value 1 y_value 90
+	Field IssueDate width 200 height 40 x_value 120 y_value 90
+	Label ReturnDate width 100 height 40 x_value 1 y_value 135
+	Field ReturnDate width 200 height 40 x_value 120 y_value 135
+	
+	Button Create/Edit width 60 height 30 x_value 1 y_value 180
+	Button Cancel width 60 height 30 x_value 80 y_value 180
+	Button Delete width 60 height 30 x_value 160 y_value 180
+	
 }
 
-ListWindow ListCopies for Copy {
-	title "List Copies"
-	height 500 width 300
+EntryWindow CopyEntry for Copy {
+	height 400 width 330
+	Label InventoryNumber width 100 height 40 x_value 1 y_value 1
+	Field InventoryNumber width 200 height 40 x_value 120 y_value 1
+	Label Medium width 100 height 40 x_value 1 y_value 45
+	Field Medium width 200 height 40 x_value 120 y_value 45
+	
+	Button Create/Edit width 60 height 30 x_value 1 y_value 90
+	Button Cancel width 60 height 30 x_value 80 y_value 90
+	Button Delete width 60 height 30 x_value 160 y_value 90
+	
+	Label Loans width 100 height 40 x_value 1 y_value 125
+	Field Loans width 320 height 200 x_value 1 y_value 180
 }
 
-ListWindow ListUsers for User {
-	height 500 width 300
+EntryWindow UserEntry for User {
+	height 400 width 330
+	Label Name width 100 height 40 x_value 1 y_value 1
+	Field Name width 200 height 40 x_value 120 y_value 1
+	Label Address width 100 height 40 x_value 1 y_value 45
+	Field Address width 200 height 40 x_value 120 y_value 45
+	
+	Button Create/Edit width 60 height 30 x_value 1 y_value 90
+	Button Cancel width 60 height 30 x_value 80 y_value 90
+	Button Delete width 60 height 30 x_value 160 y_value 90
+	
+	Label Loans width 100 height 40 x_value 1 y_value 125
+	Field Loans width 320 height 200 x_value 1 y_value 180
 }
 
