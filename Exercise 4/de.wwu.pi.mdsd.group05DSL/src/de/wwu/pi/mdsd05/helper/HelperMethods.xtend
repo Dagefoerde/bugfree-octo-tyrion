@@ -11,16 +11,17 @@ class HelperMethods {
 		val visitedEntitytypes = new HashSet<Entitytype>();
 		
 		var entitytype = type;
-		var properties = new BasicEList<Property>(); 
-		properties += entitytype.properties //(entitytype.properties.toArray as Property[]).toList // clone list
- 		
- 		while (entitytype.getSupertype()!=null
+		var properties = new BasicEList<Property>();
+		 		
+ 		while (entitytype!=null
  			 && !visitedEntitytypes.contains(entitytype)
  		)
  		{
  			visitedEntitytypes+=entitytype;
- 			properties += entitytype.getSupertype().getProperties();
+ 			properties += entitytype.getProperties();
+ 			
  			entitytype = entitytype.getSupertype();
+ 			
  		}
  		
 		return properties;

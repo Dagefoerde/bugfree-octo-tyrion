@@ -1,13 +1,14 @@
 Package mdsd05.library
 
-Entitytype Medium extends Book {
+Entitytype Medium {
 	Attribute String Name
 	Reference Copy Copy multiple
 }
 
-Entitytype Book extends Medium {
+Entitytype Book extends Medium { 
 	Attribute Integer ISBN
 	Attribute String Author
+	Attribute Integer Name // should throw an error!
 	
 	}
 

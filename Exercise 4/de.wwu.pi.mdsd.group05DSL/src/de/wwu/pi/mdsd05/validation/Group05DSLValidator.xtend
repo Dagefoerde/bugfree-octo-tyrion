@@ -22,6 +22,7 @@ import org.eclipse.xtext.validation.Check
 import static extension de.wwu.pi.mdsd05.helper.HelperMethods.*
 import de.wwu.pi.mdsd05.group05DSL.Label
 import de.wwu.pi.mdsd05.group05DSL.UIWindow
+import java.util.HashSet
 
 //import org.eclipse.xtext.validation.Check
 
@@ -88,12 +89,6 @@ def checkUIElementOverlapping(UIElement uiElement){
 }
 
 @Check
-def checkCyclicInheritance(Entitytype entity){
-	if(cyclicInheritance(entity))
-		error("Cyclic inheritance is not allowed", entity.eContainer, Group05DSLPackage.Literals.MODEL__ENTITYTYPES);
-}
-
-@Check
 def checkReferences(Entitytype entity){
 	if(checkReferencesForLoop(entity))
 		error(entity.name + " is not correctly referenced. Check opposite reference.", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
@@ -112,14 +107,28 @@ def checkReferencesForLoop(Entitytype entity){
 	return false
 }
 
+@Check
+def checkCyclicInheritance(Entitytype entity){
+	if(cyclicInheritance(entity))
+		error("Cyclic inheritance is not allowed", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME);
+}
+
 def cyclicInheritance(Entitytype entity){
 
-	var superclass = entity.getSupertype();
-//	while(true){
-//		if (superclass == null) return false;
-//		if (superclass == entity) return true;
-//		superclass = superclass.getSupertype();
-//		}
+		val visitedEntitytypes = new HashSet<Entitytype>();
+		var entitytype = entity;
+		 		
+ 		while (entitytype!=null)
+ 		{
+ 			if (visitedEntitytypes.contains(entitytype)) {
+ 				return true;
+ 			}
+ 			
+ 			visitedEntitytypes+=entitytype;
+ 			entitytype = entitytype.getSupertype();
+ 			
+ 		}
+	
 	return false
 
 }
@@ -220,12 +229,12 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 def PropertiesHaveTheSameName(Property property)
 	 {
 	 	
-	 	var properties = (property.eContainer() as Entitytype).getProperties();
+	 	var properties = (property.eContainer() as Entitytype).allPropertiesIncludingSuperproperties;
 	 	for (Property p: properties)
 	 	{
 	 		if(p.getName() != null && p != property && p.getName().equals(property.getName))
 	 		{
-	 			error ("Property with the same name already exists", Group05DSLPackage.Literals.PROPERTY__NAME);
+	 			error ("A property with the same name already exists in this class or in a superclass.", Group05DSLPackage.Literals.PROPERTY__NAME);
 	 		}
 	 	}	 	
 	 }
@@ -240,7 +249,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	{
 	 		if(l.getName() != null && l != label && l.getName().equals(label.getName))
 	 		{
-	 			error ("Label with the same name already exists", Group05DSLPackage.Literals.LABEL__NAME);
+	 			error ("A label with the same name already exists", Group05DSLPackage.Literals.LABEL__NAME);
 	 		}
 	 	}	 	
 	 }
@@ -254,7 +263,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	 	{
 	 		if(w.getName() != null && w != window && w.getName().equals(window.getName))
 	 		{
-	 			error ("Window with the same name already exists", Group05DSLPackage.Literals.UI_WINDOW__NAME);
+	 			error ("A window with the same name already exists", Group05DSLPackage.Literals.UI_WINDOW__NAME);
 	 		}
 	 	}	 	
 	 }
