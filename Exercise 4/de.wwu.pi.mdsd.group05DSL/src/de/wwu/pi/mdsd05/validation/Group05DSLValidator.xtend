@@ -83,7 +83,7 @@ def checkUIElementOverlapping(UIElement uiElement){
 		for (UIElement element : window.getElements().filter[elem|!elem.equals(uiElement)]){
 		if (overlapping(element, uiElement)){
 	
-				warning("Is overlaping with a another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);}		
+				warning("Is overlapping with a another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);}		
 }
 }
 
@@ -95,23 +95,20 @@ def checkCyclicInheritance(Entitytype entity){
 
 @Check
 def checkReferences(Entitytype entity){
-	if(fReference(entity))
-		error(entity + "is not correctly referenced", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+	if(checkReferencesForLoop(entity))
+		error(entity.name + " is not correctly referenced. Check opposite reference.", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 }
 
-def fReference(Entitytype entity){
-	var Multiplicity mult;
+def checkReferencesForLoop(Entitytype entity){
+	// necessary to be able to "break" from a loop early, as xtend does not support that keyword
 	
 	for (ref : entity.getProperties().filter[re|re instanceof Reference].map[re| re as Reference]){
+		val mult = ref.multiplicity
+		val opposite = ref.references.properties.filter[re|re instanceof Reference].map[re| re as Reference].filter[re|re.references == entity]
+		if (opposite.size != 1) return true
+		if (mult == opposite.get(0).multiplicity) return true
 		
-		mult = ref.multiplicity
-		val opEnt = ref.references
-		val opRef = opEnt.properties.filter[re|re instanceof Reference].map[re| re as Reference].filter[re|re.references == entity]
-		if (opRef.size == 0) return true
-		if (mult == opRef.get(0).multiplicity) return true
-//		if (opEnt == entity) return true
-		
-				}
+	}
 	return false
 }
 
@@ -147,16 +144,7 @@ def pointInWindow(UIElement element, Integer x, Integer y){
 	if ((xElement <= x && (xElement + width) >= x) && (yElement <= y && (y + height) >= yElement)) return true;
 	return false
 }
-//  public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					MyDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+
  @Check
  def areAllPropertiesIncludedInTheEntrywindow(EntryWindow entryWindow){
  	val allProperties=entryWindow.entitytype.allPropertiesIncludingSuperproperties.filter[prop|!(prop instanceof Attribute)||(prop as Attribute).optional==null];
