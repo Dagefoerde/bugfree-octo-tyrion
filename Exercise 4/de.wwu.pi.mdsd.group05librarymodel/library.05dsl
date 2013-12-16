@@ -8,7 +8,8 @@ Entitytype Medium extends Book {
 Entitytype Book extends Medium {
 	Attribute Integer ISBN
 	Attribute String Author
-}
+	
+	}
 
 Entitytype CD extends Medium {
 	Attribute Integer ASIN
@@ -17,7 +18,7 @@ Entitytype CD extends Medium {
 	
 Entitytype Copy {
 	Attribute Integer InventoryNumber
-	Reference Medium Medium
+	Reference Medium Medium 
 	Reference Loan Loan multiple 
 }
 
@@ -60,13 +61,9 @@ ListWindow ListUsers for User {
 	height 500 width 300
 }
 
-ListWindow ListMedia for Medium {
+EntryWindow BookEntry for Book {
 	height 500 width 300
-	title "List Media"
-}
-
-ListWindow ListBooks for Book {
-	height 500 width 300
+	Field Name width 200 height 100 x_value 1 y_value 1
 }
 
 ListWindow ListCDs for CD {
