@@ -10,6 +10,8 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import static extension de.wwu.pi.mdsd05.helper.EntitytypeHelperMethods.*
+import de.wwu.pi.mdsd05.group05DSL.UIWindow
+import de.wwu.pi.mdsd05.group05DSL.Model
 
 /**
  * This class contains custom scoping description.
@@ -24,6 +26,12 @@ class Group05DSLScopeProvider extends AbstractDeclarativeScopeProvider {
 	{
 		val fieldEntitytype = (ctx.eContainer() as EntryWindow).getEntitytype();
 		return Scopes.scopeFor(fieldEntitytype.getAllPropertiesIncludingSuperproperties);
+	}
+	
+	def IScope scope_UIWindow_entitytype(EntryWindow ctx, EReference ref)
+	{
+		val model = (ctx.eContainer() as Model);	
+		return Scopes.scopeFor(model.entitytypes.filter(ent|ent.abstract==null));
 	}
 
 	
