@@ -64,5 +64,25 @@ class EntitytypeHelperMethods {
 		}
 		return false;
 	}
+	
+	def static referencesItself(Entitytype entity){
+		for (Reference r : entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]){
+			if(r.references.equals(entity)) return true
+		}
+		return false
+	}
+	
+	def static referencesSubOrSuperclass(Entitytype entity){
+		val superClass = entity.supertype
+		val subClasses = (entity.eContainer() as Model).entitytypes.filter[sub| sub.supertype != null && sub.supertype.equals(entity)]
+		val references = entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]
+			for(ref : references){
+				if (ref.references.equals(superClass)) return true
+				for(sub : subClasses){
+					if (ref.references.equals(sub)) return true
+				}			
+			}			
+		return false
+	}
 
 }

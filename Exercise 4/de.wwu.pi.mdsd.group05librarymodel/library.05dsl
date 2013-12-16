@@ -1,6 +1,6 @@
 Package mdsd05.library
 
-Entitytype Medium {
+abstract Entitytype Medium {
 	Attribute String Name
 	Reference Copy Copies multiple
 }

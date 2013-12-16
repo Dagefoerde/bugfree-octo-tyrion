@@ -4,7 +4,7 @@ import de.wwu.pi.mdsd05.group05DSL.UIElement
 
 class UIElementHelperMethods {
 	
-
+	//Assumption: x and y coordinates define the left upper corner of an UIelement
 	def static overlapping(UIElement element, UIElement element2) {
 		val options1 = element.uiOptions;
 		val options2 = element2.uiOptions;
