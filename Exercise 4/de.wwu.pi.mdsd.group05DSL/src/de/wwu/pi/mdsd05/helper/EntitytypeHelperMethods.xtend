@@ -6,6 +6,7 @@ import de.wwu.pi.mdsd05.group05DSL.Reference
 import java.util.HashSet
 import org.eclipse.emf.common.util.BasicEList
 import de.wwu.pi.mdsd05.group05DSL.Model
+import java.awt.List
 
 class EntitytypeHelperMethods {
 	def static getAllPropertiesIncludingSuperproperties(Entitytype type) {
@@ -74,7 +75,24 @@ class EntitytypeHelperMethods {
 	
 	def static referencesSubOrSuperclass(Entitytype entity){
 		val superClass = entity.supertype
-		val subClasses = (entity.eContainer() as Model).entitytypes.filter[sub| sub.supertype != null && sub.supertype.equals(entity)]
+		
+		var Entitytype[] subClasses
+		subClasses.add(entity)
+		var Entitytype[] leftClasses = (entity.eContainer() as Model).entitytypes.filter[c| !c.equals(entity)]
+		
+		for(int i:0..(entity.eContainer()as Model).entitytypes.size-2){
+			for (e: leftClasses){
+				for (s: subClasses){
+					if(e.properties.filter[ref|ref instanceof Reference].map[ref|ref as Reference].equals(s)) return true
+					if (e.supertype != null && e.supertype.equals(s)){
+						subClasses.add(e)
+						leftClasses.remove(e)
+					}
+				}
+
+			}
+		}
+		
 		val references = entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]
 			for(ref : references){
 				if (ref.references.equals(superClass)) return true
