@@ -7,6 +7,7 @@ import java.util.HashSet
 import org.eclipse.emf.common.util.BasicEList
 import de.wwu.pi.mdsd05.group05DSL.Model
 import java.awt.List
+import java.util.ArrayList
 
 class EntitytypeHelperMethods {
 	def static getAllPropertiesIncludingSuperproperties(Entitytype type) {
@@ -74,31 +75,41 @@ class EntitytypeHelperMethods {
 	}
 	
 	def static referencesSubOrSuperclass(Entitytype entity){
-		val superClass = entity.supertype
+		var loopEntity = entity
 		
-		var Entitytype[] subClasses
+		//represents a Hashset of all classes that the entity inherits from
+		val superClasses = new HashSet<Entitytype>();
+		while (loopEntity.supertype!=null && !superClasses.contains(loopEntity)){
+			superClasses.add(loopEntity.supertype)
+			loopEntity=loopEntity.supertype
+			}
+		//represents a Hashset of all classes that inherit from entity and for calculation purposes the entity itself
+		val subClasses = new HashSet<Entitytype>();
 		subClasses.add(entity)
-		var Entitytype[] leftClasses = (entity.eContainer() as Model).entitytypes.filter[c| !c.equals(entity)]
-		
-		for(int i:0..(entity.eContainer()as Model).entitytypes.size-2){
-			for (e: leftClasses){
-				for (s: subClasses){
-					if(e.properties.filter[ref|ref instanceof Reference].map[ref|ref as Reference].equals(s)) return true
-					if (e.supertype != null && e.supertype.equals(s)){
-						subClasses.add(e)
-						leftClasses.remove(e)
-					}
+		//to reduce the calculation duration the search space for subclasses is reduced during processing
+		val leftClasses = new HashSet<Entitytype>();
+		leftClasses.addAll((entity.eContainer() as Model).entitytypes.filter[c| !c.equals(entity)&&!superClasses.contains(c)])
+		//states if a new subclass was added during the last iteration.
+		var foundSomething=true
+		//Searches for Subclasses among the leftClasses
+		while (foundSomething){
+			foundSomething=false
+			for (Entitytype clazz:leftClasses){
+				if (clazz.supertype!=null && subClasses.contains(clazz.supertype)){
+					subClasses.add(clazz)
+					leftClasses.remove(clazz)
+					foundSomething=true
 				}
-
 			}
 		}
+		//If is not interesting in the method if the entity references itself, thus it is deleted from this list
+		subClasses.remove(entity)
 		
+		//Does a reference exists, that references a sub or a superclass
 		val references = entity.properties.filter[ref| ref instanceof Reference].map[ref| ref as Reference]
 			for(ref : references){
-				if (ref.references.equals(superClass)) return true
-				for(sub : subClasses){
-					if (ref.references.equals(sub)) return true
-				}			
+				if (superClasses.contains(ref.references)) return true
+				if (subClasses.contains(ref.references)) return true
 			}			
 		return false
 	}

@@ -81,10 +81,10 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 				Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 				}
 		if (entity.referencesItself){
-			warning(entity.name + "references itself.", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+			warning(entity.name + " references itself.", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 			}
 		if (entity.referencesSubOrSuperclass){
-			warning(entity.name + "references a subclass or superclass", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
+			warning(entity.name + " references a subclass or superclass", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME)
 		}
 	}
 
