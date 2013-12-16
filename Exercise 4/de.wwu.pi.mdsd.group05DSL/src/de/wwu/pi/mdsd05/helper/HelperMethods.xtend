@@ -1,23 +1,24 @@
 package de.wwu.pi.mdsd05.helper
 
 import de.wwu.pi.mdsd05.group05DSL.Entitytype
-import de.wwu.pi.mdsd05.group05DSL.Property
-import java.util.ArrayList
-import org.eclipse.emf.common.util.EList
+import java.util.HashSet
+import de.wwu.pi.mdsd05.group05DSL.Property;
+import org.eclipse.emf.common.util.BasicEList
 
 class HelperMethods {
-	def static EList<Property> getAllPropertiesIncludingSuperproperties(Entitytype type)
+	def static getAllPropertiesIncludingSuperproperties(Entitytype type)
 	{
-		val listOfVisitedEntitytypes = new ArrayList<Entitytype>();
+		val visitedEntitytypes = new HashSet<Entitytype>();
 		
 		var entitytype = type;
- 		var properties = entitytype.getProperties();
+		var properties = new BasicEList<Property>(); 
+		properties += entitytype.properties //(entitytype.properties.toArray as Property[]).toList // clone list
  		
  		while (entitytype.getSupertype()!=null
- 			 && !listOfVisitedEntitytypes.contains(entitytype)
+ 			 && !visitedEntitytypes.contains(entitytype)
  		)
  		{
- 			listOfVisitedEntitytypes+=entitytype;
+ 			visitedEntitytypes+=entitytype;
  			properties += entitytype.getSupertype().getProperties();
  			entitytype = entitytype.getSupertype();
  		}
