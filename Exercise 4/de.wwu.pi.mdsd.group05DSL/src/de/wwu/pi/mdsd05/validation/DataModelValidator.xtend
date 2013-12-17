@@ -29,7 +29,7 @@ class DataModelValidator extends AbstractGroup05DSLValidator {
 	@Check
 	def checkReference(Reference reference) {
 		val entity = (reference.eContainer as Entitytype)
-		//Assumption: A case, where one entity references another entity twice with the same multiplicity, can not be handled by automatic code generation, 
+		//Assumption: A case, where one entity references another entity twice with the same multiplicity, cannot be handled by automatic code generation, 
 		//since a distinct linking of a reference and its opposite reference is not possible.
 		if (reference.hasDoubleReference){
 			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction among the opposite references is not possible.", reference,
