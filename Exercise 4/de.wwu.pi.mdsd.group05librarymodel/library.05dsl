@@ -23,7 +23,7 @@ Entitytype Copy {
 
 Entitytype Loan {
 	Attribute Date IssueDate
-	Attribute Date ReturnDate
+	Attribute Date ReturnDate optional
 	Reference Copy Copy
 	Reference User User 
 	
