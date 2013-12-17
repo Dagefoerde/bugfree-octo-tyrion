@@ -80,7 +80,7 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 		//Assumption: A case, where one entity references another entity twice with the same multiplicity, can not be handled by automatic code generation, 
 		//since a distinct linking of a reference and its opposite reference is not possible.
 		if (reference.hasDoubleReference){
-			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction is not possible.", reference,
+			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction among the opposite references is not possible.", reference,
 				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
 		}
 		if (reference.hasWrongOppositeReference){

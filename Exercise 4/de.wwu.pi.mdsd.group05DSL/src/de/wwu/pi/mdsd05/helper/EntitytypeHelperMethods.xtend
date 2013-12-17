@@ -88,9 +88,9 @@ class EntitytypeHelperMethods {
 		while (foundSomething){
 			foundSomething=false
 			for (Entitytype clazz:leftClasses){
-				if (clazz.supertype!=null && subClasses.contains(clazz.supertype)){
+				if (!subClasses.contains(clazz) && clazz.supertype!=null && subClasses.contains(clazz.supertype)){
 					subClasses.add(clazz)
-					leftClasses.remove(clazz)
+					//leftClasses.remove(clazz)
 					foundSomething=true
 				}
 			}
