@@ -30,6 +30,8 @@ import de.wwu.pi.mdsd05.group05DSL.Reference
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 class Group05DSLValidator extends AbstractGroup05DSLValidator {
+	
+	// Data model validation -------------------------------------------------------
 
 	@Check
 	def public void checkAbtractFeatures(Entitytype entitytype) {
@@ -39,13 +41,37 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 		}
 
 	}
+	
+	@Check
+	def checkReference(Reference reference) {
+		val entity = (reference.eContainer as Entitytype)
+		//Assumption: A case, where one entity references another entity twice with the same multiplicity, can not be handled by automatic code generation, 
+		//since a distinct linking of a reference and its opposite reference is not possible.
+		if (reference.hasDoubleReference){
+			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction among the opposite references is not possible.", reference,
+				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+		}
+		if (reference.hasWrongOppositeReference){
+			error(entity.name + " is not correctly referenced. Check for opposite reference in " + reference.references.name +".", reference,
+				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+				}
+		if (reference.referencesItself){
+			warning(entity.name + " references itself.", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+			}
+		if (reference.referencesSubOrSuperclass){
+			warning(entity.name + " references a subclass or superclass", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
+		}
+	}	
 
 	@Check
-	def checkMinEntityAndWindow(Model model) {
-		if (model.entitytypes.size == 0 || model.uiwindows.size == 0)
-			warning("At least one Entitytype and one UIWindow should be modeled.",
-				Group05DSLPackage.Literals.MODEL__PACKAGE)
+	def checkCyclicInheritance(Entitytype entity) {
+		if (entity.hasCyclicInheritance)
+			error("Cyclic inheritance is not allowed", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME);
 	}
+	
+	
+	
+	// UI Validation ---------------------------------------------------------------
 
 	@Check
 	def checkWindowLimit(Entitytype entitytype) {
@@ -73,32 +99,6 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 				warning("A UI Element is overlapping with another UI Element.", Group05DSLPackage.Literals.UI_ELEMENT__UI_OPTIONS);
 			}
 		}
-	}
-	@Check
-	def checkReference(Reference reference) {
-		val entity = (reference.eContainer as Entitytype)
-		//Assumption: A case, where one entity references another entity twice with the same multiplicity, can not be handled by automatic code generation, 
-		//since a distinct linking of a reference and its opposite reference is not possible.
-		if (reference.hasDoubleReference){
-			error(entity.name + " has two references with the same multiplicity to " + reference.references.name +". A distinction among the opposite references is not possible.", reference,
-				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
-		}
-		if (reference.hasWrongOppositeReference){
-			error(entity.name + " is not correctly referenced. Check for opposite reference in " + reference.references.name +".", reference,
-				Group05DSLPackage.Literals.REFERENCE__REFERENCES)
-				}
-		if (reference.referencesItself){
-			warning(entity.name + " references itself.", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
-			}
-		if (reference.referencesSubOrSuperclass){
-			warning(entity.name + " references a subclass or superclass", reference, Group05DSLPackage.Literals.REFERENCE__REFERENCES)
-		}
-	}	
-
-	@Check
-	def checkCyclicInheritance(Entitytype entity) {
-		if (entity.hasCyclicInheritance)
-			error("Cyclic inheritance is not allowed", entity, Group05DSLPackage.Literals.ENTITYTYPE__NAME);
 	}
 
 	@Check
@@ -159,6 +159,16 @@ class Group05DSLValidator extends AbstractGroup05DSLValidator {
 			error("EntryWindow requires Create/Edit Button", Group05DSLPackage.Literals.UI_WINDOW__NAME);
 		}
 
+	}
+	
+	
+	// Global model validation -----------------------------------------------------
+
+	@Check
+	def checkMinEntityAndWindow(Model model) {
+		if (model.entitytypes.size == 0 || model.uiwindows.size == 0)
+			warning("At least one Entitytype and one UIWindow should be modeled.",
+				Group05DSLPackage.Literals.MODEL__PACKAGE)
 	}
 
 	@Check
