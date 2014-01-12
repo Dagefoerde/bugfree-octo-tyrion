@@ -4,8 +4,19 @@ modeltype CrudModel "strict" uses "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl";
 
 transformation QvtoToUml(in Source: CrudModel, out Target: Uml);
 
-main() {Source.rootObjects().subobjects()[Entity] -> map toClass(); }
+main() {
+Source.rootObjects()[CrudModel::CrudModel] -> map toUml();
 
+}
+
+intermediate property CrudModel::CrudModel::associations : Sequence(Association);
+intermediate property CrudModel::CrudModel::primitives : Set(PrimitiveType);
+
+mapping CrudModel::CrudModel::toUml() : Uml::Model {
+ownedType := self.entities -> map toClass();
+ownedType += self.primitives; 
+ownedType += self.associations; 
+}
 
 mapping Entity::toClass(): Uml::Class
 {
@@ -21,7 +32,9 @@ endif;
 mapping Attribute::toAttribute(): Property
 {
 name := self.name;
-type := self.type.map toPrimitive();
+var p := self.type.map toPrimitive();
+self.container().container().oclAsType(CrudModel::CrudModel).primitives += p;
+type := p;
 if(self.optional)
 then result.lower := 0
 else result.lower := 1
@@ -39,7 +52,9 @@ name := self.name;
 type := self.type.late resolveone(Class);
 if(self.multiplicity.toString() = "[1]")
 then	
-	{ object Association
+	{ 
+	self.container().container().oclAsType(CrudModel::CrudModel).associations +=
+	object Association
 			{
 			memberEnd += self.late resolveone(Property);
 			memberEnd += self.opposite.late resolveone(Property);
@@ -55,3 +70,4 @@ else
 endif;
 
 }
+

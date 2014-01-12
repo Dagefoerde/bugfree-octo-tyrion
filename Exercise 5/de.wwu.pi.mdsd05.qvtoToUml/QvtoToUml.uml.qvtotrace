@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="ASCII"?>
+<trace:Trace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:trace="http:///www.eclipse.org/m2m/qvt/operational/trace.ecore">
+  <traceRecords>
+    <mappingOperation name="toUml" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toUml"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="CrudModel">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#/"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Model">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDukHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDukXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.0/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuknumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toPrimitive" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toPrimitive"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="AttributeType">
+        <value primitiveValue="String"/>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="PrimitiveType">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuyXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.0/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDulXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDumHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.1/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDumnumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.1/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDunXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toPrimitive" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toPrimitive"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="AttributeType">
+        <value primitiveValue="Integer"/>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="PrimitiveType">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuy3umEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuoHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.2/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuonumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.2/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDupXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuqHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.3/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuqXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.3/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDurHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.3/@properties.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDur3umEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDusnumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.4/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDus3umEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toPrimitive" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toPrimitive"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="AttributeType">
+        <value primitiveValue="Date"/>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="PrimitiveType">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuynumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.4/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDutnumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.4/@properties.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuuXumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.4/@properties.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuvHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toClass" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toClass"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Entity">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.5"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Class">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuv3umEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Attribute">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.5/@properties.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuwHumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.5/@properties.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuw3umEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="toAttribute" package="QvtoToUml" module="QvtoToUml">
+      <runtimeMappingOperation href="transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvtox#//toAttribute.1"/>
+    </mappingOperation>
+    <context>
+      <context name="self" type="Reference">
+        <value>
+          <modelElement href="../crudmodel-project/library.cruddsl#//@entities.5/@properties.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Property">
+        <value>
+          <modelElement href="QvtoToUml.uml#_7UDuxnumEeOY4s2IGtUK7A"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+</trace:Trace>
