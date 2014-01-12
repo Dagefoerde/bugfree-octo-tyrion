@@ -3,7 +3,9 @@
 	<name>de.wwu.pi.mdsd05.qvtoToUml</name>
 	<comment></comment>
 	<projects>
+		<project>crudmodel-project</project>
 		<project>de.wwu.pi.mdsd.CrudDsl</project>
+		<project>de.wwu.pi.mdsd.CrudDsl.sdk</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
