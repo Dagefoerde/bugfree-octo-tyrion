@@ -3,10 +3,11 @@ module de.wwu.pi.mdsd.umlToApp.workflow.UmlToAppGenerator
 import org.eclipse.emf.mwe.utils.*
 
 // Modify these variables to influence the workflow
-var modelPath = "../de.wwu.pi.mdsd.crudDsl.runtimeTest"
+var modelPath = "../de.wwu.pi.mdsd.CrudDsl.runtime-workspace/crudmodel-project"
 var modelFilename = "library" 
 var modelExtension = "cruddsl"// CrudDsl model file at <modelPath>/<modelFilename>.<modelExtension>
-var transformationFile = "../de.wwu.pi.mdsd.m2m/transforms/crudToUml.qvto"
+var transformationFile = "../de.wwu.pi.mdsd05.qvtoToUml/transforms/de/wwu/pi/mdsd05/qvtoToUml/QvtoToUml.qvto"
+
 var targetDir = "src-gen"
 
 // Normally, it should not be necessary to modify the remainder of this file, except for the annotated locations.
