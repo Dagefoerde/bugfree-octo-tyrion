@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.wwu.pi.mdsd.CrudDsl/src-gen" editDirectory="/de.wwu.pi.mdsd.CrudDsl.edit/src"
+    editorDirectory="/de.wwu.pi.mdsd.CrudDsl.editor/src" modelPluginID="de.wwu.pi.mdsd.CrudDsl"
+    forceOverwrite="true" modelName="CrudDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="de.wwu.pi.mdsd.CrudDsl.edit"
+    editorPluginID="de.wwu.pi.mdsd.CrudDsl.editor" runtimeVersion="2.9">
+  <genPackages prefix="CrudDsl" basePackage="de.wwu.pi.mdsd.crudDsl" disposableProviderFactory="true"
+      fileExtensions="cruddsl" ecorePackage="CrudDsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CrudDsl.ecore#//AttributeType">
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//AttributeType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//AttributeType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//AttributeType/Date"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CrudDsl.ecore#//MultiplicityKind">
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//MultiplicityKind/Single"/>
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//MultiplicityKind/Multiple"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CrudDsl.ecore#//ButtonKind">
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//ButtonKind/createEdit"/>
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//ButtonKind/delete"/>
+      <genEnumLiterals ecoreEnumLiteral="CrudDsl.ecore#//ButtonKind/cancel"/>
+    </genEnums>
+    <genClasses ecoreClass="CrudDsl.ecore#//CrudModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//CrudModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//CrudModel/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//CrudModel/windows"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Entity/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Entity/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Entity/superType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Entity/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Property/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Attribute/optional"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Reference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Reference/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Reference/multiplicity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Reference/opposite"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Window">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Window/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Window/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Window/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Window/size"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//ListWindow"/>
+    <genClasses ecoreClass="CrudDsl.ecore#//EntryWindow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//EntryWindow/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Size">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Size/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Size/height"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Bounds">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Bounds/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Bounds/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Bounds/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Bounds/height"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//UIElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//UIElement/bounds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//UIElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Label/text"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Field">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CrudDsl.ecore#//Field/property"/>
+    </genClasses>
+    <genClasses ecoreClass="CrudDsl.ecore#//Button">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Button/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CrudDsl.ecore#//Button/text"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
