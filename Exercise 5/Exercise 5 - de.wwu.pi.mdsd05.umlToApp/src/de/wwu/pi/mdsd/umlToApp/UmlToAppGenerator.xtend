@@ -6,6 +6,11 @@ import org.eclipse.uml2.uml.Model
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.uml2.uml.Class
+import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import java.io.File
+import de.wwu.pi.mdsd.umlToApp.data.DataClassGenerator
+import de.wwu.pi.mdsd.umlToApp.logic.ServiceInitializerGenerator
+import de.wwu.pi.mdsd.umlToApp.logic.EntityServiceGenerator
 
 class UmlToAppGenerator implements IGenerator {
 	def static isModel(Resource input) {
@@ -37,13 +42,25 @@ class UmlToAppGenerator implements IGenerator {
 	}
 
 	def doGenerate(Model model, IFileSystemAccess fsa) {
-		println(
+		val PACKAGE_DIR = PACKAGE_STRING.replace('.', File.separatorChar);
+		model.allOwnedElements.filter(typeof(Class)).forEach[ clazz |
+			fsa.generateFile('''«PACKAGE_DIR»«File.separatorChar»data«File.separatorChar»«clazz.name».java''', new DataClassGenerator().generateDataClass(clazz))
+			fsa.generateFile('''«PACKAGE_DIR»«File.separatorChar»logic«File.separatorChar»«clazz.name»Service.java''', new EntityServiceGenerator().generateEntityServiceClass(clazz))
+			
+		]
+		fsa.generateFile('''«PACKAGE_DIR»«File.separatorChar»logic«File.separatorChar»ServiceInitializer.java''', new ServiceInitializerGenerator().generateServiceInitializer(model.allEntities))
+	
+		
+		
+		
+		
 			"Model elements within the UML model: " +
 				model.allOwnedElements.filter(typeof(Class)).join(", ", [clazz|clazz.name])
-		)
+		
 	}
 
 	def doGenerate(CrudModel model, IFileSystemAccess fsa) {
+		val PACKAGE_DIR = PACKAGE_STRING.replace('.', File.separatorChar);
 		println(
 			"Window elements within the crud model: " + model.windows.join(", ", [it.name])
 		)
