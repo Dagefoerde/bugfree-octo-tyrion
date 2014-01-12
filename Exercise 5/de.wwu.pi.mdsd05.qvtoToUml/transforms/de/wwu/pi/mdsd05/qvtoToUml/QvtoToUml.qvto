@@ -4,9 +4,60 @@ modeltype CrudModel "strict" uses "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl";
 
 transformation QvtoToUml(in Source: CrudModel, out Target: Uml);
 
-main() {Source.rootObjects()[Entity] -> map toClass(); }
+main() {Source.rootObjects().subobjects()[Entity] -> map toClass(); }
 
-mapping Entity::toClass(): Uml::CrudModel
+
+mapping Entity::toClass(): Uml::Class
 {
+name := self.name;
+isAbstract := self._abstract;
+ownedAttribute := self.properties[Attribute] -> map toAttribute(); 
+ownedAttribute += self.properties[Reference] -> map toAttribute();
+if(self.superType!=null)
+then result.superClass := self.superType.late resolveone(Class) 
+endif;
+}
 
+mapping Attribute::toAttribute(): Property
+{
+name := self.name;
+type := self.type.map toPrimitive();
+if(self.optional)
+then result.lower := 0
+else result.lower := 1
+endif;
+result.upper:=1;
+}
+
+mapping AttributeType::toPrimitive(): PrimitiveType
+{
+name := self.toString();
+}
+
+mapping Reference::toAttribute(): Property{
+name := self.name;
+type := self.type.late resolveone(Class);
+if(self.multiplicity.toString() = "[1]")
+then	
+	{ object Association
+			{
+			memberEnd += self.late resolveone(Property);
+			memberEnd += self.opposite.late resolveone(Property);
+			};
+		result.lower := 1;
+		result.upper := 1;	
+	}
+else 
+{
+	result.lower := 0;
+	result.upper := *;
+}	
+endif;
+
+}
+
+mapping Reference::toAssociation(): Association
+{
+ownedEnd += self.type.oclAsType(Entity).resolveone(Property);
+ownedEnd += self.opposite.oclAsType(Entity).resolveone(Property);
 }

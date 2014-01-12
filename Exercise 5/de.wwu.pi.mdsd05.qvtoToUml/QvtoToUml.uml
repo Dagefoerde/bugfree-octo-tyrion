@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <uml:Class xmi:id="_2Mq4oHuTEeOVD7J0x0flZw" name="Medium" isAbstract="true">
+    <ownedAttribute xmi:id="_2Mq4oXuTEeOVD7J0x0flZw" name="name" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4onuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4o3uTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4pHuTEeOVD7J0x0flZw" name="copies" type="_2MrfuXuTEeOVD7J0x0flZw" association="_2MrfxHuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4pXuTEeOVD7J0x0flZw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4pnuTEeOVD7J0x0flZw" value="*"/>
+    </ownedAttribute>
+  </uml:Class>
+  <uml:PrimitiveType xmi:id="_2Mq4p3uTEeOVD7J0x0flZw" name="String"/>
+  <uml:Class xmi:id="_2Mq4qHuTEeOVD7J0x0flZw" name="Loan">
+    <ownedAttribute xmi:id="_2Mq4qXuTEeOVD7J0x0flZw" name="loanDate" type="_2Mq4tXuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4qnuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4q3uTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4rHuTEeOVD7J0x0flZw" name="returnDate" type="_2Mq4tXuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4rXuTEeOVD7J0x0flZw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4rnuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4r3uTEeOVD7J0x0flZw" name="user" type="_2Mq4uHuTEeOVD7J0x0flZw" association="_2Mq4tnuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4sHuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4sXuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4snuTEeOVD7J0x0flZw" name="copy" type="_2MrfuXuTEeOVD7J0x0flZw" association="_2Mq4t3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4s3uTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4tHuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+  </uml:Class>
+  <uml:PrimitiveType xmi:id="_2Mq4tXuTEeOVD7J0x0flZw" name="Date"/>
+  <uml:Association xmi:id="_2Mq4tnuTEeOVD7J0x0flZw" memberEnd="_2Mq4r3uTEeOVD7J0x0flZw _2Mq4v3uTEeOVD7J0x0flZw"/>
+  <uml:Association xmi:id="_2Mq4t3uTEeOVD7J0x0flZw" memberEnd="_2Mq4snuTEeOVD7J0x0flZw _2MrfvXuTEeOVD7J0x0flZw"/>
+  <uml:Class xmi:id="_2Mq4uHuTEeOVD7J0x0flZw" name="User">
+    <ownedAttribute xmi:id="_2Mq4uXuTEeOVD7J0x0flZw" name="name" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4unuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4u3uTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4vHuTEeOVD7J0x0flZw" name="address" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4vXuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mq4vnuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2Mq4v3uTEeOVD7J0x0flZw" name="loans" type="_2Mq4qHuTEeOVD7J0x0flZw" association="_2Mq4tnuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mq4wHuTEeOVD7J0x0flZw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfsHuTEeOVD7J0x0flZw" value="*"/>
+    </ownedAttribute>
+  </uml:Class>
+  <uml:Class xmi:id="_2MrfsXuTEeOVD7J0x0flZw" name="CD">
+    <generalization xmi:id="_2MrfsnuTEeOVD7J0x0flZw" general="_2Mq4oHuTEeOVD7J0x0flZw"/>
+    <ownedAttribute xmi:id="_2Mrfs3uTEeOVD7J0x0flZw" name="interpreter" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2MrftHuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrftXuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2MrftnuTEeOVD7J0x0flZw" name="asin" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mrft3uTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfuHuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+  </uml:Class>
+  <uml:Class xmi:id="_2MrfuXuTEeOVD7J0x0flZw" name="Copy">
+    <ownedAttribute xmi:id="_2MrfunuTEeOVD7J0x0flZw" name="inventoryNo" type="_2Mrfw3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mrfu3uTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfvHuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2MrfvXuTEeOVD7J0x0flZw" name="loans" type="_2Mq4qHuTEeOVD7J0x0flZw" association="_2Mq4t3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2MrfvnuTEeOVD7J0x0flZw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Mrfv3uTEeOVD7J0x0flZw" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2MrfwHuTEeOVD7J0x0flZw" name="medium" type="_2Mq4oHuTEeOVD7J0x0flZw" association="_2MrfxHuTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2MrfwXuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfwnuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+  </uml:Class>
+  <uml:PrimitiveType xmi:id="_2Mrfw3uTEeOVD7J0x0flZw" name="Integer"/>
+  <uml:Association xmi:id="_2MrfxHuTEeOVD7J0x0flZw" memberEnd="_2MrfwHuTEeOVD7J0x0flZw _2Mq4pHuTEeOVD7J0x0flZw"/>
+  <uml:Class xmi:id="_2MrfxXuTEeOVD7J0x0flZw" name="Book">
+    <generalization xmi:id="_2MrfxnuTEeOVD7J0x0flZw" general="_2Mq4oHuTEeOVD7J0x0flZw"/>
+    <ownedAttribute xmi:id="_2Mrfx3uTEeOVD7J0x0flZw" name="author" type="_2Mq4p3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2MrfyHuTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfyXuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2MrfynuTEeOVD7J0x0flZw" name="isbn" type="_2Mrfw3uTEeOVD7J0x0flZw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Mrfy3uTEeOVD7J0x0flZw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2MrfzHuTEeOVD7J0x0flZw" value="1"/>
+    </ownedAttribute>
+  </uml:Class>
+</xmi:XMI>
