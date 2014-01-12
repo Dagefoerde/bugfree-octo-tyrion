@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: QvtoToUml Plug-in
+Bundle-SymbolicName: de.wwu.pi.mdsd05.qvtoToUml
+Bundle-Version: 1.0.0
+Bundle-Vendor: 
