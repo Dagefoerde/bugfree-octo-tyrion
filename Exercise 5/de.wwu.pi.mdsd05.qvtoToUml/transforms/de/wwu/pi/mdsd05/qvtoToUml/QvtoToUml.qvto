@@ -1,7 +1,12 @@
 modeltype Uml uses "http://www.eclipse.org/uml2/4.0.0/UML";
-modeltype CrudModel uses "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl";
+modeltype CrudModel "strict" uses "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl";
 	
 
 transformation QvtoToUml(in Source: CrudModel, out Target: Uml);
 
-main() {Source.rootObjects()[] -> map toDFA(); }
+main() {Source.rootObjects()[Entity] -> map toClass(); }
+
+mapping Entity::toClass(): Uml::CrudModel
+{
+
+}
