@@ -1,0 +1,97 @@
+grammar de.wwu.pi.mdsd.crudDsl.CrudDsl with org.eclipse.xtext.common.Terminals
+
+generate crudDsl "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl"
+
+CrudModel:
+	'package' name=QualifiedName
+	(
+		entities+=Entity | 
+		windows+=Window
+	)*
+;
+
+// =============================================
+/* Entity Model */
+// =============================================
+Entity:
+	(abstract?='abstract')? 'entity' name=ID ('extends' superType=[Entity])? '{'
+		properties+=Property*
+	'}'
+;
+
+Property:
+	Attribute | Reference
+;
+
+Attribute:
+	'att' name=ID ':' type=AttributeType (optional?='optional')?
+;
+
+enum AttributeType:
+	String | Integer | Date
+;
+
+Reference:
+	'ref' name=ID ':' type=[Entity] (multiplicity=MultiplicityKind)? ('opposite=' opposite=[Reference])
+;
+
+enum MultiplicityKind:
+	Single='[1]' | //default
+	Multiple='[*]'
+;
+
+// =============================================
+/* GUI Model */
+// =============================================
+ 
+Window:
+	(EntryWindow | ListWindow)
+;
+
+ListWindow:
+	'ListWindow'  name=ID 'for' entity=[Entity] ('title' title=STRING)? size=Size
+;
+
+EntryWindow:
+	'EntryWindow' name=ID 'for' entity=[Entity] (('title' title=STRING)? & size=Size) '{'
+		elements+=UIElement*
+	'}'
+;
+
+Size:
+	'size=' '(' width=INT ',' height=INT ')'
+;
+
+Bounds:
+	//{Bounds} helpful to prevent error when changing referenced object within unassigned rule call 
+	{Bounds} 'bounds=' '(' x=INT ',' y=INT ',' width=INT ',' height=INT ')'
+;
+
+UIElement:
+	(Label | Field | Button) bounds=Bounds
+;
+
+Label:
+	'Label' name=ID ('(' (text=STRING)? ')')?
+;
+
+Field:
+	'Field' name=ID 'for' property=[Property]
+;
+
+Button:
+	'Button' name=ID (kind=ButtonKind)? ('(' (text=STRING)? ')')?
+;
+
+enum ButtonKind:
+	createEdit | // default
+	delete |
+	cancel
+;
+
+// =============================================
+/* Util */
+// =============================================
+QualifiedName:
+	ID ('.' ID)*
+;

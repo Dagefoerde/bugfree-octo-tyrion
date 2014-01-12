@@ -1,0 +1,130 @@
+package de.wwu.pi.mdsd.libraryImpl
+
+// ----- Entity Part ---- ///
+abstract entity Medium {
+	att name : String
+	ref copies : Copy[*] opposite=medium
+}
+
+entity Book extends Medium {
+	att author : String
+	att isbn : Integer
+}
+
+entity CD extends Medium {
+	att interpreter : String
+	att asin : String
+}
+
+entity User {
+	att name : String
+	att address : String
+	ref loans : Loan[*] opposite=user
+}
+
+entity Loan {
+	att loanDate : Date
+	att returnDate : Date optional
+	ref user : User opposite=loans
+	ref copy : Copy[1] opposite=loans
+}
+
+entity Copy {
+	att inventoryNo : Integer
+	ref loans : Loan[*] opposite=copy
+	ref medium : Medium[1] opposite=copies
+}
+
+// ----- List Windows ----- //
+ListWindow UserListWindow for User title "User Listing" size= (400, 450)
+
+ListWindow LoanListWindow for Loan title "Loan Listing" size= (400, 450)
+
+ListWindow MediumListWindow for Medium title "Copy Listing" size= (400, 450)
+
+ListWindow CopyListWindow for Copy title "Copy Listing" size= (400, 450)
+
+ListWindow BookListWindow for Book size= (400, 450)
+
+ListWindow CDListWindow for CD size= (400, 450)
+
+// ----- Entry Windows ----- //
+EntryWindow UserEntryWindow for User title "User Listing" size= (450, 400) {
+
+	Label lbl_name ("Name") bounds= (10, 10, 75, 20)
+	Field fd_name for name bounds= (95, 10, 330, 20)
+
+	Label lbl_address ("Address") bounds= (10, 40, 75, 20)
+	Field fd_address for address bounds= (95, 40, 330, 20)
+
+	Label lbl_loans ("Loans") bounds= (10, 70, 75, 20)
+	Field fd_loans for loans bounds= (95, 70, 330, 100)
+//	Field fd_loans2 for loans bounds= (95, 175, 330, 100)
+
+	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)
+}
+
+EntryWindow LoanEntryWindow for Loan title "Loan Listing" size= (450, 400) {
+
+	Label lbl_loanDate ("Loan Date") bounds= (10, 10, 75, 20)
+	Field fd_loanDate for loanDate bounds= (95, 10, 330, 20)
+
+	Label lbl_returnDate ("Return Date") bounds= (10, 40, 75, 20)
+	Field fd_returnDate for returnDate bounds= (95, 40, 330, 20)
+
+	Label lbl_copy ("Copy") bounds= (10, 70, 75, 20)
+	Field fd_copy for copy bounds= (95, 70, 330, 20)
+
+	Label lbl_user ("User") bounds= (10, 100, 75, 20)
+	Field fd_user for user bounds= (95, 100, 330, 20)
+
+	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)
+}
+
+EntryWindow CopyEntryWindow for Copy title "Copy Listing" size= (450, 400) {
+
+	Label lbl_inventoryNo ("Inventory No") bounds= (10, 10, 75, 20)
+	Field fd_inventoryNo for inventoryNo bounds= (95, 10, 330, 20)
+
+	Label lbl_medium ("Medium") bounds= (10, 40, 75, 20)
+	Field fd_medium for medium bounds= (95, 40, 330, 20)
+
+	Label lbl_loans ("Loans") bounds= (10, 70, 75, 20)
+	Field fd_loans for loans bounds= (95, 70, 330, 100)
+
+	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)
+}
+
+EntryWindow BookEntryWindow for Book size= (450, 400) {
+
+	Label lbl_name ("Name") bounds= (10, 10, 75, 20)
+	Field fd_name for name bounds= (95, 10, 330, 20)
+
+	Label lbl_author ("Author") bounds= (10, 40, 75, 20)
+	Field fd_author for author bounds= (95, 40, 330, 20)
+
+	Label lbl_isbn ("ISBN") bounds= (10, 70, 75, 20)
+	Field fd_isbn for isbn bounds= (95, 70, 330, 20)
+
+	Label lbl_copies ("Copies") bounds= (10, 100, 75, 20)
+	Field fd_copies for copies bounds= (95, 100, 330, 100)
+
+	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)
+}
+
+EntryWindow CDEntryWindow for CD size= (450, 400) {
+
+	Label lbl_name ("Name") bounds= (10, 10, 75, 20)
+	Field fd_name for name bounds= (95, 10, 330, 20)
+
+	Label lbl_interpreter ("Interpreter") bounds= (10, 40, 75, 20)
+	Field fd_interpreter for interpreter bounds= (95, 40, 330, 20)
+
+	Label lbl_asin ("ASIN") bounds= (10, 70, 75, 20)
+	Field fd_asin for asin bounds= (95, 70, 330, 20)
+
+	Label lbl_copies ("Copies") bounds= (10, 100, 75, 20)
+	Field fd_copies for copies bounds= (95, 100, 330, 100)
+
+	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)
+}

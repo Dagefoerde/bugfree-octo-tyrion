@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.wwu.pi.mdsd.CrudDsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.wwu.pi.mdsd.CrudDsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: de.wwu.pi.mdsd.crudDsl,
+ de.wwu.pi.mdsd.crudDsl.services,
+ de.wwu.pi.mdsd.crudDsl.crudDsl,
+ de.wwu.pi.mdsd.crudDsl.crudDsl.impl,
+ de.wwu.pi.mdsd.crudDsl.crudDsl.util,
+ de.wwu.pi.mdsd.crudDsl.serializer,
+ de.wwu.pi.mdsd.crudDsl.parser.antlr,
+ de.wwu.pi.mdsd.crudDsl.parser.antlr.internal,
+ de.wwu.pi.mdsd.crudDsl.validation,
+ de.wwu.pi.mdsd.crudDsl.scoping,
+ de.wwu.pi.mdsd.crudDsl.generator,
+ de.wwu.pi.mdsd.crudDsl.formatting
