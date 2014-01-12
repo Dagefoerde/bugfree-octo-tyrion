@@ -3,6 +3,7 @@
 	<name>de.wwu.pi.mdsd05.qvtoToUml</name>
 	<comment></comment>
 	<projects>
+		<project>de.wwu.pi.mdsd.CrudDsl</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

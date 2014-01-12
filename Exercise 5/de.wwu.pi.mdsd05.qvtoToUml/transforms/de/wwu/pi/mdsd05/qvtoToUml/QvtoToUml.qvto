@@ -1,3 +1,7 @@
+modeltype Uml uses "http://www.eclipse.org/uml2/4.0.0/UML";
+modeltype CrudModel uses "http://www.wwu.de/pi/mdsd/crudDsl/CrudDsl";
+	
+
 transformation QvtoToUml();
 
 main() {
