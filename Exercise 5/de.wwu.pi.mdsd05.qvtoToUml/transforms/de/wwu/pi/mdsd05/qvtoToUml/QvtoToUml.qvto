@@ -55,9 +55,3 @@ else
 endif;
 
 }
-
-mapping Reference::toAssociation(): Association
-{
-ownedEnd += self.type.oclAsType(Entity).resolveone(Property);
-ownedEnd += self.opposite.oclAsType(Entity).resolveone(Property);
-}
