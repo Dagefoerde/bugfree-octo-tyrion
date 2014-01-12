@@ -1,0 +1,47 @@
+module de.wwu.pi.mdsd.umlToApp.workflow.UmlToAppGenerator
+
+import org.eclipse.emf.mwe.utils.*
+
+// Modify these variables to influence the workflow
+var modelPath = "../de.wwu.pi.mdsd.crudDsl.runtimeTest"
+var modelFilename = "library" 
+var modelExtension = "cruddsl"// CrudDsl model file at <modelPath>/<modelFilename>.<modelExtension>
+var transformationFile = "../de.wwu.pi.mdsd.m2m/transforms/crudToUml.qvto"
+var targetDir = "src-gen"
+
+// Normally, it should not be necessary to modify the remainder of this file, except for the annotated locations.
+var modelUriRegex = ".*${modelFilename}\\.${modelExtension}"
+
+Workflow {
+	bean = StandaloneSetup {
+		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+	}
+	
+	component = DirectoryCleaner {
+		directory = targetDir
+		exclude = ".git"
+	}
+	
+	component = org.eclipse.xtext.mwe.Reader {
+		path = modelPath
+		// CHANGE to StandaloneSetup generated for your DSL
+		register = de.wwu.pi.mdsd.crudDsl.CrudDslStandaloneSetup {}
+		loadResource = {
+			slot = "model"
+			uri = modelUriRegex
+		}
+	}
+	
+	component = QVTOComponent {
+		transformationFile = transformationFile
+		modelSlot = "model"
+	}
+	
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = UmlToAppGeneratorSetup {}
+		slot = "model"
+		outlet = {
+			path = targetDir
+		}
+	}
+}
