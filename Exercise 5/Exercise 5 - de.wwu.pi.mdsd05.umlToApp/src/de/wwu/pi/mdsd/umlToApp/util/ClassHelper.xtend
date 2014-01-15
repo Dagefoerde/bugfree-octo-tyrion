@@ -25,6 +25,9 @@ class ClassHelper {
 	def static listingInterfaceClassName(Type type) {
 		type.name + 'ListingInterface'
 	}
+	def static listingInterfaceClassName(Entity entity) {
+		entity.name + 'ListingInterface'
+	}
 	def static listingInterfaceMethodeName(Type type) {
 		'initialize'+ type.name +'Listings'
 	}
