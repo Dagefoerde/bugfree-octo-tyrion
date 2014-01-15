@@ -1,16 +1,14 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 
-import org.eclipse.uml2.uml.Model
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import org.eclipse.uml2.uml.Property
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
-import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class StartWindow {
-	def generateStartWindow(Model model) '''
-		« var anyEntityclass = model.allEntities.last»
-		package «anyEntityclass.guiPackageString»;
+	def generateStartWindow(CrudModel model) '''
+		« var packageName = model.name»
+		package «packageName»;
 		
 		import java.awt.GridBagConstraints;
 		import java.awt.Insets;
@@ -22,23 +20,23 @@ class StartWindow {
 		import javax.swing.UnsupportedLookAndFeelException;
 		
 		import de.wwu.pi.mdsd.framework.gui.AbstractStartWindow;
-		import «anyEntityclass.logicPackageString».ServiceInitializer;
+		import «packageName».ServiceInitializer;
 		
 		public class StartWindowClass extends AbstractStartWindow {
 		
 			@Override
 			protected void ListChoices() {
-				«FOR entity : model.allEntities»
-					JButton «entity.listWindowClassName.toFirstLower» = new JButton("List «entity.name.camelCaseToLabel» Elements");
-					GridBagConstraints gbc_«entity.listWindowClassName.toFirstLower» = new GridBagConstraints();
-					gbc_«entity.listWindowClassName.toFirstLower».insets = new Insets(0, 0, 5, 5);
-					gbc_«entity.listWindowClassName.toFirstLower».gridx = 1;
-					gbc_«entity.listWindowClassName.toFirstLower».gridy = getNextGridY();
-					getPanel().add(«entity.listWindowClassName.toFirstLower», gbc_«entity.listWindowClassName.toFirstLower»);
-					«entity.listWindowClassName.toFirstLower».addActionListener(new ActionListener() {
+				«FOR window : model.windows.filter[window|window instanceof de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow].map[window|window as de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow]»
+					JButton «window.name.toFirstLower» = new JButton("List «window.name.camelCaseToLabel» Elements");
+					GridBagConstraints gbc_«window.name.toFirstLower» = new GridBagConstraints();
+					gbc_«window.name.toFirstLower».insets = new Insets(0, 0, 5, 5);
+					gbc_«window.name.toFirstLower».gridx = 1;
+					gbc_«window.name.toFirstLower».gridy = getNextGridY();
+					getPanel().add(«window.name.toFirstLower», gbc_«window.name.toFirstLower»);
+					«window.name.toFirstLower».addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
-							new «entity.listWindowClassName»(StartWindowClass.this).open();
+							new «window.name»(StartWindowClass.this).open();
 						}
 					});
 				«ENDFOR»
