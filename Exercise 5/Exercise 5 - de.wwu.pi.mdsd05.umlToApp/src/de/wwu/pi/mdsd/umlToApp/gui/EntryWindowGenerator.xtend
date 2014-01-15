@@ -36,16 +36,16 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		import de.wwu.pi.mdsd.framework.logic.ValidationException;
 		«IMPORTS_MARKER»
 		
-		public class «window.name» extends AbstractEntryWindow<«importedType(clazz)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
+		public class «window.name» extends AbstractEntryWindow<«importedType(window.entity)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
 			«	/* Declare Service class (+ adds full qualified name to import list) */
-				imported(window.logicPackageString + "."+clazz.serviceClassName)» service;
+				imported( window.logicPackageString + "."+window.entity.serviceClassName)» service;
 
 			«	/* declare fields for each attribute */
 			 FOR elem : window.elements.filter(typeof(Field))»
 				private «elem.inputFieldType» fld«elem.name»;
 			«ENDFOR»
 					
-			public «clazz.entryWindowClassName»(AbstractWindow parent, «clazz.name» currentEntity) {
+			public «window.name»(AbstractWindow parent, «window.entity.javaType» currentEntity) {
 				super(parent, currentEntity, «window.size.width», «window.size.height»);
 				service = «imported(clazz.logicPackageString + ".ServiceInitializer")».getProvider().get«clazz.serviceClassName»();
 			}
@@ -88,7 +88,11 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			}
 			
 			
-			
+			« /* readable List Window Title */»
+			@Override
+			protected String getTitle() {
+				return "«window.windowTitle»";//Edit " + currentEntity.getClass().getSimpleName() + " Window";
+			}
 			
 			@Override
 			protected boolean saveAction() throws ParseException {

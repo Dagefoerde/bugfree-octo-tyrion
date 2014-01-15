@@ -5,12 +5,9 @@ import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.VisibilityKind
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
-import static extension de.wwu.pi.mdsd.umlToApp.UmlToAppGenerator.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
-import org.eclipse.emf.ecore.resource.Resource
 
 class ModelAndPackageHelper {
 	def static Iterable<Class> allEntities(Model model) {
