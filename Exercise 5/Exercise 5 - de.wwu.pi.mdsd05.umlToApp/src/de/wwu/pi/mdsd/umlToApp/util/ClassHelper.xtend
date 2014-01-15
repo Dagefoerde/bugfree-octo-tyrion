@@ -118,6 +118,13 @@ class ClassHelper {
 		).filter[cl|!cl.abstract].toSet
 	}
 	
+	def static Iterable<Entity> getInstantiableClasses(Entity entity) {
+		(	newLinkedList(entity) +
+			//for all sub classes get instantiable classes 
+			entity.getDirectSubClasses.map(cl|cl.instantiableClasses).flatten
+		).filter[cl|!cl.abstract].toSet
+	}
+	
 	//-------------------------------------------------------------------------------------
 	// Properties and references
 	//-------------------------------------------------------------------------------------
