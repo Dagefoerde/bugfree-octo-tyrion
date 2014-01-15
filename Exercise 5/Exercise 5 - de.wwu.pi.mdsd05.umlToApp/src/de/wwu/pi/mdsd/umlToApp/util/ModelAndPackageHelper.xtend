@@ -22,7 +22,8 @@ class ModelAndPackageHelper {
 	}
 
 	def static packageString(Class clazz) {
-		(clazz.eContainer.eContainer as Resource).crudModel.packageString
+		//(clazz.eContainer.eContainer as Resource).crudModel.packageString
+		clazz.package.name
 	}
 
 	def static packageString(CrudModel model) {
