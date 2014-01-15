@@ -21,16 +21,20 @@ class ModelAndPackageHelper {
 		clazz.package.name
 	}
 
+	def static packageString(CrudModel model) {
+		model.name
+	}
+
 	def static entityPackageString(CrudModel model) {
-		model.name + ".data"
+		model.packageString + ".data"
 	}
 
 	def static logicPackageString(CrudModel model) {
-		model.name + ".logic"
+		model.packageString + ".logic"
 	}
 
 	def static guiPackageString(CrudModel model) {
-		model.name + ".gui"
+		model.packageString + ".gui"
 	}
 
 	def static entityPackageString(Class clazz) {
