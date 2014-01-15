@@ -79,4 +79,16 @@ class GUIHelper {
 		getPanel().add(«elem.inheritanceTypeSelectName», gbc_«elem.inheritanceTypeSelectName»);
 		'''
 	}
+	def static createSelectForInheritanceClasses(Entity e, String x,String y) {
+		'''
+		«FOR subclass : e.instantiableClasses»
+			«e.inheritanceTypeSelectName».addItem("«subclass.name»");
+		«ENDFOR»
+		java.awt.GridBagConstraints gbc_«e.inheritanceTypeSelectName» = new java.awt.GridBagConstraints();
+		gbc_«e.inheritanceTypeSelectName».insets = new java.awt.Insets(0, 0, 5, 5);
+		gbc_«e.inheritanceTypeSelectName».gridx = «x»;
+		gbc_«e.inheritanceTypeSelectName».gridy = «y»;
+		getPanel().add(«e.inheritanceTypeSelectName», gbc_«e.inheritanceTypeSelectName»);
+		'''
+	}
 }
