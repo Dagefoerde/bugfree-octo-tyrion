@@ -23,7 +23,7 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	public class «window.name» extends AbstractListWindow<«window.entity.importedType»> implements «window.entity.listingInterfaceClassName»{
 	
 		public «window.name»(AbstractWindow parent) {
-			super(parent);
+			super(parent,«window.size.width»,«window.size.height»);
 		}
 		« /* readable List Window Title */»
 		public String getTitle() {
