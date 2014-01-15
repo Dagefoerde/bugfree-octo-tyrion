@@ -6,6 +6,8 @@ import org.eclipse.uml2.uml.Type
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 abstract class GeneratorWithImports<T> {
 	public static val IMPORTS_MARKER = "//$GENERATED_IMPORTS_HERE$"
@@ -26,5 +28,11 @@ abstract class GeneratorWithImports<T> {
 		if(type.entity)
 			imported((type as Class).entityPackageString + '.' + type.javaType)
 		type.javaType
+	}
+	
+	def importedType(Entity entity) {
+		if(entity!=null)
+			imported((entity.eContainer as CrudModel).entityPackageString + '.' + entity.javaType)
+		entity.javaType
 	}
 }
