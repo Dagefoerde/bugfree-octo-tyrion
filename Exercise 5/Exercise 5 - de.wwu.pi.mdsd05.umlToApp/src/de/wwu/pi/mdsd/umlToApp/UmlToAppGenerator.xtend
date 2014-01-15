@@ -7,15 +7,16 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.uml2.uml.Class
 
-import de.wwu.pi.mdsd.umlToApp.gui.ListWindow
+import de.wwu.pi.mdsd.umlToApp.gui.ListWindowGenerator
 import de.wwu.pi.mdsd.umlToApp.logic.ServiceProvider
 import de.wwu.pi.mdsd.umlToApp.data.DataClass
-import de.wwu.pi.mdsd.umlToApp.gui.EntryWindow
 import de.wwu.pi.mdsd.umlToApp.logic.ServiceInitializerGen
-import de.wwu.pi.mdsd.umlToApp.gui.StartWindow
+import de.wwu.pi.mdsd.umlToApp.gui.StartWindowGenerator
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 
 class UmlToAppGenerator implements IGenerator {
 	def static isModel(Resource input) {
@@ -57,8 +58,8 @@ class UmlToAppGenerator implements IGenerator {
 			new ServiceInitializerGen().generateServiceInitializer(model))
 
 		//Generate StartWindow
-		fsa.generateFile('''«model.allEntities.head.guiPackageString.toFolderString»/StartWindowClass.java''',
-			new StartWindow().generateStartWindow(model))
+//		fsa.generateFile('''«model.allEntities.head.guiPackageString.toFolderString»/StartWindowClass.java''',
+//			new StartWindowGenerator().generateStartWindow(model))
 	}
 
 	def processEntity(Class clazz, IFileSystemAccess fsa) {
@@ -76,25 +77,41 @@ class UmlToAppGenerator implements IGenerator {
 		)
 
 		//Generate ListWindow Classes
-		fsa.generateFile(
-			'''«clazz.guiPackageString.toFolderString»/«clazz.listWindowClassName».java''',
-			new ListWindow().generate(clazz)
-		)
+//		fsa.generateFile(
+//			'''«clazz.guiPackageString.toFolderString»/«clazz.listWindowClassName».java''',
+//			new ListWindowGenerator().generate(clazz)
+//		)
 
 		//Generate EntryWindow Classes
-		if (!clazz.abstract) {
-			fsa.generateFile(
-				'''«clazz.guiPackageString.toFolderString»/«clazz.entryWindowClassName».java''',
-				new EntryWindow().generate(clazz)
-			)
+//		if (!clazz.abstract) {
+//			fsa.generateFile(
+//				'''«clazz.guiPackageString.toFolderString»/«clazz.entryWindowClassName».java''',
+//				new EntryWindow().generate(clazz)
+//			)
 		}
-	}
-
+	
+	
 	def doGenerate(CrudModel model, IFileSystemAccess fsa) {
 
 		//val PACKAGE_DIR = PACKAGE_STRING.replace('.', File.separatorChar);
 		println(
 			"Window elements within the crud model: " + model.windows.join(", ", [it.name])
+		)
+		model.windows.filter[e| e instanceof EntryWindow].map[e| e as EntryWindow].forEach[processEntryWindow(fsa)]
+		model.windows.filter[e| e instanceof ListWindow].map[e|e as ListWindow].forEach[processListWindow(fsa)]
+	}
+	
+	def processEntryWindow(EntryWindow window, IFileSystemAccess fsa){
+		fsa.generateFile(
+			'''«window.guiPackageString.toFolderString»/«window.name».java''',
+			new EntryWindowGenerator().doGenerate(window)
+		)
+	}
+	
+	def processListWindow(ListWindow window, IFileSystemAccess fsa){
+		fsa.generateFile(
+			'''«window.guiPackageString.toFolderString»/«window.name».java''',
+			new ListWindowGenerator().doGenerate(window)
 		)
 	}
 }
