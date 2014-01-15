@@ -5,6 +5,7 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
@@ -29,9 +30,19 @@ class GUIHelper {
 	
 	def static inheritanceTypeSelectName(NamedElement att)
 		'''cb_select_inh_type_« att.name»'''
+	
+	def static inheritanceTypeSelectName(Entity entity)
+		'''cb_select_inh_type_« entity.name»'''
 		
 	def static inheritanceCallOpenEntryWindow(Class clazz, String refToWindowClass) '''
 		«FOR subClass : clazz.instantiableClasses»
+			if(entity instanceof «javaType(subClass)»)
+				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
+		«ENDFOR»
+	'''
+	
+	def static inheritanceCallOpenEntryWindow(Entity entity, String refToWindowClass) '''
+		«FOR subClass : entity.instantiableClasses»
 			if(entity instanceof «javaType(subClass)»)
 				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
 		«ENDFOR»
