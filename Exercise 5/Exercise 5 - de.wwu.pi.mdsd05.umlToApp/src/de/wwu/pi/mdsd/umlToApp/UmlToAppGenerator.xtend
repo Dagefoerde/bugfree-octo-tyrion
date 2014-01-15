@@ -50,7 +50,7 @@ class UmlToAppGenerator implements IGenerator {
 
 	def doGenerate(Model model, IFileSystemAccess fsa) {
 
-		//process single entities
+		//process single entities (all classes)
 		model.allEntities.forEach[processEntity(fsa)]
 
 		//Process model specific elements
@@ -58,9 +58,6 @@ class UmlToAppGenerator implements IGenerator {
 		fsa.generateFile('''«model.allEntities.head.logicPackageString.toFolderString»/ServiceInitializer.java''',
 			new ServiceInitializerGen().generateServiceInitializer(model))
 
-		//Generate StartWindow
-//		fsa.generateFile('''«model.allEntities.head.guiPackageString.toFolderString»/StartWindowClass.java''',
-//			new StartWindowGenerator().generateStartWindow(model))
 	}
 
 	def processEntity(Class clazz, IFileSystemAccess fsa) {
@@ -77,21 +74,9 @@ class UmlToAppGenerator implements IGenerator {
 			new ServiceProvider().generate(clazz)
 		)
 
-		//Generate ListWindow Classes
-//		fsa.generateFile(
-//			'''«clazz.guiPackageString.toFolderString»/«clazz.listWindowClassName».java''',
-//			new ListWindowGenerator().generate(clazz)
-//		)
-
-		//Generate EntryWindow Classes
-//		if (!clazz.abstract) {
-//			fsa.generateFile(
-//				'''«clazz.guiPackageString.toFolderString»/«clazz.entryWindowClassName».java''',
-//				new EntryWindow().generate(clazz)
-//			)
 		}
 	
-	
+	//Use CrudModel for GUI
 	def doGenerate(CrudModel model, IFileSystemAccess fsa) {
 
 		//val PACKAGE_DIR = PACKAGE_STRING.replace('.', File.separatorChar);
@@ -102,6 +87,7 @@ class UmlToAppGenerator implements IGenerator {
 		model.windows.filter[e| e instanceof ListWindow].map[e|e as ListWindow].forEach[processListWindow(fsa)]
 	}
 	
+	//Generate Entry Windows
 	def processEntryWindow(EntryWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
@@ -109,6 +95,7 @@ class UmlToAppGenerator implements IGenerator {
 		)
 	}
 	
+	//Generate ListWindows
 	def processListWindow(ListWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
