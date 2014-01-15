@@ -7,10 +7,11 @@ import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	override doGenerate(ListWindow window) '''
-	package «window.name»;
+	package «window.guiPackageString»;
 	
 	import java.util.Vector;
 	

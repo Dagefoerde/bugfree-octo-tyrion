@@ -6,7 +6,7 @@ import org.eclipse.uml2.uml.Class
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
-class ServiceProvider extends GeneratorWithImports{
+class ServiceProvider extends GeneratorWithImports<Class>{
 	override doGenerate(Class clazz) '''
 	package «clazz.logicPackageString»;
 	
