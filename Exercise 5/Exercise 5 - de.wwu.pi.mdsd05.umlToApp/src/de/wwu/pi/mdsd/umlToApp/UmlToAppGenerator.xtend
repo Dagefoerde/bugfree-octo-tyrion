@@ -104,14 +104,14 @@ class UmlToAppGenerator implements IGenerator {
 	def processEntryWindow(EntryWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
-			new EntryWindowGenerator().generateEntryWindow(window)
+			new EntryWindowGenerator().doGenerate(window)
 		)
 	}
 	
 	def processListWindow(ListWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
-			new ListWindowGenerator().generateListWindow(window)
+			new ListWindowGenerator().doGenerate(window)
 		)
 	}
 }
