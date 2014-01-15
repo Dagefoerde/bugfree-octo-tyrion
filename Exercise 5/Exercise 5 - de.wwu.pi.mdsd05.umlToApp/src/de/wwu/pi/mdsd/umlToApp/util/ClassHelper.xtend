@@ -10,35 +10,38 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ClassHelper { 
-	
-	def static serviceClassName(Type clazz) {
-		clazz.name + 'Service'
-	}
-	
-	def static serviceClassName(Entity entity) {
-		entity.name + 'Service'
-	}
 
 	def static listWindowClassName(Type clazz) {
 		clazz.name + 'ListWindow'
+	}
+	
+	/*def static serviceClassName(Type clazz) {
+		clazz.name + 'Service'
 	}
 
 	def static entryWindowClassName(Type clazz) {
 		clazz.name + 'EntryWindow'
 	}
-	def static entryWindowClassName(Entity entity) {
-		entity.name + 'EntryWindow'
-	}
 	
 	def static listingInterfaceClassName(Type type) {
 		type.name + 'ListingInterface'
 	}
+	def static listingInterfaceMethodeName(Type type) {
+		'initialize'+ type.name +'Listings'
+	}*/
+	
+	def static entryWindowClassName(Entity entity) {
+		entity.name + 'EntryWindow'
+	}
+	
+	def static serviceClassName(Entity entity) {
+		entity.name + 'Service'
+	}
+	
 	def static listingInterfaceClassName(Entity entity) {
 		entity.name + 'ListingInterface'
 	}
-	def static listingInterfaceMethodeName(Type type) {
-		'initialize'+ type.name +'Listings'
-	}
+	
 	def static listingInterfaceMethodeName(Entity enity) {
 		'initialize'+ enity.name +'Listings'
 	}
