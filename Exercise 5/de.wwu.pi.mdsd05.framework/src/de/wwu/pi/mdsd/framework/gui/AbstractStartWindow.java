@@ -24,7 +24,7 @@ public abstract class AbstractStartWindow extends AbstractWindow {
 	 */
 
 	public AbstractStartWindow() {
-		super(null,100, 100, 450, 400);
+		super(null, 450, 400);
 	}
 
 	/**

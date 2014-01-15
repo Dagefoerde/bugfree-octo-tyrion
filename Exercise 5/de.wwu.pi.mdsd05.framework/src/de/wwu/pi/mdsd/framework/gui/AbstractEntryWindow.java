@@ -27,8 +27,8 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 		}
 	};
 	
-	public AbstractEntryWindow(AbstractWindow parent, E currentEntity,int x,int y,int width,int height) {
-		super(parent,x,y,width,height);
+	public AbstractEntryWindow(AbstractWindow parent, E currentEntity,int width,int height) {
+		super(parent,width,height);
 		this.currentEntity = currentEntity;
 	}
 	@Override
