@@ -19,8 +19,8 @@ import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
 public abstract class AbstractListWindow<E extends AbstractDataClass> extends
 		AbstractWindow {
 
-	public AbstractListWindow(AbstractWindow parent) {
-		super(parent);
+	public AbstractListWindow(AbstractWindow parent,int x,int y,int width,int height) {
+		super(parent,x,y,width,height);
 	}
 
 	JList<E> jList;

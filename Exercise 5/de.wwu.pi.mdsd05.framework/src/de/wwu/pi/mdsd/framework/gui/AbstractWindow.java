@@ -17,10 +17,18 @@ public abstract class AbstractWindow {
 	private JFrame frame;
 	private AbstractWindow parent;
 	private Container panel;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 
-	public AbstractWindow(AbstractWindow parent) {
+	public AbstractWindow(AbstractWindow parent,int x,int y,int width,int height) {
 		super();
 		this.parent = parent;
+		this.x=x;
+		this.y=y;
+		this.width=width;
+		this.height=height;
 	}
 
 	/**
@@ -28,7 +36,7 @@ public abstract class AbstractWindow {
 	 */
 	public void open() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 400);
+		frame.setBounds(x, y, width, height);
 		if (parent == null)
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		else

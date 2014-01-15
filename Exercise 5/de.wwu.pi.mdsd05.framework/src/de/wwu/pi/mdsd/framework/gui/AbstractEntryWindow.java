@@ -20,8 +20,8 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 	protected int curGridY = 0;
 	protected JButton btnSave;
 	
-	public AbstractEntryWindow(AbstractWindow parent, E currentEntity) {
-		super(parent);
+	public AbstractEntryWindow(AbstractWindow parent, E currentEntity,int x,int y,int width,int height) {
+		super(parent,x,y,width,height);
 		this.currentEntity = currentEntity;
 	}
 	@Override
