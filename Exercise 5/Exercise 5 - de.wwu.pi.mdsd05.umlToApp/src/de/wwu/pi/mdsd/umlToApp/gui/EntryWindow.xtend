@@ -9,10 +9,15 @@ import org.eclipse.uml2.uml.Type
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
 
-class EntryWindow extends GeneratorWithImports {
-	override doGenerate(Class clazz) '''
-		package «clazz.guiPackageString»;
+class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
+	
+	override doGenerate(EntryWindow window) '''
+		package «window.name»;
 		
 		import java.awt.GridBagConstraints;
 		import java.awt.Insets;
@@ -27,7 +32,7 @@ class EntryWindow extends GeneratorWithImports {
 		import de.wwu.pi.mdsd.framework.logic.ValidationException;
 		«IMPORTS_MARKER»
 		
-		public class «clazz.entryWindowClassName» extends AbstractEntryWindow<«importedType(clazz)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
+		public class «window.name» extends AbstractEntryWindow<«importedType(clazz)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
 			«	/* Declare Service class (+ adds full qualified name to import list) */
 				imported(clazz.logicPackageString + "."+clazz.serviceClassName)» service;
 
@@ -42,33 +47,36 @@ class EntryWindow extends GeneratorWithImports {
 			}
 		
 			@Override
-			protected void createFields() {
+			
+			protected void createUIElements() {
 				int gridy = 0;
-				«FOR att : clazz.singleValueProperties(true)»
+				«FOR elem : window.elements»
 					
-					//set new Line
-					gridy = getNextGridYValue();
+					«IF(elem instanceof Label)»
 					
-					JLabel «att.labelName» = new JLabel("«att.readableLabel + (if(att.required) '*' else '')»");
-					GridBagConstraints gbc_«att.labelName» = new GridBagConstraints();
-					gbc_«att.labelName».insets = new Insets(0, 0, 5, 5);
-					gbc_«att.labelName».anchor = GridBagConstraints.NORTHEAST;
-					gbc_«att.labelName».gridx = 0;
-					gbc_«att.labelName».gridy = gridy;
-					getPanel().add(«att.labelName», gbc_«att.labelName»);
+					JLabel lbl«elem.name» = new JLabel("«elem.name»");
+					lbl«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+					contentPane.add(lbl«elem.name»);
+		
+		
+					«ELSEIF(elem instanceof Field)»
+					fld«elem.name»= new JTextField();
+					fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+					contentPane.add(fld«elem.name»);
+					fld«elem.name».setColumns(10);
+
 					
-					«att.fieldName» = «att.initializeField»;
-					GridBagConstraints gbc_«att.fieldName» = new GridBagConstraints();
-					gbc_«att.fieldName».gridwidth = 5;
-					gbc_«att.fieldName».insets = new Insets(0, 0, 5, 5);
-					gbc_«att.fieldName».anchor = GridBagConstraints.NORTHWEST;
-					gbc_«att.fieldName».fill = GridBagConstraints.HORIZONTAL;
-					gbc_«att.fieldName».gridx = 1;
-					gbc_«att.fieldName».weighty = .2;
-					gbc_«att.fieldName».gridy = gridy;
-					getPanel().add(«att.fieldName», gbc_«att.fieldName»);
+					«ELSEIF(elem instanceof Button)»
+							
+					JButton btn«elem.name» = new JButton("«elem.name»");
+					btn«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+					contentPane.add(btn«elem.name»);
+					
+					«ENDIF»
 				«ENDFOR»
 			}
+			
+			
 			
 			@Override
 			protected boolean saveAction() throws ParseException {
