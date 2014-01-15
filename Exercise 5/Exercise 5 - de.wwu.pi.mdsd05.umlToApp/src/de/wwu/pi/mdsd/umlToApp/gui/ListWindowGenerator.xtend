@@ -1,14 +1,12 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
-import org.eclipse.uml2.uml.Class
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
-import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	override doGenerate(ListWindow window) '''
@@ -19,7 +17,7 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	import de.wwu.pi.mdsd.framework.gui.AbstractListWindow;
 	import de.wwu.pi.mdsd.framework.gui.AbstractWindow;
 	//import de.wwu.pi.mdsd.framework.logic.*;
-	import «(window.eContainer as CrudModel).logicPackageString».ServiceInitializer;
+	import «window.logicPackageString».ServiceInitializer;
 	«IMPORTS_MARKER»
 		
 	public class «window.name» extends AbstractListWindow<«window.entity.importedType»> implements «window.entity.listingInterfaceClassName»{
@@ -58,7 +56,7 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 			@Override //overrides superclass method to add a select box to the window
 			public void createContents() {
 				super.createContents();
-				«clazz.createSelectForInheritanceClasses("1","2")»
+				«window.entity.createSelectForInheritanceClasses("1","2")»
 			}
 		«ENDIF»
 	}
