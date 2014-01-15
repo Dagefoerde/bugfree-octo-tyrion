@@ -6,11 +6,17 @@ import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ClassHelper { 
 	
 	def static serviceClassName(Type clazz) {
 		clazz.name + 'Service'
+	}
+	
+	def static serviceClassName(Entity entity) {
+		entity.name + 'Service'
 	}
 
 	def static listWindowClassName(Type clazz) {
@@ -20,12 +26,21 @@ class ClassHelper {
 	def static entryWindowClassName(Type clazz) {
 		clazz.name + 'EntryWindow'
 	}
+	def static entryWindowClassName(Entity entity) {
+		entity.name + 'EntryWindow'
+	}
 	
 	def static listingInterfaceClassName(Type type) {
 		type.name + 'ListingInterface'
 	}
+	def static listingInterfaceClassName(Entity entity) {
+		entity.name + 'ListingInterface'
+	}
 	def static listingInterfaceMethodeName(Type type) {
 		'initialize'+ type.name +'Listings'
+	}
+	def static listingInterfaceMethodeName(Entity enity) {
+		'initialize'+ enity.name +'Listings'
 	}
 	
 	def static initializeSingleRefMethodName(Property ref) {
@@ -84,9 +99,15 @@ class ClassHelper {
 	def static getDirectSubClasses(Class clazz) {
 		clazz.model.allEntities.filter[it.superClass == clazz]
 	}
+	def static getDirectSubClasses(Entity entity) {
+		(entity.eContainer as CrudModel).entities.filter[it.superType == entity]
+	}
 
 	def static hasSubClasses(Class clazz) {
 		clazz.getDirectSubClasses.size > 0
+	}
+	def static hasSubClasses(Entity entity) {
+		entity.getDirectSubClasses.size > 0
 	}
 
 	def static hasSubClasses(Property att) {
@@ -97,6 +118,13 @@ class ClassHelper {
 		(	newLinkedList(clazz) +
 			//for all sub classes get instantiable classes 
 			clazz.getDirectSubClasses.map(cl|cl.instantiableClasses).flatten
+		).filter[cl|!cl.abstract].toSet
+	}
+	
+	def static Iterable<Entity> getInstantiableClasses(Entity entity) {
+		(	newLinkedList(entity) +
+			//for all sub classes get instantiable classes 
+			entity.getDirectSubClasses.map(cl|cl.instantiableClasses).flatten
 		).filter[cl|!cl.abstract].toSet
 	}
 	
@@ -176,6 +204,9 @@ class ClassHelper {
 
 	def static javaType(Type type) {
 		type.name
+	}
+	def static javaType(Entity entity) {
+		entity.name
 	}
 
 	def static nameInJava(Property p) {

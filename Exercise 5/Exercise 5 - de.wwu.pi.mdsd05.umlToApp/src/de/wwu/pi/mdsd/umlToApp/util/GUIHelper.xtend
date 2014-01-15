@@ -5,6 +5,11 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
@@ -19,6 +24,20 @@ class GUIHelper {
 	def static readableLabel(NamedElement named) {
 		named.name.camelCaseToLabel.toFirstUpper
 	}
+
+	def static windowTitle(ListWindow window) {
+		if (window.title == null)
+			'''List «window.name.camelCaseToLabel.toFirstUpper» Objects'''
+		else
+			window.title
+	}
+
+	def static windowTitle(EntryWindow window) {
+		if (window.title == null)
+			'''Edit «window.name.camelCaseToLabel.toFirstUpper» Window'''
+		else
+			window.title
+	}
 	
 	def static private Class getClazz(NamedElement elem) {
 		switch elem {
@@ -29,9 +48,19 @@ class GUIHelper {
 	
 	def static inheritanceTypeSelectName(NamedElement att)
 		'''cb_select_inh_type_« att.name»'''
+	
+	def static inheritanceTypeSelectName(Entity entity)
+		'''cb_select_inh_type_« entity.name»'''
 		
 	def static inheritanceCallOpenEntryWindow(Class clazz, String refToWindowClass) '''
 		«FOR subClass : clazz.instantiableClasses»
+			if(entity instanceof «javaType(subClass)»)
+				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
+		«ENDFOR»
+	'''
+	
+	def static inheritanceCallOpenEntryWindow(Entity entity, String refToWindowClass) '''
+		«FOR subClass : entity.instantiableClasses»
 			if(entity instanceof «javaType(subClass)»)
 				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
 		«ENDFOR»
