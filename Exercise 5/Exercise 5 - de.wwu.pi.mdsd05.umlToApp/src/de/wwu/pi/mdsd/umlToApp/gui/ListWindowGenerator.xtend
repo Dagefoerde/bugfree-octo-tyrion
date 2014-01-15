@@ -7,22 +7,23 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	override doGenerate(ListWindow window) '''
-	package «window..guiPackageString»;
+	package «window.name»;
 	
 	import java.util.Vector;
 	
 	import de.wwu.pi.mdsd.framework.gui.AbstractListWindow;
 	import de.wwu.pi.mdsd.framework.gui.AbstractWindow;
 	//import de.wwu.pi.mdsd.framework.logic.*;
-	import «clazz.logicPackageString».ServiceInitializer;
+	import «(window.eContainer as CrudModel).logicPackageString».ServiceInitializer;
 	«IMPORTS_MARKER»
 		
-	public class «clazz.listWindowClassName» extends AbstractListWindow<«clazz.importedType»> implements «clazz.listingInterfaceClassName»{
+	public class «window.name» extends AbstractListWindow<«window.entity.importedType»> implements «window.entity.listingInterfaceClassName»{
 	
-		public «clazz.listWindowClassName»(AbstractWindow parent) {
+		public «window.name»(AbstractWindow parent) {
 			super(parent);
 		}
 		« /* readable List Window Title */»
