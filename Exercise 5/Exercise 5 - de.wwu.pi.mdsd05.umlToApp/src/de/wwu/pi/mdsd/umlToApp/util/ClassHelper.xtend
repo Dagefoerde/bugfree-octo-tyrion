@@ -58,7 +58,7 @@ class ClassHelper {
 		false
 	}
 	def static dispatch isEntity(Class clazz) {
-		clazz.appliedStereotypes.exists[name == "Entity"]
+		true
 	}
 
 	//-------------------------------------------------------------------------------------
