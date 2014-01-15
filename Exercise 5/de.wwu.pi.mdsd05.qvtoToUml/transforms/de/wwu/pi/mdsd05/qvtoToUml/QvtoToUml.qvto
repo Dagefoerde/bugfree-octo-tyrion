@@ -13,6 +13,7 @@ intermediate property CrudModel::CrudModel::associations : Sequence(Association)
 intermediate property CrudModel::CrudModel::primitives : Set(PrimitiveType);
 
 mapping CrudModel::CrudModel::toUml() : Uml::Model {
+name := self.name;
 ownedType := self.entities -> map toClass();
 ownedType += self.primitives; 
 ownedType += self.associations; 
