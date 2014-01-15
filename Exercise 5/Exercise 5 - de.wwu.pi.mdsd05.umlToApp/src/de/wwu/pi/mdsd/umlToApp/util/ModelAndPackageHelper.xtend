@@ -10,7 +10,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ModelAndPackageHelper {
 	def static Iterable<Class> allEntities(Model model) {
-		model.allOwnedElements.filter(typeof(Class)).filter[it.entity]
+		model.allOwnedElements.filter(typeof(Class));
 	}
 
 	def static toFolderString(String packageName) {
