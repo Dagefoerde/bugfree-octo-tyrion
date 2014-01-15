@@ -6,6 +6,7 @@ import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class ClassHelper { 
 	
@@ -176,6 +177,9 @@ class ClassHelper {
 
 	def static javaType(Type type) {
 		type.name
+	}
+	def static javaType(Entity entity) {
+		entity.name
 	}
 
 	def static nameInJava(Property p) {
