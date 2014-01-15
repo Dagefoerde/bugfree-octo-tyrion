@@ -17,6 +17,7 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+import de.wwu.pi.mdsd.umlToApp.gui.EntryWindowGenerator
 
 class UmlToAppGenerator implements IGenerator {
 	def static isModel(Resource input) {
@@ -104,14 +105,14 @@ class UmlToAppGenerator implements IGenerator {
 	def processEntryWindow(EntryWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
-			new EntryWindowGenerator().generateEntryWindow(window)
+			new EntryWindowGenerator().doGenerate(window)
 		)
 	}
 	
 	def processListWindow(ListWindow window, IFileSystemAccess fsa){
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
-			new ListWindowGenerator().generateListWindow(window)
+			new ListWindowGenerator().doGenerate(window)
 		)
 	}
 }
