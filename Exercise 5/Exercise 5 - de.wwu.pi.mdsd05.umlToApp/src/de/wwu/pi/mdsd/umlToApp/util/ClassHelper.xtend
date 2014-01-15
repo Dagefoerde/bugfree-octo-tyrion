@@ -216,6 +216,10 @@ class ClassHelper {
 		p.name
 	}
 	
+	def static nameInJava(de.wwu.pi.mdsd.crudDsl.crudDsl.Property p) {
+		p.name
+	}
+	
 	/**
 	 * get java object type for primitive java types
 	 */

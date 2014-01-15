@@ -3,8 +3,10 @@ package de.wwu.pi.mdsd.umlToApp.gui
 import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.DataType
-import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
+
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
+
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
@@ -40,7 +42,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 
 			«	/* declare fields for each attribute */
 			 FOR elem : window.elements.filter(typeof(Field))»
-				private «elem.inputFieldType» «elem.fieldName»;
+				private «elem.inputFieldType» fld«elem.name»;
 			«ENDFOR»
 					
 			public «clazz.entryWindowClassName»(AbstractWindow parent, «clazz.name» currentEntity) {
@@ -63,7 +65,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		
 					«ELSEIF(elem instanceof Field)»
 						«IF ((elem as Field).property instanceof Attribute)»
-							«elem.fieldname» = «elem.initializeField»;
+							fld«elem.name» = «((elem as Field).property.initializeField»;
 							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
 							contentPane.add(fld«elem.name»);
 							fld«elem.name».setColumns(10);
@@ -226,33 +228,33 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	}
 	
 	//Initializes input fields and if necessary selects 
-	def initializeField(Property p) {
-		switch (p.type) {
-			DataType: '''new «p.inputFieldType»(«p.formattedTextCode»)'''
-			default:
-				if (p.multivalued) {
+	def initializeField(Field p) {
+		switch (p.property) {
+			Attribute: '''new «p.inputFieldType»(«p.property.formattedTextCode»)'''
+			Reference:
+				if ((p.property as Reference).multiplicity == 0) {
 					'''
 					new «p.inputFieldType»();
-					«p.listInitializeMethodName»()'''
+					«p.property.listInitializeMethodName»()'''
 				} else {
 					'''
-					new «p.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«p.type.serviceClassName»().getAll()));
-					«p.fieldName».setSelectedItem(currentEntity.get«p.nameInJava.toFirstUpper»())'''
+					new «p.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«p.property.type.serviceClassName»().getAll()));
+					«p.property.fieldName».setSelectedItem(currentEntity.get«p.property.nameInJava.toFirstUpper»())'''
 				}
 		}
 
 	}
 
 	/* get Input Field type */
-	def inputFieldType(Property p) {
-		switch (p.type) {
-			DataType:
+	def inputFieldType(Field p) {
+		switch (p.property){
+			Attribute:
 				'JTextField'
-			default:
-				if (p.multivalued)
-					'JList<' + importedType(p.type) + '>'
+			Reference:
+				if ((p.property as Reference).multiplicity == 0)
+					'JComboBox<' + importedType((p.property as Reference).type) + '>'
 				else
-					'JComboBox<' + importedType(p.type) + '>'
+					'JList<' + importedType((p.property as Reference).type) + '>'
 		}
 	}
 
