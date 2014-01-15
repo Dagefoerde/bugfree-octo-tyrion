@@ -8,6 +8,7 @@ import org.eclipse.uml2.uml.VisibilityKind
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class ModelAndPackageHelper {
 	def static Iterable<Class> allEntities(Model model) {
@@ -24,6 +25,10 @@ class ModelAndPackageHelper {
 
 	def static packageString(CrudModel model) {
 		model.name
+	}
+
+	def static entityPackageString(Entity entity) {
+		(entity.eContainer as CrudModel).packageString + ".data"
 	}
 
 	def static entityPackageString(Window window) {
