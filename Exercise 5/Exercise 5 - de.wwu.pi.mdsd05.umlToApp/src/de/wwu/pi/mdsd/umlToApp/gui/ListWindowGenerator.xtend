@@ -6,10 +6,11 @@ import org.eclipse.uml2.uml.Class
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 
-class ListWindow extends GeneratorWithImports{
-	override doGenerate(Class clazz) '''
-	package «clazz.guiPackageString»;
+class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
+	override doGenerate(ListWindow window) '''
+	package «window..guiPackageString»;
 	
 	import java.util.Vector;
 	
@@ -83,4 +84,9 @@ class ListWindow extends GeneratorWithImports{
 			new «clazz.entryWindowClassName»(this,entity).open();
 		«ENDIF»
 	'''
+	
+	override doGenerate(Class clazz) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

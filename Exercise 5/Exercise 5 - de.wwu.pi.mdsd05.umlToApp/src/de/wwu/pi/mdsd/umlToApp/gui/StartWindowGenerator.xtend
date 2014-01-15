@@ -5,7 +5,7 @@ import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 
-class StartWindow {
+class StartWindowGenerator {
 	def generateStartWindow(CrudModel model) '''
 		« var packageName = model.name»
 		package «packageName»;
