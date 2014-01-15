@@ -7,15 +7,15 @@ import org.eclipse.uml2.uml.Type
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
-abstract class GeneratorWithImports {
+abstract class GeneratorWithImports<ObjectType> {
 	public static val IMPORTS_MARKER = "//$GENERATED_IMPORTS_HERE$"
 	val HashSet<String> imports = newHashSet
 	
-	def generate(Class clazz) {
-		clazz.doGenerate.toString.replace(IMPORTS_MARKER, imports.sort.map['''import «it»;'''].join('\n'))
+	def generate(ObjectType object) {
+		object.doGenerate.toString.replace(IMPORTS_MARKER, imports.sort.map['''import «it»;'''].join('\n'))
 	}
 	
-	def CharSequence doGenerate(Class clazz)
+	def CharSequence doGenerate(ObjectType object)
 	
 	def imported(String imp) {
 		imports.add(imp)
