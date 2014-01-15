@@ -32,7 +32,7 @@ abstract class GeneratorWithImports<T> {
 	
 	def importedType(Entity entity) {
 		if(entity!=null)
-			imported((entity.eContainer as CrudModel).entityPackageString + '.' + entity.javaType)
+			imported(entity.entityPackageString + '.' + entity.javaType)
 		entity.javaType
 	}
 }
