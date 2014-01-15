@@ -65,7 +65,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		
 					«ELSEIF(elem instanceof Field)»
 						«IF ((elem as Field).property instanceof Attribute)»
-							fld«elem.name» = «((elem as Field).property.initializeField»;
+							fld«elem.name» = «((elem as Field).initializeField)»;
 							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
 							contentPane.add(fld«elem.name»);
 							fld«elem.name».setColumns(10);
@@ -238,7 +238,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					«p.property.listInitializeMethodName»()'''
 				} else {
 					'''
-					new «p.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«p.property.type.serviceClassName»().getAll()));
+					new «p.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«(p.property as Reference).type.serviceClassName»().getAll()));
 					«p.property.fieldName».setSelectedItem(currentEntity.get«p.property.nameInJava.toFirstUpper»())'''
 				}
 		}
@@ -263,14 +263,14 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	}
 	
 	def fieldTypeAbb(Property p) {
-		switch (p.type) {
-			DataType:
+		switch (p) {
+			Attribute:
 				'tf'
-			default:
-				if (p.multivalued)
-					'li'
-				else
+			Reference:
+				if ((p as Reference).multiplicity == 0)
 					'cb'
+				else
+					'li'
 		}
 	}
 
