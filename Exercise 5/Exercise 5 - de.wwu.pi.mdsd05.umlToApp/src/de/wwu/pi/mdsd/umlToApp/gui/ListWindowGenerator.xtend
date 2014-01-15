@@ -28,7 +28,7 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 		}
 		« /* readable List Window Title */»
 		public String getTitle() {
-			return "List «clazz.readableLabel» Objects";
+			return "List «window.name.camelCaseToLabel» Objects";
 		}
 		
 		@Override
