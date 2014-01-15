@@ -11,11 +11,11 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ClassHelper { 
 
-	def static listWindowClassName(Type clazz) {
-		clazz.name + 'ListWindow'
+	def static listWindowClassName(Entity entity) {
+		entity.name + 'ListWindow'
 	}
 	
-	/*def static serviceClassName(Type clazz) {
+	def static serviceClassName(Type clazz) {
 		clazz.name + 'Service'
 	}
 
@@ -23,7 +23,7 @@ class ClassHelper {
 		clazz.name + 'EntryWindow'
 	}
 	
-	def static listingInterfaceClassName(Type type) {
+	/*def static listingInterfaceClassName(Type type) {
 		type.name + 'ListingInterface'
 	}
 	def static listingInterfaceMethodeName(Type type) {
