@@ -1,15 +1,10 @@
 package de.wwu.pi.mdsd.framework.gui;
 
 import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
 import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
 
@@ -81,11 +76,7 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 		return "Edit " + currentEntity.getClass().getSimpleName() + " Window";
 	}
 		
-	protected int getNextGridYValue() {
-		return curGridY++;
-	}
-	
 	protected abstract void createFields();
-	protected abstract void createLists();
+	//protected abstract void createLists();
 	protected abstract boolean saveAction() throws ParseException, NumberFormatException;
 }
