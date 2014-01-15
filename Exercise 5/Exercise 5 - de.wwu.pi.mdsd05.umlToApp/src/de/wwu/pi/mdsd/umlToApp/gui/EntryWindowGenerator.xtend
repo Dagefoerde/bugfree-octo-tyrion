@@ -13,6 +13,8 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 
 class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
@@ -34,15 +36,15 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		
 		public class «window.name» extends AbstractEntryWindow<«importedType(clazz)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
 			«	/* Declare Service class (+ adds full qualified name to import list) */
-				imported(clazz.logicPackageString + "."+clazz.serviceClassName)» service;
+				imported(window.logicPackageString + "."+clazz.serviceClassName)» service;
 
 			«	/* declare fields for each attribute */
-			 FOR att : clazz.attributes(true)»
-				private «att.inputFieldType» «att.fieldName»;
+			 FOR elem : window.elements.filter(typeof(Field))»
+				private «elem.inputFieldType» «elem.fieldName»;
 			«ENDFOR»
 					
 			public «clazz.entryWindowClassName»(AbstractWindow parent, «clazz.name» currentEntity) {
-				super(parent, currentEntity);
+				super(parent, currentEntity, «window.size.width», «window.size.height»);
 				service = «imported(clazz.logicPackageString + ".ServiceInitializer")».getProvider().get«clazz.serviceClassName»();
 			}
 		
@@ -60,12 +62,19 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		
 		
 					«ELSEIF(elem instanceof Field)»
-					fld«elem.name»= new JTextField();
-					fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-					contentPane.add(fld«elem.name»);
-					fld«elem.name».setColumns(10);
-
-					
+						«IF ((elem as Field).property instanceof Attribute)»
+							«elem.fieldname» = «elem.initializeField»;
+							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							contentPane.add(fld«elem.name»);
+							fld«elem.name».setColumns(10);
+						«ELSEIF ((elem as Field).property instanceof Reference)»
+							«IF (((elem as Field).property as Reference).multiplicity == 0)»
+							JComboBox cb«elem.name» = new JComboBox();
+							cb«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							contentPane.add(cb«elem.name»);
+							«ELSEIF (((elem as Field).property as Reference).multiplicity == 1)»
+							«ENDIF»
+						«ENDIF»					
 					«ELSEIF(elem instanceof Button)»
 							
 					JButton btn«elem.name» = new JButton("«elem.name»");
@@ -75,6 +84,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					«ENDIF»
 				«ENDFOR»
 			}
+			
 			
 			
 			
