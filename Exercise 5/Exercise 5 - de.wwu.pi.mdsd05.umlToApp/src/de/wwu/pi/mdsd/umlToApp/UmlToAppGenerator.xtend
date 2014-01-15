@@ -17,6 +17,7 @@ import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+import de.wwu.pi.mdsd.umlToApp.gui.EntryWindowGenerator
 
 class UmlToAppGenerator implements IGenerator {
 	def static isModel(Resource input) {
