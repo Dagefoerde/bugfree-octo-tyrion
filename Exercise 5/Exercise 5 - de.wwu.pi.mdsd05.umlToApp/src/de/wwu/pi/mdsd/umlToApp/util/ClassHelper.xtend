@@ -7,11 +7,16 @@ import org.eclipse.uml2.uml.Type
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ClassHelper { 
 	
 	def static serviceClassName(Type clazz) {
 		clazz.name + 'Service'
+	}
+	
+	def static serviceClassName(Entity entity) {
+		entity.name + 'Service'
 	}
 
 	def static listWindowClassName(Type clazz) {
@@ -30,6 +35,9 @@ class ClassHelper {
 	}
 	def static listingInterfaceMethodeName(Type type) {
 		'initialize'+ type.name +'Listings'
+	}
+	def static listingInterfaceMethodeName(Entity enity) {
+		'initialize'+ enity.name +'Listings'
 	}
 	
 	def static initializeSingleRefMethodName(Property ref) {
@@ -88,9 +96,15 @@ class ClassHelper {
 	def static getDirectSubClasses(Class clazz) {
 		clazz.model.allEntities.filter[it.superClass == clazz]
 	}
+	def static getDirectSubClasses(Entity entity) {
+		(entity.eContainer as CrudModel).entities.filter[it.superType == entity]
+	}
 
 	def static hasSubClasses(Class clazz) {
 		clazz.getDirectSubClasses.size > 0
+	}
+	def static hasSubClasses(Entity entity) {
+		entity.getDirectSubClasses.size > 0
 	}
 
 	def static hasSubClasses(Property att) {
