@@ -26,6 +26,9 @@ class ClassHelper {
 	def static entryWindowClassName(Type clazz) {
 		clazz.name + 'EntryWindow'
 	}
+	def static entryWindowClassName(Entity entity) {
+		entity.name + 'EntryWindow'
+	}
 	
 	def static listingInterfaceClassName(Type type) {
 		type.name + 'ListingInterface'

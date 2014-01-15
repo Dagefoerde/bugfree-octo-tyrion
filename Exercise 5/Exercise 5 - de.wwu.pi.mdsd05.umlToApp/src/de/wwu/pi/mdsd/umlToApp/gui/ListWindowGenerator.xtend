@@ -29,7 +29,7 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 		}
 		« /* readable List Window Title */»
 		public String getTitle() {
-			return "List «window.name.camelCaseToLabel» Objects";
+			return "«window.windowTitle»";
 		}
 		
 		@Override
