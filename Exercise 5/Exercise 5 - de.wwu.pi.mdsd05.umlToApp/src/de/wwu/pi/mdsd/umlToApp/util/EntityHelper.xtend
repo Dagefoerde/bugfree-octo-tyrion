@@ -1,14 +1,14 @@
 package de.wwu.pi.mdsd.umlToApp.util
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.MultiplicityKind
+import de.wwu.pi.mdsd.crudDsl.crudDsl.AttributeType
 
-class ClassHelper { 
+class EntityHelper { 
 
 	def static listWindowClassName(Entity entity) {
 		entity.name + 'ListWindow'
@@ -59,6 +59,14 @@ class ClassHelper {
 	
 	def static isObject(Attribute a) {
 		a.string || a.numberObject || a.date
+	}
+	
+	def static isMultivalued(Reference r){
+		r.multiplicity==MultiplicityKind.MULTIPLE
+	}
+	
+	def static isSingelvalued(Reference r){
+		r.multiplicity==MultiplicityKind.SINGLE
 	}
 	
 	//Note that more specific types are handled first, thus 'Class' is handled before 'Element'.
@@ -142,30 +150,30 @@ class ClassHelper {
 	}
 
 	/** primitive attributes and single References */
-	def static singleValueProperties(Class clazz, boolean considerSuperclass) {
-		(clazz.primitiveAttributes(considerSuperclass) + clazz.singleReferences(considerSuperclass))
+	def static singleValueProperties(Entity entity, boolean considerSuperclass) {
+		(entity.primitiveAttributes(considerSuperclass) + entity.singleReferences(considerSuperclass))
 	}
 
-	def static Iterable<Property> required(Iterable<Property> properties) {
-		properties.filter[it.required]
+	def static Iterable<Attribute> required(Iterable<Attribute> attributes) {
+		attributes.filter[it.required]
 	}
 
-	def static isRequired(Property p) {
-		p.lowerBound >= 1
+	def static isRequired(Attribute a) {
+		a.optional
 	}
 
-	def static requiredProperties(Class clazz, boolean considerSuperclass) {
+	def static requiredAttributes(Entity entity, boolean considerSuperclass) {
 		(
 			if (considerSuperclass)
-				 clazz.superClass.singleValueProperties(considerSuperclass).required
+				 entity.superClass.singleValueProperties(considerSuperclass).filter(Attribute).required
 			else
 				emptyList
 		)
-		+ clazz.singleValueProperties(false).required
+		+ entity.singleValueProperties(false).filter(Attribute).required
 	}
 
-	def static optionalProperties(Class clazz, boolean considerSuperclass) {
-		clazz.singleValueProperties(considerSuperclass).filter[!it.required]
+	def static optionalAttributes(Entity entity, boolean considerSuperclass) {
+		entity.singleValueProperties(considerSuperclass).filter(Attribute).filter[!it.required]
 	}
 
 	
@@ -177,13 +185,17 @@ class ClassHelper {
 	 * incl. multivalue type e.g. multivalued properties as List<p.javaType>
 	 */
 	def static typeInJava(Property p) {
-		if (p.multivalued)
-			'List<' + p.type.javaType + '>'
+		if (p instanceof Reference){
+			if ((p as Reference).isMultivalued)
+			'List<' + (p as Reference).type.javaType + '>'
+			else
+			(p as Reference).type.javaType
+			}
 		else
-			p.type.javaType
+			(p as Attribute).type.javaType
 	}
 
-	def static javaType(Type type) {
+	def static javaType(AttributeType type) {
 		type.name
 	}
 	def static javaType(Entity entity) {
@@ -191,10 +203,6 @@ class ClassHelper {
 	}
 
 	def static nameInJava(Property p) {
-		p.name
-	}
-	
-	def static nameInJava(de.wwu.pi.mdsd.crudDsl.crudDsl.Property p) {
 		p.name
 	}
 	
