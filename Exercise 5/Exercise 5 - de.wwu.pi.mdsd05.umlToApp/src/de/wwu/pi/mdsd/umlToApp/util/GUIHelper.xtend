@@ -9,7 +9,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
-
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
@@ -23,6 +23,10 @@ class GUIHelper {
 
 	def static readableLabel(NamedElement named) {
 		named.name.camelCaseToLabel.toFirstUpper
+	}
+	
+	def static readableLabel(de.wwu.pi.mdsd.crudDsl.crudDsl.Property prop) {
+		prop.name.camelCaseToLabel.toFirstUpper
 	}
 
 	def static windowTitle(ListWindow window) {
@@ -49,8 +53,8 @@ class GUIHelper {
 	def static inheritanceTypeSelectName(NamedElement att)
 		'''cb_select_inh_type_« att.name»'''
 	
-	def static inheritanceTypeSelectName(Entity entity)
-		'''cb_select_inh_type_« entity.name»'''
+	def static inheritanceTypeSelectName(Reference ref)
+		'''cb_select_inh_type_« ref.name»'''
 		
 	def static inheritanceCallOpenEntryWindow(Class clazz, String refToWindowClass) '''
 		«FOR subClass : clazz.instantiableClasses»
@@ -79,16 +83,16 @@ class GUIHelper {
 		getPanel().add(«elem.inheritanceTypeSelectName», gbc_«elem.inheritanceTypeSelectName»);
 		'''
 	}
-	def static createSelectForInheritanceClasses(Entity e, String x,String y) {
+	def static createSelectForInheritanceClasses(Reference ref, String x,String y) {
 		'''
-		«FOR subclass : e.instantiableClasses»
-			«e.inheritanceTypeSelectName».addItem("«subclass.name»");
+		«FOR subclass : ref.type.instantiableClasses»
+			«ref.inheritanceTypeSelectName».addItem("«subclass.name»");
 		«ENDFOR»
-		java.awt.GridBagConstraints gbc_«e.inheritanceTypeSelectName» = new java.awt.GridBagConstraints();
-		gbc_«e.inheritanceTypeSelectName».insets = new java.awt.Insets(0, 0, 5, 5);
-		gbc_«e.inheritanceTypeSelectName».gridx = «x»;
-		gbc_«e.inheritanceTypeSelectName».gridy = «y»;
-		getPanel().add(«e.inheritanceTypeSelectName», gbc_«e.inheritanceTypeSelectName»);
+		java.awt.GridBagConstraints gbc_«ref.inheritanceTypeSelectName» = new java.awt.GridBagConstraints();
+		gbc_«ref.inheritanceTypeSelectName».insets = new java.awt.Insets(0, 0, 5, 5);
+		gbc_«ref.inheritanceTypeSelectName».gridx = «x»;
+		gbc_«ref.inheritanceTypeSelectName».gridy = «y»;
+		getPanel().add(«ref.inheritanceTypeSelectName», gbc_«ref.inheritanceTypeSelectName»);
 		'''
 	}
 }

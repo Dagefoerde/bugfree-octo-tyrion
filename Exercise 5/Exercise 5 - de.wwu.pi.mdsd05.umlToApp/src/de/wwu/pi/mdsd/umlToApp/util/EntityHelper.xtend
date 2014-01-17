@@ -106,9 +106,9 @@ class EntityHelper {
 		entity.getDirectSubClasses.size > 0
 	}
 
-	/*def static hasSubClasses(Property att) {
-		att.opposite.class_.hasSubClasses
-	}*/
+	def static hasSubClasses(Reference ref) {
+		ref.type.hasSubClasses
+	}
 
 	def static Iterable<Entity> getInstantiableClasses(Entity entity) {
 		(	newLinkedList(entity) +

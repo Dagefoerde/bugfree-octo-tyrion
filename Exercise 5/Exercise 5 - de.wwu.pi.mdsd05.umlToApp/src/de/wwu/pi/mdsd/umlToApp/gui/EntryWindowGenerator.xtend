@@ -2,7 +2,6 @@ package de.wwu.pi.mdsd.umlToApp.gui
 
 import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.DataType
 import org.eclipse.uml2.uml.Type
 
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
@@ -17,6 +16,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
@@ -99,7 +99,11 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				//Read values from different fields 
 				«FOR prop : window.entity.singleValueProperties(true)»
 					« /* declare and initialize local variables to handle imports */
-					 prop.type.name.objectType» «prop.name» = «prop.retrieveValueFromFieldCode»;
+					switch (prop){
+					case (Attribute):(prop as Attribute).type.name.objectType
+					case (Reference): (prop as Reference).type.name.objectType
+					}»
+					  «prop.name» = «prop.retrieveValueFromFieldCode»;
 				«ENDFOR»
 				
 				«val attributeNames = window.entity.singleValueProperties(true).join(", ",[name])»
@@ -122,39 +126,39 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				return true;
 			}
 			
-			«FOR att : window.entity.multiReferences(true).filter[attribute | attribute.hasSubClasses ]»
-				javax.swing.JComboBox<String> «att.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
+			«FOR rerference : window.entity.multiReferences(true).filter[rerference | rerference.hasSubClasses ]»
+				javax.swing.JComboBox<String> «rerference.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
 			«ENDFOR»
 			@Override
 			protected void createLists() {
 				int gridy = 0;
 				JButton btn;
 				GridBagConstraints gbc_btn;
-				«FOR att : window.entity.multiReferences(true)»				
+				«FOR ref : window.entity.multiReferences(true)»				
 					gridy = getNextGridYValue();
-					JLabel «att.labelName» = new JLabel("«att.readableLabel + (if(att.required) '*' else '')»");
-					GridBagConstraints gbc_«att.labelName» = new GridBagConstraints();
-					gbc_«att.labelName».insets = new Insets(0, 0, 5, 5);
-					gbc_«att.labelName».anchor = GridBagConstraints.NORTHEAST;
-					gbc_«att.labelName».gridx = 0;
-					gbc_«att.labelName».gridy = gridy;
-					getPanel().add(«att.labelName», gbc_«att.labelName»);
+					JLabel «ref.labelName» = new JLabel("«ref.readableLabel + (if(ref.required) '*' else '')»");
+					GridBagConstraints gbc_«ref.labelName» = new GridBagConstraints();
+					gbc_«ref.labelName».insets = new Insets(0, 0, 5, 5);
+					gbc_«ref.labelName».anchor = GridBagConstraints.NORTHEAST;
+					gbc_«ref.labelName».gridx = 0;
+					gbc_«ref.labelName».gridy = gridy;
+					getPanel().add(«ref.labelName», gbc_«ref.labelName»);
 					
-					«att.fieldName» = «att.initializeField»;
-					GridBagConstraints gbc_«att.fieldName» = new GridBagConstraints();
-					gbc_«att.fieldName».gridwidth = 5;
-					gbc_«att.fieldName».insets = new Insets(0, 0, 5, 5);
-					gbc_«att.fieldName».fill = GridBagConstraints.BOTH;
-					gbc_«att.fieldName».gridx = 1;
-					gbc_«att.fieldName».weighty = .5;
-					gbc_«att.fieldName».gridy = gridy;
-					getPanel().add(«att.fieldName», gbc_«att.fieldName»);
+					«ref.fieldName» = «ref.initializeField»;
+					GridBagConstraints gbc_«ref.fieldName» = new GridBagConstraints();
+					gbc_«ref.fieldName».gridwidth = 5;
+					gbc_«ref.fieldName».insets = new Insets(0, 0, 5, 5);
+					gbc_«ref.fieldName».fill = GridBagConstraints.BOTH;
+					gbc_«ref.fieldName».gridx = 1;
+					gbc_«ref.fieldName».weighty = .5;
+					gbc_«ref.fieldName».gridy = gridy;
+					getPanel().add(«ref.fieldName», gbc_«ref.fieldName»);
 					
 					gridy = getNextGridYValue();
 					« /* Special handling of attributes with inheritance */
-					 IF att.hasSubClasses »
+					 IF ref.hasSubClasses »
 					
-						«att.createSelectForInheritanceClasses("2","gridy")»
+						«ref.createSelectForInheritanceClasses("2","gridy")»
 					«ENDIF»
 					
 					//Button for List Element
@@ -168,15 +172,15 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					btn.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							«IF att.hasSubClasses»
-								«att.type.name» entity = null;
-								«FOR subClass : att.opposite.class_.instantiableClasses»
-									if(«clazz.entryWindowClassName».this.«att.inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
-										entity = new «subClass.name»().«att.opposite.initializeSingleRefMethodName»(currentEntity);
+							«IF ref.hasSubClasses»
+								«ref.type.name» entity = null;
+								«FOR subClass : ref.opposite.class_.instantiableClasses»
+									if(«clazz.entryWindowClassName».this.«ref.inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
+										entity = new «subClass.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity);
 								«ENDFOR»
-								«att.opposite.class_.inheritanceCallOpenEntryWindow(att.class_.entryWindowClassName+".this")»
+								«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
 							«ELSE»
-								new «att.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, new «att.type.name»().«att.opposite.initializeSingleRefMethodName»(currentEntity)).open();
+								new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, new «ref.type.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity)).open();
 							«ENDIF»
 						}
 					});
@@ -188,14 +192,14 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					btn.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							«att.type.name» entity = «clazz.entryWindowClassName».this.«att.fieldName».getSelectedValue();
+							«ref.type.name» entity = «clazz.entryWindowClassName».this.«ref.fieldName».getSelectedValue();
 							if(entity == null)
 								Util.showNothingSelected();
 							else
-								«IF att.hasSubClasses»
-									«att.opposite.class_.inheritanceCallOpenEntryWindow(att.class_.entryWindowClassName+".this")»
+								«IF ref.hasSubClasses»
+									«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
 								«ELSE»
-									new «att.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, entity).open();
+									new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, entity).open();
 								«ENDIF»
 						}
 					});
