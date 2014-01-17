@@ -8,7 +8,7 @@ import org.eclipse.uml2.uml.Type
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
 
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
@@ -36,7 +36,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		import de.wwu.pi.mdsd.framework.logic.ValidationException;
 		«IMPORTS_MARKER»
 		
-		public class «window.name» extends AbstractEntryWindow<«importedType(window.entity)»> «clazz.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
+		public class «window.name» extends AbstractEntryWindow<«importedType(window.entity)»> «window.entity.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{
 			«	/* Declare Service class (+ adds full qualified name to import list) */
 				imported( window.logicPackageString + "."+window.entity.serviceClassName)» service;
 
@@ -47,7 +47,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					
 			public «window.name»(AbstractWindow parent, «window.entity.javaType» currentEntity) {
 				super(parent, currentEntity, «window.size.width», «window.size.height»);
-				service = «imported(clazz.logicPackageString + ".ServiceInitializer")».getProvider().get«clazz.serviceClassName»();
+				service = «imported(window.logicPackageString + ".ServiceInitializer")».getProvider().get«window.entity.serviceClassName»();
 			}
 		
 			@Override
@@ -97,32 +97,32 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			protected boolean saveAction() throws ParseException {
 				//Read values from different fields 
-				«FOR prop : clazz.singleValueProperties(true)»
+				«FOR prop : window.entity.singleValueProperties(true)»
 					« /* declare and initialize local variables to handle imports */
 					 prop.type.name.objectType» «prop.name» = «prop.retrieveValueFromFieldCode»;
 				«ENDFOR»
 				
-				«val attributeNames = clazz.singleValueProperties(true).join(", ",[name])»
+				«val attributeNames = window.entity.singleValueProperties(true).join(", ",[name])»
 				//validation
 				try {
-					service.validate«clazz.name»(«attributeNames»);
+					service.validate«window.entity.name»(«attributeNames»);
 				} catch (ValidationException e) {
 					Util.showUserMessage("Validation error for " + e.getField(), "Validation error for " + e.getField() + ": " + e.getMessage());
 					return false;
 				}
 				
 				//persist
-				currentEntity = service.save«clazz.name»(currentEntity.getOid()«if(!attributeNames.empty) ', ' + attributeNames»);
+				currentEntity = service.save«window.entity.name»(currentEntity.getOid()«if(!attributeNames.empty) ', ' + attributeNames»);
 				
 				//reload the listing in the parent window to make changes visible
-				«FOR currClass : (clazz.allSuperClasses + #{clazz}) »	
+				«FOR currClass : (window.entity.allSuperClasses + #{window.entity}) »	
 					if(getParent() instanceof «currClass.listingInterfaceClassName»)
 						((«currClass.listingInterfaceClassName») getParent()).«currClass.listingInterfaceMethodeName»();
 				«ENDFOR»
 				return true;
 			}
 			
-			«FOR att : clazz.multiReferences(true).filter[attribute | attribute.hasSubClasses ]»
+			«FOR att : window.entity.multiReferences(true).filter[attribute | attribute.hasSubClasses ]»
 				javax.swing.JComboBox<String> «att.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
 			«ENDFOR»
 			@Override
@@ -130,7 +130,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				int gridy = 0;
 				JButton btn;
 				GridBagConstraints gbc_btn;
-				«FOR att : clazz.multiReferences(true)»				
+				«FOR att : window.entity.multiReferences(true)»				
 					gridy = getNextGridYValue();
 					JLabel «att.labelName» = new JLabel("«att.readableLabel + (if(att.required) '*' else '')»");
 					GridBagConstraints gbc_«att.labelName» = new GridBagConstraints();
@@ -207,18 +207,18 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				«ENDFOR»
 			}
 			« /* Create list initializer methods; one for each list */
-			FOR att : clazz.multiReferences(true)»
+			FOR att : window.entity.multiReferences(true)»
 				
 				public void «att.listInitializeMethodName»() {
 					«att.fieldName».setListData(new Vector<«att.type.name»>(currentEntity.get«att.nameInJava.toFirstUpper»()));
 				}
 			«ENDFOR»
 			« /* Create listing methods required due to listing interfaces */
-			 FOR type : clazz.listingTypes»
+			 FOR type : window.entity.listingTypes»
 				
 				@Override
 				public void «type.listingInterfaceMethodeName»() {
-					«FOR att : clazz.multiReferences(true).filter[it.type.equals(type)]»
+					«FOR att : window.entity.multiReferences(true).filter[it.type.equals(type)]»
 						«att.listInitializeMethodName»();
 					«ENDFOR»
 				}
@@ -227,8 +227,8 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	'''
 	
 	/* Get types for all classes that are multi-referenced and thus a listing is presented within this window */
-	def listingTypes(Class clazz) {
-		clazz.multiReferences(true).map[type].toSet
+	def listingTypes(Entity entity) {
+		entity.multiReferences(true).map[type].toSet
 	}
 	
 	//Initializes input fields and if necessary selects 
