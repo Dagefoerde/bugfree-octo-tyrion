@@ -11,6 +11,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
@@ -32,14 +33,21 @@ class GUIHelper {
 
 	def static windowTitle(ListWindow window) {
 		if (window.title == null)
-			'''List «window.name.camelCaseToLabel.toFirstUpper» Objects'''
+			'''«window.name.camelCaseToLabel.toFirstUpper»'''
 		else
 			window.title
+	}
+	
+	def static readableButtonLabel(Button button) {
+		if (button.text == null)
+			'''«button.name.camelCaseToLabel.toFirstUpper»'''
+		else
+			button.text
 	}
 
 	def static windowTitle(EntryWindow window) {
 		if (window.title == null)
-			'''Edit «window.name.camelCaseToLabel.toFirstUpper» Window'''
+			'''«window.name.camelCaseToLabel.toFirstUpper»'''
 		else
 			window.title
 	}

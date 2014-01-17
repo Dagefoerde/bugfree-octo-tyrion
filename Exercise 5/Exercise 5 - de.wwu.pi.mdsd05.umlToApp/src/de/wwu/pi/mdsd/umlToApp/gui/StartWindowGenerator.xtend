@@ -27,7 +27,7 @@ class StartWindowGenerator {
 			@Override
 			protected void ListChoices() {
 				«FOR window : model.windows.filter[window|window instanceof de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow].map[window|window as de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow]»
-					JButton «window.name.toFirstLower» = new JButton("List «window.name.camelCaseToLabel» Elements");
+					JButton «window.name.toFirstLower» = new JButton("«window.windowTitle»");
 					GridBagConstraints gbc_«window.name.toFirstLower» = new GridBagConstraints();
 					gbc_«window.name.toFirstLower».insets = new Insets(0, 0, 5, 5);
 					gbc_«window.name.toFirstLower».gridx = 1;

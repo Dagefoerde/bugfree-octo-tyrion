@@ -40,7 +40,7 @@ ListWindow UserListWindow for User title "User Listing" size= (400, 450)
 
 ListWindow LoanListWindow for Loan title "Loan Listing" size= (400, 450)
 
-ListWindow MediumListWindow for Medium title "Copy Listing" size= (400, 450)
+ListWindow MediumListWindow for Medium title "Medium Listing" size= (400, 450)
 
 ListWindow CopyListWindow for Copy title "Copy Listing" size= (400, 450)
 

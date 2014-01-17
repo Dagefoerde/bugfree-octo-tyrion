@@ -38,6 +38,7 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 		panel.setLayout(null);
 		
 		createUIElements();
+		createLists();
 		
 		/*btnSave = new JButton(currentEntity.isNew() ? "Create" : "Update");
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();

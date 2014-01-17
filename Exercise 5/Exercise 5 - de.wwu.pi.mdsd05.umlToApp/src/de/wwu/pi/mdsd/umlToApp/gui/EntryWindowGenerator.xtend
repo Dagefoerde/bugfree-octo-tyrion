@@ -1,28 +1,26 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ButtonKind
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
-import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.Type
-
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
-
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 
 class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
 	override doGenerate(EntryWindow window) '''
 		package «window.guiPackageString»;
 		
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
 		import java.text.ParseException;
 		import java.util.*;
 		
@@ -56,8 +54,8 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 					JLabel «elem.name» = new JLabel("«(elem as Label).labelName»");
 					«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
 					getPanel().add(«elem.name»);
-		
-		
+					
+					
 					«ELSEIF(elem instanceof Field)»
 						«IF ((elem as Field).property instanceof Attribute)»
 							«elem.name» = «((elem as Field).initializeField)»;
@@ -65,19 +63,30 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 							getPanel().add(«elem.name»);
 							«elem.name».setColumns(10);
 						«ELSEIF ((elem as Field).property instanceof Reference)»
-							«IF (((elem as Field).property as Reference).multiplicity == 0)»
-							JComboBox cb«elem.name» = new JComboBox();
-							cb«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-							getPanel().add(cb«elem.name»);
-							«ELSEIF (((elem as Field).property as Reference).multiplicity == 1)»
+							«IF (elem as Field).hasSingleValuedProperty»
+							«elem.name» = «((elem as Field).initializeField)»;
+							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							getPanel().add(«elem.name»);
+							«ELSEIF (elem as Field).hasMultiValuedProperty»
 							«ENDIF»
 						«ENDIF»					
 					«ELSEIF(elem instanceof Button)»
-							
-					JButton btn«elem.name» = new JButton("«elem.name»");
-					btn«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-					getPanel().add(btn«elem.name»);
+					«IF (elem as Button).kind==ButtonKind.CREATE_EDIT»		
+					JButton «elem.name» = new JButton("«(elem as Button).readableButtonLabel»");
+					«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+					getPanel().add(«elem.name»);
+					«elem.name».addActionListener(new ActionListener() {
 					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+							try {
+								saveAction();
+							} catch (Exception e1) {
+								JOptionPane.showMessageDialog(getPanel(), "Could not be saved. " + e1.getMessage());
+							}				
+					}
+					});
+					«ENDIF»
 					«ENDIF»
 				«ENDFOR»
 			}
@@ -105,6 +114,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				//validation
 				try {
 					service.validate«window.entity.name»(«attributeNames»);
+					«window.name».this.closeWindow();
 				} catch (ValidationException e) {
 					Util.showUserMessage("Validation error for " + e.getField(), "Validation error for " + e.getField() + ": " + e.getMessage());
 					return false;
@@ -243,14 +253,14 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		switch (f.property) {
 			Attribute: '''new «f.inputFieldType»(«(f.property as Attribute).formattedTextCode»)'''
 			Reference:
-				if ((f.property as Reference).multiplicity == 0) {
+				if (f.hasMultiValuedProperty) {
 					'''
 					new «f.inputFieldType»();
 					«f.listInitializeMethodName»()'''
 				} else {
 					'''
 					new «f.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«(f.property as Reference).type.serviceClassName»().getAll()));
-					«f.fieldName».setSelectedValue(currentEntity.get«f.property.nameInJava.toFirstUpper»(),true)'''
+					«f.fieldName».setSelectedItem(currentEntity.get«f.property.nameInJava.toFirstUpper»())'''
 				}
 		}
 
