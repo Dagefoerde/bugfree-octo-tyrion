@@ -85,6 +85,7 @@ class UmlToAppGenerator implements IGenerator {
 		)
 		model.windows.filter[e| e instanceof EntryWindow].map[e| e as EntryWindow].forEach[processEntryWindow(fsa)]
 		model.windows.filter[e| e instanceof ListWindow].map[e|e as ListWindow].forEach[processListWindow(fsa)]
+		model.processStartWindow(fsa);
 	}
 	
 	//Generate Entry Windows
@@ -100,6 +101,13 @@ class UmlToAppGenerator implements IGenerator {
 		fsa.generateFile(
 			'''«window.guiPackageString.toFolderString»/«window.name».java''',
 			new ListWindowGenerator().generate(window)
+		)
+	}
+	//Generate StartWindow
+	def processStartWindow(CrudModel model, IFileSystemAccess fsa){
+		fsa.generateFile(
+			'''«model.guiPackageString.toFolderString»/StartWindow.java''',
+			new StartWindowGenerator().generateStartWindow(model)
 		)
 	}
 }

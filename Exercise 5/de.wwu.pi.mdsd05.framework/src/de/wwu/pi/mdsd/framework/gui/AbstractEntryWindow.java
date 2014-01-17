@@ -37,7 +37,7 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 
 		panel.setLayout(null);
 		
-		createFields();
+		createUIElements();
 		
 		/*btnSave = new JButton(currentEntity.isNew() ? "Create" : "Update");
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
@@ -76,7 +76,7 @@ public abstract class AbstractEntryWindow<E extends AbstractDataClass> extends A
 		return "Edit " + currentEntity.getClass().getSimpleName() + " Window";
 	}
 		
-	protected abstract void createFields();
-	//protected abstract void createLists();
+	protected abstract void createUIElements();
+	protected abstract void createLists();
 	protected abstract boolean saveAction() throws ParseException, NumberFormatException;
 }

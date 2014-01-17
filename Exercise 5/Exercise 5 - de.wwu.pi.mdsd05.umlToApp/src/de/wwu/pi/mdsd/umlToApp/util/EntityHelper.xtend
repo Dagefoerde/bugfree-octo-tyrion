@@ -7,6 +7,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.MultiplicityKind
 import de.wwu.pi.mdsd.crudDsl.crudDsl.AttributeType
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 
 class EntityHelper { 
 
@@ -33,8 +34,8 @@ class EntityHelper {
 		entity.name + 'ListingInterface'
 	}
 	
-	def static listingInterfaceMethodeName(Entity enity) {
-		'initialize'+ enity.name +'Listings'
+	def static listingInterfaceMethodeName(Entity entity) {
+		'initialize'+ entity.name +'Listings'
 	}
 	
 	def static initializeSingleRefMethodName(Property ref) {
@@ -42,19 +43,19 @@ class EntityHelper {
 	}
 
 	def static isDate(Attribute a) {
-		"Date".equals(a.type.name)
+		"Date".equals(a.type.literal)
 	}
 
 	def static isString(Attribute a) {
-		"String".equals(a.type.name)
+		"String".equals(a.type.literal)
 	}
 	
 	def static isNumberObject(Attribute a) {
-		"Integer".equals(a.type.name)
+		"Integer".equals(a.type.literal)
 	}
 	
 	def static isNumberPrimitiv(Attribute a) {
-		"int".equals(a.type.name)
+		"int".equals(a.type.literal)
 	}
 	
 	def static isObject(Attribute a) {
@@ -153,6 +154,29 @@ class EntityHelper {
 	def static singleValueProperties(Entity entity, boolean considerSuperclass) {
 		(entity.primitiveAttributes(considerSuperclass) + entity.singleReferences(considerSuperclass))
 	}
+	
+	def static hasSingleValuedProperty(Field field) {
+		var prop = field.property
+		if (prop instanceof Attribute)
+			return true
+		if (prop instanceof Reference)
+			return ((prop as Reference).isSingelvalued)
+		
+		return false
+	}
+	def static hasSingleValuedReference(Field field) {
+		var prop = field.property
+		if (prop instanceof Reference)
+			return ((prop as Reference).isSingelvalued)
+		
+		return false
+	}
+	def static hasMultiValuedProperty(Field field) {
+		var prop = field.property
+		if (prop instanceof Reference)
+			return ((prop as Reference).isMultivalued)		
+		return false
+	}
 
 	def static Iterable<Attribute> required(Iterable<Attribute> attributes) {
 		attributes.filter[it.required]
@@ -196,7 +220,7 @@ class EntityHelper {
 	}
 
 	def static javaType(AttributeType type) {
-		type.name
+		type.literal
 	}
 	def static javaType(Entity entity) {
 		entity.name
@@ -211,9 +235,9 @@ class EntityHelper {
 	 */
 	def static objectType(String javaType) {
 		switch (javaType) {
-			case "boolean": "Boolean"
-			case "int": "Integer"
-			case "double": "Double"
+			case "String": "String"
+			case "Integer": "Integer"
+			case "Date": "Date"
 			default: javaType
 		}
 	}

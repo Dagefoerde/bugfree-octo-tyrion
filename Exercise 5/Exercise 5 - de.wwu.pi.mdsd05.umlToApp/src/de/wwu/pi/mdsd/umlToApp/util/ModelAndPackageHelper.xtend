@@ -36,11 +36,18 @@ class ModelAndPackageHelper {
 	}
 
 	def static logicPackageString(Window window) {
-		(window.eContainer as CrudModel).packageString + ".logic"
+		(window.eContainer as CrudModel).logicPackageString
 	}
 
+	def static logicPackageString(CrudModel model) {
+		model.packageString + ".logic"
+	}
+	
 	def static guiPackageString(Window window) {
-		(window.eContainer as CrudModel).packageString + ".gui"
+		(window.eContainer as CrudModel).guiPackageString
+	}
+	def static guiPackageString(CrudModel model) {
+		model.packageString + ".gui"
 	}
 
 	def static entityPackageString(Class clazz) {

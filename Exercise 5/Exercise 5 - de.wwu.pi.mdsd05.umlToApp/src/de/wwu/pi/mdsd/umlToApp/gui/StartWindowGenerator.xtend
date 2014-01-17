@@ -4,11 +4,11 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 
 class StartWindowGenerator {
 	def generateStartWindow(CrudModel model) '''
-		« var packageName = model.name»
-		package «packageName»;
+		package «model.guiPackageString»;
 		
 		import java.awt.GridBagConstraints;
 		import java.awt.Insets;
@@ -20,9 +20,9 @@ class StartWindowGenerator {
 		import javax.swing.UnsupportedLookAndFeelException;
 		
 		import de.wwu.pi.mdsd.framework.gui.AbstractStartWindow;
-		import «packageName».ServiceInitializer;
+		import «model.logicPackageString».ServiceInitializer;
 		
-		public class StartWindowClass extends AbstractStartWindow {
+		public class StartWindow extends AbstractStartWindow {
 		
 			@Override
 			protected void ListChoices() {
@@ -36,7 +36,7 @@ class StartWindowGenerator {
 					«window.name.toFirstLower».addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
-							new «window.name»(StartWindowClass.this).open();
+							new «window.name»(StartWindow.this).open();
 						}
 					});
 				«ENDFOR»
@@ -52,7 +52,7 @@ class StartWindowGenerator {
 				UIManager.setLookAndFeel(
 					UIManager.getSystemLookAndFeelClassName());
 					//"com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				new StartWindowClass().open();
+				new StartWindow().open();
 			}
 		}
 	'''

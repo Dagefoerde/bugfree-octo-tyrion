@@ -21,12 +21,8 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
 	override doGenerate(EntryWindow window) '''
-		package «window.name»;
+		package «window.guiPackageString»;
 		
-		import java.awt.GridBagConstraints;
-		import java.awt.Insets;
-		import java.awt.event.ActionEvent;
-		import java.awt.event.ActionListener;
 		import java.text.ParseException;
 		import java.util.*;
 		
@@ -42,7 +38,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 
 			«	/* declare fields for each attribute */
 			 FOR elem : window.elements.filter(typeof(Field))»
-				private «elem.inputFieldType» fld«elem.name»;
+				private «elem.inputFieldType» «elem.name»;
 			«ENDFOR»
 					
 			public «window.name»(AbstractWindow parent, «window.entity.javaType» currentEntity) {
@@ -53,27 +49,26 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			
 			protected void createUIElements() {
-				int gridy = 0;
 				«FOR elem : window.elements»
 					
 					«IF(elem instanceof Label)»
 					
-					JLabel lbl«elem.name» = new JLabel("«elem.name»");
-					lbl«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-					contentPane.add(lbl«elem.name»);
+					JLabel «elem.name» = new JLabel("«(elem as Label).labelName»");
+					«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+					getPanel().add(«elem.name»);
 		
 		
 					«ELSEIF(elem instanceof Field)»
 						«IF ((elem as Field).property instanceof Attribute)»
-							fld«elem.name» = «((elem as Field).initializeField)»;
-							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-							contentPane.add(fld«elem.name»);
-							fld«elem.name».setColumns(10);
+							«elem.name» = «((elem as Field).initializeField)»;
+							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							getPanel().add(«elem.name»);
+							«elem.name».setColumns(10);
 						«ELSEIF ((elem as Field).property instanceof Reference)»
 							«IF (((elem as Field).property as Reference).multiplicity == 0)»
 							JComboBox cb«elem.name» = new JComboBox();
 							cb«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-							contentPane.add(cb«elem.name»);
+							getPanel().add(cb«elem.name»);
 							«ELSEIF (((elem as Field).property as Reference).multiplicity == 1)»
 							«ENDIF»
 						«ENDIF»					
@@ -81,7 +76,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 							
 					JButton btn«elem.name» = new JButton("«elem.name»");
 					btn«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-					contentPane.add(btn«elem.name»);
+					getPanel().add(btn«elem.name»);
 					
 					«ENDIF»
 				«ENDFOR»
@@ -97,13 +92,13 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			protected boolean saveAction() throws ParseException {
 				//Read values from different fields 
-				«FOR prop : window.entity.singleValueProperties(true)»
+				«FOR elem : window.elements.filter(Field).filter[it.hasSingleValuedProperty]»
 					« /* declare and initialize local variables to handle imports */
-					switch (prop){
-					case (Attribute):(prop as Attribute).type.name.objectType
-					case (Reference): (prop as Reference).type.name.objectType
+					switch (elem.property){
+						Attribute:(elem.property as Attribute).type.literal.objectType
+						Reference: (elem.property as Reference).type.name.objectType
 					}»
-					  «prop.name» = «prop.retrieveValueFromFieldCode»;
+					  «elem.property.name» = «elem.retrieveValueFromFieldCode»;
 				«ENDFOR»
 				
 				«val attributeNames = window.entity.singleValueProperties(true).join(", ",[name])»
@@ -127,17 +122,16 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			}
 			
 			«FOR rerference : window.entity.multiReferences(true).filter[rerference | rerference.hasSubClasses ]»
-				javax.swing.JComboBox<String> «rerference.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
+				javax.swing.JComboBox<String> «rerference.type.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
 			«ENDFOR»
 			@Override
 			protected void createLists() {
-				int gridy = 0;
 				«FOR elem : window.elements.filter(Field).filter[field|field.property instanceof Reference && (field.property as Reference).isMultivalued]»
 					
-							fld«elem.name» = «(elem.initializeField)»;
-							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
-							contentPane.add(fld«elem.name»);
-							fld«elem.name».setColumns(10);
+							«elem.name» = «(elem.initializeField)»;
+							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							getPanel().add(«elem.name»);
+							//«elem.name».setColumns(10);
 					«ENDFOR»
 «««				«FOR element: window.elements.filter(Field)»
 «««				int gridy = 0;
@@ -220,10 +214,10 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 «««				«ENDFOR»
 			}
 			« /* Create list initializer methods; one for each list */
-			FOR att : window.entity.multiReferences(true)»
+			FOR elem : window.elements.filter(Field).filter[it.hasMultiValuedProperty]»
 				
-				public void «att.listInitializeMethodName»() {
-					«att.fieldName».setListData(new Vector<«att.type.name»>(currentEntity.get«att.nameInJava.toFirstUpper»()));
+				public void «elem.listInitializeMethodName»() {
+					«elem.fieldName».setListData(new Vector<«(elem.property as Reference).type.name»>(currentEntity.get«elem.property.nameInJava.toFirstUpper»()));
 				}
 			«ENDFOR»
 			« /* Create listing methods required due to listing interfaces */
@@ -231,8 +225,8 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 				
 				@Override
 				public void «type.listingInterfaceMethodeName»() {
-					«FOR att : window.entity.multiReferences(true).filter[it.type.equals(type)]»
-						«att.listInitializeMethodName»();
+					«FOR elem : window.elements.filter(Field).filter[it.hasMultiValuedProperty].filter[(it.property as Reference).type.equals(type)]»
+						«elem.listInitializeMethodName»();
 					«ENDFOR»
 				}
 			«ENDFOR»
@@ -245,54 +239,44 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	}
 	
 	//Initializes input fields and if necessary selects 
-	def initializeField(Field p) {
-		switch (p.property) {
-			Attribute: '''new «p.inputFieldType»(«(p as Attribute).formattedTextCode»)'''
+	def initializeField(Field f) {
+		switch (f.property) {
+			Attribute: '''new «f.inputFieldType»(«(f.property as Attribute).formattedTextCode»)'''
 			Reference:
-				if ((p.property as Reference).multiplicity == 0) {
+				if ((f.property as Reference).multiplicity == 0) {
 					'''
-					new «p.inputFieldType»();
-					«p.property.listInitializeMethodName»()'''
+					new «f.inputFieldType»();
+					«f.listInitializeMethodName»()'''
 				} else {
 					'''
-					new «p.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«(p.property as Reference).type.serviceClassName»().getAll()));
-					«p.property.fieldName».setSelectedItem(currentEntity.get«p.property.nameInJava.toFirstUpper»())'''
+					new «f.inputFieldType»(new Vector<>(ServiceInitializer.getProvider().get«(f.property as Reference).type.serviceClassName»().getAll()));
+					«f.fieldName».setSelectedValue(currentEntity.get«f.property.nameInJava.toFirstUpper»(),true)'''
 				}
 		}
 
 	}
 
 	/* get Input Field type */
-	def inputFieldType(Field p) {
-		switch (p.property){
+	def inputFieldType(Field f) {
+		switch (f.property){
 			Attribute:
 				'JTextField'
 			Reference:
-				if ((p.property as Reference).multiplicity == 0)
-					'JComboBox<' + importedType((p.property as Reference).type) + '>'
+				if (f.hasSingleValuedProperty)
+					'JComboBox<' + importedType((f.property as Reference).type) + '>'
 				else
-					'JList<' + importedType((p.property as Reference).type) + '>'
+					'JList<' + importedType((f.property as Reference).type) + '>'
 		}
 	}
 
-	def fieldName(Property p) {
-		p.fieldTypeAbb + '_' + p.nameInJava.toFirstUpper
-	}
-	
-	def fieldTypeAbb(Property p) {
-		switch (p) {
-			Attribute:
-				'tf'
-			Reference:
-				if ((p as Reference).multiplicity == 0)
-					'cb'
-				else
-					'li'
-		}
+	def fieldName(Field f) {
+		f.name
 	}
 
-	def labelName(Property p) {
-		'lbl' + p.nameInJava.toFirstUpper
+	def labelName(Label l) {
+		if (l.text!=null)
+		return l.text
+		return l.readableLabel
 	}
 
 	/* get code for formatted text representation of property value */
@@ -311,22 +295,22 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	}
 	
 	/* generates code to retrieve value from imput field */
-	def retrieveValueFromFieldCode(Property p) {
-		if(p.fieldTypeAbb.equals("cb"))
-			 return '''«p.fieldName».getItemAt(«p.fieldName».getSelectedIndex())'''
+	def retrieveValueFromFieldCode(Field f) {
+		if(f.hasSingleValuedReference)
+			 return '''«f.fieldName».getItemAt(«f.fieldName».getSelectedIndex())'''
 
-		val getText = '''«p.fieldName».getText()'''
+		val getText = '''«f.fieldName».getText()'''
 		var result = getText
-		if (p instanceof Attribute){
-		if ((p as Attribute).isDate)
+		if (f.property instanceof Attribute){
+		if ((f.property as Attribute).isDate)
 			result = '''Util.DATE_TIME_FORMATTER.parse(«result»)'''
-		else if (!(p as Attribute).string)
-			result = '''«(p as Attribute).typeInJava.objectType».valueOf(«result»)'''}
+		else if (!(f.property as Attribute).string)
+			result = '''«(f.property as Attribute).typeInJava.objectType».valueOf(«result»)'''}
 
 		'''«getText».isEmpty() ? null : «result»'''
 	}
 	
-	def listInitializeMethodName(Property p) {
-		'''initialize«p.fieldTypeAbb.toFirstUpper»«p.nameInJava.toFirstUpper»'''
+	def listInitializeMethodName(Field f) {
+		'''initialize«f.name.toFirstUpper»'''
 	}
 }
