@@ -5,6 +5,8 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Property
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Attribute
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
+import de.wwu.pi.mdsd.crudDsl.crudDsl.MultiplicityKind
 
 class ClassHelper { 
 
@@ -96,17 +98,10 @@ class ClassHelper {
 		entity.getDirectSubClasses.size > 0
 	}
 
-	def static hasSubClasses(Property att) {
+	/*def static hasSubClasses(Property att) {
 		att.opposite.class_.hasSubClasses
-	}
+	}*/
 
-	def static Iterable<Class> getInstantiableClasses(Class clazz) {
-		(	newLinkedList(clazz) +
-			//for all sub classes get instantiable classes 
-			clazz.getDirectSubClasses.map(cl|cl.instantiableClasses).flatten
-		).filter[cl|!cl.abstract].toSet
-	}
-	
 	def static Iterable<Entity> getInstantiableClasses(Entity entity) {
 		(	newLinkedList(entity) +
 			//for all sub classes get instantiable classes 
@@ -118,32 +113,32 @@ class ClassHelper {
 	// Properties and references
 	//-------------------------------------------------------------------------------------
 	
-	def static dispatch Iterable<Property> attributes(Void x, boolean considerSuperclass) {
+	def static dispatch Iterable<Property> properties(Void x, boolean considerSuperclass) {
 		emptyList
 	}
 	
-	def static dispatch Iterable<Property> attributes(Class clazz, boolean considerSuperclass) {
-		if (considerSuperclass && clazz.hasExplicitSuperClass)
-			clazz.superClass.attributes(true) + clazz.attributes
+	def static dispatch Iterable<Property> properties(Entity entity, boolean considerSuperclass) {
+		if (considerSuperclass && entity.hasExplicitSuperClass)
+			entity.superClass.properties(true) + entity.properties
 		else
-			clazz.attributes
+			entity.properties
 	}
 	
-	def static primitiveAttributes(Class clazz, boolean considerSuperclass) {
+	def static primitiveAttributes(Entity entity, boolean considerSuperclass) {
 		/* For now, only consider single-valued attributes */
-		clazz.attributes(considerSuperclass).filter[!it.multivalued && !type.entity]
+		entity.properties(considerSuperclass).filter(Attribute)
 	}
 
-	def static entityReferences(Class clazz, boolean considerSuperclass) {
-		clazz.attributes(considerSuperclass).filter[type.entity]
+	def static entityReferences(Entity entity, boolean considerSuperclass) {
+		entity.properties(considerSuperclass).filter(Reference)
 	}
 
-	def static singleReferences(Class clazz, boolean considerSuperclass) {
-		clazz.entityReferences(considerSuperclass).filter[!it.multivalued]
+	def static singleReferences(Entity entity, boolean considerSuperclass) {
+		entity.entityReferences(considerSuperclass).filter[it.multiplicity==MultiplicityKind.SINGLE]
 	}
 
-	def static multiReferences(Class clazz, boolean considerSuperclass) {
-		clazz.entityReferences(considerSuperclass).filter[it.multivalued]
+	def static multiReferences(Entity entity, boolean considerSuperclass) {
+		entity.entityReferences(considerSuperclass).filter[it.multiplicity==MultiplicityKind.MULTIPLE]
 	}
 
 	/** primitive attributes and single References */
