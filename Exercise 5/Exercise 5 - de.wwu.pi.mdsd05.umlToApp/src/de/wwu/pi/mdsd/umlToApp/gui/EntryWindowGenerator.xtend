@@ -132,83 +132,92 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			protected void createLists() {
 				int gridy = 0;
-				JButton btn;
-				GridBagConstraints gbc_btn;
-				«FOR ref : window.entity.multiReferences(true)»				
-					gridy = getNextGridYValue();
-					JLabel «ref.labelName» = new JLabel("«ref.readableLabel + (if(ref.required) '*' else '')»");
-					GridBagConstraints gbc_«ref.labelName» = new GridBagConstraints();
-					gbc_«ref.labelName».insets = new Insets(0, 0, 5, 5);
-					gbc_«ref.labelName».anchor = GridBagConstraints.NORTHEAST;
-					gbc_«ref.labelName».gridx = 0;
-					gbc_«ref.labelName».gridy = gridy;
-					getPanel().add(«ref.labelName», gbc_«ref.labelName»);
+				«FOR elem : window.elements.filter(Field).filter[field|field.property instanceof Reference && (field.property as Reference).isMultivalued]»
 					
-					«ref.fieldName» = «ref.initializeField»;
-					GridBagConstraints gbc_«ref.fieldName» = new GridBagConstraints();
-					gbc_«ref.fieldName».gridwidth = 5;
-					gbc_«ref.fieldName».insets = new Insets(0, 0, 5, 5);
-					gbc_«ref.fieldName».fill = GridBagConstraints.BOTH;
-					gbc_«ref.fieldName».gridx = 1;
-					gbc_«ref.fieldName».weighty = .5;
-					gbc_«ref.fieldName».gridy = gridy;
-					getPanel().add(«ref.fieldName», gbc_«ref.fieldName»);
-					
-					gridy = getNextGridYValue();
-					« /* Special handling of attributes with inheritance */
-					 IF ref.hasSubClasses »
-					
-						«ref.createSelectForInheritanceClasses("2","gridy")»
-					«ENDIF»
-					
-					//Button for List Element
-					btn = new JButton("Add");
-					btn.setEnabled(!currentEntity.isNew());
-					gbc_btn = new GridBagConstraints();
-					gbc_btn.insets = new Insets(0, 0, 5, 0);
-					gbc_btn.gridx = 3;
-					gbc_btn.gridy = gridy;
-					getPanel().add(btn, gbc_btn);
-					btn.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							«IF ref.hasSubClasses»
-								«ref.type.name» entity = null;
-								«FOR subClass : ref.opposite.class_.instantiableClasses»
-									if(«clazz.entryWindowClassName».this.«ref.inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
-										entity = new «subClass.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity);
-								«ENDFOR»
-								«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
-							«ELSE»
-								new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, new «ref.type.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity)).open();
-							«ENDIF»
-						}
-					});
-					
-					btn = new JButton("Edit");
-					gbc_btn.gridx = 4;
-					btn.setEnabled(!currentEntity.isNew());
-					getPanel().add(btn, gbc_btn);
-					btn.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							«ref.type.name» entity = «clazz.entryWindowClassName».this.«ref.fieldName».getSelectedValue();
-							if(entity == null)
-								Util.showNothingSelected();
-							else
-								«IF ref.hasSubClasses»
-									«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
-								«ELSE»
-									new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, entity).open();
-								«ENDIF»
-						}
-					});
-					
-					btn = new JButton("Delete");
-					btn.setEnabled(false);
-					gbc_btn.gridx = 5;
-					getPanel().add(btn, gbc_btn);
-				«ENDFOR»
+							fld«elem.name» = «(elem.initializeField)»;
+							fld«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							contentPane.add(fld«elem.name»);
+							fld«elem.name».setColumns(10);
+					«ENDFOR»
+«««				«FOR element: window.elements.filter(Field)»
+«««				int gridy = 0;
+«««				JButton btn;
+«««				GridBagConstraints gbc_btn;
+«««				«FOR ref : window.entity.multiReferences(true)»				
+«««					gridy = getNextGridYValue();
+«««					JLabel «ref.labelName» = new JLabel("«ref.readableLabel + (if(ref.required) '*' else '')»");
+«««					GridBagConstraints gbc_«ref.labelName» = new GridBagConstraints();
+«««					gbc_«ref.labelName».insets = new Insets(0, 0, 5, 5);
+«««					gbc_«ref.labelName».anchor = GridBagConstraints.NORTHEAST;
+«««					gbc_«ref.labelName».gridx = 0;
+«««					gbc_«ref.labelName».gridy = gridy;
+«««					getPanel().add(«ref.labelName», gbc_«ref.labelName»);
+«««					
+«««					«ref.fieldName» = «ref.initializeField»;
+«««					GridBagConstraints gbc_«ref.fieldName» = new GridBagConstraints();
+«««					gbc_«ref.fieldName».gridwidth = 5;
+«««					gbc_«ref.fieldName».insets = new Insets(0, 0, 5, 5);
+«««					gbc_«ref.fieldName».fill = GridBagConstraints.BOTH;
+«««					gbc_«ref.fieldName».gridx = 1;
+«««					gbc_«ref.fieldName».weighty = .5;
+«««					gbc_«ref.fieldName».gridy = gridy;
+«««					getPanel().add(«ref.fieldName», gbc_«ref.fieldName»);
+«««					
+«««					gridy = getNextGridYValue();
+«««					« /* Special handling of attributes with inheritance */
+«««					 IF ref.hasSubClasses »
+«««					
+«««						«ref.createSelectForInheritanceClasses("2","gridy")»
+«««					«ENDIF»
+«««					
+«««					//Button for List Element
+«««					btn = new JButton("Add");
+«««					btn.setEnabled(!currentEntity.isNew());
+«««					gbc_btn = new GridBagConstraints();
+«««					gbc_btn.insets = new Insets(0, 0, 5, 0);
+«««					gbc_btn.gridx = 3;
+«««					gbc_btn.gridy = gridy;
+«««					getPanel().add(btn, gbc_btn);
+«««					btn.addActionListener(new ActionListener() {
+«««						@Override
+«««						public void actionPerformed(ActionEvent e) {
+«««							«IF ref.hasSubClasses»
+«««								«ref.type.name» entity = null;
+«««								«FOR subClass : ref.opposite.class_.instantiableClasses»
+«««									if(«clazz.entryWindowClassName».this.«ref.inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
+«««										entity = new «subClass.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity);
+«««								«ENDFOR»
+«««								«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
+«««							«ELSE»
+«««								new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, new «ref.type.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity)).open();
+«««							«ENDIF»
+«««						}
+«««					});
+«««					
+«««					btn = new JButton("Edit");
+«««					gbc_btn.gridx = 4;
+«««					btn.setEnabled(!currentEntity.isNew());
+«««					getPanel().add(btn, gbc_btn);
+«««					btn.addActionListener(new ActionListener() {
+«««						@Override
+«««						public void actionPerformed(ActionEvent e) {
+«««							«ref.type.name» entity = «clazz.entryWindowClassName».this.«ref.fieldName».getSelectedValue();
+«««							if(entity == null)
+«««								Util.showNothingSelected();
+«««							else
+«««								«IF ref.hasSubClasses»
+«««									«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
+«««								«ELSE»
+«««									new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, entity).open();
+«««								«ENDIF»
+«««						}
+«««					});
+«««					
+«««					btn = new JButton("Delete");
+«««					btn.setEnabled(false);
+«««					gbc_btn.gridx = 5;
+«««					getPanel().add(btn, gbc_btn);
+«««				«ENDFOR»
 			}
 			« /* Create list initializer methods; one for each list */
 			FOR att : window.entity.multiReferences(true)»
@@ -238,7 +247,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	//Initializes input fields and if necessary selects 
 	def initializeField(Field p) {
 		switch (p.property) {
-			Attribute: '''new «p.inputFieldType»(«p.property.formattedTextCode»)'''
+			Attribute: '''new «p.inputFieldType»(«(p as Attribute).formattedTextCode»)'''
 			Reference:
 				if ((p.property as Reference).multiplicity == 0) {
 					'''
@@ -287,16 +296,16 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	}
 
 	/* get code for formatted text representation of property value */
-	def getFormattedTextCode(Property p) {
-		val getValue = '''currentEntity.get«p.nameInJava.toFirstUpper»()'''
+	def getFormattedTextCode(Attribute a) {
+		val getValue = '''currentEntity.get«a.nameInJava.toFirstUpper»()'''
 		var result = getValue
-		if (p.isDate)
+		if (a.isDate)
 			result = '''Util.DATE_TIME_FORMATTER.format(«result»)'''
-		else if (p.numberObject)
+		else if (a.numberObject)
 			result = '''«getValue».toString()'''
-		else if (!p.string)
+		else if (!a.string)
 			result = '''String.valueOf(«result»)'''
-		if (p.isObject)
+		if (a.isObject)
 			result = '''«getValue» != null ? «result» : ""'''
 		result
 	}
@@ -308,16 +317,13 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 
 		val getText = '''«p.fieldName».getText()'''
 		var result = getText
-		if (p.isDate)
+		if (p instanceof Attribute){
+		if ((p as Attribute).isDate)
 			result = '''Util.DATE_TIME_FORMATTER.parse(«result»)'''
-		else if (!p.string)
-			result = '''«p.typeInJava.objectType».valueOf(«result»)'''
+		else if (!(p as Attribute).string)
+			result = '''«(p as Attribute).typeInJava.objectType».valueOf(«result»)'''}
 
 		'''«getText».isEmpty() ? null : «result»'''
-	}
-
-	def getServiceProviderForType(Type t) {
-		'''serviceProvider.get«(t as Class).serviceClassName»()'''
 	}
 	
 	def listInitializeMethodName(Property p) {
