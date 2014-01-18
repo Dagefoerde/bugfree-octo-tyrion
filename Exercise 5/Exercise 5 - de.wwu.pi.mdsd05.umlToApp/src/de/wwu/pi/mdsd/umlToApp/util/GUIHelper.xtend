@@ -29,7 +29,10 @@ class GUIHelper {
 	}
 	
 	def static readableLabel(Label label) {
-		label.name.camelCaseToLabel.toFirstUpper
+		if (label.text == null)
+			label.name.camelCaseToLabel.toFirstUpper
+		else
+			label.text
 	}
 
 	def static windowTitle(ListWindow window) {
