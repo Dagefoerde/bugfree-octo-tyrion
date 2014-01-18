@@ -1,13 +1,13 @@
 package de.wwu.pi.mdsd.umlToApp.util
 
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import java.util.HashSet
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Type
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
-import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 abstract class GeneratorWithImports<T> {
 	public static val IMPORTS_MARKER = "//$GENERATED_IMPORTS_HERE$"

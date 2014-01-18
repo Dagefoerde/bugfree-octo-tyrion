@@ -7,7 +7,6 @@ import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
 
 class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	override doGenerate(ListWindow window) '''

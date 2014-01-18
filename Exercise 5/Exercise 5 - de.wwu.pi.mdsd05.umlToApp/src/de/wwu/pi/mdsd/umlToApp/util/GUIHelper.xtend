@@ -1,20 +1,18 @@
 package de.wwu.pi.mdsd.umlToApp.util
 
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
-import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
-import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
-import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
-import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
