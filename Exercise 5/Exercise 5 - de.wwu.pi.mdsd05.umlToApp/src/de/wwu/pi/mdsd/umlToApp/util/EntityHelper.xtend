@@ -64,15 +64,6 @@ class EntityHelper {
 	def static isSingelvalued(Reference r){
 		r.multiplicity==MultiplicityKind.SINGLE
 	}
-	
-	//Note that more specific types are handled first, thus 'Class' is handled before 'Element'.
-	// org.eclipse.uml2.uml.Class is subclass of org.eclipse.uml2.uml.Element
-	/*def static dispatch isEntity(Element element) {
-		false
-	}
-	def static dispatch isEntity(Class clazz) {
-		true
-	}*/
 
 	//-------------------------------------------------------------------------------------
 	// Inheritance

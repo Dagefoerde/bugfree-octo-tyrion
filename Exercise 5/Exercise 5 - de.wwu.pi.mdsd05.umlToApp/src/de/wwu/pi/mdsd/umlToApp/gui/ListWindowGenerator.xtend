@@ -4,7 +4,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
