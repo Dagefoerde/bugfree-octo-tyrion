@@ -157,7 +157,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 										«ENDFOR»
 										«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
 									«ELSE»
-									new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, new «(elem.property as Reference).type.name»()).open();//.«(elem.property as Reference).initializeSingleRefMethodName»(currentEntity)).open();
+									new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, new «(elem.property as Reference).type.name»().«(elem.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity)).open();
 									«ENDIF»
 								}
 							});
