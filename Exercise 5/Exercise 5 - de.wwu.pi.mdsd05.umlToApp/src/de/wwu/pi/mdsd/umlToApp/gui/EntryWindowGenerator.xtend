@@ -153,7 +153,7 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 										«(elem.property as Reference).type.name» entity = null;
 										«FOR subClass : (elem.property as Reference).type.instantiableClasses»
 											if(«subClass.entryWindowClassName».this.«(elem.property as Reference).inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
-												entity = new «subClass.name»().«(elem.property as Reference).initializeSingleRefMethodName»(currentEntity);
+												entity = new «subClass.name»().«(elem.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity);
 										«ENDFOR»
 										«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
 									«ELSE»
