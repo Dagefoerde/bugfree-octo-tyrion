@@ -8,22 +8,17 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.MultiplicityKind
 import de.wwu.pi.mdsd.crudDsl.crudDsl.AttributeType
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
+import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 
 class EntityHelper { 
 
 	def static listWindowClassName(Entity entity) {
-		entity.name + 'ListWindow'
+		(entity.eContainer as CrudModel).windows.filter(ListWindow).filter[it.entity.equals(entity)].head.name
 	}
-	
-	/*def static listingInterfaceClassName(Type type) {
-		type.name + 'ListingInterface'
-	}
-	def static listingInterfaceMethodeName(Type type) {
-		'initialize'+ type.name +'Listings'
-	}*/
 	
 	def static entryWindowClassName(Entity entity) {
-		entity.name + 'EntryWindow'
+		(entity.eContainer as CrudModel).windows.filter(EntryWindow).filter[it.entity.equals(entity)].head.name
 	}
 	
 	def static serviceClassName(Entity entity) {
