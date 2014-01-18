@@ -5,6 +5,8 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Property
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
+import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Entity
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
@@ -116,5 +118,17 @@ class GUIHelper {
 		gbc_«entity.inheritanceTypeSelectName».gridy = «y»;
 		getPanel().add(«entity.inheritanceTypeSelectName», gbc_«entity.inheritanceTypeSelectName»);
 		'''
+	}
+	
+	def static isSpaceForButtons(Field field){
+		(field.bounds.height>50 && field.bounds.width>50)
+	}
+	def static Integer numberOfButtonsThereIsSpaceFor(Field field){
+		if (!field.isSpaceForButtons) return 0
+		if (field.bounds.width<50) return 0
+		if (field.bounds.width<105) return 1
+		if (field.bounds.width<160) return 2
+		else
+		return 3			
 	}
 }

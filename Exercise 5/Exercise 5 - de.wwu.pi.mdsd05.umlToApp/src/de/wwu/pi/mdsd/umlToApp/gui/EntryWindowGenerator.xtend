@@ -13,6 +13,7 @@ import de.wwu.pi.mdsd.umlToApp.util.GeneratorWithImports
 import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Window
 
 class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
@@ -137,135 +138,17 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			protected void createLists() {
 				«FOR elem : window.elements.filter(Field).filter[field|field.property instanceof Reference && (field.property as Reference).isMultivalued]»
-					
+
 							«elem.name» = «(elem.initializeField)»;
-							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»-25);
+							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»«IF elem.isSpaceForButtons»-25«ENDIF»);
 							getPanel().add(«elem.name»);
-							//Button for List Element
-							JButton «elem.addButtonName» = new JButton("Add");
-							«elem.addButtonName».setEnabled(!currentEntity.isNew());
-							«elem.addButtonName».setBounds(«elem.bounds.x»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
-							getPanel().add(«elem.addButtonName»);
-							«elem.addButtonName».addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									«IF (elem.property as Reference).type.hasSubClasses»
-										«(elem.property as Reference).type.name» entity = null;
-										«FOR subClass : (elem.property as Reference).type.instantiableClasses»
-											if(«subClass.entryWindowClassName».this.«(elem.property as Reference).inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
-												entity = new «subClass.name»().«(elem.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity);
-										«ENDFOR»
-										«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
-									«ELSE»
-									new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, new «(elem.property as Reference).type.name»().«(elem.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity)).open();
-									«ENDIF»
-								}
-							});
-							
-							JButton «elem.editButtonName» = new JButton("Edit");
-							«elem.editButtonName».setBounds(«elem.bounds.x+(elem.bounds.width-10)/3+5»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
-							«elem.editButtonName».setEnabled(!currentEntity.isNew());
-							getPanel().add(«elem.editButtonName»);
-							«elem.editButtonName».addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									«(elem.property as Reference).type.name» entity = «window.name».this.«elem.fieldName».getSelectedValue();
-									if(entity == null)
-										Util.showNothingSelected();
-									else
-										«IF (elem.property as Reference).type.hasSubClasses»
-											«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
-										«ELSE»
-											new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, entity).open();
-										«ENDIF»
-								}
-							});
-							
-							JButton «elem.deleteButtonName» = new JButton("Delete");
-							«elem.deleteButtonName».setEnabled(false);
-							«elem.deleteButtonName».setBounds(«elem.bounds.x+2*((elem.bounds.width-10)/3)+10»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
-							getPanel().add(«elem.deleteButtonName»);
-							
+							«IF elem.numberOfButtonsThereIsSpaceFor>0»
+								//Button for List Element								
+							«ENDIF»
+							«elem.createAddButtonForField(window)»
+							«elem.createEditButtonForField(window)»
+							«elem.createDeleteButtonForField(window)»
 				«ENDFOR»
-«««				«FOR element: window.elements.filter(Field)»
-«««				int gridy = 0;
-«««				JButton btn;
-«««				GridBagConstraints gbc_btn;
-«««				«FOR ref : window.entity.multiReferences(true)»				
-«««					gridy = getNextGridYValue();
-«««					JLabel «ref.labelName» = new JLabel("«ref.readableLabel + (if(ref.required) '*' else '')»");
-«««					GridBagConstraints gbc_«ref.labelName» = new GridBagConstraints();
-«««					gbc_«ref.labelName».insets = new Insets(0, 0, 5, 5);
-«««					gbc_«ref.labelName».anchor = GridBagConstraints.NORTHEAST;
-«««					gbc_«ref.labelName».gridx = 0;
-«««					gbc_«ref.labelName».gridy = gridy;
-«««					getPanel().add(«ref.labelName», gbc_«ref.labelName»);
-«««					
-«««					«ref.fieldName» = «ref.initializeField»;
-«««					GridBagConstraints gbc_«ref.fieldName» = new GridBagConstraints();
-«««					gbc_«ref.fieldName».gridwidth = 5;
-«««					gbc_«ref.fieldName».insets = new Insets(0, 0, 5, 5);
-«««					gbc_«ref.fieldName».fill = GridBagConstraints.BOTH;
-«««					gbc_«ref.fieldName».gridx = 1;
-«««					gbc_«ref.fieldName».weighty = .5;
-«««					gbc_«ref.fieldName».gridy = gridy;
-«««					getPanel().add(«ref.fieldName», gbc_«ref.fieldName»);
-«««					
-«««					gridy = getNextGridYValue();
-«««					« /* Special handling of attributes with inheritance */
-«««					 IF ref.hasSubClasses »
-«««					
-«««						«ref.createSelectForInheritanceClasses("2","gridy")»
-«««					«ENDIF»
-«««					
-«««					//Button for List Element
-«««					btn = new JButton("Add");
-«««					btn.setEnabled(!currentEntity.isNew());
-«««					gbc_btn = new GridBagConstraints();
-«««					gbc_btn.insets = new Insets(0, 0, 5, 0);
-«««					gbc_btn.gridx = 3;
-«««					gbc_btn.gridy = gridy;
-«««					getPanel().add(btn, gbc_btn);
-«««					btn.addActionListener(new ActionListener() {
-«««						@Override
-«««						public void actionPerformed(ActionEvent e) {
-«««							«IF ref.hasSubClasses»
-«««								«ref.type.name» entity = null;
-«««								«FOR subClass : ref.opposite.class_.instantiableClasses»
-«««									if(«clazz.entryWindowClassName».this.«ref.inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
-«««										entity = new «subClass.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity);
-«««								«ENDFOR»
-«««								«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
-«««							«ELSE»
-«««								new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, new «ref.type.name»().«ref.opposite.initializeSingleRefMethodName»(currentEntity)).open();
-«««							«ENDIF»
-«««						}
-«««					});
-«««					
-«««					btn = new JButton("Edit");
-«««					gbc_btn.gridx = 4;
-«««					btn.setEnabled(!currentEntity.isNew());
-«««					getPanel().add(btn, gbc_btn);
-«««					btn.addActionListener(new ActionListener() {
-«««						@Override
-«««						public void actionPerformed(ActionEvent e) {
-«««							«ref.type.name» entity = «clazz.entryWindowClassName».this.«ref.fieldName».getSelectedValue();
-«««							if(entity == null)
-«««								Util.showNothingSelected();
-«««							else
-«««								«IF ref.hasSubClasses»
-«««									«ref.opposite.class_.inheritanceCallOpenEntryWindow(ref.class_.entryWindowClassName+".this")»
-«««								«ELSE»
-«««									new «ref.opposite.class_.entryWindowClassName»(«clazz.entryWindowClassName».this, entity).open();
-«««								«ENDIF»
-«««						}
-«««					});
-«««					
-«««					btn = new JButton("Delete");
-«««					btn.setEnabled(false);
-«««					gbc_btn.gridx = 5;
-«««					getPanel().add(btn, gbc_btn);
-«««				«ENDFOR»
 			}
 			« /* Create list initializer methods; one for each list */
 			FOR elem : window.elements.filter(Field).filter[it.hasMultiValuedProperty]»
@@ -366,5 +249,59 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 	
 	def listInitializeMethodName(Field f) {
 		'''initialize«f.name.toFirstUpper»'''
+	}
+	
+	def createAddButtonForField(Field field,Window window){
+		if (field.numberOfButtonsThereIsSpaceFor>0){
+			'''JButton «field.addButtonName» = new JButton("Add");
+							«field.addButtonName».setEnabled(!currentEntity.isNew());
+							«field.addButtonName».setBounds(«field.bounds.x»,«field.bounds.y+field.bounds.height-20»,«(field.bounds.width-(field.numberOfButtonsThereIsSpaceFor-1)*5)/field.numberOfButtonsThereIsSpaceFor»,20);
+							getPanel().add(«field.addButtonName»);
+							«field.addButtonName».addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									«IF (field.property as Reference).type.hasSubClasses»
+										«(field.property as Reference).type.name» entity = null;
+										«FOR subClass : (field.property as Reference).type.instantiableClasses»
+											if(«subClass.entryWindowClassName».this.«(field.property as Reference).inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
+												entity = new «subClass.name»().«(field.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity);
+										«ENDFOR»
+										«(field.property as Reference).type.inheritanceCallOpenEntryWindow((field.property as Reference).type.entryWindowClassName+".this")»
+									«ELSE»
+									new «(field.property as Reference).type.entryWindowClassName»(«window.name».this, new «(field.property as Reference).type.name»().«(field.property as Reference).opposite.initializeSingleRefMethodName»(currentEntity)).open();
+									«ENDIF»
+								}
+							});'''
+		}
+	}
+	def createEditButtonForField(Field field,Window window){
+		if (field.numberOfButtonsThereIsSpaceFor>1){
+			'''JButton «field.editButtonName» = new JButton("Edit");
+							«field.editButtonName».setBounds(«field.bounds.x+((field.bounds.width-(field.numberOfButtonsThereIsSpaceFor-1)*5)/field.numberOfButtonsThereIsSpaceFor)+5»,«field.bounds.y+field.bounds.height-20»,«(field.bounds.width-(field.numberOfButtonsThereIsSpaceFor-1)*5)/field.numberOfButtonsThereIsSpaceFor»,20);
+							«field.editButtonName».setEnabled(!currentEntity.isNew());
+							getPanel().add(«field.editButtonName»);
+							«field.editButtonName».addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									«(field.property as Reference).type.name» entity = «window.name».this.«field.fieldName».getSelectedValue();
+									if(entity == null)
+										Util.showNothingSelected();
+									else
+										«IF (field.property as Reference).type.hasSubClasses»
+											«(field.property as Reference).type.inheritanceCallOpenEntryWindow((field.property as Reference).type.entryWindowClassName+".this")»
+										«ELSE»
+											new «(field.property as Reference).type.entryWindowClassName»(«window.name».this, entity).open();
+										«ENDIF»
+								}
+							});'''
+		}
+	}
+	def createDeleteButtonForField(Field field,Window window){
+		if (field.numberOfButtonsThereIsSpaceFor>2){
+			'''							JButton «field.deleteButtonName» = new JButton("Delete");
+							«field.deleteButtonName».setEnabled(false);
+							«field.deleteButtonName».setBounds(«field.bounds.x+2*((field.bounds.width-(field.numberOfButtonsThereIsSpaceFor-1)*5)/field.numberOfButtonsThereIsSpaceFor)+(field.numberOfButtonsThereIsSpaceFor-1)*5»,«field.bounds.y+field.bounds.height-20»,«(field.bounds.width-(field.numberOfButtonsThereIsSpaceFor-1)*5)/field.numberOfButtonsThereIsSpaceFor»,20);
+							getPanel().add(«field.deleteButtonName»);'''
+		}
 	}
 }
