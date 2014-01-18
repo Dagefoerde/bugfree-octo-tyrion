@@ -132,17 +132,61 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			}
 			
 			«FOR rerference : window.entity.multiReferences(true).filter[rerference | rerference.hasSubClasses ]»
-				javax.swing.JComboBox<String> «rerference.type.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
+				javax.swing.JComboBox<String> «rerference.inheritanceTypeSelectName» = new javax.swing.JComboBox<>();
 			«ENDFOR»
 			@Override
 			protected void createLists() {
 				«FOR elem : window.elements.filter(Field).filter[field|field.property instanceof Reference && (field.property as Reference).isMultivalued]»
 					
 							«elem.name» = «(elem.initializeField)»;
-							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»);
+							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»-25);
 							getPanel().add(«elem.name»);
-							//«elem.name».setColumns(10);
-					«ENDFOR»
+							//Button for List Element
+							JButton «elem.addButtonName» = new JButton("Add");
+							«elem.addButtonName».setEnabled(!currentEntity.isNew());
+							«elem.addButtonName».setBounds(«elem.bounds.x»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
+							getPanel().add(«elem.addButtonName»);
+							«elem.addButtonName».addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									«IF (elem.property as Reference).type.hasSubClasses»
+										«(elem.property as Reference).type.name» entity = null;
+										«FOR subClass : (elem.property as Reference).type.instantiableClasses»
+											if(«subClass.entryWindowClassName».this.«(elem.property as Reference).inheritanceTypeSelectName».getSelectedItem().equals("«importedType(subClass)»"))
+												entity = new «subClass.name»().«(elem.property as Reference).initializeSingleRefMethodName»(currentEntity);
+										«ENDFOR»
+										«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
+									«ELSE»
+									new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, new «(elem.property as Reference).type.name»()).open();//.«(elem.property as Reference).initializeSingleRefMethodName»(currentEntity)).open();
+									«ENDIF»
+								}
+							});
+							
+							JButton «elem.editButtonName» = new JButton("Edit");
+							«elem.editButtonName».setBounds(«elem.bounds.x+(elem.bounds.width-10)/3+5»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
+							«elem.editButtonName».setEnabled(!currentEntity.isNew());
+							getPanel().add(«elem.editButtonName»);
+							«elem.editButtonName».addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									«(elem.property as Reference).type.name» entity = «window.name».this.«elem.fieldName».getSelectedValue();
+									if(entity == null)
+										Util.showNothingSelected();
+									else
+										«IF (elem.property as Reference).type.hasSubClasses»
+											«(elem.property as Reference).type.inheritanceCallOpenEntryWindow((elem.property as Reference).type.entryWindowClassName+".this")»
+										«ELSE»
+											new «(elem.property as Reference).type.entryWindowClassName»(«window.name».this, entity).open();
+										«ENDIF»
+								}
+							});
+							
+							JButton «elem.deleteButtonName» = new JButton("Delete");
+							«elem.deleteButtonName».setEnabled(false);
+							«elem.deleteButtonName».setBounds(«elem.bounds.x+2*((elem.bounds.width-10)/3)+10»,«elem.bounds.y+elem.bounds.height-20»,«(elem.bounds.width-10)/3»,20);
+							getPanel().add(«elem.deleteButtonName»);
+							
+				«ENDFOR»
 «««				«FOR element: window.elements.filter(Field)»
 «««				int gridy = 0;
 «««				JButton btn;

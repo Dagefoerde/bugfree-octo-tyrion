@@ -12,6 +12,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Button
+import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 
 class GUIHelper { 
 	// from http://stackoverflow.com/a/2560017
@@ -59,9 +60,21 @@ class GUIHelper {
 		}
 	}
 	
+	def static getAddButtonName(Field field)
+		'''btn_«field.name»_Add'''
+		
+	def static getEditButtonName(Field field)
+		'''btn_«field.name»_Edit'''
+		
+	def static getDeleteButtonName(Field field)
+		'''btn_«field.name»_Delete'''
+	
 	def static inheritanceTypeSelectName(NamedElement att)
 		'''cb_select_inh_type_« att.name»'''
 	
+	def static inheritanceTypeSelectName(Reference ref)
+		'''cb_select_inh_type_« ref.name»'''
+		
 	def static inheritanceTypeSelectName(Entity entity)
 		'''cb_select_inh_type_« entity.name»'''
 		
