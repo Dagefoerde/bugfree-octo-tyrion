@@ -138,10 +138,13 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 			@Override
 			protected void createLists() {
 				«FOR elem : window.elements.filter(Field).filter[field|field.property instanceof Reference && (field.property as Reference).isMultivalued]»
-
+							JScrollPane scroll_«elem.name» = new JScrollPane();
+							scroll_«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»«IF elem.isSpaceForButtons»-25«ENDIF»);
+							getPanel().add(scroll_«elem.name»);
+							
 							«elem.name» = «(elem.initializeField)»;
-							«elem.name».setBounds(«elem.bounds.x», «elem.bounds.y», «elem.bounds.width», «elem.bounds.height»«IF elem.isSpaceForButtons»-25«ENDIF»);
-							getPanel().add(«elem.name»);
+							scroll_«elem.name».setViewportView(«elem.name»);
+							
 							«IF elem.numberOfButtonsThereIsSpaceFor>0»
 								//Button for List Element								
 							«ENDIF»
