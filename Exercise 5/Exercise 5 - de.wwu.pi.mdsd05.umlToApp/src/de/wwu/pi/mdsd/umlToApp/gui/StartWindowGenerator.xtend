@@ -1,7 +1,7 @@
 package de.wwu.pi.mdsd.umlToApp.gui
 
 import de.wwu.pi.mdsd.crudDsl.crudDsl.CrudModel
-import org.eclipse.uml2.uml.Property
+import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 
 import static extension de.wwu.pi.mdsd.umlToApp.util.GUIHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.ModelAndPackageHelper.*
@@ -26,7 +26,7 @@ class StartWindowGenerator {
 		
 			@Override
 			protected void ListChoices() {
-				«FOR window : model.windows.filter[window|window instanceof de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow].map[window|window as de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow]»
+				«FOR window : model.windows.filter[window|window instanceof ListWindow].map[window|window as ListWindow]»
 					JButton «window.name.toFirstLower» = new JButton("«window.windowTitle»");
 					GridBagConstraints gbc_«window.name.toFirstLower» = new GridBagConstraints();
 					gbc_«window.name.toFirstLower».insets = new Insets(0, 0, 5, 5);
@@ -56,8 +56,4 @@ class StartWindowGenerator {
 			}
 		}
 	'''
-
-	def static listButtonName(Property p) {
-		"btn" + p.name.toFirstUpper + 'List'
-	}
 }

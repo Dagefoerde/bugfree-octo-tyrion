@@ -7,11 +7,7 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Label
 import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
-import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.NamedElement
-import org.eclipse.uml2.uml.Property
 
-import static extension de.wwu.pi.mdsd.umlToApp.util.ClassHelper.*
 import static extension de.wwu.pi.mdsd.umlToApp.util.EntityHelper.*
 
 class GUIHelper { 
@@ -22,10 +18,6 @@ class GUIHelper {
 		"(?<=[A-Za-z])(?=[^A-Za-z])" //Letter behind me, non-letter in front of me  (e.g. May15 > May 15
 	def static camelCaseToLabel(String camelCaseString) {
 		camelCaseString.replaceAll(REGEX_SPLIT_CAMEL_CASE, " ")
-	}
-
-	def static readableLabel(NamedElement named) {
-		named.name.camelCaseToLabel.toFirstUpper
 	}
 	
 	def static readableLabel(Label label) {
@@ -56,13 +48,6 @@ class GUIHelper {
 			window.title
 	}
 	
-	def static private Class getClazz(NamedElement elem) {
-		switch elem {
-			Class : elem
-			Property : elem.opposite.class_
-		}
-	}
-	
 	def static getAddButtonName(Field field)
 		'''btn_«field.name»_Add'''
 		
@@ -72,21 +57,11 @@ class GUIHelper {
 	def static getDeleteButtonName(Field field)
 		'''btn_«field.name»_Delete'''
 	
-	def static inheritanceTypeSelectName(NamedElement att)
-		'''cb_select_inh_type_« att.name»'''
-	
 	def static inheritanceTypeSelectName(Reference ref)
 		'''cb_select_inh_type_« ref.name»'''
 		
 	def static inheritanceTypeSelectName(Entity entity)
 		'''cb_select_inh_type_« entity.name»'''
-		
-	def static inheritanceCallOpenEntryWindow(Class clazz, String refToWindowClass) '''
-		«FOR subClass : clazz.instantiableClasses»
-			if(entity instanceof «javaType(subClass)»)
-				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
-		«ENDFOR»
-	'''
 	
 	def static inheritanceCallOpenEntryWindow(Entity entity, String refToWindowClass) '''
 		«FOR subClass : entity.instantiableClasses»
@@ -94,20 +69,7 @@ class GUIHelper {
 				new «subClass.entryWindowClassName»(«refToWindowClass», («subClass.name») entity).open();
 		«ENDFOR»
 	'''
-	
-	def static createSelectForInheritanceClasses(NamedElement elem, String x,String y) {
-		val clazz = elem.getClazz
-		'''
-		«FOR subclass : clazz.instantiableClasses»
-			«elem.inheritanceTypeSelectName».addItem("«subclass.name»");
-		«ENDFOR»
-		java.awt.GridBagConstraints gbc_«elem.inheritanceTypeSelectName» = new java.awt.GridBagConstraints();
-		gbc_«elem.inheritanceTypeSelectName».insets = new java.awt.Insets(0, 0, 5, 5);
-		gbc_«elem.inheritanceTypeSelectName».gridx = «x»;
-		gbc_«elem.inheritanceTypeSelectName».gridy = «y»;
-		getPanel().add(«elem.inheritanceTypeSelectName», gbc_«elem.inheritanceTypeSelectName»);
-		'''
-	}
+
 	def static createSelectForInheritanceClasses(Entity entity, String x,String y) {
 		'''
 		«FOR subclass : entity.instantiableClasses»
