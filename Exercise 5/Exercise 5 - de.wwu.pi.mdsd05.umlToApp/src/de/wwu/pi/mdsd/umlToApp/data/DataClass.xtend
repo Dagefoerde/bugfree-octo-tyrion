@@ -70,10 +70,10 @@ class DataClass {
 			@Override
 			public String toString() {
 				return «if(clazz.hasExplicitSuperClass) 'super.toString() + ", " + '»«
-				/* for each object concatenate the owned primitive attributes */
-				clazz.primitiveAttributes(false).join(null,' + ", " + ', ' + ', [generateToStringPart])»""«
+				/* for each object concatenate the owned primitive attributes and single-valued references */
+				(clazz.primitiveAttributes(false) + clazz.singleReferences(false)).join(null,' + ", " + ', ' + ', [generateToStringPart])»""«
 				/* If nothing is returned return the object id */
-				if(clazz.primitiveAttributes(true).size==0) ' + getOid()'»;
+				if(clazz.primitiveAttributes(true).size==0 && clazz.singleReferences(true).size==0) ' + getOid()'»;
 			}
 		}
 	'''
