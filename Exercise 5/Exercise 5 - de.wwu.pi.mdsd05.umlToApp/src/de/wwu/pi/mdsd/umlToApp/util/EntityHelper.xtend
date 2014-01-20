@@ -8,14 +8,9 @@ import de.wwu.pi.mdsd.crudDsl.crudDsl.Reference
 import de.wwu.pi.mdsd.crudDsl.crudDsl.MultiplicityKind
 import de.wwu.pi.mdsd.crudDsl.crudDsl.AttributeType
 import de.wwu.pi.mdsd.crudDsl.crudDsl.Field
-import de.wwu.pi.mdsd.crudDsl.crudDsl.ListWindow
 import de.wwu.pi.mdsd.crudDsl.crudDsl.EntryWindow
 
 class EntityHelper { 
-
-	def static listWindowClassName(Entity entity) {
-		(entity.eContainer as CrudModel).windows.filter(ListWindow).filter[it.entity.equals(entity)].head.name
-	}
 	
 	def static entryWindowClassName(Entity entity) {
 		(entity.eContainer as CrudModel).windows.filter(EntryWindow).filter[it.entity.equals(entity)].head.name
@@ -47,10 +42,6 @@ class EntityHelper {
 	
 	def static isNumberObject(Attribute a) {
 		"Integer".equals(a.type.literal)
-	}
-	
-	def static isNumberPrimitiv(Attribute a) {
-		"int".equals(a.type.literal)
 	}
 	
 	def static isObject(Attribute a) {
@@ -164,31 +155,8 @@ class EntityHelper {
 		return false
 	}
 
-	def static Iterable<Attribute> required(Iterable<Attribute> attributes) {
-		attributes.filter[it.required]
-	}
-
 	def static isRequired(Attribute a) {
 		a.optional
-	}
-
-	def static requiredAttributes(Entity entity, boolean considerSuperclass) {
-		(
-			if (considerSuperclass)
-				 entity.superClass.singleValueProperties(considerSuperclass).filter(Attribute).required
-			else
-				emptyList
-		)
-		+ entity.singleValueProperties(false).filter(Attribute).required
-	}
-
-	def static optionalAttributes(Entity entity, boolean considerSuperclass) {
-		entity.singleValueProperties(considerSuperclass).filter(Attribute).filter[!it.required]
-	}
-
-	
-	def static typeAndNameInJava(Property p) {
-		'''«p.typeInJava» «p.nameInJava»'''
 	}
 
 	/** get the type representation of properties in Java 
