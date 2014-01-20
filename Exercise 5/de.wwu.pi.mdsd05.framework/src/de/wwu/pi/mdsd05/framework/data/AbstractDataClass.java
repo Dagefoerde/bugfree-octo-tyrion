@@ -1,4 +1,4 @@
-package de.wwu.pi.mdsd.framework.data;
+package de.wwu.pi.mdsd05.framework.data;
 
 import java.io.Serializable;
 

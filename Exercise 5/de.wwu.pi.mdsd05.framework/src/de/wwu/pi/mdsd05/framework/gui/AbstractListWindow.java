@@ -1,4 +1,4 @@
-package de.wwu.pi.mdsd.framework.gui;
+package de.wwu.pi.mdsd05.framework.gui;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -14,7 +14,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
+import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 
 public abstract class AbstractListWindow<E extends AbstractDataClass> extends
 		AbstractWindow {

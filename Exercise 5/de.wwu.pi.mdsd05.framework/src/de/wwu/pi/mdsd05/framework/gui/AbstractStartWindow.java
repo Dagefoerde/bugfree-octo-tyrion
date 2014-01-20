@@ -1,4 +1,4 @@
-package de.wwu.pi.mdsd.framework.gui;
+package de.wwu.pi.mdsd05.framework.gui;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;

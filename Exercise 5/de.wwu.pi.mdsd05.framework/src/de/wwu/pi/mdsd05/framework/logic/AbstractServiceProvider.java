@@ -1,10 +1,10 @@
-package de.wwu.pi.mdsd.framework.logic;
+package de.wwu.pi.mdsd05.framework.logic;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
+import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 
 @SuppressWarnings("serial")
 public abstract class AbstractServiceProvider<A extends AbstractDataClass> implements Serializable {

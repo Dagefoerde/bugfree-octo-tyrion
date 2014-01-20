@@ -1,4 +1,4 @@
-package de.wwu.pi.mdsd.framework.logic;
+package de.wwu.pi.mdsd05.framework.logic;
 
 public class ValidationException extends Exception {
 	String field,message;
