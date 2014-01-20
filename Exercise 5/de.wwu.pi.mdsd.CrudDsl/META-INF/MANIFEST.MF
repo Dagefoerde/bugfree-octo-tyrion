@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.wwu.pi.mdsd.CrudDsl
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: de.wwu.pi.mdsd.CrudDsl; singleton:=true
+Bundle-SymbolicName: de.wwu.pi.mdsd05.CrudDsl;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
