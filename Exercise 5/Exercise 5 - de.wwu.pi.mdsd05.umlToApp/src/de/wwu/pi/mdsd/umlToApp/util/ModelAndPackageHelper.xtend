@@ -31,10 +31,6 @@ class ModelAndPackageHelper {
 		(entity.eContainer as CrudModel).packageString + ".data"
 	}
 
-	def static entityPackageString(Window window) {
-		(window.eContainer as CrudModel).packageString + ".data"
-	}
-
 	def static logicPackageString(Window window) {
 		(window.eContainer as CrudModel).logicPackageString
 	}
@@ -56,10 +52,6 @@ class ModelAndPackageHelper {
 
 	def static logicPackageString(Class clazz) {
 		clazz.packageString + ".logic"
-	}
-
-	def static guiPackageString(Class clazz) {
-		clazz.packageString + ".gui"
 	}
 
 	def static visibilityInJava(VisibilityKind kind) {
