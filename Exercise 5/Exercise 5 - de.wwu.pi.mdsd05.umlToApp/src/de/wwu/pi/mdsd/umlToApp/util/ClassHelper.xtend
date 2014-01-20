@@ -12,10 +12,6 @@ class ClassHelper {
 	def static serviceClassName(Type clazz) {
 		clazz.name + 'Service'
 	}
-
-	def static entryWindowClassName(Type clazz) {
-		clazz.name + 'EntryWindow'
-	}
 	
 	def static initializeSingleRefMethodName(Property ref) {
 		'initialize' + ref.name.toFirstUpper
@@ -31,14 +27,6 @@ class ClassHelper {
 	
 	def static isNumberObject(Property p) {
 		"Integer".equals(p.type.name)
-	}
-	
-	def static isNumberPrimitiv(Property p) {
-		"int".equals(p.type.name)
-	}
-	
-	def static isObject(Property p) {
-		p.string || p.numberObject || p.date
 	}
 	
 	//Note that more specific types are handled first, thus 'Class' is handled before 'Element'.
@@ -76,10 +64,6 @@ class ClassHelper {
 
 	def static hasSubClasses(Class clazz) {
 		clazz.getDirectSubClasses.size > 0
-	}
-
-	def static hasSubClasses(Property att) {
-		att.opposite.class_.hasSubClasses
 	}
 
 	def static Iterable<Class> getInstantiableClasses(Class clazz) {
@@ -144,11 +128,6 @@ class ClassHelper {
 		)
 		+ clazz.singleValueProperties(false).required
 	}
-
-	def static optionalProperties(Class clazz, boolean considerSuperclass) {
-		clazz.singleValueProperties(considerSuperclass).filter[!it.required]
-	}
-
 	
 	def static typeAndNameInJava(Property p) {
 		'''«p.typeInJava» «p.nameInJava»'''
