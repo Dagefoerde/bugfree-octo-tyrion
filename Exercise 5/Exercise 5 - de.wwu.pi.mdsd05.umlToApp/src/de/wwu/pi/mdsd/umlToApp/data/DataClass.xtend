@@ -11,7 +11,7 @@ class DataClass {
 		package «clazz.entityPackageString»;
 		
 		import java.util.*;
-		import de.wwu.pi.mdsd.framework.data.AbstractDataClass;
+		import de.wwu.pi.mdsd05.framework.data.AbstractDataClass;
 		
 		@SuppressWarnings("serial")
 		public «if(clazz.abstract) 'abstract ' »class «clazz.name» «clazz.superClassExtension ?: ''»{

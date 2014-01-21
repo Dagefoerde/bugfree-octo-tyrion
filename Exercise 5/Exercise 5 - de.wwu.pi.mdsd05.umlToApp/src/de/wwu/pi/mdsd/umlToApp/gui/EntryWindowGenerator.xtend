@@ -27,8 +27,8 @@ class EntryWindowGenerator extends GeneratorWithImports<EntryWindow> {
 		
 		import javax.swing.*;
 		
-		import de.wwu.pi.mdsd.framework.gui.*;
-		import de.wwu.pi.mdsd.framework.logic.ValidationException;
+		import de.wwu.pi.mdsd05.framework.gui.*;
+		import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 		«IMPORTS_MARKER»
 		
 		public class «window.name» extends AbstractEntryWindow<«importedType(window.entity)»> «window.entity.listingTypes.join("implements ",", "," ", [listingInterfaceClassName])»{

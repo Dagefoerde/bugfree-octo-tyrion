@@ -58,7 +58,7 @@ EntryWindow UserEntryWindow for User title "User Listing" size= (450, 400) {
 	Field fd_address for address bounds= (95, 40, 330, 20)
 
 	Label lbl_loans ("Loans") bounds= (10, 70, 75, 20)
-	Field fd_loans for loans bounds= (95, 70, 330, 100)
+	Field fd_loans for loans bounds= (95, 70, 150, 100)
 //	Field fd_loans2 for loans bounds= (95, 175, 330, 100)
 
 	Button btn_save createEdit ("Save") bounds= (335, 325, 90, 25)

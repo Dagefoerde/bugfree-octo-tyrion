@@ -14,9 +14,8 @@ class ListWindowGenerator extends GeneratorWithImports<ListWindow>{
 	
 	import java.util.Vector;
 	
-	import de.wwu.pi.mdsd.framework.gui.AbstractListWindow;
-	import de.wwu.pi.mdsd.framework.gui.AbstractWindow;
-	//import de.wwu.pi.mdsd.framework.logic.*;
+	import de.wwu.pi.mdsd05.framework.gui.AbstractListWindow;
+	import de.wwu.pi.mdsd05.framework.gui.AbstractWindow;
 	import «window.logicPackageString».ServiceInitializer;
 	«IMPORTS_MARKER»
 		

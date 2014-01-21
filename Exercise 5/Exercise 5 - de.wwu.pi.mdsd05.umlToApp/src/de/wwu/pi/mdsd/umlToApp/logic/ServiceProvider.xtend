@@ -14,8 +14,8 @@ class ServiceProvider extends GeneratorWithImports<Class>{
 	import java.util.Date;
 	import java.util.LinkedList;
 	
-	import de.wwu.pi.mdsd.framework.logic.AbstractServiceProvider;
-	import de.wwu.pi.mdsd.framework.logic.ValidationException;
+	import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
+	import de.wwu.pi.mdsd05.framework.logic.ValidationException;
 	
 	«IMPORTS_MARKER»
 	«//add imports for single value references

@@ -5,9 +5,9 @@
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd05.CrudDsl"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd05.CrudDsl.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd05.CrudDsl.ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd.CrudDsl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd.CrudDsl.tests"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd.CrudDsl.ui"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/de.wwu.pi.mdsd05.framework"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

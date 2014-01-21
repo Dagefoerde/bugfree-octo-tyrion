@@ -3,13 +3,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.wwu.pi.mdsd.CrudDsl.tests
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: de.wwu.pi.mdsd05.CrudDsl.tests;singleton:=true
+Bundle-SymbolicName: de.wwu.pi.mdsd.CrudDsl.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: de.wwu.pi.mdsd05.CrudDsl,
- de.wwu.pi.mdsd05.CrudDsl.ui,
+Require-Bundle: de.wwu.pi.mdsd.CrudDsl,
+ de.wwu.pi.mdsd.CrudDsl.ui,
  org.eclipse.core.runtime,
  org.eclipse.xtext.junit4,
- org.eclipse.ui.workbench;resolution:=optional
+ org.eclipse.ui.workbench;resolution:=optional,
+ de.wwu.pi.mdsd.CrudDsl,
+ de.wwu.pi.mdsd.CrudDsl.ui
 Import-Package: org.apache.log4j,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",

@@ -18,7 +18,7 @@ class ServiceInitializerGen {
 		import java.io.ObjectOutputStream;
 		import java.io.Serializable;
 		
-		import de.wwu.pi.mdsd.framework.logic.AbstractServiceProvider;
+		import de.wwu.pi.mdsd05.framework.logic.AbstractServiceProvider;
 		
 		public class ServiceInitializer implements Serializable {
 			private static String filename = "MDSD-DataProv.dat";

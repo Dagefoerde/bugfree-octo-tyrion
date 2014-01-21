@@ -19,7 +19,7 @@ class StartWindowGenerator {
 		import javax.swing.UIManager;
 		import javax.swing.UnsupportedLookAndFeelException;
 		
-		import de.wwu.pi.mdsd.framework.gui.AbstractStartWindow;
+		import de.wwu.pi.mdsd05.framework.gui.AbstractStartWindow;
 		import «model.logicPackageString».ServiceInitializer;
 		
 		public class StartWindow extends AbstractStartWindow {
